@@ -1,5 +1,7 @@
 package data.persistency;
-import chat.ChatRoomEnt;
+import chat.entities.ChatRoomEnt;
+
+import java.util.ArrayList;
 
 public interface ChatDataAccessInterface {
     void save();

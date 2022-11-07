@@ -1,9 +1,9 @@
-package chat;
+package chat.entities;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class MessageEnt {
+public class MessageEnt implements {
     /**
      * A content of the message
      */

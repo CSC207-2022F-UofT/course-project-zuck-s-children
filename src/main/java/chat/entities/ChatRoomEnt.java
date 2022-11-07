@@ -1,4 +1,4 @@
-package chat;
+package chat.entities;
 
 import java.util.ArrayList;
 import java.util.UUID;
