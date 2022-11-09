@@ -3,7 +3,7 @@ package chat.entities;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class MessageEnt implements {
+public class MessageEnt {
     /**
      * A content of the message
      */
