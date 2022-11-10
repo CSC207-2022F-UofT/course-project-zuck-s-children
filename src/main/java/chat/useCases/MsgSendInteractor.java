@@ -14,15 +14,14 @@ public class MsgSendInteractor implements MsgInBoundary {
     private static final MessageFactory msgFactory = new MessageFactory();
     private static ChatDataAccessInterface chatDataAccess;
     private MsgOutBoundary msgPresenter;
-    private MsgInModel msgModel;
 
-    public MsgSendInteractor(MsgInModel msgModel, MsgOutBoundary msgPresenter){
+    public MsgSendInteractor(MsgOutBoundary msgPresenter){
         this.msgPresenter = msgPresenter;
-        this.msgModel = msgModel;
     }
     @Override
     public void sendMessage(MsgInModel msgModel) {
-        MsgOutModel responseModel = new MsgOutModel(fetch());
+        MessageEnt newMessage = msgFactory.create(msgModel);
+        MsgOutModel responseModel = new MsgOutModel(fetch(), newMessage);
         msgPresenter.update(responseModel);
     }
     private List<MessageEnt> fetch(){

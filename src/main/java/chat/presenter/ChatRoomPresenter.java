@@ -12,7 +12,7 @@ public class ChatRoomPresenter implements MsgOutBoundary {
     }
     @Override
     public MsgOutModel update(MsgOutModel responseModel) {
-        // TODO: update UI using responseModel
+        // TODO: update UI using a responseModel
         return null;
     }
 }

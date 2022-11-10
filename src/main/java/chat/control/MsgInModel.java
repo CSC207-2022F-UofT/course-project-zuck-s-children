@@ -1,14 +1,19 @@
 package chat.control;
 import java.time.LocalDateTime;
 public class MsgInModel {
-    String content;
-    LocalDateTime sentTime;
-    Account sender;
+    private String content;
+    private Account sender;
 
     public MsgInModel(String s, Account sender){
         this.content = s;
         this.sender = sender;
-        this.sentTime = LocalDateTime.now();
     }
 
+    public String getContent(){
+        return this.content;
+    }
+
+    public Account getSender(){
+        return this.sender;
+    }
 }
