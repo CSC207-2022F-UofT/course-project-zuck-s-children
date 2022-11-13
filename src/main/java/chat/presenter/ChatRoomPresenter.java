@@ -11,8 +11,7 @@ public class ChatRoomPresenter implements MsgOutBoundary {
         this.chatRoom = UI;
     }
     @Override
-    public MsgOutModel update(MsgOutModel responseModel) {
+    public void update(MsgOutModel responseModel) {
         // TODO: update UI using a responseModel
-        return null;
     }
 }

@@ -2,6 +2,7 @@ package chat.entities;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class MessageEnt {
     /**
@@ -40,5 +41,10 @@ public class MessageEnt {
 
     public String getContent(){
         return content;
+    }
+
+    public String[] getInfo(){
+        String[] info = {this.content, this.sender.getName};
+        return info;
     }
 }

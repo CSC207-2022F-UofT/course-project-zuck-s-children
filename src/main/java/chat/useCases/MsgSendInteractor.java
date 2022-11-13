@@ -21,11 +21,12 @@ public class MsgSendInteractor implements MsgInBoundary {
     @Override
     public void sendMessage(MsgInModel msgModel) {
         MessageEnt newMessage = msgFactory.create(msgModel);
-        MsgOutModel responseModel = new MsgOutModel(fetch(), newMessage);
+        MsgOutModel responseModel = new MsgOutModel(fetch(), newMessage.getInfo());
         msgPresenter.update(responseModel);
     }
-    private List<MessageEnt> fetch(){
+    private List<String[]> fetch(){
         // TODO: fetch chatroom data using chatDataAccess
+        // TODO: Clean the data into List<List<String>>
         return null;
     }
 }

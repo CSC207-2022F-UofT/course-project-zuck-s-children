@@ -5,11 +5,11 @@ import chat.entities.MessageEnt;
 import java.util.List;
 
 public class MsgOutModel {
-    private List<MessageEnt> msgList;
-    public MsgOutModel(List<MessageEnt> l, MessageEnt newMessage){
-        l.add(newMessage);
-        this.msgList = l;
+    private List<String[]> msgList;
+    public MsgOutModel(List<String[]> msg, String[] info){
+        msg.add(info);
+        this.msgList = msg;
     }
-    public List<MessageEnt> getMsgList(){return this.msgList;}
+    public List<String[]> getMsgList(){return this.msgList;}
 
 }

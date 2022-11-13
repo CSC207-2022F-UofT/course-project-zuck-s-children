@@ -15,21 +15,19 @@ public class ChatRoomEnt {
      */
     private ArrayList<MessageEnt> messageList;
 
-    /**
-     * True if and only if there is a new message that the user has not checked.
-     */
-    private boolean alert;
 
-    /**
-     *
-     */
     public ChatRoomEnt(Account User1, Account User2){
         this.id = UUID.randomUUID().toString();
         this.participants = new Participants(User1, User2);
         this.messageList = new ArrayList<>();
     }
 
-
+    public String getId(){
+        return this.id;
+    }
+    public Participants getParticipants(){
+        return this.participants;
+    }
 }
 
 public class Participants{
