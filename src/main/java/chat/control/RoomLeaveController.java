@@ -7,7 +7,7 @@ public class RoomLeaveController {
         this.leaveBoundary = leaveInteractor;
     }
 
-    public void sendMessage(LeaveInModel leaveModel){
+    public void leaveRoom(LeaveInModel leaveModel){
         leaveBoundary.leaveRoom(leaveModel);
     }
 }
