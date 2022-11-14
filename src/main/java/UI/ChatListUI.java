@@ -1,4 +1,8 @@
 package UI;
 
-public class ChatListUI {
+public class ChatListUI implements ViewModel{
+    @Override
+    public void build() {
+
+    }
 }
