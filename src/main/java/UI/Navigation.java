@@ -1,7 +1,6 @@
 package UI;
 
-public class ChatRoomUI implements ViewModel {
-
+public class Navigation implements ViewModel{
     @Override
     public void build() {
 
