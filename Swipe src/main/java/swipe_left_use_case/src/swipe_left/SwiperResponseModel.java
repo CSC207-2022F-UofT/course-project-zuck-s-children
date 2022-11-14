@@ -1,18 +1,12 @@
 package swipe_left_use_case.src.swipe_left;
 
 public class SwiperResponseModel {
-    String creationTime;
+    String next;
 
-    public SwiperResponseModel(boolean accepted, String creationTime) {
-        this.creationTime = creationTime;
+    public SwiperResponseModel(String next) {
+        this.next = next;
     }
 
 
-    public String getCreationTime() {
-        return creationTime;
-    }
 
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
 }

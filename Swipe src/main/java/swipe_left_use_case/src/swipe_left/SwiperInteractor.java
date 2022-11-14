@@ -1,24 +1,32 @@
 package swipe_left_use_case.src.swipe_left;
 
+import entities.SwiperFactory;
+import entities.theSwiper;
+
 public class SwiperInteractor implements SwiperInputBoundary{
+
+    final SwiperPresenter swiperPresenter;
+    final SwiperDsGateway swiperDsGateway; /* comes from main database*/
+    final SwiperFactory swiperFactory; /* may not be necessary*/
+
+    public SwiperInteractor(SwiperPresenter swiperPresenter, SwiperDsGateway swiperDsGateway,
+                            SwiperFactory swiperFactory){
+        this.swiperFactory = swiperFactory;
+        this.swiperPresenter = swiperPresenter;
+        this.swiperDsGateway = swiperDsGateway;
+    }
+
     @Override
     public SwiperResponseModel create(SwiperRequestModel requestModel) {
-        if (userDsGateway.existsByName(requestModel.getName())) {
-            return userPresenter.prepareFailView("User already exists.");
-        } else if (!requestModel.getPassword().equals(requestModel.getRepeatPassword())) {
-            return userPresenter.prepareFailView("Passwords don't match.");
+
+        if (requestModel.getAccepted()) {
+            /* need to send information to chat data access*/
+            return SwiperPresenter.prepareNextView("N");
+        }
+        else{
+            /* need to send information to chat data access*/
+            return SwiperPresenter.prepareNextView("N");
         }
 
-        User user = userFactory.create(requestModel.getName(), requestModel.getPassword());
-        if (!user.passwordIsValid()) {
-            return userPresenter.prepareFailView("User password must have more than 5 characters.");
-        }
-
-        LocalDateTime now = LocalDateTime.now();
-        UserRegisterDsRequestModel userDsModel = new UserRegisterDsRequestModel(user.getName(), user.getPassword(), now);
-        userDsGateway.save(userDsModel);
-
-        UserRegisterResponseModel accountResponseModel = new UserRegisterResponseModel(user.getName(), now.toString());
-        return userPresenter.prepareSuccessView(accountResponseModel);
     }
 }

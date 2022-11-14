@@ -3,14 +3,14 @@ package swipe_left_use_case.src.swipe_left;
 public class SwiperController {
     final SwiperInputBoundary swiperInput;
 
-    public SwiperController(SwiperInputBoundary accountGateway){
-        swiperInput = accountGateway;
+    public SwiperController(SwiperInputBoundary input){
+        swiperInput = input;
     }
 
-    SwiperResponseModel create(String username, String password1, String password2) {
+    public SwiperResponseModel create(boolean accept, Account account) {
         SwiperRequestModel requestModel = new SwiperRequestModel(
-                username, password1, password2);
+                accept, account);
 
-        return userInput.create(requestModel);
+        return swiperInput.create(requestModel);
     }
 }

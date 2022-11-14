@@ -5,12 +5,8 @@ import java.time.format.DateTimeFormatter;
 
 public class SwiperPresenterFormatter implements SwiperPresenter{
     @Override
-    public SwiperResponseModel prepareSuccessView(SwiperResponseModel response){
-        LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
-        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
-        return response;
-    }
+    public SwiperResponseModel prepareNextview(String s){
 
-    @Override
-    public SwiperResponseModel prepareFailView(String error);
+        return new SwiperResponseModel(s);
+    }
 }
