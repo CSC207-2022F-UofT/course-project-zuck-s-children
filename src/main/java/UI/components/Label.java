@@ -1,4 +1,4 @@
 package UI.components;
 
-public class slider {
+public class Label {
 }

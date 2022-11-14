@@ -1,4 +1,4 @@
 package UI.components;
 
-public class button {
+public class Slider {
 }
