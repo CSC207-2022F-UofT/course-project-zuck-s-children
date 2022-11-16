@@ -25,6 +25,7 @@ public class matchingAlgorithm {
          */
 
         //get preferences
+
         HashMap preferences = user.getHashMap();
 
 
@@ -45,10 +46,9 @@ public class matchingAlgorithm {
         assign points to potential match
         */
         for (int i = 0 i < otherUsers.length; i++){
-            oUser = otherUsers[i];
-            HashMap oUserPreference = oUser.getHashMap();
+            oUser = otherUsers[i].getProfile();
             for (String key: preferences){
-                oUser.assignScore(key, preferences, oUserPreference);
+                oUser.assignScore(key, preferences, oUser);
             }
         }
 
