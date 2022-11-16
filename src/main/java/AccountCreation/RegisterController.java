@@ -7,7 +7,7 @@ public class RegisterController {
     public RegisterController(RegisterInBoundary registerInteractor) {
         this.registerBoundary = registerInteractor;
     }
-    public boolean createNewAccount(RegisterInModel registerModel){
+    public void createNewAccount(RegisterInModel registerModel){
         registerBoundary.createNewAccount(registerModel);
     }
 
