@@ -1,4 +1,4 @@
-package AccountCreationLogin;
+package AccountLogin;
 
 public class LoginUseCase {
 }
