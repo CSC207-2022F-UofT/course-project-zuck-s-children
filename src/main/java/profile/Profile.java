@@ -42,8 +42,13 @@ public class Profile {
     /**
      * Return the name of this user.
      * @return the user's name
+     * */
+    public String getName() {
+        return name;
+    }
 
-     * Return which year of university this user is in.
+    /**
+     * Return which year in university this user is in.
      * @return the year this user is in
      */
     public String getYear() {
@@ -51,17 +56,25 @@ public class Profile {
         }
 
     /**
-     * Return the POSt of this user.
-     * @return the program of this user
+     * Return the field of study of this user.
+     * @return the field of study of this user
      */
     public String getFieldOfStudy() {
         return fieldsOfStudyDropdown.getSelectedItem().toString();
     }
 
+    /**
+     * Return the study styles of this user.
+     * @return a List of the user's study styles (String)
+     */
     public List<String> getStudyStyles() {
         return studyStyles.getSelectedValuesList();
     }
 
+    /**
+     * Return the user's preferences for their ideal study buddy. Each key of the HashMap is the
+     * @return the user's study buddy preferences
+     */
     public HashMap<String, ArrayList<String>> getStudyBuddyPreferences() {
         HashMap<String, ArrayList<String>> SBP = new HashMap<String, ArrayList<String>>;
         SBP.put("year", studyBuddyPreferences.get("year"));
@@ -78,9 +91,7 @@ public class Profile {
         return listOfSS;
     }
 
-    public String getName() {
-        return name;
-    }
+
 
     private String name;
 
