@@ -1,4 +1,10 @@
 package profile;
 
-public class ProfilePresenter {
+import UI.ViewModel;
+public class ProfilePresenter implements ProfileUpdateOutputBoundary {
+    ViewModel profile;
+    public ProfilePresenter(ViewModel UI) {
+        this.profile = UI;
+    }
+
 }

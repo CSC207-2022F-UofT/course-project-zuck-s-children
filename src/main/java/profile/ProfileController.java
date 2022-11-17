@@ -5,6 +5,8 @@ public class ProfileController {
 
     public ProfileController(ProfileEditInputBoundary userInput) {
         this.userInput = userInput;
-
     }
+    Profile createProfile(ProfileInModel profile) {userInput.createProfile(profile)};
+    public modifyProfile()
+
 }
