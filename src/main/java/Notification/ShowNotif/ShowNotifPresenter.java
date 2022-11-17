@@ -1,4 +1,7 @@
-package Notification;
+package Notification.ShowNotif;
+
+import Notification.ShowNotif.NotifResponseModel;
+import Notification.ShowNotif.ShowNotifOutputBoundary;
 
 public class ShowNotifPresenter implements ShowNotifOutputBoundary {
 
