@@ -1,6 +1,9 @@
 package data.persistency;
 
+import AccountCreation.Account;
 import Notification.ClearNotif.ClearNotifGateway;
+
+import java.util.ArrayList;
 
 public class UserDataAccess implements UserDataAccessInterface, ClearNotifGateway {
 
