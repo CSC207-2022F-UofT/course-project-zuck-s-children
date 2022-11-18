@@ -1,7 +1,5 @@
 package AccountLogin;
 
-import data.persistency.UserData;
-
 public class LoginUseCase implements LoginInBoundary{
 
     private LoginOutBoundary loginPresenter;
