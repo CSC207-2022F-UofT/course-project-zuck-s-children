@@ -19,7 +19,7 @@ public class Profile {
         this.pronouns = pronouns;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         listOfYears.setSelectedValue(year, true);
     }
 
@@ -27,16 +27,18 @@ public class Profile {
         this.fieldsOfStudyDropdown.setSelectedItem(fieldOfStudy);
     }
 
-    public void setStudyStyles(String studyStyle) {
-        this.studyStyles.setSelectedValue(studyStyle, true);
+    public void setStudyStyles(String[] studyStyles) {
+        for (String studyStyle : studyStyles) {this.studyStyles.setSelectedValue(studyStyle, true);};
     }
 
-    public void setStudySpotPreferences(String studySpot, int column) {
-        this.studySpotPreferences[column].setSelectedItem(studySpot);
+    public void setStudySpotPreferences(String[] studySpotPreferences) {
+        for (int i = 0; i < studySpotPreferences.length; i++) {this.studySpotPreferences[i].setSelectedItem(studySpotPreferences[i]);}
     }
 
-    public void setStudyBuddyPreferences(HashMap<String, Object> studyBuddyPreferences) {
-        this.studyBuddyPreferences = studyBuddyPreferences;
+    public void setStudyBuddyPreferences(String[] year, Object field, String[] descriptions) {
+        this.studyBuddyPreferences.replace("year", year);
+        this.studyBuddyPreferences.replace("field of study", field);
+        this.studyBuddyPreferences.replace("descriptions", descriptions);
     }
 
     /**
@@ -99,7 +101,7 @@ public class Profile {
 
     private String name;
     public String pronouns;
-    profilePicture;
+    // profilePicture;
     final String[] YEARS = {"1", "2", "3", "4", "4+"};
     public JList<String> listOfYears = new JList(YEARS);
     public final String[] FIELDS = {"Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Other"};
