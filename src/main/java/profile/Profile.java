@@ -35,7 +35,7 @@ public class Profile {
         this.studySpotPreferences[column].setSelectedItem(studySpot);
     }
 
-    public void setStudyBuddyPreferences(HashMap<String, ArrayList<String>> studyBuddyPreferences) {
+    public void setStudyBuddyPreferences(HashMap<String, Object> studyBuddyPreferences) {
         this.studyBuddyPreferences = studyBuddyPreferences;
     }
 
@@ -46,23 +46,27 @@ public class Profile {
     public String getName() {
         return name;
     }
-
+    /**
+     * Return the pronouns of this user.
+     * @return the user's pronouns
+     * */
+    public String getPronouns() {
+        return pronouns;
+    }
     /**
      * Return which year in university this user is in.
      * @return the year this user is in
      */
     public String getYear() {
-        return listOfYears.getSelectedValue().toString();
+        return listOfYears.getSelectedValue();
         }
-
     /**
      * Return the field of study of this user.
      * @return the field of study of this user
      */
     public String getFieldOfStudy() {
-        return fieldsOfStudyDropdown.getSelectedItem().toString();
+        return (String) fieldsOfStudyDropdown.getSelectedItem();
     }
-
     /**
      * Return the study styles of this user.
      * @return a List of the user's study styles (String)
@@ -75,11 +79,11 @@ public class Profile {
      * Return the user's preferences for their ideal study buddy. Each key of the HashMap is the
      * @return the user's study buddy preferences
      */
-    public HashMap<String, ArrayList<String>> getStudyBuddyPreferences() {
-        HashMap<String, ArrayList<String>> SBP = new HashMap<String, ArrayList<String>>;
-        SBP.put("year", studyBuddyPreferences.get("year"));
+    public HashMap<String, List<String>> getStudyBuddyPreferences() {
+        HashMap<String, List<String>> SBP = new HashMap<String, List<String>>;
+        SBP.put("year", ((JList<String>) studyBuddyPreferences.get("year")).getSelectedValuesList());
         SBP.put("field of study", studyBuddyPreferences.get("field of study"));
-        SBP.put("descriptions", studyBuddyPreferences.get("descriptions"));
+        SBP.put("descriptions", ((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList());
         return SBP;
     }
 
@@ -94,25 +98,20 @@ public class Profile {
 
 
     private String name;
-
-    public String getPronouns() {
-        return pronouns;
-    }
-
     public String pronouns;
     profilePicture;
     final String[] YEARS = {"1", "2", "3", "4", "4+"};
-    public JList listOfYears = new JList(YEARS);
+    public JList<String> listOfYears = new JList(YEARS);
     public final String[] FIELDS = {"Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Other"};
     public JComboBox<String> fieldsOfStudyDropdown = new JComboBox<String>(FIELDS);
     final String[] STYLES = {"quiet", "talkative"};
     public JList<String> studyStyles = new JList<String>(STYLES);
-    public String[] studySpots = {};
+    public String[] studySpots = {"Robarts Library", "Gerstein Library"};
     public JComboBox<String> listOfStudySpots1 = new JComboBox<String>(studySpots);
     public JComboBox<String> listOfStudySpots2 = new JComboBox<String>(studySpots);
     public JComboBox<String> listOfStudySpots3 = new JComboBox<String>(studySpots);
     public JComboBox[] studySpotPreferences = new JComboBox[]{listOfStudySpots1, listOfStudySpots2, listOfStudySpots3};
-    HashMap<String, ArrayList<String>> studyBuddyPreferences;
+    HashMap<String, Object> studyBuddyPreferences;
 
     public int getScore() {
         return score;
@@ -121,10 +120,16 @@ public class Profile {
 
 
     public void Profile() {
-        studyBuddyPreferences.put("year", null);
+        listOfYears.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        studyBuddyPreferences.put("year", new JList<String>(YEARS));
         studyBuddyPreferences.put("field of study", null);
-        studyBuddyPreferences.put("descriptions", null);
+        studyBuddyPreferences.put("descriptions", new JList<String>(STYLES));
         studyStyles.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    }
+    public boolean checkValidInput() {
+        if (studyStyles.getSelectedValuesList().size() > 3) {return false;}
+        else if (((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList().size() > 3) {return false;}
+        return true;
     }
 
 //    /**
