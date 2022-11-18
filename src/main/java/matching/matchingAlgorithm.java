@@ -25,7 +25,6 @@ public class matchingAlgorithm {
          */
 
         //get preferences
-
         HashMap preferences = user.getHashMap();
 
 
@@ -45,10 +44,11 @@ public class matchingAlgorithm {
 
         assign points to potential match
         */
-        for (int i = 0 i < otherUsers.length; i++){
-            oUser = otherUsers[i].getProfile();
+        for (int i = 0; i < otherUsers.length; i++){
+            oUser = otherUsers[i];
+            HashMap oUserPreference = oUser.getHashMap();
             for (String key: preferences){
-                oUser.assignScore(key, preferences, oUser);
+                oUser.assignScore(key, preferences, oUserPreference);
             }
         }
 
@@ -56,28 +56,17 @@ public class matchingAlgorithm {
         - can then sort potential matches based on score
         - create a new copy of potential matches and sort based on score
         OR
-        - we can append directly to a linkedlist and return the linked list
+        - we can append directly to a queue and return the queue
         */
 
         // need to create sort
-
-
         matches = new List<users>(); //potential matches
 
-
-
-
-
-        // create new linkedlist
-
-        LinkedList matches = new LinkedList();
-
+        // create new queue
+        Queue<User> matches = new PriorityQueue<User> ();
 
         return matches; //potential matches
-
-
     }
-
 
     //should make new class (class file?) for both of the below? or just make comparator a static method?
 
@@ -98,10 +87,5 @@ public class matchingAlgorithm {
         }
     }
 
-
-
-
-
-
-
 }
+
