@@ -1,16 +1,18 @@
 package data.persistency;
 
+import Notification.Notification;
 import profile.ProfileEntity;
 import AccountCreation.Account;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserData {
     private String username;
     private String password;
-    private ProfileEntity profile;
-    private ProfileEntity[] matches;
-    private Notification[] notifications;
+    private Profile profile;
+    private List<Profile> matches;
+    private List<Notification> notifications;
     private static ArrayList<UserData> userDatabase;
     public UserData(Account userAccount) {
         this.username = userAccount.getUsername();

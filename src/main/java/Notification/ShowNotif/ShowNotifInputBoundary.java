@@ -1,4 +1,4 @@
-package Notification;
+package Notification.ShowNotif;
 
 //use case layer
 

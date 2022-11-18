@@ -45,7 +45,7 @@ public class matchingAlgorithm {
 
         assign points to potential match
         */
-        for (int i = 0 i < otherUsers.length; i++){
+        for (int i = 0; i < otherUsers.length; i++){
             oUser = otherUsers[i].getProfile();
             for (String key: preferences){
                 oUser.assignScore(key, preferences, oUser);

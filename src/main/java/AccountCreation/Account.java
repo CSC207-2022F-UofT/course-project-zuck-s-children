@@ -1,5 +1,10 @@
 package AccountCreation;
 
+import Notification.Notification;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
     private String username;
     private String password;
@@ -12,7 +17,7 @@ public class Account {
         this.password = password;
         this.profile = new Profile;
         this.matches = new ArrayList<Profile>();
-        this.notifications = new ArrayList<Notification>;
+        this.notifications = new ArrayList<Notification>();
     }
 
     public String getUsername() {
@@ -29,7 +34,7 @@ public class Account {
         return this.matches;
     }
 
-    public List<Notification> getNotifications() (return this.notifications;)
+    public List<Notification> getNotifications() {return this.notifications;}
 
     public void addMatch() {
         this.matches.add(Profile);
