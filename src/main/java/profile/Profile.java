@@ -128,9 +128,13 @@ public class Profile {
         studyBuddyPreferences.put("descriptions", new JList<String>(STYLES));
         studyStyles.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     }
-    public boolean checkValidInput() {
+    public boolean validStudyStyleInput() {
         if (studyStyles.getSelectedValuesList().size() > 3) {return false;}
-        else if (((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList().size() > 3) {return false;}
+        return true;
+    }
+
+    public boolean validSBStudyStyleInput() {
+        if (((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList().size() > 3) {return false;}
         return true;
     }
 

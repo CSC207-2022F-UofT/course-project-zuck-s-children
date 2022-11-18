@@ -57,9 +57,7 @@ public class ProfileInModel {
         this.year = year;
         this.fieldOfStudy = fieldOfStudy;
         this.studyStyles = studyStyles;
-        this.studySpot1 = studySpot1;
-        this.studySpot2 = studySpot2;
-        this.studySpot3 = studySpot3;
+        this.studySpotPreferences = new String[]{studySpot1, studySpot2, studySpot3};
         this.SBDescriptions = SBDescriptions;
         this.SBYear = SBYear;
     }

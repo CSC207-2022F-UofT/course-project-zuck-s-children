@@ -3,7 +3,7 @@ package profile;
 import javax.swing.*;
 import java.util.HashMap;
 
-public class ProfileInModel {
+public class ProfileOutModel {
     public String getName() {
         return name;
     }
@@ -49,18 +49,18 @@ public class ProfileInModel {
     public String[] SBDescriptions;
     public Object SBFieldOfStudy;
     public String[] SBYear;
+    public String[] listOfValidInputCheckMsgs;
 
 
-    public ProfileInModel(String name, String pronouns, String year, String fieldOfStudy, String[] studyStyles, String studySpot1, String studySpot2, String studySpot3, String[] SBDescriptions, String[] SBYear) {
-        this.name = name;
-        this.pronouns = pronouns;
-        this.year = year;
-        this.fieldOfStudy = fieldOfStudy;
-        this.studyStyles = studyStyles;
-        this.studySpot1 = studySpot1;
-        this.studySpot2 = studySpot2;
-        this.studySpot3 = studySpot3;
-        this.SBDescriptions = SBDescriptions;
-        this.SBYear = SBYear;
+    public ProfileOutModel(ProfileInModel inModel, String[] listOfValidInputCheckMsgs) {
+        this.name = inModel.getName();
+        this.pronouns = inModel.getPronouns();
+        this.year = inModel.getYear();
+        this.fieldOfStudy = inModel.getFieldOfStudy();
+        this.studyStyles = inModel.getStudyStyles();
+        this.studySpotPreferences = inModel.getStudySpotPreferences();
+        this.SBDescriptions = inModel.getSBDescriptions();
+        this.SBYear = inModel.getSBYear();
+        this.listOfValidInputCheckMsgs = listOfValidInputCheckMsgs;
     }
 }
