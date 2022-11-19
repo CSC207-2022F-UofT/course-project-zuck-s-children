@@ -1,11 +1,15 @@
 package AccountLogin;
 
+import AccountCreation.Account;
+
 public class LoginOutModel {
     private boolean loginStatus;
     private String failMsg;
+    private Account userAccount;
 
-    public LoginOutModel(boolean loginStatus) {
+    public LoginOutModel(boolean loginStatus, Account userAccount) {
         this.loginStatus = loginStatus;
+        this.userAccount = userAccount;
         if (this.loginStatus) {
             this.failMsg = "Incorrect username or password. Please try again.";
         } else {

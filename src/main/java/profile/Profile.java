@@ -82,7 +82,7 @@ public class Profile {
      * @return the user's study buddy preferences
      */
     public HashMap<String, List<String>> getStudyBuddyPreferences() {
-        HashMap<String, List<String>> SBP = new HashMap<String, List<String>>;
+        HashMap<String, List<String>> SBP = new HashMap<String, List<String>>();
         SBP.put("year", ((JList<String>) studyBuddyPreferences.get("year")).getSelectedValuesList());
         SBP.put("field of study", studyBuddyPreferences.get("field of study"));
         SBP.put("descriptions", ((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList());
@@ -90,7 +90,7 @@ public class Profile {
     }
 
     public ArrayList<String> getStudySpotPreferences() {
-        ArrayList<String> listOfSS = new ArrayList<String>;
+        ArrayList<String> listOfSS = new ArrayList<String>();
         for (JComboBox column : studySpotPreferences) {
             listOfSS.add((String) column.getSelectedItem());
         }

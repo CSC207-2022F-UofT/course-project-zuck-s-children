@@ -7,11 +7,11 @@ public class LoginUseCase implements LoginInBoundary{
     public void loginToAccount(LoginInModel loginModel) {
         if (UserDatabase.containsKey(loginModel.getInputUsername())) {
             if (UserDatabase[loginModel.getInputUsername()][0] == loginModel.getInputPassword()) {
-                LoginOutModel responseModel = new LoginOutModel(true);
+                LoginOutModel responseModel = new LoginOutModel(true, UserDatabase[loginModel.getInputUsername()]);
                 loginPresenter.loginStatus(responseModel);
             }
         } else {
-            LoginOutModel responseModel = new LoginOutModel(false);
+            LoginOutModel responseModel = new LoginOutModel(false, UserDatabase[loginModel.getInputUsername()]);
             loginPresenter.loginStatus(responseModel);
         }
     }

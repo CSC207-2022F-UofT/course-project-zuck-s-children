@@ -25,7 +25,7 @@ public class RegisterUseCase implements RegisterInBoundary {
             databaseValue.add(newAccount.getProfile());
             databaseValue.add(newAccount.getMatches());
 
-            UserDatabase.put(registerModel.getInputUsername(), databaseValue);
+            userDatabase.put(registerModel.getInputUsername(), databaseValue);
 
             RegisterOutModel responseModel = new RegisterOutModel(true);
             registerPresenter.alertUser(responseModel);
