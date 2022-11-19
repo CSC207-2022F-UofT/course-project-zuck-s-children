@@ -1,6 +1,11 @@
 package data.persistency;
 
-public class UserDataAccess implements UserDataAccessInterface{
+import AccountCreation.Account;
+import Notification.ClearNotif.ClearNotifGateway;
+
+import java.util.ArrayList;
+
+public class UserDataAccess implements UserDataAccessInterface, ClearNotifGateway {
 
     @Override
     public void save() {
@@ -10,5 +15,10 @@ public class UserDataAccess implements UserDataAccessInterface{
     @Override
     public ArrayList<Account> load() {
         return null;
+    }
+
+    @Override
+    public void erase() { //erases all notifications - called by ClearNotifGateway through clearNotif usecase
+        // do we want to re-write data?
     }
 }
