@@ -43,6 +43,13 @@ public class SwipeScreen extends JPanel implements ActionListener {
         JLabel title = new JLabel("Potential Match?");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        LabelTextPanel name = new LabelTextPanel(
+                new JLabel(potential.getProfile().getName()));
+        LabelTextPanel passwordInfo = new LabelTextPanel(
+                new JLabel("Choose password"), password);
+        LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
+                new JLabel("Enter password again"), repeatPassword);
+
         JButton accept = new JButton("Accept");
         accept.setActionCommand("T," + potential.getUsername());
         JButton reject = new JButton("Reject");
