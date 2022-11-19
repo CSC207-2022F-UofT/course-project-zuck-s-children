@@ -1,13 +1,16 @@
 package chat.control;
 
-public class RoomLeaveController {
-    private LeaveInBoundary leaveBoundary;
+import AccountCreation.Account;
+import chat.useCases.RoomInBoundary;
 
-    public RoomLeaveController(LeaveInBoundary leaveInteractor){
+public class RoomLeaveController {
+    private RoomInBoundary leaveBoundary;
+
+    public RoomLeaveController(RoomInBoundary leaveInteractor){
         this.leaveBoundary = leaveInteractor;
     }
 
-    public void leaveRoom(LeaveInModel leaveModel){
-        leaveBoundary.leaveRoom(leaveModel);
+    public void leaveRoom(RoomInModel leaveModel, AccountInModel accModel){
+        leaveBoundary.leaveRoom(leaveModel, accModel);
     }
 }

@@ -1,5 +1,7 @@
 package chat.control;
 
+import chat.useCases.MsgInBoundary;
+
 public class MsgSendController {
     private MsgInBoundary msgBoundary;
 

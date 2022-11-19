@@ -1,17 +1,17 @@
 package chat.presenter;
 
-import UI.ViewModel;
+import UI.ChatRoomUI;
 import chat.control.MsgOutBoundary;
 import chat.control.MsgOutModel;
 
 public class ChatRoomPresenter implements MsgOutBoundary {
-    ViewModel chatRoom;
+    ChatRoomUI chatRoom;
 
-    public ChatRoomPresenter(ViewModel UI){
+    public ChatRoomPresenter(ChatRoomUI UI){
         this.chatRoom = UI;
     }
     @Override
     public void update(MsgOutModel responseModel) {
-        // TODO: update UI using a responseModel
+        chatRoom.build(responseModel.getMsgList());
     }
 }
