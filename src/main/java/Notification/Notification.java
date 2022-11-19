@@ -4,7 +4,7 @@ import AccountCreation.Account;
 
 import java.time.LocalDateTime;
 
-public class Notification {
+public abstract class Notification {
 
     private String notifContent;
     private Account notifSender;
