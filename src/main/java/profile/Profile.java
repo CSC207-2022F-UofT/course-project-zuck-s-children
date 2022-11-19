@@ -84,7 +84,7 @@ public class Profile {
     public HashMap<String, List<String>> getStudyBuddyPreferences() {
         HashMap<String, List<String>> SBP = new HashMap<String, List<String>>;
         SBP.put("year", ((JList<String>) studyBuddyPreferences.get("year")).getSelectedValuesList());
-        SBP.put("field of study", studyBuddyPreferences.get("field of study"));
+        SBP.put("field of study", ((JList<String>) studyBuddyPreferences.get("field of study")).getSelectedValuesList());
         SBP.put("descriptions", ((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList());
         return SBP;
     }
@@ -124,7 +124,7 @@ public class Profile {
     public void Profile() {
         listOfYears.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         studyBuddyPreferences.put("year", new JList<String>(YEARS));
-        studyBuddyPreferences.put("field of study", null);
+        studyBuddyPreferences.put("field of study", new JList<String>(FIELDS));
         studyBuddyPreferences.put("descriptions", new JList<String>(STYLES));
         studyStyles.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     }
@@ -135,6 +135,11 @@ public class Profile {
 
     public boolean validSBStudyStyleInput() {
         if (((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList().size() > 3) {return false;}
+        return true;
+    }
+
+    public boolean validSBStudyFieldsInput() {
+        if (((JList<String>) studyBuddyPreferences.get("field of study")).getSelectedValuesList().size() > 3) {return false;}
         return true;
     }
 
