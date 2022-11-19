@@ -1,5 +1,7 @@
-package screen;
+package Swipe.Screen;
 
+import AccountCreation.Account;
+import data.persistency.UserDatabase;
 import swipe_left_use_case.src.swipe_left.SwiperRequestModel;
 import swipe_left_use_case.src.swipe_left.SwiperController;
 
@@ -34,7 +36,7 @@ public class SwipeScreen extends JPanel implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public SwipeScreen(SwiperController controller) {
+    public SwipeScreen(SwiperController controller, Account potential) {
 
         this.swiperController = controller;
 
@@ -42,7 +44,9 @@ public class SwipeScreen extends JPanel implements ActionListener {
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton accept = new JButton("Accept");
+        accept.setActionCommand("T," + potential.getUsername());
         JButton reject = new JButton("Reject");
+        reject.setActionCommand("F," + potential.getUsername());
 
         JPanel buttons = new JPanel();
         buttons.add(accept);
@@ -63,12 +67,11 @@ public class SwipeScreen extends JPanel implements ActionListener {
      */
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
-
+        String[] result = evt.getActionCommand().split(",");
+        Account account = UserDatabase.getAccounts().get(result[1]);
         try {
-            userRegisterController.create(username.getText(),
-                    String.valueOf(password.getPassword()),
-                    String.valueOf(repeatPassword.getPassword()));
-            JOptionPane.showMessageDialog(this, "%s created.".formatted(username.getText()));
+            swiperController.create(evt.getActionCommand(), account);
+            JOptionPane.showMessageDialog(this, "Request sent to %s!".formatted(result[1]));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
