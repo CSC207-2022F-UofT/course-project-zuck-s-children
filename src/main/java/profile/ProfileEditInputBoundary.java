@@ -1,5 +1,5 @@
 package profile;
 
 public interface ProfileEditInputBoundary {
-    ProfileEntity createProfile(ProfileEntity profile);
+    void modifyProfile(ProfileInModel profile);
 }

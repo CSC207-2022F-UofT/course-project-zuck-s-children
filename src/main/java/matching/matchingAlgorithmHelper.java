@@ -12,7 +12,7 @@ public class matchingAlgorithmHelper {
         // can change this to apply for all keys, need to see how joy implements preferences
         // if they are all sorted then can apply and dont need to check if key =
 
-        // 3 keys: year, program, descriptions
+        // 3 keys: year, field, descriptions
         int score = 0;
         // year preferences are sorted
 
@@ -34,7 +34,7 @@ public class matchingAlgorithmHelper {
 //        return score; // or change profiles score which can be a hidden part of profile
         //compare years
         if (Objects.equals(key, "year")){
-            //compare years
+
             years = preferences[year];
 
             for (int i = 0; i < years.length ; i++){
@@ -47,24 +47,35 @@ public class matchingAlgorithmHelper {
                     j+= 1;
                 }
             }
-            return score; // or change profiles score which can be a hidden part of profile
-        }
-
-        if (Objects.equals(key, "program")){
-            //compare program
 
         }
-        if (Objects.equals(key, "descriptions")){
-            //compare descriptions
 
+        //compare user
+        if (Objects.equals(key, "field")){
 
+            field = preferences[field];
+
+            if (field[i].in(oUser.getField())){
+                score += 1;
+            }
+        }
+
+        //compare descriptions
+        if (Objects.equals(key, "descriptions")) {
+
+            descriptions = preferences[descriptions];
+
+            for (int i = 0; i < descriptions.length; i++) {
+                if (descriptions[i].in(oUser.getDescriptions())) {
+                    // descriptions toString will return Arraylist of descriptions
+                    score += 1;
+                }
+
+            }
+
+        }
+
+        return score;
     }
-
-
-
-}
-
-
-
 }
 
