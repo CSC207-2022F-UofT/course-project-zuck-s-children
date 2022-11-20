@@ -1,16 +1,8 @@
 package Swipe;
 
-import Notification.ShowNotif.*;
-import UI.ChatRoomUI;
-import UI.ViewModel;
-import chat.control.MsgInBoundary;
-import chat.control.MsgOutBoundary;
-import chat.control.MsgSendController;
-import chat.presenter.ChatRoomPresenter;
-import chat.useCases.MsgSendInteractor;
+import Notification.MatchNotification;
 import data.persistency.UserDatabase;
-import entities.SwiperFactory;
-import entities.theSwiper;
+
 
 import java.time.LocalDateTime;
 
@@ -28,18 +20,23 @@ public class SwiperInteractor implements SwiperInputBoundary{
 
         if (requestModel.getAccepted()) {
             /* need to send information to chat data access*/
-            LocalDateTime now = LocalDateTime.now();
 
-            requestModel.getPotential().addNotification();
             if (UserDatabase.getCurrentUser().getMatches().contains(requestModel.getPotential())){
+                LocalDateTime now = LocalDateTime.now();
+                requestModel.getPotential().addMatch(UserDatabase.getCurrentUser());
+                UserDatabase.getCurrentUser().addMatch(requestModel.getPotential());
+                requestModel.getPotential().addNotification(new MatchNotification("You matched with" +
+                        UserDatabase.getCurrentUser().getProfile().getName(), UserDatabase.getCurrentUser(), now));
+
+                UserDatabase.getCurrentUser().addNotification(new MatchNotification("You matched with" +
+                        requestModel.getPotential().getProfile().getName(), requestModel.getPotential(),
+                        now));
+
                 return swiperPresenter.prepareNextView("Y");
             }
             return swiperPresenter.prepareNextView("N");
         }
-        else{
-            /* need to send information to chat data access*/
-            return swiperPresenter.prepareNextView("N");
-        }
+         return swiperPresenter.prepareNextView("N");
 
     }
 }

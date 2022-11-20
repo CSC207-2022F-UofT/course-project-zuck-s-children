@@ -1,6 +1,5 @@
 package Swipe.Screen;
 
-import swipe_left_use_case.src.swipe_left.SwiperController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
