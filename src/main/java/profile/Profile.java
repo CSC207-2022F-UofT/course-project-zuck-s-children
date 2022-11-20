@@ -12,7 +12,7 @@ import java.util.List;
 public class Profile {
     /**
      * Sets the user's name
-     * @param name
+     * @param name the user's name
      */
     public void setName(String name) {
         this.name = name;
@@ -28,7 +28,7 @@ public class Profile {
 
     /**
      * Sets the user's year in university
-     * @param year
+     * @param year the user's year in university
      */
     public void setYear(String year) {
         listOfYears.setSelectedValue(year, true);
@@ -44,15 +44,17 @@ public class Profile {
 
     /**
      * Sets the user's study styles
-     * @param studyStyles
+     * @param studyStyles the user's study styles
      */
     public void setStudyStyles(String[] studyStyles) {
-        for (String studyStyle : studyStyles) {this.studyStyles.setSelectedValue(studyStyle, true);};
+        for (String studyStyle : studyStyles) {
+            this.studyStyles.setSelectedValue(studyStyle, true);
+        }
     }
 
     /**
      * Sets the user's preferred study spots
-     * @param studySpotPreferences
+     * @param studySpotPreferences the user's preferred study spots
      */
     public void setStudySpotPreferences(String[] studySpotPreferences) {
         for (int i = 0; i < studySpotPreferences.length; i++) {this.studySpotPreferences[i].setSelectedItem(studySpotPreferences[i]);}
@@ -111,7 +113,7 @@ public class Profile {
      * @return the user's study buddy preferences
      */
     public HashMap<String, List<String>> getStudyBuddyPreferences() {
-        HashMap<String, List<String>> SBP = new HashMap<String, List<String>>;
+        HashMap<String, List<String>> SBP = new HashMap<String, List<String>>();
         SBP.put("year", ((JList<String>) studyBuddyPreferences.get("year")).getSelectedValuesList());
         SBP.put("field of study", ((JList<String>) studyBuddyPreferences.get("field of study")).getSelectedValuesList());
         SBP.put("descriptions", ((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList());
@@ -123,8 +125,8 @@ public class Profile {
      * @return user's preferred study spots
      */
     public ArrayList<String> getStudySpotPreferences() {
-        ArrayList<String> listOfSS = new ArrayList<String>;
-        for (JComboBox column : studySpotPreferences) {
+        ArrayList<String> listOfSS = new ArrayList<String>();
+        for (JComboBox<String> column : studySpotPreferences) {
             listOfSS.add((String) column.getSelectedItem());
         }
         return listOfSS;
@@ -136,7 +138,7 @@ public class Profile {
     public String pronouns;
     // profilePicture;
     final String[] YEARS = {"1", "2", "3", "4", "4+"};
-    public JList<String> listOfYears = new JList(YEARS);
+    public JList<String> listOfYears = new JList<String>(YEARS);
     public final String[] FIELDS = {"Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Other"};
     public JComboBox<String> fieldsOfStudyDropdown = new JComboBox<String>(FIELDS);
     final String[] STYLES = {"quiet", "talkative"};
@@ -174,8 +176,7 @@ public class Profile {
      * @return whether the user has input no more than three study styles for themselves
      */
     public boolean validStudyStyleInput() {
-        if (studyStyles.getSelectedValuesList().size() > 3) {return false;}
-        return true;
+        return studyStyles.getSelectedValuesList().size() <= 3;
     }
 
     /**
@@ -192,8 +193,7 @@ public class Profile {
      * @return whether the user has input no more than three fields of study for their ideal study buddy
      */
     public boolean validSBStudyFieldsInput() {
-        if (((JList<String>) studyBuddyPreferences.get("field of study")).getSelectedValuesList().size() > 3) {return false;}
-        return true;
+        return ((JList<String>) studyBuddyPreferences.get("field of study")).getSelectedValuesList().size() <= 3;
     }
 
 //    /**

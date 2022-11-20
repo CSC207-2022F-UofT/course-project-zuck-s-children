@@ -4,7 +4,6 @@ import data.persistency.UserDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class ProfileEditUseCase implements ProfileEditInputBoundary {
     private static final ProfileFactory FACTORY = new ProfileFactory();
