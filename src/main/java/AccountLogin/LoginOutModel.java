@@ -7,7 +7,7 @@ public class LoginOutModel {
     private String failMsg;
     private Account userAccount;
 
-    public LoginOutModel(boolean loginStatus, Account userAccount) {
+    public LoginOutModel(boolean loginStatus) {
         this.loginStatus = loginStatus;
         this.userAccount = userAccount;
         if (this.loginStatus) {
