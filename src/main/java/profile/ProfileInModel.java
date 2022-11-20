@@ -31,7 +31,7 @@ public class ProfileInModel {
         return SBDescriptions;
     }
 
-    public Object getSBFieldOfStudy() {
+    public String[] getSBFieldOfStudy() {
         return SBFieldOfStudy;
     }
 
@@ -47,11 +47,11 @@ public class ProfileInModel {
     public String[] studyStyles;
     public String[] studySpotPreferences;
     public String[] SBDescriptions;
-    public Object SBFieldOfStudy;
+    public String[] SBFieldOfStudy;
     public String[] SBYear;
 
 
-    public ProfileInModel(String name, String pronouns, String year, String fieldOfStudy, String[] studyStyles, String studySpot1, String studySpot2, String studySpot3, String[] SBDescriptions, String[] SBYear) {
+    public ProfileInModel(String name, String pronouns, String year, String fieldOfStudy, String[] studyStyles, String studySpot1, String studySpot2, String studySpot3, String[] SBYear, String[] SBFieldOfStudy, String[] SBDescriptions) {
         this.name = name;
         this.pronouns = pronouns;
         this.year = year;
@@ -60,5 +60,6 @@ public class ProfileInModel {
         this.studySpotPreferences = new String[]{studySpot1, studySpot2, studySpot3};
         this.SBDescriptions = SBDescriptions;
         this.SBYear = SBYear;
+        this.SBFieldOfStudy = SBFieldOfStudy;
     }
 }
