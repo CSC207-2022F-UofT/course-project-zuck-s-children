@@ -2,8 +2,7 @@ package Swipe.Screen;
 
 import AccountCreation.Account;
 import data.persistency.UserDatabase;
-import swipe_left_use_case.src.swipe_left.SwiperRequestModel;
-import swipe_left_use_case.src.swipe_left.SwiperController;
+import profile.Profile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,18 +14,6 @@ import static javax.swing.JOptionPane.showMessageDialog;
 // Frameworks/Drivers layer
 
 public class SwipeScreen extends JPanel implements ActionListener {
-    /**
-     * The name of the potential match
-     */
-    JTextField name = new JTextField(15);
-    /**
-     * The match's account information
-     */
-    JPasswordField account = new JPasswordField(15);
-    /**
-     * The second password to make sure the user understands
-     */
-    JPasswordField repeatPassword = new JPasswordField(15);
 
     /**
      * The controller
@@ -39,9 +26,20 @@ public class SwipeScreen extends JPanel implements ActionListener {
     public SwipeScreen(SwiperController controller, Account potential) {
 
         this.swiperController = controller;
-
+        Profile profile = potential.getProfile();
         JLabel title = new JLabel("Potential Match?");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        LabelTextPanel name = new LabelTextPanel(
+                new JLabel("Name: " + profile.getName()));
+        LabelTextPanel pronouns = new LabelTextPanel(
+                new JLabel("Pronouns: " + profile.getPronouns()));
+        LabelTextPanel yearOfStudy = new LabelTextPanel(
+                new JLabel("Year of Study: " + profile.getYear()));
+        LabelTextPanel fieldOfStudy = new LabelTextPanel(
+                new JLabel("Field of Study: " + profile.getFieldOfStudy()));
+        LabelTextPanel studyStyles = new LabelTextPanel(
+                new JLabel("Courses: " + profile.getStudyStyles().toString()));
 
         JButton accept = new JButton("Accept");
         accept.setActionCommand("T," + potential.getUsername());
@@ -59,6 +57,11 @@ public class SwipeScreen extends JPanel implements ActionListener {
 
         this.add(title);
         this.add(buttons);
+        this.add(name);
+        this.add(yearOfStudy);
+        this.add(pronouns);
+        this.add(fieldOfStudy);
+        this.add(studyStyles);
 
     }
 
