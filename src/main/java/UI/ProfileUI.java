@@ -3,7 +3,12 @@ package UI;
 
 import UI.components.Button;
 
-public class ProfileUI {
-    public static
-    Button button1 = new Button();
+import javax.swing.text.View;
+
+public class ProfileUI implements ViewModel {
+
+    @Override
+    public void build() {
+
+    }
 }

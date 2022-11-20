@@ -1,10 +1,5 @@
 package AccountCreation;
 
-import DataPersistency.DataAccess;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class RegisterUseCase implements RegisterInBoundary {
 
     private RegisterOutBoundary registerPresenter;
@@ -20,12 +15,8 @@ public class RegisterUseCase implements RegisterInBoundary {
             Account newAccount = new Account(registerModel.getInputUsername(),
                     registerModel.getInputPassword());
 
-            List<Object> databaseValue = new ArrayList<>();
-            databaseValue.add(registerModel.getInputPassword());
-            databaseValue.add(newAccount.getProfile());
-            databaseValue.add(newAccount.getMatches());
 
-            userDatabase.put(registerModel.getInputUsername(), databaseValue);
+            userDatabase.put(registerModel.getInputUsername(), newAccount);
 
             RegisterOutModel responseModel = new RegisterOutModel(true);
             registerPresenter.alertUser(responseModel);
@@ -33,8 +24,7 @@ public class RegisterUseCase implements RegisterInBoundary {
     }
 
     public static boolean checkDuplicateUsername(String inputUsername) {
-        return DataAccess.duplicateUsername(inputUsername);
+        return userDatabase.containsKey(inputUsername);
     }
-
 
 }

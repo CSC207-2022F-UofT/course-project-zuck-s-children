@@ -1,6 +1,7 @@
 package AccountCreation;
 
 import UI.ViewModel;
+
 public class RegisterPresenter implements RegisterOutBoundary {
     ViewModel loginUI;
 
