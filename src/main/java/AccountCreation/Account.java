@@ -8,7 +8,7 @@ import java.util.List;
 import java.io.Serializable;
 
 import profile.Profile;
-public class Account implements Serializable {
+public class Account implements Serializable, Comparable<Account> {
     private String username;
     private String password;
     private Profile profile;
@@ -39,4 +39,11 @@ public class Account implements Serializable {
     public void addMatch(Profile profile) {
         this.matches.add(profile);
     }
+
+    @Override
+    public int compareTo(Account other){
+        return Integer.compare(getProfile().getScore(), other.getProfile().getScore());
+    }
+
+
 }
