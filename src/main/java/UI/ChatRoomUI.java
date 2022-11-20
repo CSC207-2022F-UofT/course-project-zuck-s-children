@@ -1,9 +1,12 @@
 package UI;
 
-public class ChatRoomUI implements ViewModel {
+import chat.control.MsgOutModel;
 
-    @Override
-    public void build() {
+import java.util.List;
+
+public class ChatRoomUI{
+
+    public void build(List<Object> listOfMsg) {
 
     }
 }

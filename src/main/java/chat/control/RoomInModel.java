@@ -1,18 +1,16 @@
 package chat.control;
 
-import chat.entities.ChatRoomEnt;
-
 /**
  * An InputModel that stores the id of a chatroom the user leaves
  */
-public class LeaveInModel {
+public class RoomInModel {
     String id;
 
     /**
      * Construct the model using the chatroom id
      * @param id
      */
-    public LeaveInModel(String id){
+    public RoomInModel(String id){
         this.id = id;
     }
 
