@@ -150,10 +150,18 @@ public class Profile {
     public JComboBox[] studySpotPreferences = new JComboBox[]{listOfStudySpots1, listOfStudySpots2, listOfStudySpots3};
     HashMap<String, Object> studyBuddyPreferences;
 
+    /**
+     * Returns the compatibility score of the user to the user currently logged in.
+     * @return the user's compatibility score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Sets the user's compatibility score with the user currently logged in.
+     * @param score the user's compatibility score
+     */
     public void setScore(int score) {
         this.score = score;
     }
@@ -196,27 +204,10 @@ public class Profile {
         return ((JList<String>) studyBuddyPreferences.get("field of study")).getSelectedValuesList().size() <= 3;
     }
 
-//    /**
-//     * Creates a new Profile object for a user. This constructor takes in all arguments.
-//     * @param name The user's name
-//     * @param pronouns The user's pronouns
-//     * @param profilePicture The user's profile picture
-//     * @param studyStyle The study style of the user
-//     * @param studyBuddyPreference The user's preferences for study buddies
-//     * @param studySpotPreferences The user's preferences for study spots
-//     */
-//
-//    public Profile(String name, String pronouns, int year, String fieldOfStudy, ArrayList<String> studyStyle, HashMap<String, ArrayList> studyBuddyPreference, ArrayList<String> studySpotPreferences) {
-//        this.name = name;
-//        this.pronouns = pronouns;
-//        this.year = year;
-//        listOfAllFieldsOfStudy.setSelectedItem(fieldOfStudy);
-//        this.fieldOfStudy = (String) listOfAllFieldsOfStudy.getSelectedItem();
-//        this.studyStyle = studyStyle;
-//        this.studyBuddyPreference = studyBuddyPreference;
-//        this.studySpotPreferences = studySpotPreferences;
-//    }
-
+    /**
+     * Returns a string representation of the profile.
+     * @return the profile in string
+     */
     @Override
     public String toString() {
         return "Profile\\nName: " + getName() + "\\nPronouns: " + getPronouns() + "\\nYear: " + getYear() + "\\nField of Study: " + getFieldOfStudy() + "\\nStudy Style: " + getStudyStyles() +
