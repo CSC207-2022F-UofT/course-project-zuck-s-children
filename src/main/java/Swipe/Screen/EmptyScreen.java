@@ -7,7 +7,14 @@ import java.awt.event.ActionListener;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
+/**
+ * A UI class that is executed when there are no accounts to swipe on.
+ */
 public class EmptyScreen extends JPanel implements ActionListener {
+
+    /**
+     * A window that simply says "Check back later!"
+     */
     public EmptyScreen() {
 
 

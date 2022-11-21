@@ -1,6 +1,6 @@
 package matching;
 
-public class potentialStudyBuddiesEntity {
+public class PotentialStudyBuddiesEntity {
 
 }
 
