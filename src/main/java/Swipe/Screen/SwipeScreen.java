@@ -74,7 +74,7 @@ public class SwipeScreen extends JPanel implements ActionListener {
         Account account = UserDatabase.getAccounts().get(result[1]);
         try {
             swiperController.create(result[0], account);
-            JOptionPane.showMessageDialog(this, "Request sent to %s!".formatted(result[1]));
+            JOptionPane.showMessageDialog(this, "Request sent to " + result[1]);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
