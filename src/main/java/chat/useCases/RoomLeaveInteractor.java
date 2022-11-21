@@ -1,30 +1,43 @@
 package chat.useCases;
 
-import chat.control.LeaveInBoundary;
-import chat.control.LeaveInModel;
-import chat.control.LeaveOutBoundary;
-import chat.control.LeaveOutModel;
+import chat.control.AccountInModel;
+import chat.control.RoomInModel;
+import chat.control.RoomOutBoundary;
+import chat.control.RoomOutModel;
+import chat.entities.ChatRoomEnt;
 import data.persistency.ChatDataAccessInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RoomLeaveInteractor implements LeaveInBoundary {
+public class RoomLeaveInteractor implements RoomInBoundary {
     private static ChatDataAccessInterface chatDataAccess;
-    private LeaveOutBoundary leavePresenter;
+    private RoomOutBoundary leavePresenter;
 
-    public RoomLeaveInteractor(LeaveOutBoundary leavePresenter){
+    public RoomLeaveInteractor(RoomOutBoundary leavePresenter){
         this.leavePresenter = leavePresenter;
     }
     @Override
-    public void leaveRoom(LeaveInModel leaveModel) {
-        LeaveOutModel responseModel = new LeaveOutModel(fetch(), leaveModel.getId());
+    public void leaveRoom(RoomInModel leaveModel, AccountInModel accModel) {
+        List<Object> list = fetch(leaveModel, accModel);
+        RoomOutModel responseModel = new RoomOutModel(list);
         leavePresenter.update(responseModel);
     }
 
-    private List<String> fetch(){
-        // TODO: fetch chatroom data using chatDataAccess
-        // TODO: clean the data into List<String>
-        return null;
+    private List<Object> fetch(RoomInModel leave, AccountInModel acc){
+        chatDataAccess.getChatData().removeRoom(leave.getId());
+        List<Object> room;
+        try {
+            room = chatDataAccess.loadRoomByAccount(acc.getAccount());
+        } catch (Throwable NoRoomFound) {
+            return new ArrayList<Object>();
+        }
+
+        List<Object> result = new ArrayList<Object> ();
+        for (Object elem : room){
+            result.add(((ChatRoomEnt)elem).toString(acc.getAccount().getUsername()));
+        }
+        return result;
     }
 
 }
