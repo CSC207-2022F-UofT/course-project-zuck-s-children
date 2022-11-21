@@ -1,23 +1,25 @@
 package spots.useCases;
 
-//import swiper.useCases. or chat??
-//import chat.presenter...;
-//import data.persistency.StudySpotAccessInterface;
+import chat.entities.ChatRoomEnt;
+//import chat....OutBoundary;
+import AccountCreation.Account;
+import profile.Profile;
 import spots.entities.SpotRecommender;
 
 import java.util.ArrayList;
-import java.util.List;
+public class RecommendSpots { // connect with chatroom
+    SpotRecommender spotRecommender = new SpotRecommender();
 
-public class RecommendSpots {
-    private List<String> prefSpots1 = new ArrayList<String>();
-    private List<String> prefSpots2 = new ArrayList<String>();
-
-    public ArrayList<String> getRecSpots() {
-        SpotRecommender.recommender(prefSpots1, prefSpots2);
-        return SpotRecommender.getRecommendation();
+    //set
+    public void generateRec(Account user1, Account user2){
+        ArrayList<String> prefSpots1 = user1.getProfile().getStudySpotPreferences();
+        ArrayList<String> prefSpots2 = user2.getProfile().getStudySpotPreferences();
+        spotRecommender.setPrefSpots(prefSpots1, prefSpots2);
+        spotRecommender.recommender();
     }
-
-    //public spots from userdb
-
-    //public void update
+    public ArrayList<String> getRecSpots() {
+        // call everytime, if a selected spot is there then highilght it (D:)
+        return spotRecommender.getRecommendation();
+    }
+    //public void update(){}
 }
