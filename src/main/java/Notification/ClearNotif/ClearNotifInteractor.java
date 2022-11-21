@@ -3,17 +3,17 @@ package Notification.ClearNotif;
 public class ClearNotifInteractor implements ClearNotifInputBoundary{
 
     private ClearNotifOutputBoundary clearNotifOutputBoundary;
-    private ClearNotifGateway clearNotifGateway;
+    //private ClearNotifGateway clearNotifGateway;
 
 
-    public ClearNotifInteractor(ClearNotifOutputBoundary presenter, ClearNotifGateway gateway){
+    public ClearNotifInteractor(ClearNotifOutputBoundary presenter){
         this.clearNotifOutputBoundary = presenter;
-        this.clearNotifGateway = gateway;
+        //this.clearNotifGateway = gateway;
     }
     @Override
     public void clearNotif() {
-        currentuser.notifications.clear();
-        this.clearNotifGateway.erase();
+        userDatabase.getCurrentUser().setNotifications();
+        //this.clearNotifGateway.erase();
 
         ClearNotifResponseModel responseModel = new ClearNotifResponseModel("No new notifications!");
         this.clearNotifOutputBoundary.prepareDisplayView(responseModel);

@@ -1,8 +1,15 @@
 package Notification.ClearNotif;
 
+import UI.NotificationUI;
+
 public class ClearNotifPresenter implements ClearNotifOutputBoundary{
+    NotificationUI notifUI;
+
+    public ClearNotifPresenter(NotificationUI UI){
+        this.notifUI =UI;
+    }
     @Override
     public void prepareDisplayView(ClearNotifResponseModel responseModel) {
-        // display response model
+        this.notifUI.showMessage(responseModel);
     }
 }
