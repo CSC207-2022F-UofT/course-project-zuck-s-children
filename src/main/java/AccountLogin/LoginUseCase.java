@@ -10,6 +10,7 @@ public class LoginUseCase implements LoginInBoundary{
             if (userDatabase[loginModel.getInputUsername()][0] == loginModel.getInputPassword()) {
                 LoginOutModel responseModel = new LoginOutModel(true);
                 loginPresenter.loginToAccount(responseModel);
+
                 // Sets the current user to be the logged-in user for program to know.
                 UserDatabase.setCurrentUser(userDatabase[loginModel.getInputUsername()]);
             }

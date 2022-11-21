@@ -14,6 +14,7 @@ public class UserDatabase implements Serializable {
         Accounts = new HashMap<String, Account>();
     }
 
+
     public static HashMap<String, Account> getAccounts() {
         return Accounts;
     }

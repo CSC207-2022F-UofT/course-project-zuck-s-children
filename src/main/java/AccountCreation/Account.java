@@ -37,6 +37,7 @@ public class Account implements Serializable {
     }
     public List<Notification> getNotifications() {return this.notifications;}
 
+
     public void addNotification(Notification notification){
         notifications.add(notification);
     }
