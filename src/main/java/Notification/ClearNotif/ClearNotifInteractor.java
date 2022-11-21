@@ -12,7 +12,7 @@ public class ClearNotifInteractor implements ClearNotifInputBoundary{
     }
     @Override
     public void clearNotif() {
-        userDatabase.getAccount().setNotifications();
+        userDatabase.getCurrentUser().setNotifications();
         //this.clearNotifGateway.erase();
 
         ClearNotifResponseModel responseModel = new ClearNotifResponseModel("No new notifications!");

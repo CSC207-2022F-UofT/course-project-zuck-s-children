@@ -14,7 +14,7 @@ public class ShowNotifInteractor implements ShowNotifInputBoundary {
     }
     @Override
     public void showNotif(){
-        List<Notification> notifList = userDatabase.getAccount().getNotifications();
+        List<Notification> notifList = userDatabase.getCurrentUser().getNotifications();
         ArrayList formattedList = formatNotif(notifList);
 
         NotifResponseModel notifResponseModel = new NotifResponseModel(formattedList);
