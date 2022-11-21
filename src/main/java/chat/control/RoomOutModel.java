@@ -8,16 +8,16 @@ import java.util.List;
  */
 public class RoomOutModel {
 
-    List<String> listOfRooms;
+    List<Object> listOfRooms;
 
     public RoomOutModel(List<Object> l){
-        this.listOfRooms = new ArrayList<String>();
+        this.listOfRooms = new ArrayList<Object>();
         for(Object s : l){
-            this.listOfRooms.add((String)s);
+            this.listOfRooms.add(s);
         }
     }
 
-    public List<String> getRoomList(){
+    public List<Object> getRoomList(){
         return this.listOfRooms;
     }
 }
