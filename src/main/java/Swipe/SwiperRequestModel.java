@@ -1,4 +1,6 @@
-package swipe_left_use_case.src.swipe_left;
+package Swipe;
+
+import AccountCreation.Account;
 
 public class SwiperRequestModel {
     private boolean accepted;

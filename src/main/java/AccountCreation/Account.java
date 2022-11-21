@@ -8,6 +8,7 @@ import java.util.List;
 import java.io.Serializable;
 
 import profile.Profile;
+
 public class Account implements Serializable {
     private String username;
     private String password;
@@ -35,6 +36,11 @@ public class Account implements Serializable {
         return this.matches;
     }
     public List<Notification> getNotifications() {return this.notifications;}
+
+
+    public void addNotification(Notification notification){
+        notifications.add(notification);
+    }
 
     public void addMatch(Account account) {
         this.matches.add(account);
