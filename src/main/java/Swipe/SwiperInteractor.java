@@ -5,21 +5,33 @@ import data.persistency.UserDatabase;
 
 
 import java.time.LocalDateTime;
-
+/**
+ * An interactor class that implements interface SwiperInputBoundary
+ */
 public class SwiperInteractor implements SwiperInputBoundary{
 
+    /**
+     * A presenter
+     */
     final SwiperPresenter swiperPresenter;
 
-
+    /**
+     * A constructor that initializes attribute swiperPresenter
+     * @param swiperPresenter
+     */
     public SwiperInteractor(SwiperPresenter swiperPresenter){
         this.swiperPresenter = swiperPresenter;
     }
 
+    /**
+     * Overridden create method from interface, returns/creates a SwiperResponseModel based on input SwiperRequestModel.
+     * @param requestModel
+     * @return SwiperResponseModel
+     */
     @Override
     public SwiperResponseModel create(SwiperRequestModel requestModel) {
 
         if (requestModel.getAccepted()) {
-            /* need to send information to chat data access*/
 
             if (UserDatabase.getCurrentUser().getMatches().contains(requestModel.getPotential())){
                 LocalDateTime now = LocalDateTime.now();

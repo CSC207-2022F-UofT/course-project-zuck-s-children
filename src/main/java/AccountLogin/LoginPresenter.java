@@ -12,11 +12,11 @@ public class LoginPresenter implements LoginOutBoundary{
     }
 
     @Override
-    public void loginToAccount(LoginOutModel loginModel) {
-        if (loginModel.getLoginStatus()) {
+    public void loginToAccount(LoginOutModel responseModel) {
+        if (responseModel.getLoginStatus()) {
             // TODO: go to profileUI of this user's account.
         } else {
-            String failMsg = loginModel.getFailMsg();
+            String failMsg = responseModel.getFailMsg();
             // TODO: display failMsg in loginUI.
         }
     }

@@ -126,6 +126,7 @@ public class Profile {
      */
     public ArrayList<String> getStudySpotPreferences() {
         ArrayList<String> listOfSS = new ArrayList<String>();
+
         for (JComboBox<String> column : studySpotPreferences) {
             listOfSS.add((String) column.getSelectedItem());
         }

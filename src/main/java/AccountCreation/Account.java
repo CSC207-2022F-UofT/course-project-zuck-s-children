@@ -40,6 +40,11 @@ public class Account implements Serializable, Comparable<Account> {
         this.matches.add(profile);
     }
 
+    public void addNotification(Notification notification){
+        notifications.add(notification);
+
+    }
+
     @Override
     public int compareTo(Account other){
         return Integer.compare(this.getProfile().getScore(), other.getProfile().getScore());
