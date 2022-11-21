@@ -12,7 +12,6 @@ public class ShowNotifPresenter implements ShowNotifOutputBoundary {
     }
     @Override
     public void prepareDisplayView(NotifResponseModel response) {
-        this.notifUI.build(response);
-//view model?
+        this.notifUI.build(response.getResponseModel());
     }
 }

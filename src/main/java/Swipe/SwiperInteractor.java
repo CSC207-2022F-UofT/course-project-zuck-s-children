@@ -35,8 +35,8 @@ public class SwiperInteractor implements SwiperInputBoundary{
 
             if (UserDatabase.getCurrentUser().getMatches().contains(requestModel.getPotential())){
                 LocalDateTime now = LocalDateTime.now();
-                requestModel.getPotential().addMatch(UserDatabase.getCurrentUser());
-                UserDatabase.getCurrentUser().addMatch(requestModel.getPotential());
+                requestModel.getPotential().addMatch(UserDatabase.getCurrentUser().getProfile());
+                UserDatabase.getCurrentUser().addMatch(requestModel.getPotential().getProfile());
                 requestModel.getPotential().addNotification(new MatchNotification("You matched with" +
                         UserDatabase.getCurrentUser().getProfile().getName(), UserDatabase.getCurrentUser(), now));
 

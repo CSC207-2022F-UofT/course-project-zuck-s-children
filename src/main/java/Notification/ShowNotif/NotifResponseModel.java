@@ -11,4 +11,7 @@ public class NotifResponseModel {
     public NotifResponseModel(ArrayList<List> formattedList){
         this.responseList = formattedList;
     }
+    public ArrayList<List> getResponseModel(){
+        return this.responseList;
+    }
 }

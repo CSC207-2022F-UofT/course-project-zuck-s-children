@@ -1,8 +1,15 @@
 package AccountCreation;
 
-public class RegisterUseCase implements RegisterInBoundary {
+import data.persistency.UserDatabase;
 
+public class RegisterUseCase implements RegisterInBoundary {
+    private UserDatabase userDatabase;
     private RegisterOutBoundary registerPresenter;
+
+    public void RegisterUserCase (UserDatabase userDatabase, RegisterOutBoundary presenter){
+        this.userDatabase = userDatabase;
+        this.registerPresenter = presenter;
+    }
 
     @Override
     public void createNewAccount(RegisterInModel registerModel) {
@@ -16,15 +23,15 @@ public class RegisterUseCase implements RegisterInBoundary {
                     registerModel.getInputPassword());
 
 
-            userDatabase.put(registerModel.getInputUsername(), newAccount);
+            userDatabase.getAccounts().put(registerModel.getInputUsername(), newAccount);
 
             RegisterOutModel responseModel = new RegisterOutModel(true);
             registerPresenter.alertUser(responseModel);
         }
     }
 
-    public static boolean checkDuplicateUsername(String inputUsername) {
-        return userDatabase.containsKey(inputUsername);
+    public boolean checkDuplicateUsername(String inputUsername) {
+        return this.userDatabase.getAccounts().containsKey(inputUsername);
     }
 
 }
