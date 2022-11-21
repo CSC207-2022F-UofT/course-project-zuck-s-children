@@ -42,7 +42,7 @@ public class Account implements Serializable, Comparable<Account> {
 
     @Override
     public int compareTo(Account other){
-        return Integer.compare(getProfile().getScore(), other.getProfile().getScore());
+        return Integer.compare(this.getProfile().getScore(), other.getProfile().getScore());
     }
 
 
