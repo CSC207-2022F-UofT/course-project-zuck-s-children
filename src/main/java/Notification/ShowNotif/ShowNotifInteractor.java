@@ -14,11 +14,10 @@ public class ShowNotifInteractor implements ShowNotifInputBoundary {
     }
     @Override
     public void showNotif(){
-        List<Notification> notifList = currentUser.getNotifications();
+        List<Notification> notifList = userDatabase.getAccount().getNotifications();
         ArrayList formattedList = formatNotif(notifList);
 
         NotifResponseModel notifResponseModel = new NotifResponseModel(formattedList);
-
         showNotifOutputBoundary.prepareDisplayView(notifResponseModel);
     }
 
