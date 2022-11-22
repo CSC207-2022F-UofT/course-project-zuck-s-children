@@ -42,7 +42,10 @@ public class Account implements Serializable, Comparable<Account> {
 
     public void addNotification(Notification notification){
         notifications.add(notification);
+    }
 
+    public void clearNotifications(){
+        this.notifications.clear();
     }
 
     @Override
