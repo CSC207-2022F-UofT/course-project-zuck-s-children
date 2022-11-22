@@ -10,9 +10,6 @@ public class SpotRecommender {
     private ArrayList<String> options;
 
     /**
-     * @param
-     * @param
-     * @return recommendation
      */
     public SpotRecommender(){
         this.recommendation = new ArrayList<>();
@@ -60,5 +57,6 @@ public class SpotRecommender {
             }
         }
     }
+
     public ArrayList<String> getRecommendation(){return recommendation;}
 }
