@@ -1,5 +1,6 @@
 package Notification.ShowNotif;
 import Notification.Notification;
+import data.persistency.UserDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +9,15 @@ import java.util.List;
 
 public class ShowNotifInteractor implements ShowNotifInputBoundary {
     private ShowNotifOutputBoundary showNotifOutputBoundary;
+    private UserDatabase userData;
 
-    public ShowNotifInteractor(ShowNotifOutputBoundary showNotifOutputBoundary){
+    public ShowNotifInteractor(ShowNotifOutputBoundary showNotifOutputBoundary, UserDatabase data){
         this.showNotifOutputBoundary = showNotifOutputBoundary;
+        this.userData = data;
     }
     @Override
     public void showNotif(){
-        List<Notification> notifList = userDatabase.getCurrentUser().getNotifications();
+        List<Notification> notifList = this.userData.getCurrentUser().getNotifications();
         ArrayList formattedList = formatNotif(notifList);
 
         NotifResponseModel notifResponseModel = new NotifResponseModel(formattedList);
