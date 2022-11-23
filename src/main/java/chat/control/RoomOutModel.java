@@ -10,6 +10,10 @@ public class RoomOutModel {
 
     List<Object> listOfRooms;
 
+    /**
+     * Construct an output model for a list of rooms
+     * @param l
+     */
     public RoomOutModel(List<Object> l){
         this.listOfRooms = new ArrayList<Object>();
         for(Object s : l){
@@ -17,6 +21,10 @@ public class RoomOutModel {
         }
     }
 
+    /**
+     * Return the list of rooms represented by this model
+     * @return
+     */
     public List<Object> getRoomList(){
         return this.listOfRooms;
     }

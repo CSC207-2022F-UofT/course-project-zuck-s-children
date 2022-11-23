@@ -14,9 +14,19 @@ public class RoomLeaveInteractor implements RoomInBoundary {
     private static ChatDataAccessInterface chatDataAccess;
     private RoomOutBoundary leavePresenter;
 
+    /**
+     * Construct an interactor to leave a room
+     * @param leavePresenter
+     */
     public RoomLeaveInteractor(RoomOutBoundary leavePresenter){
         this.leavePresenter = leavePresenter;
     }
+
+    /**
+     * Leave the room represented by the models
+     * @param leaveModel
+     * @param accModel
+     */
     @Override
     public void leaveRoom(RoomInModel leaveModel, AccountInModel accModel) {
         List<Object> list = fetch(leaveModel, accModel);
