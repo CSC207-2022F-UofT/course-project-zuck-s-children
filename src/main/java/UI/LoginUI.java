@@ -3,6 +3,7 @@ package UI;
 import javax.swing.*;
 
 public class LoginUI {
+    //Running the loginUI page.
     public static void main(String[] a) {
         LoginFrame frame = new LoginFrame();
         frame.setTitle("Login Page");

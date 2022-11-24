@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame implements ActionListener {
-
+    //Each UI component:
     Container container = getContentPane();
     //login stuff
     JLabel loginLabel = new JLabel("LOGIN");
