@@ -1,23 +1,34 @@
 package spots.useCases;
 
-//import swiper.useCases. or chat??
-//import chat.presenter...;
-//import data.persistency.StudySpotAccessInterface;
+
+import AccountCreation.Account;
+import profile.Profile;
+import spots.controllers.RecsInModel;
+import spots.controllers.RecsOutBoundary;
+import spots.controllers.RecsOutModel;
 import spots.entities.SpotRecommender;
 
 import java.util.ArrayList;
-import java.util.List;
+public class RecommendSpots implements RecsInBoundary{
+    private RecsOutBoundary recsPresenter;
 
-public class RecommendSpots {
-    private List<String> prefSpots1 = new ArrayList<String>();
-    private List<String> prefSpots2 = new ArrayList<String>();
+    SpotRecommender spotRecommender = new SpotRecommender();
 
-    public ArrayList<String> getRecSpots() {
-        SpotRecommender.recommender(prefSpots1, prefSpots2);
-        return SpotRecommender.getRecommendation();
+    public ArrayList<String> generateRec(ArrayList<Account> users){
+        Account user1 = users.get(0);
+        Account user2 = users.get(1);
+
+        ArrayList<String> prefSpots1 = user1.getProfile().getStudySpotPreferences();
+        ArrayList<String> prefSpots2 = user2.getProfile().getStudySpotPreferences();
+
+        spotRecommender.setPrefSpots(prefSpots1, prefSpots2);
+        spotRecommender.recommender();
+        return spotRecommender.getRecommendation();
     }
 
-    //public spots from userdb
-
-    //public void update
+    @Override
+    public void openRecs(RecsInModel recsInModel) {
+        RecsOutModel recModel = new RecsOutModel(generateRec(recsInModel.getUsers()));
+        recsPresenter.update(recModel);
+    }
 }

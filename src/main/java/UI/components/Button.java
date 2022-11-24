@@ -1,21 +1,20 @@
 package UI.components;
 
+import javax.swing.*;
+
 public class Button {
-    public String description;
+    JButton button;
 
-    public boolean isSelected() {
-        return selected;
+    /**
+     * Returns class variable button
+     * @return button
+     */
+    public JButton getButton(){
+        return button;
     }
 
-    public boolean selected;
-    public Button(String description) {
-        this.description = description;
+    public void setButton(String buttonText) {
+        button = new JButton(buttonText);
     }
-    public void changeSelectionStatus() {
-        if (selected) {
-            this.selected = false;
-        }
-        else {this.selected = true;}
-    }
-    public String toString(){return description;}
+
 }

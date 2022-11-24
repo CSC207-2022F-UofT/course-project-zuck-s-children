@@ -6,9 +6,12 @@ public class RegisterUseCase implements RegisterInBoundary {
     private UserDatabase userDatabase;
     private RegisterOutBoundary registerPresenter;
 
-    public RegisterUseCase (UserDatabase userDatabase) {
 
+    public void RegisterUserCase (UserDatabase userDatabase, RegisterOutBoundary presenter){
+        this.userDatabase = userDatabase;
+        this.registerPresenter = presenter;
     }
+
     @Override
     public void createNewAccount(RegisterInModel registerModel) {
         if (checkDuplicateUsername(registerModel.getInputUsername())) {
@@ -20,15 +23,15 @@ public class RegisterUseCase implements RegisterInBoundary {
             Account newAccount = new Account(registerModel.getInputUsername(),
                     registerModel.getInputPassword());
 
-            userDatabase.put(registerModel.getInputUsername(), newAccount);
+            userDatabase.getAccounts().put(registerModel.getInputUsername(), newAccount);
 
             RegisterOutModel responseModel = new RegisterOutModel(true);
             registerPresenter.alertUser(responseModel);
         }
     }
 
-    public static boolean checkDuplicateUsername(String inputUsername) {
-        return userDatabase.containsKey(inputUsername);
+    public boolean checkDuplicateUsername(String inputUsername) {
+        return this.userDatabase.getAccounts().containsKey(inputUsername);
     }
 
 }
