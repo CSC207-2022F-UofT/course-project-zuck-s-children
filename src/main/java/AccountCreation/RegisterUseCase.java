@@ -1,9 +1,14 @@
 package AccountCreation;
 
-public class RegisterUseCase implements RegisterInBoundary {
+import data.persistency.UserDatabase;
 
+public class RegisterUseCase implements RegisterInBoundary {
+    private UserDatabase userDatabase;
     private RegisterOutBoundary registerPresenter;
 
+    public RegisterUseCase (UserDatabase userDatabase) {
+
+    }
     @Override
     public void createNewAccount(RegisterInModel registerModel) {
         if (checkDuplicateUsername(registerModel.getInputUsername())) {
@@ -14,7 +19,6 @@ public class RegisterUseCase implements RegisterInBoundary {
             // add NewAccount entity into UserDatabase
             Account newAccount = new Account(registerModel.getInputUsername(),
                     registerModel.getInputPassword());
-
 
             userDatabase.put(registerModel.getInputUsername(), newAccount);
 

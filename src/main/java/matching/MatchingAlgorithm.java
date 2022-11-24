@@ -64,12 +64,12 @@ public class MatchingAlgorithm {
     }
 
     // example: https://mkyong.com/java/java-object-sorting-example-comparable-and-comparator/#:~:text=To%20sort%20an%20Object%20by,the%20new%20Fruit%20class%20again.&text=The%20new%20Fruit%20class%20implemented,quantity%20property%20in%20ascending%20order.
-    public static class matchScoreComparator implements Comparator<Account>{
+    public static class matchScoreComparator implements Comparator<Account> {
         @Override
         // override compare users by comparing their scores
 
-            public int compare(Account a1, Account a2) {
-                return a1.getProfile().getScore().compareTo(a2.getProfile().getScore());
-            }
+        public int compare(Account a1, Account a2) {
+            return a1.getProfile().getScore().compareTo(a2.getProfile().getScore());
         }
+    }
 

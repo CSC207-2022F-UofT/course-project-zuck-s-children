@@ -36,7 +36,7 @@ public class Account implements Serializable {
         return this.matches;
     }
     public List<Notification> getNotifications() {return this.notifications;}
-
+    public void clearNotifications() {this.notifications = new ArrayList<>();}
 
     public void addNotification(Notification notification){
         notifications.add(notification);
