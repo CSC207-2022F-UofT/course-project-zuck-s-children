@@ -12,6 +12,7 @@ import java.util.List;
 public class Profile {
     /**
      * Sets the user's name
+     *
      * @param name the user's name
      */
     public void setName(String name) {
@@ -20,6 +21,7 @@ public class Profile {
 
     /**
      * Sets the user's pronouns
+     *
      * @param pronouns
      */
     public void setPronouns(String pronouns) {
@@ -28,6 +30,7 @@ public class Profile {
 
     /**
      * Sets the user's year in university
+     *
      * @param year the user's year in university
      */
     public void setYear(String year) {
@@ -36,6 +39,7 @@ public class Profile {
 
     /**
      * Sets the user's field of study
+     *
      * @param fieldOfStudy
      */
     public void setFieldOfStudy(String fieldOfStudy) {
@@ -44,6 +48,7 @@ public class Profile {
 
     /**
      * Sets the user's study styles
+     *
      * @param studyStyles the user's study styles
      */
     public void setStudyStyles(String[] studyStyles) {
@@ -54,14 +59,18 @@ public class Profile {
 
     /**
      * Sets the user's preferred study spots
+     *
      * @param studySpotPreferences the user's preferred study spots
      */
     public void setStudySpotPreferences(String[] studySpotPreferences) {
-        for (int i = 0; i < studySpotPreferences.length; i++) {this.studySpotPreferences[i].setSelectedItem(studySpotPreferences[i]);}
+        for (int i = 0; i < studySpotPreferences.length; i++) {
+            this.studySpotPreferences[i].setSelectedItem(studySpotPreferences[i]);
+        }
     }
 
     /**
      * Sets the user's preferences for their ideal study buddy
+     *
      * @param year
      * @param field
      * @param descriptions
@@ -74,34 +83,43 @@ public class Profile {
 
     /**
      * Return the name of this user.
+     *
      * @return the user's name
-     * */
+     */
     public String getName() {
         return name;
     }
+
     /**
      * Return the pronouns of this user.
+     *
      * @return the user's pronouns
-     * */
+     */
     public String getPronouns() {
         return pronouns;
     }
+
     /**
      * Return which year in university this user is in.
+     *
      * @return the year this user is in
      */
     public String getYear() {
         return listOfYears.getSelectedValue();
-        }
+    }
+
     /**
      * Return the field of study of this user.
+     *
      * @return the field of study of this user
      */
     public String getFieldOfStudy() {
         return (String) fieldsOfStudyDropdown.getSelectedItem();
     }
+
     /**
      * Return the study styles of this user.
+     *
      * @return a List of the user's study styles (String)
      */
     public List<String> getStudyStyles() {
@@ -110,6 +128,7 @@ public class Profile {
 
     /**
      * Return the user's preferences for their ideal study buddy in a HashMap. Each key is the year, field of study, and descriptions of the study buddy.
+     *
      * @return the user's study buddy preferences
      */
     public HashMap<String, List<String>> getStudyBuddyPreferences() {
@@ -122,6 +141,7 @@ public class Profile {
 
     /**
      * Return the user's preferred study spots.
+     *
      * @return user's preferred study spots
      */
     public ArrayList<String> getStudySpotPreferences() {
@@ -134,7 +154,6 @@ public class Profile {
     }
 
 
-
     private String name;
     public String pronouns;
     // profilePicture;
@@ -144,7 +163,9 @@ public class Profile {
     public JComboBox<String> fieldsOfStudyDropdown = new JComboBox<String>(FIELDS);
     final String[] STYLES = {"quiet", "talkative"};
     public JList<String> studyStyles = new JList<String>(STYLES);
-    public String[] studySpots = {"Robarts Library", "Gerstein Library"};
+    public String[] studySpots = {"Robarts Library", "Gerstein Library", "Student Commons",
+            "Hart House", "UC College", "Caven Library", "E.J Pratt Library", "Graham Library", "UC Quad",
+            "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};
     public JComboBox<String> listOfStudySpots1 = new JComboBox<String>(studySpots);
     public JComboBox<String> listOfStudySpots2 = new JComboBox<String>(studySpots);
     public JComboBox<String> listOfStudySpots3 = new JComboBox<String>(studySpots);
@@ -153,6 +174,7 @@ public class Profile {
 
     /**
      * Returns the compatibility score of the user to the user currently logged in.
+     *
      * @return the user's compatibility score
      */
     public int getScore() {
@@ -161,6 +183,7 @@ public class Profile {
 
     /**
      * Sets the user's compatibility score with the user currently logged in.
+     *
      * @param score the user's compatibility score
      */
     public void setScore(int score) {
@@ -182,6 +205,7 @@ public class Profile {
 
     /**
      * Check if the user input no more than three study styles for themselves.
+     *
      * @return whether the user has input no more than three study styles for themselves
      */
     public boolean validStudyStyleInput() {
@@ -190,15 +214,19 @@ public class Profile {
 
     /**
      * Check if the user input no more than three study styles for their ideal study buddy.
+     *
      * @return whether the user has input no more than three study styles for their ideal study buddy
      */
     public boolean validSBStudyStyleInput() {
-        if (((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList().size() > 3) {return false;}
+        if (((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList().size() > 3) {
+            return false;
+        }
         return true;
     }
 
     /**
      * Check if the user input no more than three fields of study for their ideal study buddy.
+     *
      * @return whether the user has input no more than three fields of study for their ideal study buddy
      */
     public boolean validSBStudyFieldsInput() {
@@ -207,6 +235,7 @@ public class Profile {
 
     /**
      * Returns a string representation of the profile.
+     *
      * @return the profile in string
      */
     @Override
@@ -214,4 +243,4 @@ public class Profile {
         return "Profile\\nName: " + getName() + "\\nPronouns: " + getPronouns() + "\\nYear: " + getYear() + "\\nField of Study: " + getFieldOfStudy() + "\\nStudy Style: " + getStudyStyles() +
                 "\\n\\n-- Study Buddy Preferences --\\nYear: " + studyBuddyPreferences.get("year").toString() + "\\nField of Study: " + studyBuddyPreferences.get("field of study").toString() + "\\nDescriptions: " + studyBuddyPreferences.get("descriptions").toString() + "\\n\\n-- Study Spot Preferences --\\n" + getStudySpotPreferences().toString();
     }
-    }
+}
