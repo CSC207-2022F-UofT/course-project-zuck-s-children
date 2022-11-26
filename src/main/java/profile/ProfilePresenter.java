@@ -8,7 +8,7 @@ public class ProfilePresenter implements ProfileUpdateOutputBoundary {
     }
 
     @Override
-    public static void showModifiedProfile(ProfileOutModel modifications) {
-        modifiedProfile.build(modifications);
+    public void showModifiedProfile(ProfileOutModel modifications) {
+//        modifiedProfile.build(modifications);
     }
 }

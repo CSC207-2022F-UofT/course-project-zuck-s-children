@@ -157,13 +157,12 @@ public class Profile {
     private String name;
     public String pronouns;
     // profilePicture;
-    final String[] YEARS = {"1", "2", "3", "4", "4+"};
-    public JList<String> listOfYears = new JList<String>(YEARS);
-    public final String[] FIELDS = {"Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Other"};
+    public static final String[] YEARS = {"1", "2", "3", "4", "4+"};
+    public static final String[] FIELDS = {"Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Other"};
     public JComboBox<String> fieldsOfStudyDropdown = new JComboBox<String>(FIELDS);
-    final String[] STYLES = {"quiet", "talkative"};
+    public static final String[] STYLES = {"quiet", "talkative"};
     public JList<String> studyStyles = new JList<String>(STYLES);
-    public String[] studySpots = {"Robarts Library", "Gerstein Library", "Student Commons",
+    public static String[] studySpots = {"Robarts Library", "Gerstein Library", "Student Commons",
             "Hart House", "UC College", "Caven Library", "E.J Pratt Library", "Graham Library", "UC Quad",
             "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};
     public JComboBox<String> listOfStudySpots1 = new JComboBox<String>(studySpots);

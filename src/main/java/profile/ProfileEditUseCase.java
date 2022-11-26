@@ -26,6 +26,6 @@ public class ProfileEditUseCase implements ProfileEditInputBoundary {
         if (!modifiedProfile.validSBStudyStyleInput()) {listOfValidInputCheckMsgs.add("You can select up to 3 study styles for your preferred study buddy.");}
 
         ProfileOutModel profileModifications = new ProfileOutModel(profile, (String[]) listOfValidInputCheckMsgs.toArray());
-        ProfilePresenter.showModifiedProfile();
+//        ProfilePresenter.showModifiedProfile();
     }
 }
