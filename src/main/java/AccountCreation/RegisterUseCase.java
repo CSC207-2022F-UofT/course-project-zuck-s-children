@@ -6,6 +6,7 @@ public class RegisterUseCase implements RegisterInBoundary {
     private UserDatabase userDatabase;
     private RegisterOutBoundary registerPresenter;
 
+
     public void RegisterUserCase (UserDatabase userDatabase, RegisterOutBoundary presenter){
         this.userDatabase = userDatabase;
         this.registerPresenter = presenter;
@@ -21,7 +22,6 @@ public class RegisterUseCase implements RegisterInBoundary {
             // add NewAccount entity into UserDatabase
             Account newAccount = new Account(registerModel.getInputUsername(),
                     registerModel.getInputPassword());
-
 
             userDatabase.getAccounts().put(registerModel.getInputUsername(), newAccount);
 

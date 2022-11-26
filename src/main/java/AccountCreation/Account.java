@@ -36,6 +36,9 @@ public class Account implements Serializable, Comparable<Account> {
     }
     public List<Notification> getNotifications() {return this.notifications;}
 
+    public void clearNotifications() {this.notifications = new ArrayList<>();}
+
+
     public void addMatch(Profile profile) {
         this.matches.add(profile);
     }
