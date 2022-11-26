@@ -11,8 +11,9 @@ public class LoginUseCase implements LoginInBoundary{
     }
     @Override
     public void loginToAccount(LoginInModel loginModel) {
-        if (userDatabase.containsKey(loginModel.getInputUsername())) {
-            if (userDatabase[loginModel.getInputUsername()][0] == loginModel.getInputPassword()) {
+        if (UserDatabase.getAccounts().containsKey(loginModel.getInputUsername())) {
+            if (UserDatabase.getAccounts().get(loginModel.getInputUsername()).getPassword() ==
+                    loginModel.getInputPassword()) {
                 LoginOutModel responseModel = new LoginOutModel(true);
                 loginPresenter.loginToAccount(responseModel);
 
