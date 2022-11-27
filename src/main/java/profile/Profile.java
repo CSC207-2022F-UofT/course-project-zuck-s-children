@@ -34,7 +34,7 @@ public class Profile {
      * @param year the user's year in university
      */
     public void setYear(String year) {
-        listOfYears.setSelectedValue(year, true);
+        this.year = year;
     }
 
     /**
@@ -43,7 +43,7 @@ public class Profile {
      * @param fieldOfStudy
      */
     public void setFieldOfStudy(String fieldOfStudy) {
-        this.fieldsOfStudyDropdown.setSelectedItem(fieldOfStudy);
+        this.fieldOfStudy = fieldOfStudy;
     }
 
     /**
@@ -51,10 +51,8 @@ public class Profile {
      *
      * @param studyStyles the user's study styles
      */
-    public void setStudyStyles(String[] studyStyles) {
-        for (String studyStyle : studyStyles) {
-            this.studyStyles.setSelectedValue(studyStyle, true);
-        }
+    public void setStudyStyles(List<String> studyStyles) {
+        this.studyStyles = studyStyles;
     }
 
     /**
@@ -62,23 +60,17 @@ public class Profile {
      *
      * @param studySpotPreferences the user's preferred study spots
      */
-    public void setStudySpotPreferences(String[] studySpotPreferences) {
-        for (int i = 0; i < studySpotPreferences.length; i++) {
-            this.studySpotPreferences[i].setSelectedItem(studySpotPreferences[i]);
-        }
+    public void setStudySpotPreferences(List<String> studySpotPreferences) {
+        this.studySpotPreferences = studySpotPreferences;
     }
 
     /**
      * Sets the user's preferences for their ideal study buddy
      *
-     * @param year
-     * @param field
-     * @param descriptions
+     * @param studyBuddyPreferences the user's study buddy preferences
      */
-    public void setStudyBuddyPreferences(String[] year, String[] field, String[] descriptions) {
-        this.studyBuddyPreferences.replace("year", year);
-        this.studyBuddyPreferences.replace("field of study", field);
-        this.studyBuddyPreferences.replace("descriptions", descriptions);
+    public void setStudyBuddyPreferences(HashMap<String, List<String>> studyBuddyPreferences) {
+        this.studyBuddyPreferences = studyBuddyPreferences;
     }
 
     /**
@@ -105,7 +97,7 @@ public class Profile {
      * @return the year this user is in
      */
     public String getYear() {
-        return listOfYears.getSelectedValue();
+        return year;
     }
 
     /**
@@ -114,7 +106,7 @@ public class Profile {
      * @return the field of study of this user
      */
     public String getFieldOfStudy() {
-        return (String) fieldsOfStudyDropdown.getSelectedItem();
+        return this.fieldOfStudy;
     }
 
     /**
@@ -123,7 +115,7 @@ public class Profile {
      * @return a List of the user's study styles (String)
      */
     public List<String> getStudyStyles() {
-        return studyStyles.getSelectedValuesList();
+        return this.studyStyles;
     }
 
     /**
@@ -132,11 +124,7 @@ public class Profile {
      * @return the user's study buddy preferences
      */
     public HashMap<String, List<String>> getStudyBuddyPreferences() {
-        HashMap<String, List<String>> SBP = new HashMap<String, List<String>>();
-        SBP.put("year", ((JList<String>) studyBuddyPreferences.get("year")).getSelectedValuesList());
-        SBP.put("field of study", ((JList<String>) studyBuddyPreferences.get("field of study")).getSelectedValuesList());
-        SBP.put("descriptions", ((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList());
-        return SBP;
+        return this.studyBuddyPreferences;
     }
 
     /**
@@ -144,13 +132,8 @@ public class Profile {
      *
      * @return user's preferred study spots
      */
-    public ArrayList<String> getStudySpotPreferences() {
-        ArrayList<String> listOfSS = new ArrayList<String>();
-
-        for (JComboBox<String> column : studySpotPreferences) {
-            listOfSS.add((String) column.getSelectedItem());
-        }
-        return listOfSS;
+    public List<String> getStudySpotPreferences() {
+        return studySpotPreferences;
     }
 
 
@@ -158,18 +141,17 @@ public class Profile {
     public String pronouns;
     // profilePicture;
     public static final String[] YEARS = {"1", "2", "3", "4", "4+"};
+    public String year;
     public static final String[] FIELDS = {"Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Other"};
-    public JComboBox<String> fieldsOfStudyDropdown = new JComboBox<String>(FIELDS);
+    public String fieldOfStudy;
     public static final String[] STYLES = {"quiet", "talkative"};
-    public JList<String> studyStyles = new JList<String>(STYLES);
+    List<String> studyStyles;
     public static String[] studySpots = {"Robarts Library", "Gerstein Library", "Student Commons",
             "Hart House", "UC College", "Caven Library", "E.J Pratt Library", "Graham Library", "UC Quad",
             "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};
     public JComboBox<String> listOfStudySpots1 = new JComboBox<String>(studySpots);
-    public JComboBox<String> listOfStudySpots2 = new JComboBox<String>(studySpots);
-    public JComboBox<String> listOfStudySpots3 = new JComboBox<String>(studySpots);
-    public JComboBox[] studySpotPreferences = new JComboBox[]{listOfStudySpots1, listOfStudySpots2, listOfStudySpots3};
-    HashMap<String, Object> studyBuddyPreferences;
+    public List<String> studySpotPreferences;
+    public HashMap<String, Object> studyBuddyPreferences;
 
     /**
      * Returns the compatibility score of the user to the user currently logged in.
@@ -195,11 +177,9 @@ public class Profile {
      * Construct a new Profile object.
      */
     public void Profile() {
-        listOfYears.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        studyBuddyPreferences.put("year", new JList<String>(YEARS));
-        studyBuddyPreferences.put("field of study", new JList<String>(FIELDS));
-        studyBuddyPreferences.put("descriptions", new JList<String>(STYLES));
-        studyStyles.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        studyBuddyPreferences.put("year", new ArrayList<String>());
+        studyBuddyPreferences.put("field of study", new ArrayList<String>());
+        studyBuddyPreferences.put("descriptions", new ArrayList<String>());
     }
 
     /**
@@ -208,7 +188,7 @@ public class Profile {
      * @return whether the user has input no more than three study styles for themselves
      */
     public boolean validStudyStyleInput() {
-        return studyStyles.getSelectedValuesList().size() <= 3;
+        return studyStyles.size() <= 3;
     }
 
     /**

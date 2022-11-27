@@ -11,8 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProfileUI extends JFrame implements ActionListener, ViewModel {
-    JButton editBtn;
-    JPanel personalInfoSection; // figure out layout later
+    JButton editBtn = new JButton("Edit");
+    JPanel personalInfoSection = new JPanel(); // figure out layout later
 
     JPanel SBSection = new JPanel(); // figure out layout later
 
@@ -34,13 +34,13 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
 
         // year in uni
         JLabel yearLbl = new JLabel("Year");
-        JComboBox yearCB = new JComboBox(Profile.YEARS);
+        JComboBox<String> yearCB = new JComboBox<String>(Profile.YEARS);
         personalInfoSection.add(yearLbl);
         personalInfoSection.add(yearCB);
 
         // field of study (single selection)
         JLabel fieldLbl = new JLabel("Field of study");
-        JComboBox fieldCB = new JComboBox(Profile.FIELDS);
+        JComboBox<String> fieldCB = new JComboBox<String>(Profile.FIELDS);
         personalInfoSection.add(fieldLbl);
         personalInfoSection.add(fieldCB);
 
@@ -59,14 +59,14 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
 
         // year pref (multiple selection, can select all)
         JLabel yearPref = new JLabel("Preferred study buddy year");
-        JList yearsList = new JList(Profile.YEARS);
+        JList yearsList = new JList<String>(Profile.YEARS);
         SBSection.add(yearPref);
         SBSection.add(yearsList);
 
 
         // field of study pref (up to 3 selections)
         JLabel fieldPrefLbl = new JLabel("Preferred study buddy field of study");
-        JList fieldsList = new JList(Profile.FIELDS);
+        JList fieldsList = new JList<String>(Profile.FIELDS);
         SBSection.add(fieldPrefLbl);
         SBSection.add(fieldsList);
 
@@ -83,9 +83,11 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         studySpotsLbl.setHorizontalAlignment(JLabel.CENTER);
 
         // adding the three dropdowns of all study spots
-        SSSection.add(new JComboBox<>(Profile.studySpots));
-        SSSection.add(new JComboBox<>(Profile.studySpots));
-        SSSection.add(new JComboBox<>(Profile.studySpots));
+        SSSection.add(new JComboBox<String>(Profile.studySpots));
+        SSSection.add(new JComboBox<String>(Profile.studySpots));
+        SSSection.add(new JComboBox<String>(Profile.studySpots));
+
+        setVisible(true); // so the frame will show
     }
 
     @Override
@@ -102,4 +104,5 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
     public void actionPerformed(ActionEvent e) {
 
     }
+
 }
