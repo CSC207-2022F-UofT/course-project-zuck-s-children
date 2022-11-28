@@ -145,7 +145,7 @@ public class Profile {
     public static final String[] FIELDS = {"Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Other"};
     public String fieldOfStudy;
     public static final String[] STYLES = {"quiet", "talkative"};
-    List<String> studyStyles;
+    public List<String> studyStyles;
     public static String[] studySpots = {"Robarts Library", "Gerstein Library", "Student Commons",
             "Hart House", "UC College", "Caven Library", "E.J Pratt Library", "Graham Library", "UC Quad",
             "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};

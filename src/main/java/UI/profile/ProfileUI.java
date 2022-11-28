@@ -13,7 +13,10 @@ import java.awt.event.ActionListener;
 public class ProfileUI extends JFrame implements ActionListener, ViewModel {
     JButton editBtn = new JButton("Edit");
     JPanel personalInfoSection = new JPanel(); // figure out layout later
-
+    JLabel nameLbl = new JLabel("Name");
+    JTextField nameTF = new JTextField("N/A");
+    JLabel pronounLbl = new JLabel("Preferred pronouns");
+    JTextField pronounTF = new JTextField("N/A");
     JPanel SBSection = new JPanel(); // figure out layout later
 
     JPanel SSSection = new JPanel(new FlowLayout());
@@ -21,14 +24,12 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
     public ProfileUI() {
         // first set up personal info section of the profile page
         // name
-        JLabel nameLbl = new JLabel("Name");
-        JTextField nameTF = new JTextField("N/A");
+        nameTF.setEditable(false);
         personalInfoSection.add(nameLbl);
         personalInfoSection.add(nameTF);
 
         // pronouns
-        JLabel pronounLbl = new JLabel("Preferred pronouns");
-        JTextField pronounTF = new JTextField("N/A");
+        pronounTF.setEditable(false);
         personalInfoSection.add(pronounLbl);
         personalInfoSection.add(pronounTF);
 
@@ -48,7 +49,8 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         JLabel styleLbl = new JLabel("Study styles");
         personalInfoSection.add(styleLbl);
         for (String style : Profile.STYLES) {
-            personalInfoSection.add(new JButton(style));
+            JToggleButton styleBtn = new JToggleButton(style, false);
+            personalInfoSection.add(styleBtn);
         }
 
         // set up the Study Buddy Preferences section
@@ -87,6 +89,8 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         SSSection.add(new JComboBox<String>(Profile.studySpots));
         SSSection.add(new JComboBox<String>(Profile.studySpots));
 
+        editBtn.addActionListener(this);
+
         setVisible(true); // so the frame will show
     }
 
@@ -102,7 +106,28 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // turns page into edit mode
+        if (editBtn.getText().equals("Edit")) {
+            editBtn.setText("Save");
+            nameTF.setEditable(true);
+            pronounTF.setEditable(true);
+        }
+        // turns page into view mode
+        else {
+            editBtn.setText("Edit");
+            nameTF.setEditable(false);
+            pronounTF.setEditable(false);
+        }
+    }
 
+    public class CountListener implements ActionListener {
+        public int counter = 0;
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource().equals()) {
+                counter += 1;
+            }
+        }
     }
 
 }
