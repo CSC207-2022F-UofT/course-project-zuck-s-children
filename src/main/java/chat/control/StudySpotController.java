@@ -1,7 +1,7 @@
 //package chat.control;
 //
 //import spots.useCases.SelectSpot;
-//import spots.controllers.RecsInBoundary;
+//import spots.useCases.RecsInBoundary;
 //public class StudySpotController {
 //    String selection;
 //    RecsInBoundary inputSelection;

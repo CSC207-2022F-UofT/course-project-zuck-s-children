@@ -115,8 +115,8 @@ public class MatchingAlgorithm {
                 }
             }
         }
-
         oUser.setScore(score);
     }
 }
+
 

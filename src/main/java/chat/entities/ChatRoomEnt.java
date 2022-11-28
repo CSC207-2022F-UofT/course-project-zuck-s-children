@@ -40,6 +40,11 @@ public class ChatRoomEnt implements Serializable {
             this.User2 = User2;
         }
 
+        /**
+         * Return true if and only if the user is in this room
+         * @param user
+         * @return
+         */
         public boolean checkParticipant(Object user){
             return this.User1==(Account)user || this.User2==(Account)user;
         }
