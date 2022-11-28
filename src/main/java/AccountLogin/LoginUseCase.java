@@ -26,9 +26,9 @@ public class LoginUseCase implements LoginInBoundary{
      * Checks if username and passwords are in userDatabase.
      */
     @Override
-    public void loginToAccount(LoginInModel loginModel) {
-        String inputUsername = loginModel.getInputUsername();
-        String inputPassword = loginModel.getInputPassword();
+    public void loginToAccount(LoginInModel loginInModel) {
+        String inputUsername = loginInModel.getInputUsername();
+        String inputPassword = loginInModel.getInputPassword();
 
         if (userDatabase.containsKey(inputUsername)) {
             if (Objects.equals(userDatabase.get(inputUsername).getPassword(), inputPassword)) {

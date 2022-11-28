@@ -12,14 +12,14 @@ public class Account implements Serializable, Comparable<Account> {
     private String username;
     private String password;
     private Profile profile;
-    private ArrayList<Profile> matches;
+    private ArrayList<Account> matches;
     private ArrayList<Notification> notifications;
 
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
         this.profile = new Profile();
-        this.matches = new ArrayList<Profile>();
+        this.matches = new ArrayList<Account>();
         this.notifications = new ArrayList<Notification>();
     }
     public String getUsername() {
@@ -31,13 +31,13 @@ public class Account implements Serializable, Comparable<Account> {
     public Profile getProfile() {
         return this.profile;
     }
-    public List<Profile> getMatches() {
+    public List<Account> getMatches() {
         return this.matches;
     }
     public List<Notification> getNotifications() {return this.notifications;}
 
-    public void addMatch(Profile profile) {
-        this.matches.add(profile);
+    public void addMatch(Account match) {
+        this.matches.add(match);
     }
 
     public void addNotification(Notification notification){
