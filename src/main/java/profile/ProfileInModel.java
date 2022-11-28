@@ -1,7 +1,9 @@
 package profile;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ProfileInModel {
     public String getName() {
@@ -44,20 +46,18 @@ public class ProfileInModel {
     // profilePicture;
     public String year;
     public String fieldOfStudy;
-    public String[] studyStyles;
-    public String[] studySpotPreferences;
-    public String[] SBDescriptions;
-    public String[] SBFieldOfStudy;
-    public String[] SBYear;
+    public List<String> studyStyles;
+    public List<String> studySpotPreferences;
+    public HashMap<String, List<String>> studyBuddyPreferences;
 
 
-    public ProfileInModel(String name, String pronouns, String year, String fieldOfStudy, String[] studyStyles, String studySpot1, String studySpot2, String studySpot3, String[] SBYear, String[] SBFieldOfStudy, String[] SBDescriptions) {
+    public ProfileInModel(String name, String pronouns, String year, String fieldOfStudy, List<String> studyStyles, String studySpot1, String studySpot2, String studySpot3, HashMap<String, List<String>> studyBuddyPreferences) {
         this.name = name;
         this.pronouns = pronouns;
         this.year = year;
         this.fieldOfStudy = fieldOfStudy;
         this.studyStyles = studyStyles;
-        this.studySpotPreferences = new String[]{studySpot1, studySpot2, studySpot3};
+        this.studySpotPreferences = new ArrayList<>();
         this.SBDescriptions = SBDescriptions;
         this.SBYear = SBYear;
         this.SBFieldOfStudy = SBFieldOfStudy;
