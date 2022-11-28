@@ -1,5 +1,6 @@
 package AccountCreation;
 
+import UI.LoginUI;
 import UI.ViewModel;
 
 public class RegisterPresenter implements RegisterOutBoundary {
@@ -10,8 +11,12 @@ public class RegisterPresenter implements RegisterOutBoundary {
     }
     @Override
     public void alertUser(RegisterOutModel responseModel) {
-        String msg = responseModel.getMsgToUser();
-        // TODO: update the view model with this msg to let user know if account creation
-        //  was successful.
+        LoginUI loginUI = new LoginUI();
+        if (responseModel.getCreationStatus()) {
+            loginUI.registerSuccessMechanism();
+        }
+        else {
+            loginUI.registerFailMechanism();
+        }
     }
 }

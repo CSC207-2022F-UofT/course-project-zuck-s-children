@@ -1,5 +1,5 @@
 package AccountLogin;
 
 public interface LoginOutBoundary {
-    void loginToAccount(LoginOutModel responseModel);
+    void loginOutcome (LoginOutModel responseModel);
 }
