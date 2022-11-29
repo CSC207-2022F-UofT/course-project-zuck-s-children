@@ -151,7 +151,7 @@ public class Profile {
             "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};
     public JComboBox<String> listOfStudySpots1 = new JComboBox<String>(studySpots);
     public List<String> studySpotPreferences;
-    public HashMap<String, Object> studyBuddyPreferences;
+    public HashMap<String, List<String>> studyBuddyPreferences;
 
     /**
      * Returns the compatibility score of the user to the user currently logged in.

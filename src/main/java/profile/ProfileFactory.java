@@ -9,8 +9,8 @@ public class ProfileFactory {
         modifiedProfile.setPronouns(profileModel.getPronouns());
         modifiedProfile.setYear(profileModel.getYear());
         modifiedProfile.setFieldOfStudy(profileModel.getFieldOfStudy());
-        modifiedProfile.setStudyStyles(List.of(profileModel.getStudyStyles()));
-        modifiedProfile.setStudySpotPreferences(List.of(profileModel.getStudySpotPreferences()));
+        modifiedProfile.setStudyStyles(profileModel.getStudyStyles());
+        modifiedProfile.setStudySpotPreferences(profileModel.getStudySpotPreferences());
         modifiedProfile.setStudyBuddyPreferences(profileModel.getStudyBuddyPreferences());
         return new Profile();
     }
