@@ -7,9 +7,4 @@ public class ProfilePresenter implements ProfileUpdateOutputBoundary {
         this.modifiedProfile = UI;
     }
 
-
-    @Override
-    public void showModifiedProfile(ProfileOutModel modifications) {
-//        modifiedProfile.build(modifications);
-    }
 }
