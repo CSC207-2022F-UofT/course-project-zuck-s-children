@@ -25,6 +25,8 @@ public class RegisterUseCase implements RegisterInBoundary {
 
         if (checkDuplicateUsername(registerUser)) {
             // must raise exception or error and send message up to view
+            int numberOfAccounts = userDatabase.size();
+            System.out.println(numberOfAccounts);
             RegisterOutModel responseModel = new RegisterOutModel(false);
             registerPresenter.alertUser(responseModel);
         } else {
@@ -33,6 +35,9 @@ public class RegisterUseCase implements RegisterInBoundary {
                     registerPwd);
 
             userDatabase.put(registerUser, newAccount);
+
+            int numberOfAccounts = userDatabase.size();
+            System.out.println(numberOfAccounts);
 
             RegisterOutModel responseModel = new RegisterOutModel(true);
             registerPresenter.alertUser(responseModel);

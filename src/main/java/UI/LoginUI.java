@@ -89,6 +89,10 @@ public class LoginUI extends JFrame implements ActionListener, ViewModel {
         JOptionPane.showMessageDialog(this, "Invalid Username or Password.");
     }
 
+    public void loginSuccessMechanism() {
+        JOptionPane.showMessageDialog(this, "Login was successful!");
+    }
+
     public void registerSuccessMechanism() {
         JOptionPane.showMessageDialog(this, "Account creation was successful.");
     }

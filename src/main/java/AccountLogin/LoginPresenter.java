@@ -4,6 +4,8 @@ import UI.LoginUI;
 import UI.SwiperUI;
 import UI.ViewModel;
 
+import javax.swing.*;
+
 public class LoginPresenter implements LoginOutBoundary{
 
     ViewModel loginUI;
@@ -14,12 +16,17 @@ public class LoginPresenter implements LoginOutBoundary{
 
     @Override
     public void loginOutcome(LoginOutModel responseModel) {
+        LoginUI loginUI = new LoginUI();
         if (responseModel.getLoginStatus()) {
+            loginUI.loginSuccessMechanism();
             // TODO: go to swiperUI of this user's account.
+            JFrame frame = new JFrame("FrameDemo");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
 
         } else {
             //Carry out fail outcome in loginUI.
-            LoginUI loginUI = new LoginUI();
             loginUI.loginFailMechanism();
         }
     }
