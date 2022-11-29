@@ -1,11 +1,11 @@
 package profile;
 
 public class ProfileController {
-    private final ProfileEditInputBoundary profileEdits;
+    final ProfileEditInputBoundary userInput;
 
-    public ProfileController(ProfileEditInputBoundary userInput) {
-        this.profileEdits = userInput;
+    public ProfileController(ProfileEditInputBoundary profileEdits) {
+        this.userInput = profileEdits;
     }
-    public void modifyProfile(ProfileInModel profile) {
-        profileEdits.modifyProfile(profile);}
+    public void modifyProfile(ProfileInModel profileInModel) {
+        userInput.modifyProfile(profileInModel);}
 }
