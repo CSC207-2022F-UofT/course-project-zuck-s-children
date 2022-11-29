@@ -43,7 +43,7 @@ public class ProfileOutModel {
     public List<String> studySpotPreferences;
     public HashMap<String, List<String>> studyBuddyPreferences;
 
-    public ProfileOutModel(ProfileInModel inModel, String[] listOfValidInputCheckMsgs) {
+    public ProfileOutModel(ProfileInModel inModel) {
         this.name = inModel.getName();
         this.pronouns = inModel.getPronouns();
         this.year = inModel.getYear();

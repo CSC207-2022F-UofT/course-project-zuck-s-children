@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 public class StudyBuddyApp {
     public static void main(String[] args){
         // deserializing the userDatabase.txt file
-        userDatabase = new UserDatabase();
+        UserDatabase userDatabase = new UserDatabase();
         try {
             //Creating stream to read the object
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("userDatabase.txt"));
