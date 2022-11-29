@@ -51,30 +51,6 @@ public class MatchingAlgorithm {
         return potentialMatches;
     }
 
-    //should make new class (class file?) for both of the below? or just make comparator a static method?
-//    @Override
-//    public int compareTo(Account other){
-//        return profile.getScore().compareTo(other.getProfile().getScore());
-//
-//    }
-
-    // sorter
-//    public static void sort(ArrayList<Account> list) {
-//
-//        list.sort((o1, o2) -> compare(o1, o2));
-//    }
-//
-//    // example: https://mkyong.com/java/java-object-sorting-example-comparable-and-comparator/#:~:text=To%20sort%20an%20Object%20by,the%20new%20Fruit%20class%20again.&text=The%20new%20Fruit%20class%20implemented,quantity%20property%20in%20ascending%20order.
-//    // override compare users by comparing their scores
-//    @Override
-//    public static class matchScoreComparator implements Comparator<Account> {
-//
-//
-//        public int compare(Account a1, Account a2) {
-//            return a1.getProfile().getScore().compareTo(a2.getProfile().getScore());
-//        }
-//    }
-
     public static void assignScore(String key, HashMap preferences, Profile oUser) {
 
 
