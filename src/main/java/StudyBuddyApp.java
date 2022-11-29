@@ -2,6 +2,7 @@
 import UI.LoginUI;
 import UI.UserAuthorizationUI;
 import data.persistency.UserDatabase;
+import matching.MatchingAlgorithm;
 
 import javax.swing.*;
 import java.io.FileInputStream;
@@ -69,5 +70,8 @@ public class StudyBuddyApp {
                 }
             }
         });
+
+        
+
     }
 }
