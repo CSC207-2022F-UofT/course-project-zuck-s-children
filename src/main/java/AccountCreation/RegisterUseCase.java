@@ -1,7 +1,6 @@
 package AccountCreation;
 
 import UI.LoginUI;
-import UI.ViewModel;
 import data.persistency.UserDatabase;
 
 import java.util.HashMap;

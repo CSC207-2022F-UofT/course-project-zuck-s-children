@@ -1,8 +1,6 @@
 package UI.profile;
 
 
-import UI.ViewModel;
-import UI.components.Button;
 import profile.Profile;
 import profile.ProfileInModel;
 

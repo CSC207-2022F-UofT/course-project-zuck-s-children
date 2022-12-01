@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginUI extends JFrame implements ActionListener, ViewModel {
+public class LoginUI extends JFrame implements ActionListener {
 
     //Each UI component:
     Container container = getContentPane();
@@ -92,6 +92,7 @@ public class LoginUI extends JFrame implements ActionListener, ViewModel {
     public static void setFrame(LoginUI mainFrame) {
         frame = mainFrame;
     }
+    public LoginUI getFrame() {return frame;}
     public void closeLoginUI() {
         frame.dispose();
     }
@@ -152,15 +153,5 @@ public class LoginUI extends JFrame implements ActionListener, ViewModel {
             }
         }
         }
-    @Override
-    public void build() {
-        LoginUI frame = new LoginUI();
-        frame.setTitle("Login Page");
-        frame.setVisible(true);
-        frame.setBounds(0, 0, 1440, 1000);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        LoginUI.setFrame(frame);
-    }
 }
 

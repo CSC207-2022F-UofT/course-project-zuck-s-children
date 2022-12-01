@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class NavigationUI extends JFrame implements ViewModel, ActionListener {
+public class NavigationUI extends JFrame implements ActionListener {
     Button swiperBtn, chatBtn, settingBtn;
     JPanel navPanel;
 
@@ -40,14 +40,4 @@ public class NavigationUI extends JFrame implements ViewModel, ActionListener {
 
     }
 
-    @Override
-    public void build() {
-        NavigationUI navigationFrame = new NavigationUI();
-        navigationFrame.setTitle("Navigation Frame");
-        navigationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        navigationFrame.setBounds(0, 500, 1440, 100);
-        navigationFrame.pack();
-        navigationFrame.setResizable(false);
-        navigationFrame.setVisible(true);
-    }
 }

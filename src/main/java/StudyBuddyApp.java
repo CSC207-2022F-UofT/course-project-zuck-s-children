@@ -9,29 +9,8 @@ import java.util.HashMap;
 
 public class StudyBuddyApp {
     public static void main(String[] args){
-//        //Serializes an empty userDatabase.
-//        try {
-//            FileOutputStream myFileOutStream
-//                    = new FileOutputStream(
-//                    "/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
-//
-//            ObjectOutputStream myObjectOutStream
-//                    = new ObjectOutputStream(myFileOutStream);
-//
-//            myObjectOutStream.writeObject(new UserDatabase());
-//
-//            // closing FileOutputStream and
-//            // ObjectOutputStream
-//            myObjectOutStream.close();
-//            myFileOutStream.close();
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
         HashMap<String, Account> userDatabase = null;
         // deserializing the userDatabase.txt file
-
         try {
             FileInputStream fin = new FileInputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
             //Creating stream to read the object
@@ -55,8 +34,6 @@ public class StudyBuddyApp {
             UserDatabase.setAccounts(userDatabase);
         }
 
-//        System.out.println("Deserialized UserDatabase size: " + UserDatabase.getAccounts().size());
-
         //initial page: user authorization
         LoginUI frame = new LoginUI();
         frame.setTitle("Login Page");
@@ -65,7 +42,6 @@ public class StudyBuddyApp {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         LoginUI.setFrame(frame);
-
 
         HashMap<String, Account> finalUserDatabase = userDatabase;
         LoginUI.getFrames()[0].addWindowListener(new java.awt.event.WindowAdapter() {

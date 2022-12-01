@@ -1,21 +1,7 @@
 package AccountLogin;
 
-import AccountCreation.Account;
-import Swipe.Screen.EmptyScreen;
-import Swipe.Screen.SwipeScreen;
-import Swipe.Screen.SwiperController;
-import Swipe.Screen.SwiperPresenterFormatter;
-import Swipe.SwiperInputBoundary;
-import Swipe.SwiperInteractor;
-import Swipe.SwiperPresenter;
 import UI.LoginUI;
 import UI.NavigationUI;
-import UI.SwiperUI;
-import UI.ViewModel;
-import data.persistency.UserDatabase;
-import matching.MatchingAlgorithm;
-
-import javax.swing.*;
 
 public class LoginPresenter implements LoginOutBoundary{
 
