@@ -95,7 +95,7 @@ public class LoginUI extends JFrame implements ActionListener, ViewModel {
     public void closeLoginUI() {
         frame.dispose();
     }
-    ////////////
+
     public void loginFailMechanism() {
         JOptionPane.showMessageDialog(this, "Invalid Username or Password.");
     }
