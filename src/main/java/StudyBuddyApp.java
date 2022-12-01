@@ -80,18 +80,12 @@ public class StudyBuddyApp {
                         "Are you sure you want to close this window?", "Close Window?",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                    // serialization to userDatabase.txt file
                     try {
-                        //Creating stream and writing the object
                         FileOutputStream fout = new FileOutputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
                         ObjectOutputStream out = new ObjectOutputStream(fout);
-
-                        //check how many accounts are in the userDatabase
                         System.out.println("Serialized UserDatabase size: " + UserDatabase.getAccounts().size());
-
                         out.writeObject(finalUserDatabase);
                         out.flush();
-                        //closing the stream
                         out.close();
                         fout.close();
                         System.out.println("successful serialization");
