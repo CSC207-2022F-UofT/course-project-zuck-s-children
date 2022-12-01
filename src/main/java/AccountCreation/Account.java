@@ -53,5 +53,4 @@ public class Account implements Serializable, Comparable<Account> {
         return Integer.compare(this.getProfile().getScore(), other.getProfile().getScore());
     }
 
-   
 }
