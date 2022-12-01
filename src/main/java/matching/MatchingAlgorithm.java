@@ -73,7 +73,7 @@ public class MatchingAlgorithm {
 
         //compare field
         if (Objects.equals(key, "field")) {
-            ArrayList<String> field = (ArrayList<String>) preferences.get("field of study");
+            ArrayList<String> field = (ArrayList<String>) preferences.get("field");
             for (int i = 0; i < field.size(); i++) {
                 if (field.get(i).equals(oUser.getFieldOfStudy())) {
                     score += 1;

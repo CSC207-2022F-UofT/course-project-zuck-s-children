@@ -145,7 +145,7 @@ public class MatchingAlgorithmTest {
         oUsers.add(Nina);
         oUsers.add(Kenji);
 
-        MatchingAlgorithm.MatchingAlgorithm(Lance, oUsers);
+        MatchingAlgorithm.MatchingAlgorithmFinal(Lance, oUsers);
 
         // need to change test1 to a LinkedList
         LinkedList<Account> test1 = new LinkedList<>();
