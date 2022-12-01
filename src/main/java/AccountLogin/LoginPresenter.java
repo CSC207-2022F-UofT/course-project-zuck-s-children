@@ -34,7 +34,6 @@ public class LoginPresenter implements LoginOutBoundary{
 
 
             //Open SwiperUI frame
-            swipePage();
 
 
             //Open navigation frame
