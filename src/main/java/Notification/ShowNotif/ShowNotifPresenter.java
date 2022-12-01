@@ -7,11 +7,8 @@ import UI.NotificationUI;
 public class ShowNotifPresenter implements ShowNotifOutputBoundary {
     NotificationUI notifUI;
 
-    public ShowNotifPresenter(NotificationUI UI){
-        this.notifUI = UI;
-    }
     @Override
     public void prepareDisplayView(NotifResponseModel response) {
-        this.notifUI.build(response.getResponseModel());
+        this.notifUI.prepareView(response.getResponseModel());
     }
 }

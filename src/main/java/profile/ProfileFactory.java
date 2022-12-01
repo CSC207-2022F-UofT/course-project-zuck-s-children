@@ -1,5 +1,7 @@
 package profile;
 
+import java.util.List;
+
 public class ProfileFactory {
     public Profile create(ProfileInModel profileModel) {
         Profile modifiedProfile = new Profile();
@@ -9,7 +11,7 @@ public class ProfileFactory {
         modifiedProfile.setFieldOfStudy(profileModel.getFieldOfStudy());
         modifiedProfile.setStudyStyles(profileModel.getStudyStyles());
         modifiedProfile.setStudySpotPreferences(profileModel.getStudySpotPreferences());
-        modifiedProfile.setStudyBuddyPreferences(profileModel.getSBYear(), profileModel.getSBFieldOfStudy(), profileModel.getSBDescriptions());
+        modifiedProfile.setStudyBuddyPreferences(profileModel.getStudyBuddyPreferences());
         return new Profile();
     }
 }

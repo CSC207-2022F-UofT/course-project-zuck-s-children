@@ -31,6 +31,7 @@ public class StudyBuddyApp {
 
         HashMap<String, Account> userDatabase = null;
         // deserializing the userDatabase.txt file
+
         try {
             FileInputStream fin = new FileInputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
             //Creating stream to read the object

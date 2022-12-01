@@ -7,7 +7,4 @@ public class ProfilePresenter implements ProfileUpdateOutputBoundary {
         this.modifiedProfile = UI;
     }
 
-    public static void showModifiedProfile(ProfileOutModel modifications) {
-        modifiedProfile.build();
-    }
 }

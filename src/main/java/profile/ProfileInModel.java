@@ -1,7 +1,9 @@
 package profile;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ProfileInModel {
     public String getName() {
@@ -20,46 +22,36 @@ public class ProfileInModel {
         return fieldOfStudy;
     }
 
-    public String[] getStudyStyles() {
+    public List<String> getStudyStyles() {
         return studyStyles;
     }
 
-    public String[] getStudySpotPreferences() {
+    public List<String> getStudySpotPreferences() {
         return studySpotPreferences;
     }
-    public String[] getSBDescriptions() {
-        return SBDescriptions;
+
+    public HashMap<String, List<String>> getStudyBuddyPreferences() {
+        return studyBuddyPreferences;
     }
 
-    public String[] getSBFieldOfStudy() {
-        return SBFieldOfStudy;
-    }
-
-    public String[] getSBYear() {
-        return SBYear;
-    }
 
     private String name;
     public String pronouns;
     // profilePicture;
     public String year;
     public String fieldOfStudy;
-    public String[] studyStyles;
-    public String[] studySpotPreferences;
-    public String[] SBDescriptions;
-    public String[] SBFieldOfStudy;
-    public String[] SBYear;
+    public List<String> studyStyles;
+    public List<String> studySpotPreferences;
+    public HashMap<String, List<String>> studyBuddyPreferences;
 
 
-    public ProfileInModel(String name, String pronouns, String year, String fieldOfStudy, String[] studyStyles, String studySpot1, String studySpot2, String studySpot3, String[] SBYear, String[] SBFieldOfStudy, String[] SBDescriptions) {
+    public ProfileInModel(String name, String pronouns, String year, String fieldOfStudy, List<String> studyStyles, HashMap<String, List<String>> studyBuddyPreferences, List<String> studySpotPreferences) {
         this.name = name;
         this.pronouns = pronouns;
         this.year = year;
         this.fieldOfStudy = fieldOfStudy;
         this.studyStyles = studyStyles;
-        this.studySpotPreferences = new String[]{studySpot1, studySpot2, studySpot3};
-        this.SBDescriptions = SBDescriptions;
-        this.SBYear = SBYear;
-        this.SBFieldOfStudy = SBFieldOfStudy;
+        this.studySpotPreferences = studySpotPreferences;
+        this.studyBuddyPreferences = studyBuddyPreferences;
     }
 }

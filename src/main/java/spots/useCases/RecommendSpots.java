@@ -13,13 +13,16 @@ public class RecommendSpots implements RecsInBoundary{
     private RecsOutBoundary recsPresenter;
 
     SpotRecommender spotRecommender = new SpotRecommender();
+    public RecommendSpots(RecsOutBoundary recsPresenter){
+        this.recsPresenter = recsPresenter;
+    }
 
-    public ArrayList<String> generateRec(ArrayList<Account> users){
-        Account user1 = users.get(0);
-        Account user2 = users.get(1);
+    public ArrayList<String> generateRec(ArrayList<Object> users){
+        Account user1 = (Account) users.get(0);
+        Account user2 = (Account) users.get(1);
 
-        ArrayList<String> prefSpots1 = user1.getProfile().getStudySpotPreferences();
-        ArrayList<String> prefSpots2 = user2.getProfile().getStudySpotPreferences();
+        ArrayList<String> prefSpots1 = (ArrayList<String>) user1.getProfile().getStudySpotPreferences();
+        ArrayList<String> prefSpots2 = (ArrayList<String>) user2.getProfile().getStudySpotPreferences();
 
         spotRecommender.setPrefSpots(prefSpots1, prefSpots2);
         spotRecommender.recommender();

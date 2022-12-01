@@ -1,18 +1,16 @@
 package spots.controllers;
 
-import AccountCreation.Account; //i will fix this
-
 import java.util.ArrayList;
 
 public class RecsInModel {
-    ArrayList<Account> users;
+    ArrayList<Object> users;
 
     /**
      * Construct a recommendation using the 2 users of the given chatroom
-     * @param user1
-     * @param user2
+     * @param user1 user of the chat
+     * @param user2 user of the chat
      */
-    public RecsInModel(Account user1, Account user2){
+    public RecsInModel(Object user1, Object user2){
 
         this.users = new ArrayList<>();
         users.add(user1);
@@ -20,10 +18,10 @@ public class RecsInModel {
     }
 
     /**
-     * Return the id of a chatroom the user leaves
-     * @return the chatroom id stored in this model
+     * Returns a list of the users in the chatroom
+     * @return users
      */
-    public ArrayList<Account> getUsers(){
+    public ArrayList<Object> getUsers(){
         return users;
     }
 }

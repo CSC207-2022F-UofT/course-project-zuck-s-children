@@ -52,7 +52,7 @@ public class SpotRecommender {
             }
             else{
                 String random = spots[i];
-                if(!(recommendation.contains(random))){ recommendation.add(random);}  // too mnay loops? :')
+                if(!(recommendation.contains(random))){ recommendation.add(random);}
                 i++;
             }
         }
