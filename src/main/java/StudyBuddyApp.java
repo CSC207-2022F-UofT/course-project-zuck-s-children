@@ -13,6 +13,7 @@ import java.io.*;
 import java.util.HashMap;
 
 public class StudyBuddyApp {
+    static UserDatabase userDatabase;
     public static void main(String[] args){
 //        //Serializes an empty userDatabase.
 //        try {
@@ -96,5 +97,6 @@ public class StudyBuddyApp {
                 }
             }
         });
+
     }
 }

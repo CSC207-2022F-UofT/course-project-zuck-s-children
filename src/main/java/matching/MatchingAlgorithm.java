@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 import AccountCreation.Account;
+import data.persistency.UserDatabase;
 import profile.*;
 
 import java.util.*;
@@ -19,7 +20,7 @@ public class MatchingAlgorithm {
      * @param otherUsers
      */
 
-    public static LinkedList MatchingAlgorithm(Account user, ArrayList<Account> otherUsers) {
+    public static LinkedList MatchingAlgorithmFinal(Account user, ArrayList<Account> otherUsers) {
         /**
          * Construct an arraylist of potential matches, giving them a score compatibility
          */
@@ -92,6 +93,20 @@ public class MatchingAlgorithm {
             }
         }
         oUser.setScore(score);
+    }
+    public static ArrayList<Account> getOthers() {
+        ArrayList<Account> otherUsers = new ArrayList<>();
+        for (Account a : UserDatabase.getAccounts().values()) {
+            if (a != UserDatabase.getCurrentUser()) {
+                otherUsers.add(a);
+            }
+        }
+        return otherUsers;
+    }
+
+    public static LinkedList<Account> finalMatches() {
+        return MatchingAlgorithmFinal(UserDatabase.getCurrentUser(),
+                getOthers());
     }
 }
 
