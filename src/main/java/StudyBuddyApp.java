@@ -1,30 +1,21 @@
 //import UI
-import AccountCreation.Account;
 import UI.LoginUI;
-import UI.UserAuthorizationUI;
+
 import data.persistency.UserDatabase;
-import matching.MatchingAlgorithm;
-import swipe.SwiperInputBoundary;
-import swipe.SwiperInteractor;
-import swipe.SwiperPresenter;
-import swipe.screen.SwipeScreen;
-import swipe.screen.SwiperController;
-import swipe.screen.SwiperPresenterFormatter;
+
 
 import javax.swing.*;
-import java.awt.*;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class StudyBuddyApp {
     static UserDatabase userDatabase;
     public static void main(String[] args){
         // deserializing the userDatabase.txt file
-        UserDatabase userDatabase = new UserDatabase();
+        userDatabase = new UserDatabase();
         try {
             //Creating stream to read the object
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("userDatabase.txt"));
