@@ -1,21 +1,21 @@
 package AccountLogin;
 
 import AccountCreation.Account;
+import UI.LoginUI;
+import UI.SwiperUI;
+import UI.ViewModel;
+import matching.MatchingAlgorithm;
+import swipe.SwiperInputBoundary;
+import swipe.SwiperInteractor;
+import swipe.SwiperPresenter;
 import swipe.screen.EmptyScreen;
 import swipe.screen.SwipeScreen;
 import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
-import swipe.SwiperInputBoundary;
-import swipe.SwiperInteractor;
-import Swipe.SwiperPresenter;
-import UI.LoginUI;
-import UI.NavigationUI;
-import UI.SwiperUI;
-import UI.ViewModel;
-import data.persistency.UserDatabase;
-import matching.MatchingAlgorithm;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.LinkedList;
 
 public class LoginPresenter implements LoginOutBoundary{
 
