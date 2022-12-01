@@ -1,12 +1,12 @@
 package AccountLogin;
 
 import AccountCreation.Account;
-import Swipe.Screen.EmptyScreen;
-import Swipe.Screen.SwipeScreen;
-import Swipe.Screen.SwiperController;
-import Swipe.Screen.SwiperPresenterFormatter;
-import Swipe.SwiperInputBoundary;
-import Swipe.SwiperInteractor;
+import swipe.screen.EmptyScreen;
+import swipe.screen.SwipeScreen;
+import swipe.screen.SwiperController;
+import swipe.screen.SwiperPresenterFormatter;
+import swipe.SwiperInputBoundary;
+import swipe.SwiperInteractor;
 import Swipe.SwiperPresenter;
 import UI.LoginUI;
 import UI.NavigationUI;
