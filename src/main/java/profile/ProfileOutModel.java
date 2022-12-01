@@ -1,6 +1,6 @@
 package profile;
 
-import Swipe.Screen.LabelTextPanel;
+import swipe.screen.LabelTextPanel;
 
 import javax.swing.*;
 import java.util.HashMap;
