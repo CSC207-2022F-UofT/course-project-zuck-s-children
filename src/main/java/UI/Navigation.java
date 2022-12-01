@@ -1,34 +1,104 @@
 package UI;
 
+import Notification.ShowNotif.ShowNotifController;
 import UI.components.Button;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Navigation implements ViewModel{
-    Button swiperBtn, chatBtn, settingBtn;
-    JPanel navPanel;
-    @Override
-    public void build() {
-        this.navPanel = new JPanel();
-        FlowLayout navLayout = new FlowLayout();
-        navPanel.setLayout(navLayout);
+public class Navigation implements ActionListener, ViewModel{
 
-        swiperBtn = new Button();
-        chatBtn = new Button();
-        settingBtn = new Button();
+    JPanel navCardPanel;
 
-        swiperBtn.setButton("Swiper");
-        chatBtn.setButton("Chat");
-        settingBtn.setButton("Setting");
+    JPanel swiperPanel = new JPanel();
+    JPanel chatPanel = new JPanel();
+    JPanel notifPanel = new JPanel();
+    JPanel accountPanel = new JPanel();
+    JPanel profilePanel = new JPanel();
 
-        navPanel.add(swiperBtn.getButton());
-        navPanel.add(chatBtn.getButton());
-        navPanel.add(settingBtn.getButton());
+    JButton swiperBtn = new JButton("Swiper");
+    JButton chatBtn = new JButton("Chat");
+    JButton notifBtn = new JButton("Notifications");
+    JButton profileBtn = new JButton("Profile");
+    JButton accountBtn = new JButton("Account");
+
+    public void addComponentPane(Container pane){
+        navCardPanel = new JPanel(new CardLayout());
+        JLabel swiperLabel = new JLabel("swiper");
+        JLabel profileLabel = new JLabel("profile");
+        JLabel chatLabel = new JLabel("chat");
+        JLabel accountLabel = new JLabel("account");
+        JLabel notifLabel = new JLabel("notification");
+        profilePanel.add(profileLabel);
+        notifPanel.add(notifLabel);
+        swiperPanel.add(swiperLabel);
+        chatPanel.add(chatLabel);
+        accountPanel.add(accountLabel);
+
+        navCardPanel.add(swiperPanel, "Swiper");
+        navCardPanel.add(chatPanel, "Chat");
+        navCardPanel.add(profilePanel, "Profile");
+        navCardPanel.add(accountPanel, "Account");
+        navCardPanel.add(notifPanel, "Notification");
+        pane.add(navCardPanel);
     }
 
-    public static void main(String[] args) {
+    @Override
+    public void build(){
+        JFrame frame = new JFrame("StudyBuddy");
+        frame.setPreferredSize(new Dimension(1440, 1000));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Navigation nav = new Navigation();
-        nav.build();
+        nav.addComponentPane(frame.getContentPane());
+        nav.navCardPanel.setSize(1440,1080);
+        nav.addActionEvent();
+        //for menu bar
+        JMenuBar mb = new JMenuBar();
+        mb.add(nav.accountBtn);
+        mb.add(nav.profileBtn);
+        mb.add(nav.swiperBtn);
+        mb.add(nav.chatBtn);
+        mb.add(nav.notifBtn);
+        frame.getContentPane().add(BorderLayout.NORTH, mb);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public void addActionEvent(){
+        accountBtn.addActionListener(this);
+        swiperBtn.addActionListener(this);
+        notifBtn.addActionListener(this);
+        profileBtn.addActionListener(this);
+        chatBtn.addActionListener(this);
+    }
+    /**
+     * Invoked when an action occurs.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        CardLayout cl = (CardLayout)(navCardPanel.getLayout());
+        if (e.getSource() == chatBtn) {
+
+            cl.show(navCardPanel, "Chat");
+        }
+        else if (e.getSource() == swiperBtn) {
+            cl.show(navCardPanel, "Swiper");
+        }
+        else if (e.getSource() == notifBtn) {
+
+            cl.show(navCardPanel, "Notification");
+        }
+        else if (e.getSource() == profileBtn) {
+            cl.show(navCardPanel, "Profile");
+        }
+        else if (e.getSource() == accountBtn) {
+            cl.show(navCardPanel, "Account");
+        }
+
     }
 }
