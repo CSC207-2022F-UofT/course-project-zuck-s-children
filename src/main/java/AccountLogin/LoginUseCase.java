@@ -22,7 +22,7 @@ public class LoginUseCase implements LoginInBoundary{
     }
     /**
      * Run the login use case.
-     * @param loginModel the loginModel which includes username and password inside.
+     * @param loginInModel the loginModel which includes username and password inside.
      * Checks if username and passwords are in userDatabase.
      */
     @Override

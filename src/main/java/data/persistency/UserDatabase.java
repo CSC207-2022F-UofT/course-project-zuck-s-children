@@ -13,6 +13,7 @@ public class UserDatabase implements Serializable {
     public UserDatabase() {
         accounts = new HashMap<String, Account>();
     }
+
     public static HashMap<String, Account> getAccounts() {
         return accounts;
     }
@@ -24,5 +25,5 @@ public class UserDatabase implements Serializable {
         UserDatabase.currentUser = currentUser;
     }
 
-    public static void setAccounts(HashMap<String,Account> accounts) { UserDatabase.accounts = accounts;}
+    public static void setAccounts(Object accounts) { UserDatabase.accounts = (HashMap<String,Account>)accounts;}
 }

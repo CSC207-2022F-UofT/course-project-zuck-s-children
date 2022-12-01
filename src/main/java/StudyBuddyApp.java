@@ -16,7 +16,7 @@ public class StudyBuddyApp {
         try {
             //Creating stream to read the object
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("userDatabase.txt"));
-            userDatabase = (UserDatabase) in.readObject();
+            userDatabase.setAccounts(in.readObject());
             //closing the stream
             in.close();
             System.out.println("successful deserialization");
@@ -52,12 +52,7 @@ public class StudyBuddyApp {
                         //Creating stream and writing the object
                         FileOutputStream fout = new FileOutputStream("userDatabase.txt");
                         ObjectOutputStream out = new ObjectOutputStream(fout);
-
-                        //check how many accounts are in the userDatabase
-                        int numOfAccounts = UserDatabase.getAccounts().size();
-                        System.out.println(numOfAccounts);
-
-                        out.writeObject(UserDatabase.getAccounts().size());
+                        out.writeObject(UserDatabase.getAccounts());
                         out.flush();
                         //closing the stream
                         out.close();
