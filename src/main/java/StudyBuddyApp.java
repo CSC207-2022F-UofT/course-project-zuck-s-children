@@ -9,25 +9,6 @@ import java.util.HashMap;
 
 public class StudyBuddyApp {
     public static void main(String[] args){
-//        //Serializes an empty userDatabase.
-//        try {
-//            FileOutputStream myFileOutStream
-//                    = new FileOutputStream(
-//                    "/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
-//
-//            ObjectOutputStream myObjectOutStream
-//                    = new ObjectOutputStream(myFileOutStream);
-//
-//            myObjectOutStream.writeObject(new UserDatabase());
-//
-//            // closing FileOutputStream and
-//            // ObjectOutputStream
-//            myObjectOutStream.close();
-//            myFileOutStream.close();
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         HashMap<String, Account> userDatabase = null;
         // deserializing the userDatabase.txt file
@@ -58,13 +39,8 @@ public class StudyBuddyApp {
 //        System.out.println("Deserialized UserDatabase size: " + UserDatabase.getAccounts().size());
 
         //initial page: user authorization
-        LoginUI frame = new LoginUI();
-        frame.setTitle("Login Page");
-        frame.setVisible(true);
-        frame.setBounds(0, 0, 1440, 1000);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        LoginUI.setFrame(frame);
+        LoginUI loginUI = new LoginUI();
+        loginUI.build();
 
 
         HashMap<String, Account> finalUserDatabase = userDatabase;

@@ -95,6 +95,7 @@ public class LoginUI extends JFrame implements ActionListener, ViewModel {
     public void closeLoginUI() {
         frame.dispose();
     }
+    ////////////
     public void loginFailMechanism() {
         JOptionPane.showMessageDialog(this, "Invalid Username or Password.");
     }
@@ -151,10 +152,15 @@ public class LoginUI extends JFrame implements ActionListener, ViewModel {
             }
         }
         }
-
     @Override
     public void build() {
-
+        LoginUI frame = new LoginUI();
+        frame.setTitle("Login Page");
+        frame.setVisible(true);
+        frame.setBounds(0, 0, 1440, 1000);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        LoginUI.setFrame(frame);
     }
 }
 

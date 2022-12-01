@@ -5,8 +5,8 @@ import AccountCreation.Account;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class UserDatabase implements Serializable {
-
+public class UserDatabase implements Serializable, UserDataAccessInterface {
+    //TODO: implement UserDataAccessInterface
     private static HashMap<String, Account> accounts;
     private static Account currentUser;
 
@@ -24,5 +24,7 @@ public class UserDatabase implements Serializable {
         UserDatabase.currentUser = currentUser;
     }
 
-    public static void setAccounts(HashMap<String,Account> accounts) { UserDatabase.accounts = accounts;}
+    public static void setAccounts(HashMap<String, Account> accounts) {
+        UserDatabase.accounts = accounts;
+    }
 }
