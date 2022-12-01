@@ -1,4 +1,4 @@
-package matching;
+package Matching;
 
 import AccountCreation.Account;
 import Swipe.Screen.SwiperPresenterFormatter;
@@ -145,14 +145,14 @@ public class MatchingAlgorithmTest {
         oUsers.add(Nina);
         oUsers.add(Kenji);
 
-        LinkedList check = MatchingAlgorithm.MatchingAlgorithm(Lance, oUsers);
+        MatchingAlgorithm.MatchingAlgorithmFinal(Lance, oUsers);
 
         // need to change test1 to a LinkedList
         LinkedList<Account> test1 = new LinkedList<>();
         test1.add(Kenji);
         test1.add(Nina);
-        //asserts True if Check == Kenji, Nina
-        assertEquals(check, test1);
+        //asserts True if oUsers == Kenji, Nina
+        assertEquals(oUsers, test1);
 
 
     }
