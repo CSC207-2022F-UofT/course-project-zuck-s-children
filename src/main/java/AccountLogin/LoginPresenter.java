@@ -25,6 +25,7 @@ public class LoginPresenter implements LoginOutBoundary{
             frame.pack();
             frame.setVisible(true);
 
+            loginUI.closeLoginUI();
         } else {
             //Carry out fail outcome in loginUI.
             loginUI.loginFailMechanism();

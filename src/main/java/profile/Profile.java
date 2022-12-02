@@ -8,7 +8,7 @@ import java.util.List;
  * A user's profile that stores the user's name, pronouns, year of study, field of study, study styles, study buddy preferences, and study spot preferences.
  */
 
-public class Profile {
+public class Profile implements Serializable {
     /**
      * Sets the user's name
      *
