@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ProfileUI extends JFrame implements ActionListener, ViewModel {
-    //    Container container = getContentPane();
     JButton editBtn = new JButton("Edit Name and/or Pronouns"); // the edit/save button
     JLabel nameLbl = new JLabel("Name"); // the name label
     JTextField nameTF = new JTextField("N/A", 20); // the textfield where the user type their name; default value is "N/A"
@@ -27,6 +26,7 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
     JComboBox<String> style1 = new JComboBox<>(Profile.STYLES);
     JComboBox<String> style2 = new JComboBox<>(Profile.STYLES);
     JComboBox<String> style3 = new JComboBox<>(Profile.STYLES);
+
     JList<String> yearPref = new JList<>(Profile.YEARS); // the multiple selection list where user pick preferred year for their ideal study buddy
 
     // the dropdowns where the user pick up to three field of study for their ideal study buddy
@@ -250,7 +250,7 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
     @Override
     public void build() {
         ProfileUI newProfileUI = new ProfileUI();
-
+//        newProfileUI.nameTF.setText();
     }
 
     public static void main(String[] args) {
@@ -308,19 +308,7 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
             // creating an InModel using the input info
             ProfileInModel profileModifications = new ProfileInModel(nameTF.getText(), pronounTF.getText(), (String) yearCB.getSelectedItem(), (String) fieldCB.getSelectedItem(), personalStudyStyles, studyBuddyPref, spotPref);
 
-            // TODO: put all the initializers in main program
-            // creating Presenter object
-            ProfilePresenter profilePresenter = new ProfilePresenter(new ProfileUI());
-
-            // creating use case object
-            ProfileEditUseCase profileUseCase = new ProfileEditUseCase(profilePresenter);
-
-            // creating controller object
-            ProfileController profileController = new ProfileController(profileUseCase);
-
-            profileController.modifyProfile(profileModifications);
+//            StudyBuddyApp.profileController.profileController.modifyProfile(profileModifications);
         }
     }
-
-
 }
