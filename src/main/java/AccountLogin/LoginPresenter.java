@@ -2,6 +2,7 @@ package AccountLogin;
 
 import AccountCreation.Account;
 import UI.LoginUI;
+import UI.NavigationUI;
 import UI.SwiperUI;
 import UI.ViewModel;
 import matching.MatchingAlgorithm;
