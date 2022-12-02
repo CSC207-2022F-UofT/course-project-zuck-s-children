@@ -1,8 +1,12 @@
 //import UI
 import AccountCreation.Account;
 import UI.LoginUI;
+import UI.ProfileUI;
 import data.persistency.UserDatabase;
 import matching.MatchingAlgorithm;
+import profile.ProfileController;
+import profile.ProfileEditUseCase;
+import profile.ProfilePresenter;
 
 import javax.swing.*;
 import java.io.*;
@@ -99,7 +103,13 @@ public class StudyBuddyApp {
             }
         });
 
-        
+        // profile components initialization
+        // thought: have problem using these in ProfileUI. maybe have these first as attributes of the main class and initialize in constructor? the pvsm method will simply initialize a study buddy app object
+        ProfileUI profileUI = new ProfileUI(); // the UI
+        ProfilePresenter profilePresenter = new ProfilePresenter(profileUI); // the presenter
+        ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter); // the use case
+        ProfileController profileController = new ProfileController(profileEditUseCase); // the controller
 
     }
+
 }
