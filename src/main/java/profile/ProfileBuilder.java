@@ -1,8 +1,11 @@
 package profile;
 
-import java.util.List;
-
-public class ProfileFactory {
+public class ProfileBuilder {
+    /**
+     * Create a Profile object based on the profileModel passed in.
+     * @param profileModel the profile inModel based on user input
+     * @return the newly constructed Profile object
+     */
     public Profile create(ProfileInModel profileModel) {
         Profile modifiedProfile = new Profile();
         modifiedProfile.setName(profileModel.getName());
@@ -12,6 +15,6 @@ public class ProfileFactory {
         modifiedProfile.setStudyStyles(profileModel.getStudyStyles());
         modifiedProfile.setStudySpotPreferences(profileModel.getStudySpotPreferences());
         modifiedProfile.setStudyBuddyPreferences(profileModel.getStudyBuddyPreferences());
-        return new Profile();
+        return modifiedProfile;
     }
 }

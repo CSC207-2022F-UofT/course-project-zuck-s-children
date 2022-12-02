@@ -4,7 +4,7 @@ import data.persistency.UserDataAccessInterface;
 
 
 public class ProfileEditUseCase implements ProfileEditInputBoundary {
-    private static final ProfileFactory FACTORY = new ProfileFactory();
+    private static final ProfileBuilder BUILDER = new ProfileBuilder();
     private static UserDataAccessInterface userDataAccess;
     private ProfilePresenter profilePresenter;
 
@@ -16,7 +16,7 @@ public class ProfileEditUseCase implements ProfileEditInputBoundary {
 
     @Override
     public void modifyProfile(ProfileInModel profileInModel) {
-        Profile modifiedProfile = FACTORY.create(profileInModel);
+        Profile modifiedProfile = BUILDER.create(profileInModel);
         ProfileOutModel profileModifications = new ProfileOutModel(profileInModel);
         profilePresenter.showModifiedProfile(profileModifications);
     }

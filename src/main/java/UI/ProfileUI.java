@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ProfileUI extends JFrame implements ActionListener, ViewModel {
-//    Container container = getContentPane();
+    //    Container container = getContentPane();
     JButton editBtn = new JButton("Edit Name and/or Pronouns"); // the edit/save button
     JLabel nameLbl = new JLabel("Name"); // the name label
     JTextField nameTF = new JTextField("N/A", 20); // the textfield where the user type their name; default value is "N/A"
@@ -24,170 +24,223 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
     JComboBox<String> fieldCB = new JComboBox<>(Profile.FIELDS); // the dropdown where the user choose their field of study; NEED TO FIGURE OUT DEFAULT SELECTION
 
     // the dropdowns where user pick up to three study styles for themselves
-    JComboBox<String > style1 = new JComboBox<>(Profile.STYLES);
-    JComboBox<String > style2 = new JComboBox<>(Profile.STYLES);
-    JComboBox<String > style3 = new JComboBox<>(Profile.STYLES);
-    JList<String > yearPref = new JList<>(Profile.YEARS); // the multiple selection list where user pick preferred year for their ideal study buddy
+    JComboBox<String> style1 = new JComboBox<>(Profile.STYLES);
+    JComboBox<String> style2 = new JComboBox<>(Profile.STYLES);
+    JComboBox<String> style3 = new JComboBox<>(Profile.STYLES);
+    JList<String> yearPref = new JList<>(Profile.YEARS); // the multiple selection list where user pick preferred year for their ideal study buddy
 
     // the dropdowns where the user pick up to three field of study for their ideal study buddy
-    JComboBox<String > fieldPref1 = new JComboBox<>(Profile.FIELDS);
-    JComboBox<String > fieldPref2 = new JComboBox<>(Profile.FIELDS);
-    JComboBox<String > fieldPref3 = new JComboBox<>(Profile.FIELDS);
+    JComboBox<String> fieldPref1 = new JComboBox<>(Profile.FIELDS);
+    JComboBox<String> fieldPref2 = new JComboBox<>(Profile.FIELDS);
+    JComboBox<String> fieldPref3 = new JComboBox<>(Profile.FIELDS);
 
     // the dropdowns where the user pick up to three study styles for their ideal study buddy
-    JComboBox<String > stylePref1 = new JComboBox<>(Profile.STYLES);
-    JComboBox<String > stylePref2 = new JComboBox<>(Profile.STYLES);
-    JComboBox<String > stylePref3 = new JComboBox<>(Profile.STYLES);
+    JComboBox<String> stylePref1 = new JComboBox<>(Profile.STYLES);
+    JComboBox<String> stylePref2 = new JComboBox<>(Profile.STYLES);
+    JComboBox<String> stylePref3 = new JComboBox<>(Profile.STYLES);
 
     // the dropdowns where the user pick up to three study spots they prefer
-    JComboBox<String > spotPref1 = new JComboBox<>(Profile.studySpots);
-    JComboBox<String > spotPref2 = new JComboBox<>(Profile.studySpots);
-    JComboBox<String > spotPref3 = new JComboBox<>(Profile.studySpots);
-
-    JPanel SSSection = new JPanel(new FlowLayout()); // the study spot preferences section
+    JComboBox<String> spotPref1 = new JComboBox<>(Profile.studySpots);
+    JComboBox<String> spotPref2 = new JComboBox<>(Profile.studySpots);
+    JComboBox<String> spotPref3 = new JComboBox<>(Profile.studySpots);
 
     public ProfileUI() {
-        super("Profile"); // add title to the frame
+        // add title to the frame
+        super("Profile");
+        // set minimum size of frame
         setMinimumSize(new Dimension(400, 800));
+        // set up GridBagLayout
         getContentPane().setLayout(new GridBagLayout());
         GridBagConstraints constraints0 = new GridBagConstraints();
         constraints0.anchor = GridBagConstraints.WEST;
         constraints0.insets = new Insets(10, 10, 10, 10);
 
-        // set up personal info section with GridBagLayout manager
-        JPanel personalInfoSection = new JPanel(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.insets = new Insets(10, 10, 10, 10);
+        // add personal info section
         constraints0.gridx = 0;
         constraints0.gridy = 0;
-        getContentPane().add(personalInfoSection, constraints0); // add panel to the frame
+        addPersonalInfoSection(constraints0);
 
+        // add study buddy preferences section
+        constraints0.gridy += 1;
+        addStudyBuddyPrefSection(constraints0);
 
-        // adding all components
-        // name
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        personalInfoSection.add(nameLbl, constraints);
-        nameTF.setEditable(false);
-        nameTF.setSize(20, 2);
-        constraints.gridx = 1;
-        personalInfoSection.add(nameTF, constraints);
+        // add study spots preferences section
+        constraints0.gridy += 1;
+        addStudySpotsPrefSection(constraints0);
 
-        // edit/save button in the upper right corner
-        constraints.gridx = 2;
-        personalInfoSection.add(editBtn, constraints);
-        editBtn.addActionListener(this);
+        pack(); // make sure all layouts are applied
+        setVisible(true); // so the frame will show
+    }
 
-        // pronouns
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        personalInfoSection.add(pronounLbl, constraints);
-        pronounTF.setEditable(false);
-        constraints.gridx = 1;
-        personalInfoSection.add(pronounTF, constraints);
-
-        // year in uni
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        personalInfoSection.add(yearLbl, constraints);
-        constraints.gridx = 1;
-        yearCB.addActionListener(this);
-        personalInfoSection.add(yearCB, constraints);
-
-        // field of study (single selection)
-        constraints.gridx = 0;
-        constraints.gridy = 3;
-        personalInfoSection.add(fieldLbl, constraints);
-        constraints.gridx = 1;
-        personalInfoSection.add(fieldCB, constraints);
-
-        // study styles (up to 3 selections)
-        constraints.gridx = 0;
-        constraints.gridy = 4;
-        JLabel styleLbl = new JLabel("Study styles");
-        personalInfoSection.add(styleLbl, constraints);
-        constraints.gridx = 0;
-        constraints.gridy = 5;
-        personalInfoSection.add(style1, constraints);
-        constraints.gridx = 1;
-        personalInfoSection.add(style2, constraints);
-        constraints.gridx = 2;
-        personalInfoSection.add(style3, constraints);
-
-        // section title
-        personalInfoSection.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Personal Information"));
-
-
-        // set up the Study Buddy Preferences section with GridBagLayout manager
-        JPanel SBSection = new JPanel(new GridBagLayout());
-        GridBagConstraints constraints2 = new GridBagConstraints();
-        constraints2.anchor = GridBagConstraints.WEST;
-        constraints2.insets = new Insets(10, 10, 10, 10);
-        constraints0.gridy = 1;
-        constraints0.gridx = 0;
-        getContentPane().add(SBSection, constraints0);
-
-        // section title
-        SBSection.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Study Buddy Preferences"));
-
-        // year pref (multiple selection, can select all)
-        constraints2.gridx = 0;
-        constraints2.gridy = 0;
-        JLabel yearPrefLbl = new JLabel("Preferred study buddy year");
-        SBSection.add(yearPrefLbl, constraints2);
-        yearPref.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        constraints2.gridx = 1;
-        SBSection.add(yearPref, constraints2);
-
-        // field of study pref (up to 3 selections)
-        constraints2.gridx = 0;
-        constraints2.gridy = 1;
-        JLabel fieldPrefLbl = new JLabel("Preferred study buddy field of study");
-        SBSection.add(fieldPrefLbl, constraints2);
-        constraints2.gridy = 2; // new row
-        constraints2.gridx = 0;
-        SBSection.add(fieldPref1, constraints2);
-        constraints2.gridx = 1;
-        SBSection.add(fieldPref2, constraints2);
-        constraints2.gridx = 2;
-        SBSection.add(fieldPref3, constraints2);
-
-        // study styles pref (up to 3 selections)
-        constraints2.gridx = 0;
-        constraints2.gridy = 3;
-        JLabel stylesLbl = new JLabel("Preferred study buddy study styles");
-        SBSection.add(stylesLbl, constraints2);
-        constraints2.gridy = 4; // new row
-        constraints2.gridx = 0;
-        SBSection.add(stylePref1, constraints2);
-        constraints2.gridx = 1;
-        SBSection.add(stylePref2, constraints2);
-        constraints2.gridx = 2;
-        SBSection.add(stylePref3, constraints2);
-
+    private void addStudySpotsPrefSection(GridBagConstraints constraints0) {
         // set up the Study Spots Preferences section with GridBagLayout manager
-        JPanel SSSection = new JPanel(new GridBagLayout());
+        JPanel studySpotSection = new JPanel(new GridBagLayout());
         GridBagConstraints constraints3 = new GridBagConstraints();
         constraints3.anchor = GridBagConstraints.WEST;
         constraints3.insets = new Insets(10, 10, 10, 10);
-        constraints0.gridy = 2;
-        getContentPane().add(SSSection, constraints0);
 
         // section title
-        SSSection.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Preferred Study Spots"));
+        studySpotSection.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Preferred Study Spots"));
 
         // adding the three dropdowns of all study spots
         constraints3.gridx = 0;
         constraints3.gridy = 0;
-        SSSection.add(spotPref1, constraints3);
-        constraints3.gridx = 1;
-        SSSection.add(spotPref2, constraints3);
-        constraints3.gridx = 2;
-        SSSection.add(spotPref3, constraints3);
+        addSpotPrefField(studySpotSection, constraints3);
 
-        pack();
-        setVisible(true); // so the frame will show
+        getContentPane().add(studySpotSection, constraints0);
+
+    }
+
+    private void addSpotPrefField(JPanel studySpotSection, GridBagConstraints constraints3) {
+        studySpotSection.add(spotPref1, constraints3);
+        constraints3.gridx += 1;
+        studySpotSection.add(spotPref2, constraints3);
+        constraints3.gridx += 1;
+        studySpotSection.add(spotPref3, constraints3);
+    }
+
+    private void addStudyStylesPrefField(JPanel studyBuddySection, GridBagConstraints constraints2) {
+        constraints2.gridx = 0;
+        constraints2.gridy += 1;
+        JLabel stylesLbl = new JLabel("Preferred study buddy study styles");
+        studyBuddySection.add(stylesLbl, constraints2);
+        constraints2.gridy += 1; // new row
+        studyBuddySection.add(stylePref1, constraints2);
+        constraints2.gridx += 1;
+        studyBuddySection.add(stylePref2, constraints2);
+        constraints2.gridx += 1;
+        studyBuddySection.add(stylePref3, constraints2);
+    }
+
+    private void addFieldOfStudyPrefField(JPanel studyBuddySection, GridBagConstraints constraints2) {
+        constraints2.gridx = 0;
+        constraints2.gridy += 1;
+        JLabel fieldPrefLbl = new JLabel("Preferred study buddy field of study");
+        studyBuddySection.add(fieldPrefLbl, constraints2);
+        constraints2.gridy += 1; // new row
+        studyBuddySection.add(fieldPref1, constraints2);
+        constraints2.gridx += 1;
+        studyBuddySection.add(fieldPref2, constraints2);
+        constraints2.gridx += 1;
+        studyBuddySection.add(fieldPref3, constraints2);
+    }
+
+    private void addYearPrefField(JPanel studyBuddySection, GridBagConstraints constraints2) {
+        JLabel yearPrefLbl = new JLabel("Preferred study buddy year");
+        studyBuddySection.add(yearPrefLbl, constraints2);
+        yearPref.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        constraints2.gridx += 1;
+        studyBuddySection.add(yearPref, constraints2);
+    }
+
+    private void addStudyBuddyPrefSection(GridBagConstraints constraints0) {
+        // set up with GridBagLayout manager
+        JPanel studyBuddySection = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints2 = new GridBagConstraints();
+        constraints2.anchor = GridBagConstraints.WEST;
+        constraints2.insets = new Insets(10, 10, 10, 10);
+
+        // section title
+        studyBuddySection.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Study Buddy Preferences"));
+
+        // year pref (multiple selection, can select all)
+        constraints2.gridx = 0;
+        constraints2.gridy = 0;
+        addYearPrefField(studyBuddySection, constraints2);
+
+        // field of study pref (up to 3 selections)
+        addFieldOfStudyPrefField(studyBuddySection, constraints2);
+
+        // study styles pref (up to 3 selections)
+        addStudyStylesPrefField(studyBuddySection, constraints2);
+
+        // add panel to the frame
+        getContentPane().add(studyBuddySection, constraints0);
+    }
+
+    private void addPersonalInfoSection(GridBagConstraints constraints0) {
+        // set up with GridBagLayout manager
+        JPanel personalInfoSection = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints1 = new GridBagConstraints();
+        constraints1.anchor = GridBagConstraints.WEST;
+        constraints1.insets = new Insets(10, 10, 10, 10);
+
+        // section title
+        personalInfoSection.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Personal Information"));
+
+        // name
+        constraints1.gridx = 0;
+        constraints1.gridy = 0;
+        addNameField(personalInfoSection, constraints1);
+
+        // edit/save button in the upper right corner
+        constraints1.gridx = 2;
+        constraints1.gridy = 0;
+        personalInfoSection.add(editBtn, constraints1);
+        editBtn.addActionListener(this);
+
+        // pronouns
+        constraints1.gridx = 0;
+        constraints1.gridy = 1;
+        addPronounsField(personalInfoSection, constraints1);
+
+        // year in uni
+        constraints1.gridx = 0;
+        constraints1.gridy = 2;
+        addYearField(personalInfoSection, constraints1);
+
+        // field of study (single selection)
+        constraints1.gridx = 0;
+        constraints1.gridy = 3;
+        addFieldOfStudyField(personalInfoSection, constraints1);
+
+        // study styles (up to 3 selections)
+        constraints1.gridx = 0;
+        constraints1.gridy = 4;
+        addStudyStylesField(personalInfoSection, constraints1);
+
+        // add panel to the frame
+        getContentPane().add(personalInfoSection, constraints0);
+
+    }
+
+    private void addStudyStylesField(JPanel personalInfoSection, GridBagConstraints constraints) {
+        JLabel styleLbl = new JLabel("Study styles");
+        personalInfoSection.add(styleLbl, constraints);
+        constraints.gridy += 1;
+        personalInfoSection.add(style1, constraints);
+        constraints.gridx += 1;
+        personalInfoSection.add(style2, constraints);
+        constraints.gridx += 1;
+        personalInfoSection.add(style3, constraints);
+    }
+
+    private void addFieldOfStudyField(JPanel personalInfoSection, GridBagConstraints constraints) {
+        personalInfoSection.add(fieldLbl, constraints);
+        constraints.gridx += 1;
+        personalInfoSection.add(fieldCB, constraints);
+    }
+
+    private void addYearField(JPanel personalInfoSection, GridBagConstraints constraints) {
+        personalInfoSection.add(yearLbl, constraints);
+        constraints.gridx += 1;
+        yearCB.addActionListener(this);
+        personalInfoSection.add(yearCB, constraints);
+    }
+
+    private void addPronounsField(JPanel personalInfoSection, GridBagConstraints constraints) {
+        personalInfoSection.add(pronounLbl, constraints);
+        pronounTF.setEditable(false);
+        constraints.gridx += 1;
+        personalInfoSection.add(pronounTF, constraints);
+    }
+
+    private void addNameField(JPanel personalInfoSection, GridBagConstraints constraints) {
+        personalInfoSection.add(nameLbl, constraints);
+        nameTF.setEditable(false);
+        nameTF.setSize(20, 2);
+        constraints.gridx += 1;
+        personalInfoSection.add(nameTF, constraints);
     }
 
     public void changeSuccessMechanism() {
@@ -196,6 +249,7 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
 
     @Override
     public void build() {
+        ProfileUI newProfileUI = new ProfileUI();
 
     }
 
@@ -240,7 +294,8 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
             stylePref.add((String) stylePref3.getSelectedItem());
 
             // the hashmap of user's SB preferences, including the preferred year, field of study, and study styles
-            HashMap<String, List<String>> studyBuddyPref = new HashMap<>();studyBuddyPref.put("year", yearPref.getSelectedValuesList());
+            HashMap<String, List<String>> studyBuddyPref = new HashMap<>();
+            studyBuddyPref.put("year", yearPref.getSelectedValuesList());
             studyBuddyPref.put("field of study", fieldPref);
             studyBuddyPref.put("descriptions", stylePref);
 
@@ -253,12 +308,17 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
             // creating an InModel using the input info
             ProfileInModel profileModifications = new ProfileInModel(nameTF.getText(), pronounTF.getText(), (String) yearCB.getSelectedItem(), (String) fieldCB.getSelectedItem(), personalStudyStyles, studyBuddyPref, spotPref);
 
-            // creating use case object
-//            ProfileEditUseCase profileUseCase = new ProfileEditUseCase(profileModifications);
+            // TODO: put all the initializers in main program
+            // creating Presenter object
+            ProfilePresenter profilePresenter = new ProfilePresenter(new ProfileUI());
 
-//            ProfilePresenter profilePresenter = new ProfilePresenter(new ProfileOutModel(profileModifications));
+            // creating use case object
+            ProfileEditUseCase profileUseCase = new ProfileEditUseCase(profilePresenter);
+
             // creating controller object
-//            ProfileController profileController = new ProfileController(new ProfileEditUseCase(new ProfilePresenter()));
+            ProfileController profileController = new ProfileController(profileUseCase);
+
+            profileController.modifyProfile(profileModifications);
         }
     }
 
