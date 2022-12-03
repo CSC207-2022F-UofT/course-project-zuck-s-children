@@ -2,6 +2,7 @@ package spots.useCases;
 
 
 import account_creation.Account;
+import profile.Profile;
 import spots.controllers.RecsInModel;
 import spots.controllers.RecsOutBoundary;
 import spots.controllers.RecsOutModel;
