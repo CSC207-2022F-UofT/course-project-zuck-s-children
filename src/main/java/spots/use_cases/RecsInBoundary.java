@@ -1,7 +1,10 @@
 package spots.use_cases;
 
-import spots.controllers.RecsInModel;
-
 public interface RecsInBoundary {
-    void openRecs(RecsInModel rec);
+
+    /**
+     * Method can be over-ridden
+     * @param rec contains users of a chatroom
+     */
+    void createRecs(RecsInModel rec);
 }

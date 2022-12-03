@@ -1,4 +1,4 @@
-package spots.controllers;
+package spots.useCases;
 
 import java.util.ArrayList;
 

@@ -1,13 +1,16 @@
-package spots.controllers;
+package spots.useCases;
 
 import java.util.ArrayList;
 
 public class RecsOutModel {
     /**
-     * An OutputModel
+     * Combined strings of study spots
      */
     StringBuilder recommendation;
-
+    /**
+     * Construct an output model from separate Strings to one StringBuilder
+     * @param recs Arraylist of recommended spots
+     */
     public RecsOutModel(ArrayList<String> recs){
         this.recommendation = new StringBuilder();
         for(int i = 0; i < 3; i++){
@@ -15,7 +18,10 @@ public class RecsOutModel {
             recommendation.append(", ");
         }
     }
-
+    /**
+     * Returns String of recommendations
+     * @return recommendation
+     */
     public String getRecs(){
         return recommendation.toString();
     }
