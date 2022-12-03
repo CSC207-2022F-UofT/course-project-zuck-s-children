@@ -1,12 +1,6 @@
-//import UI
 import account_creation.Account;
 import ui.LoginUI;
 import data.persistency.UserDatabase;
-
-//import java.io.FileInputStream;
-//import java.io.FileOutputStream;
-//import java.io.ObjectInputStream;
-//import java.io.ObjectOutputStream;
 
 import javax.swing.*;
 import java.io.*;

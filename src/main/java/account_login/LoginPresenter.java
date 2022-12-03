@@ -30,9 +30,7 @@ public class LoginPresenter implements LoginOutBoundary{
             loginUI.loginSuccessMechanism();
             // TODO: go to swiperUI of this user's account.
 
-
             //Open SwiperUI frame
-
 
             //Open navigation frame
             NavigationUI navigationUI = new NavigationUI();
@@ -44,6 +42,7 @@ public class LoginPresenter implements LoginOutBoundary{
             loginUI.loginFailMechanism();
         }
     }
+
     public void swipePage(){
         LinkedList<Account> potentialMatches = MatchingAlgorithm.finalMatches();
         SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();

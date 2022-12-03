@@ -6,10 +6,10 @@ import ui.components.Button;
 import javax.swing.*;
 import java.awt.*;
 
-public class ProfileUI implements ViewModel {
+public class ProfileUI {
     Button editBtn;
     JPanel profilePanel;
-    @Override
+
     public void build() {
         this.profilePanel = new JPanel();
         FlowLayout profileLayout = new FlowLayout();
