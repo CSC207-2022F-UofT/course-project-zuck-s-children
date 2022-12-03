@@ -1,5 +1,6 @@
 package chat.control;
 
+import account_creation.Account;
 import chat.useCases.RoomInBoundary;
 
 public class RoomLeaveController {
