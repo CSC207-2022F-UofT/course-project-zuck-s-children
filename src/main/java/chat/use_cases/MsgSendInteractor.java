@@ -1,4 +1,4 @@
-package chat.useCases;
+package chat.use_cases;
 
 import chat.control.MsgInModel;
 import chat.control.MsgOutBoundary;
@@ -8,7 +8,6 @@ import chat.entities.MessageEnt;
 import chat.entities.MessageFactory;
 import data.persistency.ChatDataAccessInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MsgSendInteractor implements MsgInBoundary {

@@ -1,4 +1,4 @@
-package chat.useCases;
+package chat.use_cases;
 
 import chat.control.MsgInModel;
 

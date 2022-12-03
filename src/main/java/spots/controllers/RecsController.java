@@ -1,6 +1,6 @@
 package spots.controllers;
 
-import spots.useCases.RecsInBoundary;
+import spots.use_cases.RecsInBoundary;
 /**
  * A controller class for the study spots.
  */
