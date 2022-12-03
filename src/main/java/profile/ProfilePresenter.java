@@ -1,9 +1,9 @@
 package profile;
 
-import ui.ViewModel;
+import ui.ProfileUI;
 public class ProfilePresenter implements ProfileUpdateOutputBoundary {
-    static ViewModel modifiedProfile;
-    public ProfilePresenter(ViewModel UI) {
+    static ProfileUI modifiedProfile;
+    public ProfilePresenter(ProfileUI UI) {
         this.modifiedProfile = UI;
     }
 

@@ -1,12 +1,11 @@
 package account_creation;
 
 import ui.LoginUI;
-import ui.ViewModel;
 
 public class RegisterPresenter implements RegisterOutBoundary {
-    ViewModel loginUI;
+    LoginUI loginUI;
 
-    public RegisterPresenter(ViewModel UI){
+    public RegisterPresenter(LoginUI UI){
         this.loginUI = UI;
     }
     @Override

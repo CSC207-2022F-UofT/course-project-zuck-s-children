@@ -2,7 +2,6 @@ package account_login;
 
 import account_creation.Account;
 import ui.LoginUI;
-import ui.ViewModel;
 import matching.MatchingAlgorithm;
 import swipe.SwiperInputBoundary;
 import swipe.SwiperInteractor;
@@ -18,9 +17,9 @@ import java.util.LinkedList;
 
 public class LoginPresenter implements LoginOutBoundary{
 
-    ViewModel loginUI;
+    LoginUI loginUI;
 
-    public LoginPresenter(ViewModel UI){
+    public LoginPresenter(LoginUI UI){
         this.loginUI = UI;
     }
 

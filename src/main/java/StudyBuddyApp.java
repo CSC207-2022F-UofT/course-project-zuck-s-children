@@ -13,31 +13,10 @@ import java.io.*;
 import java.util.HashMap;
 
 public class StudyBuddyApp {
-    static UserDatabase userDatabase;
-    public static void main(String[] args){
-//        //Serializes an empty userDatabase.
-//        try {
-//            FileOutputStream myFileOutStream
-//                    = new FileOutputStream(
-//                    "/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
-//
-//            ObjectOutputStream myObjectOutStream
-//                    = new ObjectOutputStream(myFileOutStream);
-//
-//            myObjectOutStream.writeObject(new UserDatabase());
-//
-//            // closing FileOutputStream and
-//            // ObjectOutputStream
-//            myObjectOutStream.close();
-//            myFileOutStream.close();
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
+    public static void main(String[] args){
         HashMap<String, Account> userDatabase = null;
         // deserializing the userDatabase.txt file
-
         try {
             FileInputStream fin = new FileInputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
             //Creating stream to read the object
@@ -60,8 +39,6 @@ public class StudyBuddyApp {
             }
             UserDatabase.setAccounts(userDatabase);
         }
-
-//        System.out.println("Deserialized UserDatabase size: " + UserDatabase.getAccounts().size());
 
         //initial page: user authorization
         LoginUI frame = new LoginUI();

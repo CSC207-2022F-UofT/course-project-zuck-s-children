@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginUI extends JFrame implements ActionListener, ViewModel {
+public class LoginUI extends JFrame implements ActionListener {
 
     //Each UI component:
     Container container = getContentPane();
@@ -152,7 +152,7 @@ public class LoginUI extends JFrame implements ActionListener, ViewModel {
             }
         }
         }
-    @Override
+
     public void build() {
         LoginUI frame = new LoginUI();
         frame.setTitle("Login Page");
