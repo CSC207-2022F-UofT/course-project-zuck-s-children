@@ -1,5 +1,7 @@
 package ui;
 
+import chat.control.MsgOutModel;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
