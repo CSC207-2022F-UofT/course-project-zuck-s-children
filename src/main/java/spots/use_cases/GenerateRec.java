@@ -9,12 +9,15 @@ import spots.controllers.RecsOutModel;
 import spots.entities.SpotRecommender;
 ========
 import AccountCreation.Account;
+import chat.entities.ChatRoomEnt;
 import spots.entities.RecGenerator;
 >>>>>>>> a2b851f (Renamed classes and methods):src/main/java/spots/use_cases/GenerateRec.java
 
 import java.util.ArrayList;
 public class GenerateRec implements RecsInBoundary{
     private RecsOutBoundary recsPresenter;
+
+    Account user1, user2;
     RecGenerator spotRecommender = new RecGenerator();
     /**
      * Construct a RecommendedSpots object
@@ -23,17 +26,20 @@ public class GenerateRec implements RecsInBoundary{
     public GenerateRec(RecsOutBoundary recsPresenter){ //
         this.recsPresenter = recsPresenter;
     }
-    //where to get
+
+    public void setParticipants(ChatRoomEnt.Participants chatUsers){
+        user1 = chatUsers.User1; // will fix this
+        user2 = chatUsers.User2;
+    }
 
     /**
      * Generate a recommendation from the users' spot preferences
      * Invoke methods of GenerateRec Object
-     * @param users contains users of a chatroom
      */
-    public ArrayList<String> generateRec(ArrayList<Object> users){
-        Account user1 = (Account) users.get(0);
-        Account user2 = (Account) users.get(1);
-
+    public ArrayList<String> generateRec(){
+//        Account user1 = (Account) users.get(0);
+//        Account user2 = (Account) users.get(1);
+//
         ArrayList<String> prefSpots1 = (ArrayList<String>) user1.getProfile().getStudySpotPreferences();
         ArrayList<String> prefSpots2 = (ArrayList<String>) user2.getProfile().getStudySpotPreferences();
 
@@ -43,12 +49,11 @@ public class GenerateRec implements RecsInBoundary{
     }
     /**
      * Create a recommendation
-     * Update the view with the recommendation
-     * @param recsInModel contains users of a chatroom
+     * Update the user interface with the recommendation
      */
     @Override
-    public void createRecs(RecsInModel recsInModel) {
-        RecsOutModel recModel = new RecsOutModel(generateRec(recsInModel.getUsers()));
-        recsPresenter.update(recModel);
+    public void createRecs() {
+        //RecsOutModel recModel = new RecsOutModel(generateRec());
+        recsPresenter.update(generateRec());
     }
 }

@@ -1,10 +1,11 @@
 package spots.useCases;
 
+import java.util.ArrayList;
+
 public interface RecsOutBoundary {
     /**
      * Method can be over-ridden
      * @param rec recommendation list
      */
-    //RecsOutModel
-    void update(RecsOutModel rec);
+    void update(ArrayList<String> rec);
 }
