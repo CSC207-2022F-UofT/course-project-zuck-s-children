@@ -1,5 +1,6 @@
 package ui;
 
+import notification.show_notif.NotifResponseModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
