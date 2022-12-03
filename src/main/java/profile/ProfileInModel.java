@@ -34,15 +34,14 @@ public class ProfileInModel {
         return studyBuddyPreferences;
     }
 
-
     private String name;
-    public String pronouns;
+    private String pronouns;
     // profilePicture;
-    public String year;
-    public String fieldOfStudy;
-    public List<String> studyStyles;
-    public List<String> studySpotPreferences;
-    public HashMap<String, List<String>> studyBuddyPreferences;
+    private String year;
+    private String fieldOfStudy;
+    private List<String> studyStyles;
+    private List<String> studySpotPreferences;
+    private HashMap<String, List<String>> studyBuddyPreferences;
 
 
     public ProfileInModel(String name, String pronouns, String year, String fieldOfStudy, List<String> studyStyles, HashMap<String, List<String>> studyBuddyPreferences, List<String> studySpotPreferences) {

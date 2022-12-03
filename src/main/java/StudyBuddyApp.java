@@ -107,8 +107,8 @@ public class StudyBuddyApp {
         // thought: have problem using these in ProfileUI. maybe have these first as attributes of the main class and initialize in constructor? the pvsm method will simply initialize a study buddy app object
         ProfileUI profileUI = new ProfileUI(); // the UI
         ProfilePresenter profilePresenter = new ProfilePresenter(profileUI); // the presenter
-        ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter); // the use case
-        ProfileController profileController = new ProfileController(profileEditUseCase); // the controller
+//        ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter); // the use case
+//        ProfileController profileController = new ProfileController(profileEditUseCase); // the controller
 
     }
 

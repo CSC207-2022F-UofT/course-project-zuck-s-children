@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ProfileUI extends JFrame implements ActionListener, ViewModel {
-    JButton editBtn = new JButton("Edit Name and/or Pronouns"); // the edit/save button
+    JButton editBtn = new JButton("Edit"); // the edit/save button
     JLabel nameLbl = new JLabel("Name"); // the name label
     JTextField nameTF = new JTextField("N/A", 20); // the textfield where the user type their name; default value is "N/A"
     JLabel pronounLbl = new JLabel("Preferred pronouns"); // the preferred pronouns label
@@ -55,9 +55,15 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         constraints0.anchor = GridBagConstraints.WEST;
         constraints0.insets = new Insets(10, 10, 10, 10);
 
+        // edit/save button in the upper right corner
+        constraints0.gridx = 1;
+        constraints0.gridy = 0;
+        add(editBtn, constraints0);
+        editBtn.addActionListener(this);
+
         // add personal info section
         constraints0.gridx = 0;
-        constraints0.gridy = 0;
+        constraints0.gridy = 1;
         addPersonalInfoSection(constraints0);
 
         // add study buddy preferences section
@@ -92,6 +98,9 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
     }
 
     private void addSpotPrefField(JPanel studySpotSection, GridBagConstraints constraints3) {
+        spotPref1.setEnabled(false);
+        spotPref2.setEnabled(false);
+        spotPref3.setEnabled(false);
         studySpotSection.add(spotPref1, constraints3);
         constraints3.gridx += 1;
         studySpotSection.add(spotPref2, constraints3);
@@ -105,6 +114,9 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         JLabel stylesLbl = new JLabel("Preferred study buddy study styles");
         studyBuddySection.add(stylesLbl, constraints2);
         constraints2.gridy += 1; // new row
+        stylePref1.setEnabled(false);
+        stylePref2.setEnabled(false);
+        stylePref3.setEnabled(false);
         studyBuddySection.add(stylePref1, constraints2);
         constraints2.gridx += 1;
         studyBuddySection.add(stylePref2, constraints2);
@@ -117,6 +129,9 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         constraints2.gridy += 1;
         JLabel fieldPrefLbl = new JLabel("Preferred study buddy field of study");
         studyBuddySection.add(fieldPrefLbl, constraints2);
+        fieldPref1.setEnabled(false);
+        fieldPref2.setEnabled(false);
+        fieldPref3.setEnabled(false);
         constraints2.gridy += 1; // new row
         studyBuddySection.add(fieldPref1, constraints2);
         constraints2.gridx += 1;
@@ -129,6 +144,7 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         JLabel yearPrefLbl = new JLabel("Preferred study buddy year");
         studyBuddySection.add(yearPrefLbl, constraints2);
         yearPref.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        yearPref.setEnabled(false);
         constraints2.gridx += 1;
         studyBuddySection.add(yearPref, constraints2);
     }
@@ -173,12 +189,6 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         constraints1.gridy = 0;
         addNameField(personalInfoSection, constraints1);
 
-        // edit/save button in the upper right corner
-        constraints1.gridx = 2;
-        constraints1.gridy = 0;
-        personalInfoSection.add(editBtn, constraints1);
-        editBtn.addActionListener(this);
-
         // pronouns
         constraints1.gridx = 0;
         constraints1.gridy = 1;
@@ -208,6 +218,9 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         JLabel styleLbl = new JLabel("Study styles");
         personalInfoSection.add(styleLbl, constraints);
         constraints.gridy += 1;
+        style1.setEnabled(false);
+        style2.setEnabled(false);
+        style3.setEnabled(false);
         personalInfoSection.add(style1, constraints);
         constraints.gridx += 1;
         personalInfoSection.add(style2, constraints);
@@ -218,6 +231,7 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
     private void addFieldOfStudyField(JPanel personalInfoSection, GridBagConstraints constraints) {
         personalInfoSection.add(fieldLbl, constraints);
         constraints.gridx += 1;
+        fieldCB.setEnabled(false);
         personalInfoSection.add(fieldCB, constraints);
     }
 
@@ -225,6 +239,7 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         personalInfoSection.add(yearLbl, constraints);
         constraints.gridx += 1;
         yearCB.addActionListener(this);
+        yearCB.setEnabled(false);
         personalInfoSection.add(yearCB, constraints);
     }
 
@@ -261,19 +276,13 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
     public void actionPerformed(ActionEvent e) {
         // if user wants to start editing
         if (editBtn.getText().equals("Edit")) {
-            // turns page into edit mode
+            toggleEditMode(); // turns page into edit mode
             editBtn.setText("Save");
-            nameTF.setEditable(true);
-            pronounTF.setEditable(true);
         }
-        // if user does an edit or finishes editing
+        // if user wants to save their edits
         else {
-            if (e.getSource().equals(editBtn)) {
-                // turns name & pronoun fields into view-only mode
-                editBtn.setText("Edit");
-                nameTF.setEditable(false);
-                pronounTF.setEditable(false);
-            }
+            toggleEditMode(); // turns page into view-only mode
+            editBtn.setText("Edit");
 
             // the list of the user's study styles
             ArrayList<String> personalStudyStyles = new ArrayList<>();
@@ -309,6 +318,46 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
             ProfileInModel profileModifications = new ProfileInModel(nameTF.getText(), pronounTF.getText(), (String) yearCB.getSelectedItem(), (String) fieldCB.getSelectedItem(), personalStudyStyles, studyBuddyPref, spotPref);
 
 //            StudyBuddyApp.profileController.profileController.modifyProfile(profileModifications);
+            }}
+
+    private void toggleEditMode() {
+        if (editBtn.getText().equals("Save")) {
+            nameTF.setEditable(false);
+            pronounTF.setEditable(false);
+            yearCB.setEnabled(false);
+            fieldCB.setEnabled(false);
+            style1.setEnabled(false);
+            style2.setEnabled(false);
+            style3.setEnabled(false);
+            yearPref.setEnabled(false);
+            fieldPref1.setEnabled(false);
+            fieldPref2.setEnabled(false);
+            fieldPref3.setEnabled(false);
+            stylePref1.setEnabled(false);
+            stylePref2.setEnabled(false);
+            stylePref3.setEnabled(false);
+            spotPref1.setEnabled(false);
+            spotPref2.setEnabled(false);
+            spotPref3.setEnabled(false);
+        }
+        else {
+            nameTF.setEditable(true);
+            pronounTF.setEditable(true);
+            yearCB.setEnabled(true);
+            fieldCB.setEnabled(true);
+            style1.setEnabled(true);
+            style2.setEnabled(true);
+            style3.setEnabled(true);
+            yearPref.setEnabled(true);
+            fieldPref1.setEnabled(true);
+            fieldPref2.setEnabled(true);
+            fieldPref3.setEnabled(true);
+            stylePref1.setEnabled(true);
+            stylePref2.setEnabled(true);
+            stylePref3.setEnabled(true);
+            spotPref1.setEnabled(true);
+            spotPref2.setEnabled(true);
+            spotPref3.setEnabled(true);
         }
     }
 }

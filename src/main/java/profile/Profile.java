@@ -138,19 +138,16 @@ public class Profile implements Serializable {
 
 
     private String name = "N/A";
-    public String pronouns = "N/A";
-    // profilePicture;
+    private String pronouns = "N/A";
     public static final String[] YEARS = {"1", "2", "3", "4", "4+"};
-    public String year = "N/A";
-    public static final String[] FIELDS = {"N/A", "Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Other"};
-    public String fieldOfStudy = "N/A";
-    public static final String[] STYLES = {"N/A", "quiet", "talkative"};
-    public List<String> studyStyles = new ArrayList<>();
-    public static String[] studySpots = {"N/A", "Robarts Library", "Gerstein Library", "Student Commons",
-            "Hart House", "UC College", "Caven Library", "E.J Pratt Library", "Graham Library", "UC Quad",
-            "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};
-    public List<String> studySpotPreferences = new ArrayList<>();
-    public HashMap<String, List<String>> studyBuddyPreferences;
+    private String year = "N/A";
+    public static final String[] FIELDS = {"N/A", "Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Faculty of Architecture", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Faculty of Information (iSchool)", "Other"};
+    private String fieldOfStudy = "N/A";
+    public static final String[] STYLES = {"N/A", "quiet", "talkative", "goal-setting", "moves around", "hard work grinding"};
+    private List<String> studyStyles = new ArrayList<>();
+    public static String[] studySpots = {"N/A", "Robarts Library", "Gerstein Library", "UTSU Student Commons", "Hart House", "UC Library", "Caven Library", "E.J. Pratt Library", "Graham Library", "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall", "OISE", "Kelly Library", "Innis College Library"};
+    private List<String> studySpotPreferences = new ArrayList<>();
+    private HashMap<String, List<String>> studyBuddyPreferences = new HashMap<>();
 
     /**
      * Returns the compatibility score of the user to the user currently logged in.
