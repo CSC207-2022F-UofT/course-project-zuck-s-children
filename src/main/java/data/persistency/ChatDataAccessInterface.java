@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.List;
 
 public interface ChatDataAccessInterface {
-    void save(String filepath, ChatData chatList) throws IOException;
+    void save(String filepath, ChatDatabase chatList) throws IOException;
 
-    ChatData getChatData();
+    ChatDatabase getChatData();
     Object loadRoomById(String rid) throws Throwable;
-    List<Object> loadRoomByAccount(Object acc);
+    List<Object> loadRoomByAccount();
 }

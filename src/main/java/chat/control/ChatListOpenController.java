@@ -18,6 +18,6 @@ public class ChatListOpenController {
      * @param accModel
      */
     public void navigate(AccountInModel accModel){
-        chatListInteractor.open(accModel);
+        chatListInteractor.open();
     }
 }

@@ -29,25 +29,15 @@ public class RoomLeaveInteractor implements RoomInBoundary {
      */
     @Override
     public void leaveRoom(RoomInModel leaveModel, AccountInModel accModel) {
-        List<Object> list = fetch(leaveModel, accModel);
+        List<Object> list = fetch(leaveModel);
         RoomOutModel responseModel = new RoomOutModel(list);
-        leavePresenter.update(responseModel);
+        leavePresenter.update();
     }
 
-    private List<Object> fetch(RoomInModel leave, AccountInModel acc){
+    private List<Object> fetch(RoomInModel leave){
         chatDataAccess.getChatData().removeRoom(leave.getId());
-        List<Object> room;
-        try {
-            room = chatDataAccess.loadRoomByAccount(acc.getAccount());
-        } catch (Throwable NoRoomFound) {
-            return new ArrayList<Object>();
-        }
-
-        List<Object> result = new ArrayList<Object> ();
-        for (Object elem : room){
-            result.add(((ChatRoomEnt)elem).toString(acc.getAccount().getUsername()));
-        }
-        return result;
+        List<Object> room = chatDataAccess.loadRoomByAccount();
+        return room;
     }
 
 }

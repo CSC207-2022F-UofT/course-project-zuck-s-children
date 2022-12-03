@@ -3,27 +3,33 @@ package UI;
 import UI.components.Button;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
-public class ChatRoomUI extends javax.swing.JFrame{
-    JPanel msgPanel;
+public class ChatRoomUI extends JFrame implements ActionListener {
+    String roomId;
     JPanel inputPanel;
     JScrollPane msgPane;
     Button sendBtn;
     JTextField textfield;
     JTextArea textarea;
 
+
+
+    public void setRoomId(String roomId){
+        this.roomId = roomId;
+    }
     /**
      * Create a chat room UI
      * @param panel
      */
     private void createChatRoomUI(JPanel panel){
-        msgPanel = new JPanel();
         inputPanel = new JPanel();
         textfield = new JTextField();
         sendBtn = new Button();
         sendBtn.setButton("Send");
-
+        sendBtn.getButton().addActionListener(this);
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(msgPane);
@@ -49,5 +55,15 @@ public class ChatRoomUI extends javax.swing.JFrame{
         panel.add(textarea);
         createChatRoomUI(panel);
         pack();
+    }
+
+    /**
+     * Invoked when an action occurs.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }

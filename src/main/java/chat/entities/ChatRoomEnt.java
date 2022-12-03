@@ -1,6 +1,7 @@
 package chat.entities;
 
 import AccountCreation.Account;
+import data.persistency.UserDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,15 +20,11 @@ public class ChatRoomEnt implements Serializable {
 
         /**
          * Return the another user with the different name
-         * @param myName
          * @throws IllegalArgumentException if myName is not the name of neither of the participants
          * @return the name of the another user
          */
-        public String getOtherUser(String myName) throws IllegalArgumentException{
-            if(myName != User1.getUsername() && myName != User2.getUsername()){
-                throw new IllegalArgumentException();
-            }
-            return myName == User1.getUsername()? User2.getUsername() : User1.getUsername();
+        public String getOtherUser(){
+            return UserDatabase.getCurrentUser() == User1? User2.getUsername() : User1.getUsername();
         }
 
         /**
@@ -47,6 +44,15 @@ public class ChatRoomEnt implements Serializable {
          */
         public boolean checkParticipant(Object user){
             return this.User1==(Account)user || this.User2==(Account)user;
+        }
+
+        /**
+         * Return an array of two participants
+         * @return
+         */
+        public Account[] getParticipants(){
+            Account[] participants = {this.User1, this.User2};
+            return participants;
         }
     }
 
@@ -94,7 +100,7 @@ public class ChatRoomEnt implements Serializable {
         this.messageList.add(msg);
     }
 
-    public String toString(String name) {
-        return this.getParticipants().getOtherUser(name);
+    public String toString() {
+        return this.getParticipants().getOtherUser();
     }
 }

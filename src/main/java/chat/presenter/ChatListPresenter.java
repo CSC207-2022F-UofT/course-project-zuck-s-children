@@ -22,10 +22,9 @@ public class ChatListPresenter implements RoomOutBoundary {
 
     /**
      * Update the view of a room list with a model that represents a list of rooms
-     * @param responseModel
      */
     @Override
-    public void update(RoomOutModel responseModel) {
-        chatList.build(panel, responseModel.getRoomList());
+    public void update() {
+        chatList.build();
     }
 }

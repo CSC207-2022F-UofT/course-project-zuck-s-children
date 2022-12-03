@@ -7,13 +7,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Array;
+import java.util.ArrayList;
 
 public class NavigationUI implements ActionListener, ViewModel{
 
     JPanel navCardPanel;
 
+
+
     JPanel swiperPanel = new JPanel();
-    JPanel chatPanel = new JPanel();
+    JPanel chatListPanel = new JPanel();
+    ChatListUI chatListUI = new ChatListUI(chatListPanel);
     JPanel notifPanel = new JPanel();
     JPanel accountPanel = new JPanel();
     JPanel profilePanel = new JPanel();
@@ -28,17 +33,15 @@ public class NavigationUI implements ActionListener, ViewModel{
         navCardPanel = new JPanel(new CardLayout());
         JLabel swiperLabel = new JLabel("swiper");
         JLabel profileLabel = new JLabel("profile");
-        JLabel chatLabel = new JLabel("chat");
         JLabel accountLabel = new JLabel("account");
         JLabel notifLabel = new JLabel("notification");
         profilePanel.add(profileLabel);
         notifPanel.add(notifLabel);
         swiperPanel.add(swiperLabel);
-        chatPanel.add(chatLabel);
         accountPanel.add(accountLabel);
 
         navCardPanel.add(swiperPanel, "Swiper");
-        navCardPanel.add(chatPanel, "Chat");
+        navCardPanel.add(chatListUI.getPanel(), "Chat");
         navCardPanel.add(profilePanel, "Profile");
         navCardPanel.add(accountPanel, "Account");
         navCardPanel.add(notifPanel, "Notification");
@@ -83,7 +86,7 @@ public class NavigationUI implements ActionListener, ViewModel{
     public void actionPerformed(ActionEvent e) {
         CardLayout cl = (CardLayout)(navCardPanel.getLayout());
         if (e.getSource() == chatBtn) {
-
+            chatListUI.build();
             cl.show(navCardPanel, "Chat");
         }
         else if (e.getSource() == swiperBtn) {

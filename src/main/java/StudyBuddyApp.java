@@ -1,6 +1,9 @@
 //import UI
 import AccountCreation.Account;
 import UI.LoginUI;
+import chat.entities.ChatRoomEnt;
+import data.persistency.ChatDataAccess;
+import data.persistency.ChatDatabase;
 import data.persistency.UserDatabase;
 
 //import java.io.FileInputStream;
@@ -10,58 +13,51 @@ import data.persistency.UserDatabase;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class StudyBuddyApp {
     static UserDatabase userDatabase;
+    static ChatDatabase chatDatabase;
     public static void main(String[] args){
-//        //Serializes an empty userDatabase.
-//        try {
-//            FileOutputStream myFileOutStream
-//                    = new FileOutputStream(
-//                    "/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
-//
-//            ObjectOutputStream myObjectOutStream
-//                    = new ObjectOutputStream(myFileOutStream);
-//
-//            myObjectOutStream.writeObject(new UserDatabase());
-//
-//            // closing FileOutputStream and
-//            // ObjectOutputStream
-//            myObjectOutStream.close();
-//            myFileOutStream.close();
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         HashMap<String, Account> userDatabase = null;
-        // deserializing the userDatabase.txt file
+        List<Object> chatData = null;
 
+        // deserializing the userDatabase.txt file and the chatDatabase.txt file
         try {
-            FileInputStream fin = new FileInputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
+            FileInputStream finUser = new FileInputStream("userDatabase.txt");
+            FileInputStream finChat = new FileInputStream("chatDatabase.txt");
             //Creating stream to read the object
-            ObjectInputStream in = new ObjectInputStream(fin);
-            userDatabase = (HashMap<String, Account>)in.readObject();
+            ObjectInputStream inUser = new ObjectInputStream(finUser);
+            ObjectInputStream inChat = new ObjectInputStream(finChat);
+            userDatabase = (HashMap<String, Account>)inUser.readObject();
+            chatData = (List<Object>)inChat.readObject();
             //closing the stream
-            in.close();
-            fin.close();
+            inUser.close();
+            inChat.close();
+            finUser.close();
+            finChat.close();
             System.out.println("successful deserialization");
 
-            if (userDatabase == null) {
-                userDatabase = new HashMap<String, Account>();
-            }
-            UserDatabase.setAccounts(userDatabase);
         } catch (Exception e) {
             System.out.println(e);
             System.out.println("unsuccessful deserialization");
-            if (userDatabase == null) {
-                userDatabase = new HashMap<String, Account>();
-            }
-            UserDatabase.setAccounts(userDatabase);
-        }
 
-//        System.out.println("Deserialized UserDatabase size: " + UserDatabase.getAccounts().size());
+        }
+        if (userDatabase == null) {
+            userDatabase = new HashMap<String, Account>();
+        }
+        if(chatData == null){
+            chatDatabase = new ChatDatabase(new ArrayList<>());
+        }
+        else{
+            chatDatabase = new ChatDatabase(chatData);
+        }
+        UserDatabase.setAccounts(userDatabase);
+        ChatDataAccess chatDataAccess = new ChatDataAccess();
+        ChatDataAccess.setChatdata(chatDatabase);
 
         //initial page: user authorization
         LoginUI frame = new LoginUI();
@@ -74,6 +70,7 @@ public class StudyBuddyApp {
 
 
         HashMap<String, Account> finalUserDatabase = userDatabase;
+        ChatDatabase finalChatDatabase = chatDataAccess.getChatData();
         LoginUI.getFrames()[0].addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -82,13 +79,19 @@ public class StudyBuddyApp {
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                     try {
-                        FileOutputStream fout = new FileOutputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
-                        ObjectOutputStream out = new ObjectOutputStream(fout);
+                        FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
+                        FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
+                        ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
+                        ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
                         System.out.println("Serialized UserDatabase size: " + UserDatabase.getAccounts().size());
-                        out.writeObject(finalUserDatabase);
-                        out.flush();
-                        out.close();
-                        fout.close();
+                        outUser.writeObject(finalUserDatabase);
+                        outChat.writeObject(finalChatDatabase);
+                        outChat.flush();
+                        outUser.flush();
+                        outChat.close();
+                        outUser.close();
+                        foutChat.close();
+                        foutUser.close();
                         System.out.println("successful serialization");
                     } catch (Exception e) {
                         System.out.println(e);

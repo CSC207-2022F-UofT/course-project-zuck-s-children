@@ -8,9 +8,9 @@ public class ChatRoomOpenContoller {
 
     /**
      * Construct a controller to open a chat room
-     * @param chatRoomInterator
+     * @param chatRoomInteractor
      */
-    public ChatRoomOpenContoller(OpenRoomBoundary chatRoomInterator){
+    public ChatRoomOpenContoller(OpenRoomBoundary chatRoomInteractor){
         this.chatRoomInteractor = chatRoomInteractor;
     }
 

@@ -7,9 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatDataAccess implements ChatDataAccessInterface{
-        private static ChatData chatdata;
+        private static ChatDatabase chatdata;
+
+        public static void setChatdata(ChatDatabase chatdata) {
+                ChatDataAccess.chatdata = chatdata;
+        }
+
         @Override
-        public void save(String filePath, ChatData chatList) throws IOException{
+        public void save(String filePath, ChatDatabase chatList) throws IOException{
                 OutputStream file = new FileOutputStream(filePath);
                 OutputStream buffer = new BufferedOutputStream(file);
                 ObjectOutput output = new ObjectOutputStream(buffer);
@@ -18,33 +23,20 @@ public class ChatDataAccess implements ChatDataAccessInterface{
                 output.writeObject(chatList);
                 output.close();
         }
-        public static void loadAllRooms(String filePath) throws Throwable{
-                InputStream file = new FileInputStream(filePath);
-                InputStream buffer = new BufferedInputStream(file);
-                ObjectInput input = new ObjectInputStream(buffer);
-                chatdata = (ChatData) input.readObject();
-                input.close();
 
-        };
 
         @Override
-        public ChatData getChatData(){
+        public ChatDatabase getChatData(){
                 return this.chatdata;
         }
         @Override
         public Object loadRoomById(String rid) throws Throwable {
-                return chatdata.find(rid);
+                return chatdata.findById(rid);
         }
 
         @Override
-        public List<Object> loadRoomByAccount(Object acc) {
-                ArrayList<Object> roomList = new ArrayList<Object>();
-                for(Object room : chatdata.getAllRooms()){
-                        if(((ChatRoomEnt)room).getParticipants().checkParticipant(acc)){
-                                roomList.add(room);
-                        };
-                }
-                return roomList;
+        public List<Object> loadRoomByAccount() {
+                return chatdata.findByAccount(UserDatabase.getCurrentUser());
         }
 
 

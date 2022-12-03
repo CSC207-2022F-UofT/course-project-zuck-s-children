@@ -50,7 +50,7 @@ public class MsgSendInteractor implements MsgInBoundary {
         }
         chatList.add(newMessage.getInfo());
         MsgOutModel responseModel = new MsgOutModel(chatList);
-        msgPresenter.update(responseModel);
+        msgPresenter.update(responseModel, newMessage.getRoomId());
     }
     private ChatRoomEnt fetch(String rid) {
         Object room;
