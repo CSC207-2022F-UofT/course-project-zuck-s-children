@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
 
-import AccountCreation.Account;
+import account_creation.Account;
 import data.persistency.UserDatabase;
 import profile.*;
 

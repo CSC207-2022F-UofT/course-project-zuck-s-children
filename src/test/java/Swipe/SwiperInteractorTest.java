@@ -1,6 +1,6 @@
 package swipe;
 
-import AccountCreation.Account;
+import account_creation.Account;
 import swipe.screen.SwiperPresenterFormatter;
 import data.persistency.UserDatabase;
 import org.junit.jupiter.api.AfterEach;

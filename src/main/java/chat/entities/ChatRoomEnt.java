@@ -1,6 +1,6 @@
 package chat.entities;
 
-import AccountCreation.Account;
+import account_creation.Account;
 
 import java.io.Serializable;
 import java.util.ArrayList;

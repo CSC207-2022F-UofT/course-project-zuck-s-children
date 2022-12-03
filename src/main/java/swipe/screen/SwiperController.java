@@ -1,6 +1,6 @@
 package swipe.screen;
 
-import AccountCreation.Account;
+import account_creation.Account;
 import swipe.SwiperInputBoundary;
 import swipe.SwiperRequestModel;
 import swipe.SwiperResponseModel;

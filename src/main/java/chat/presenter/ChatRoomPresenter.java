@@ -1,6 +1,6 @@
 package chat.presenter;
 
-import UI.ChatRoomUI;
+import ui.ChatRoomUI;
 import chat.control.MsgOutBoundary;
 import chat.control.MsgOutModel;
 

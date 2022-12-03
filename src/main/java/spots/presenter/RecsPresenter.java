@@ -1,6 +1,6 @@
 package spots.presenter;
 
-import UI.StudySpotUI;
+import ui.StudySpotUI;
 import spots.controllers.RecsOutModel;
 import spots.controllers.RecsOutBoundary;
 

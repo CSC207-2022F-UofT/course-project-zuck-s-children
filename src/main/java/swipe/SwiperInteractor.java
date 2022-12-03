@@ -1,7 +1,7 @@
 package swipe;
 
-import AccountCreation.Account;
-import Notification.MatchNotification;
+import account_creation.Account;
+import notification.MatchNotification;
 import data.persistency.UserDatabase;
 
 

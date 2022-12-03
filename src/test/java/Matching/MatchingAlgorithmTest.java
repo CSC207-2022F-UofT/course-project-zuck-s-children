@@ -1,10 +1,6 @@
 package Matching;
 
-import AccountCreation.Account;
-import swipe.screen.SwiperPresenterFormatter;
-import swipe.SwiperInteractor;
-import swipe.SwiperPresenter;
-import swipe.SwiperRequestModel;
+import account_creation.Account;
 import data.persistency.UserDatabase;
 import org.junit.jupiter.api.Test;
 import matching.MatchingAlgorithm;

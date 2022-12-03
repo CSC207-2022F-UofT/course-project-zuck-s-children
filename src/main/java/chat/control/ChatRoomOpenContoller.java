@@ -1,7 +1,6 @@
 package chat.control;
 
-import chat.useCases.OpenListBoundary;
-import chat.useCases.OpenRoomBoundary;
+import chat.use_cases.OpenRoomBoundary;
 
 public class ChatRoomOpenContoller {
     private OpenRoomBoundary chatRoomInteractor;

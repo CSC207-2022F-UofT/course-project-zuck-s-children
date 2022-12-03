@@ -1,6 +1,6 @@
 //import UI
-import AccountCreation.Account;
-import UI.LoginUI;
+import account_creation.Account;
+import ui.LoginUI;
 import data.persistency.UserDatabase;
 
 //import java.io.FileInputStream;

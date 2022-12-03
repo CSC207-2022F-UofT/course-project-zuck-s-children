@@ -1,6 +1,6 @@
 package chat.control;
 
-import AccountCreation.Account;
+import account_creation.Account;
 
 public class MsgInModel {
     private String content;
