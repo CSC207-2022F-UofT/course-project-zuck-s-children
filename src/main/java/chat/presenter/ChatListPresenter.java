@@ -1,6 +1,6 @@
 package chat.presenter;
 
-import UI.ChatListUI;
+import ui.ChatListUI;
 import chat.control.RoomOutBoundary;
 import chat.control.RoomOutModel;
 

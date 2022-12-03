@@ -1,7 +1,7 @@
 package data.persistency;
 
-import AccountCreation.Account;
-import Notification.ClearNotif.ClearNotifGateway;
+import account_creation.Account;
+import notification.clear_notif.ClearNotifGateway;
 
 import java.util.ArrayList;
 

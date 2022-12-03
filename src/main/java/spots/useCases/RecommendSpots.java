@@ -1,8 +1,7 @@
 package spots.useCases;
 
 
-import AccountCreation.Account;
-import profile.Profile;
+import account_creation.Account;
 import spots.controllers.RecsInModel;
 import spots.controllers.RecsOutBoundary;
 import spots.controllers.RecsOutModel;

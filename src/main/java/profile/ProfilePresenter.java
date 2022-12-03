@@ -1,6 +1,6 @@
 package profile;
 
-import UI.ViewModel;
+import ui.ViewModel;
 public class ProfilePresenter implements ProfileUpdateOutputBoundary {
     static ViewModel modifiedProfile;
     public ProfilePresenter(ViewModel UI) {

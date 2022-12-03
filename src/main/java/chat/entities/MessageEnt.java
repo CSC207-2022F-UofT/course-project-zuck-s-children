@@ -1,11 +1,9 @@
 package chat.entities;
 
-import AccountCreation.Account;
+import account_creation.Account;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 public class MessageEnt implements Serializable {
     /**
