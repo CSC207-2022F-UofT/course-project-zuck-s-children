@@ -33,8 +33,8 @@ public class LoginPresenter implements LoginOutBoundary{
             //Open SwiperUI frame
 
             //Open navigation frame
-            NavigationUI navigationUI = new NavigationUI();
-            navigationUI.build();
+//            NavigationUI navigationUI = new NavigationUI();
+//            navigationUI.build();
 
             loginUI.closeLoginUI();
         } else {
@@ -43,43 +43,43 @@ public class LoginPresenter implements LoginOutBoundary{
         }
     }
 
-    public void swipePage(){
-        LinkedList<Account> potentialMatches = MatchingAlgorithm.finalMatches();
-        SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
-        SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
-        SwiperController swiperController = new SwiperController(swiperInputBoundary);
-        if (potentialMatches.isEmpty()) {
-            EmptyScreen em = new EmptyScreen();
-            JFrame swiper = new JFrame("");
-            CardLayout cardLayout = new CardLayout();
-            JPanel screens = new JPanel(cardLayout);
-            swiper.add(screens);
-            screens.add(em, "welcome");
-            cardLayout.show(screens, "swipe");
-            swiper.pack();
-            swiper.setBounds(0, 0, 1440, 1000);
-            swiper.setResizable(false);
-            swiper.setVisible(true);
-        }
-        else {
-            for (Account pot: potentialMatches) {
-                SwipeScreen swipeScreen = new SwipeScreen(swiperController, pot);
-                JFrame swiper = new JFrame("Time to swipe");
-                CardLayout cardLayout = new CardLayout();
-                JPanel screens = new JPanel(cardLayout);
-                swiper.add(screens);
-                screens.add(swipeScreen, "welcome");
-                cardLayout.show(screens, "swipe");
-
-                swiper.pack();
-                swiper.setBounds(0, 0, 1440, 1000);
-                swiper.setResizable(false);
-                swiper.setVisible(true);
-                while (!swipeScreen.getPressed()) {
-                    int i = 1;
-                    i++;
-                }
-                swiper.setVisible(false);}
-        }
-    }
+//    public void swipePage(){
+//        LinkedList<Account> potentialMatches = MatchingAlgorithm.finalMatches();
+//        SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
+//        SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
+//        SwiperController swiperController = new SwiperController(swiperInputBoundary);
+//        if (potentialMatches.isEmpty()) {
+//            EmptyScreen em = new EmptyScreen();
+//            JFrame swiper = new JFrame("");
+//            CardLayout cardLayout = new CardLayout();
+//            JPanel screens = new JPanel(cardLayout);
+//            swiper.add(screens);
+//            screens.add(em, "welcome");
+//            cardLayout.show(screens, "swipe");
+//            swiper.pack();
+//            swiper.setBounds(0, 0, 1440, 1000);
+//            swiper.setResizable(false);
+//            swiper.setVisible(true);
+//        }
+//        else {
+//            for (Account pot: potentialMatches) {
+//                SwipeScreen swipeScreen = new SwipeScreen(swiperController, pot);
+//                JFrame swiper = new JFrame("Time to swipe");
+//                CardLayout cardLayout = new CardLayout();
+//                JPanel screens = new JPanel(cardLayout);
+//                swiper.add(screens);
+//                screens.add(swipeScreen, "welcome");
+//                cardLayout.show(screens, "swipe");
+//
+//                swiper.pack();
+//                swiper.setBounds(0, 0, 1440, 1000);
+//                swiper.setResizable(false);
+//                swiper.setVisible(true);
+//                while (!swipeScreen.getPressed()) {
+//                    int i = 1;
+//                    i++;
+//                }
+//                swiper.setVisible(false);}
+//        }
+//    }
 }

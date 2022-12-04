@@ -9,29 +9,30 @@ import java.util.HashMap;
 public class StudyBuddyApp {
 
     public static void main(String[] args){
-        HashMap<String, Account> userDatabase = null;
+        UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
         // deserializing the userDatabase.txt file
         try {
             FileInputStream fin = new FileInputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
             //Creating stream to read the object
             ObjectInputStream in = new ObjectInputStream(fin);
-            userDatabase = (HashMap<String, Account>)in.readObject();
+            HashMap<String, Account> userDatabaseAccounts = (HashMap<String, Account>) in.readObject();
+
+            USERDATABASE.setAccounts(userDatabaseAccounts);
+
+
             //closing the stream
             in.close();
             fin.close();
-            System.out.println("successful deserialization");
 
-            if (userDatabase == null) {
-                userDatabase = new HashMap<String, Account>();
-            }
-            UserDatabase.setAccounts(userDatabase);
+            System.out.println("successful deserialization");
+            System.out.println("Deserialized UserDatabase size: " + USERDATABASE.getAccounts().size());
+            System.out.println(USERDATABASE.getAccounts().get("1"));
+
         } catch (Exception e) {
             System.out.println(e);
             System.out.println("unsuccessful deserialization");
-            if (userDatabase == null) {
-                userDatabase = new HashMap<String, Account>();
-            }
-            UserDatabase.setAccounts(userDatabase);
+            USERDATABASE = UserDatabase.getUserDatabase();
+            USERDATABASE.setAccounts(new HashMap<String, Account>());
         }
 
         //initial page: user authorization
@@ -44,7 +45,7 @@ public class StudyBuddyApp {
         LoginUI.setFrame(frame);
 
 
-        HashMap<String, Account> finalUserDatabase = userDatabase;
+        HashMap<String, Account> finalUserDatabaseAccounts = USERDATABASE.getAccounts();
         LoginUI.getFrames()[0].addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -55,8 +56,8 @@ public class StudyBuddyApp {
                     try {
                         FileOutputStream fout = new FileOutputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
                         ObjectOutputStream out = new ObjectOutputStream(fout);
-                        System.out.println("Serialized UserDatabase size: " + UserDatabase.getAccounts().size());
-                        out.writeObject(finalUserDatabase);
+                        System.out.println("Serialized UserDatabase size: " + finalUserDatabaseAccounts.size());
+                        out.writeObject(finalUserDatabaseAccounts);
                         out.flush();
                         out.close();
                         fout.close();

@@ -6,25 +6,30 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class UserDatabase implements Serializable {
-    //TODO: implement UserDataAccessInterface
-    private static HashMap<String, Account> accounts;
-    private static Account currentUser;
+    private static UserDatabase USERDATABASE;
+    public HashMap<String, Account> accounts;
+    public Account currentUser;
 
-    public UserDatabase() {
-        accounts = new HashMap<String, Account>();
+    private UserDatabase() {
+    }
+    public static UserDatabase getUserDatabase() {
+        if (USERDATABASE == null) {
+            USERDATABASE = new UserDatabase();
+        }
+        return USERDATABASE;
     }
     public static HashMap<String, Account> getAccounts() {
         return accounts;
     }
 
-    public static Account getCurrentUser() {
-        return currentUser;
+    public Account getCurrentUser() {
+        return USERDATABASE.currentUser;
     }
     public static void setCurrentUser(Account currentUser) {
         UserDatabase.currentUser = currentUser;
     }
 
-    public static void setAccounts(HashMap<String, Account> accounts) {
-        UserDatabase.accounts = accounts;
+    public void setAccounts(HashMap<String, Account> accounts) {
+        USERDATABASE.accounts = accounts;
     }
 }
