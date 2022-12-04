@@ -1,8 +1,6 @@
 package chat.presenter;
 
 import ui.ChatRoomUI;
-import chat.control.MsgOutBoundary;
-import chat.control.MsgOutModel;
 
 import javax.swing.*;
 
@@ -12,20 +10,22 @@ public class ChatRoomPresenter implements MsgOutBoundary {
 
     /**
      * Construct a presenter for a chat room
-     * @param panel
-     * @param UI
      */
-    public ChatRoomPresenter(JPanel panel, ChatRoomUI UI){
-        this.panel = panel;
-        this.chatRoom = UI;
+    public ChatRoomPresenter(){
+        this.panel = new JPanel();
+        this.chatRoom = new ChatRoomUI();
     }
 
     /**
      * Update the view of a room with a model that represents a list of messages
-     * @param responseModel
+     * @param responseModel message output model
+     * @param roomId room id
      */
     @Override
-    public void update(MsgOutModel responseModel) {
-        chatRoom.build(panel, responseModel.getMsgList());
+    public void update(MsgOutModel responseModel, String roomId) {
+        chatRoom.setRoomId(roomId);
+        chatRoom.build(panel);
     }
+
+
 }

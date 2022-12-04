@@ -1,15 +1,13 @@
-package chat.control;
-
-import chat.entities.MessageEnt;
+package chat.presenter;
 
 import java.util.List;
 
 public class MsgOutModel {
-    private List<Object> msgList;
+    private final List<Object> msgList;
 
     /**
      * Construct an output model for a list of messages
-     * @param msg
+     * @param msg a list of message entities
      */
     public MsgOutModel(List<Object> msg){
         this.msgList = msg;
@@ -17,7 +15,7 @@ public class MsgOutModel {
 
     /**
      * Return the list of messages represented by this model
-     * @return
+     * @return the list of messages
      */
     public List<Object> getMsgList(){return this.msgList;}
 

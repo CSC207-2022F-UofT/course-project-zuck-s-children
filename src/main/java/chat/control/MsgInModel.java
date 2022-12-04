@@ -3,15 +3,15 @@ package chat.control;
 import account_creation.Account;
 
 public class MsgInModel {
-    private String content;
-    private Account sender;
-    private String roomId;
+    private final String content;
+    private final Account sender;
+    private final String roomId;
 
     /**
      * Construct a message model
-     * @param s
-     * @param sender
-     * @param roomId
+     * @param s a content
+     * @param sender a sender
+     * @param roomId the id of a room
      */
     public MsgInModel(String s, Account sender, String roomId){
         this.content = s;
@@ -21,7 +21,7 @@ public class MsgInModel {
 
     /**
      * Get the content of this message model
-     * @return
+     * @return the content of this message
      */
     public String getContent(){
         return this.content;
@@ -29,7 +29,7 @@ public class MsgInModel {
 
     /**
      * Get the sender of this message model
-     * @return
+     * @return the sender of this message
      */
     public Account getSender(){
         return this.sender;
@@ -37,7 +37,7 @@ public class MsgInModel {
 
     /**
      * Get the id of the room of this message model
-     * @return
+     * @return the id of a room this message is sent through
      */
     public String getRoomId() { return this.roomId; }
 }
