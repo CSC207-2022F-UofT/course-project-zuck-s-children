@@ -11,18 +11,22 @@ public class StudySpotUI {
     JPanel spot1;
     JPanel spot2;
     JPanel spot3;
+
     /**
      * Create a study spot UI
+     *
      * @param p contains recommendations to be presented in a chatroom
      */
-    public void createRecommendationBox(JPanel p){ //button in chat
+    public void createRecommendationBox(JPanel p) { //button in chat
         recPopUp = new JFrame("Study Spot Recommendations:");
         recPopUp.setVisible(true);
         recPopUp.add(p);
         recPopUp.pack();
     }
+
     /**
-     * Build a box with recommended study spots
+     * Build boxes around each study spot
+     *
      * @param recs recommended study spots
      */
     public void build(ArrayList<String> recs) {

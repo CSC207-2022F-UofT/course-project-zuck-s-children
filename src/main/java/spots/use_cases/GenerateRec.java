@@ -1,17 +1,9 @@
-package spots.use_cases;
+package spots.useCases;
 
 
-<<<<<<<< HEAD:src/main/java/spots/use_cases/RecommendSpots.java
-import account_creation.Account;
-import spots.controllers.RecsInModel;
-import spots.controllers.RecsOutBoundary;
-import spots.controllers.RecsOutModel;
-import spots.entities.SpotRecommender;
-========
 import AccountCreation.Account;
 import chat.entities.ChatRoomEnt;
 import spots.entities.RecGenerator;
->>>>>>>> a2b851f (Renamed classes and methods):src/main/java/spots/use_cases/GenerateRec.java
 
 import java.util.ArrayList;
 public class GenerateRec implements RecsInBoundary{

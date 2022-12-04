@@ -1,42 +1,95 @@
 package studySpots;
 
 import AccountCreation.Account;
-import UI.StudySpotUI;
 import org.junit.jupiter.api.Test;
 import spots.presenter.RecsPresenter;
-import spots.useCases.*;
+import spots.useCases.GenerateRec;
+import spots.useCases.RecsOutBoundary;
 
-import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StudySpotUseCaseTest {
     @Test
-    void create(){
-//        Account user1 = new Account("Karen","money");
-//        Account user2 = new Account("Zuck","facebook");
-//
-//        String[] studySpots1 = {"Robarts Library", "Gerstein Library", "Student Commons"};
-//        String[] studySpots2 = {"Robarts Library", "Gerstein Library", "Student Commons"};
-//
-//        user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
-//        user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
-//
-//
-//        JPanel panel = new JPanel();
-//        StudySpotUI ui = new StudySpotUI();
+    public void testGenerateRecAllMutual() {
+        Account user1 = new Account("Karen", "money");
+        Account user2 = new Account("Zuck", "fbook");
 
-        //RecsOutBoundary recsOutBoundary = new RecsOutBoundary() {
-//            @Override
-//            public RecsOutModel update(RecsOutModel rec) {
-//                assertEquals();
-//            }
-//        }
+        String[] studySpots1 = {"Robarts Library", "Gerstein Library", "Student Commons"};
+        String[] studySpots2 = {"Robarts Library", "Gerstein Library", "Student Commons"};
 
-        //new RecsPresenter(panel, ui);
-        
-        //RecsInBoundary useCase = new GenerateRec(recsOutBoundary);
-        //useCase.createRecs(chatUsers);
+        user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
+        user2.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
+
+        ArrayList<Account> chatUsers = new ArrayList<>();
+        chatUsers.add(user1);
+        chatUsers.add(user2);
+
+        RecsOutBoundary presenter = new RecsPresenter();
+        //RecsInBoundary
+        GenerateRec interactor = new GenerateRec(presenter);
+
+        interactor.setParticipants(chatUsers);
+
+        ArrayList<String> correctRec = new ArrayList<>();
+        correctRec.add(studySpots1[0]);
+        correctRec.add(studySpots1[1]);
+        correctRec.add(studySpots1[2]);
+
+        assertEquals(correctRec, interactor.generateRec());
+    }
+    @Test
+    public void testGenerateRecSomeMutual() {
+        Account user1 = new Account("Karen", "money");
+        Account user2 = new Account("Zuck", "fbook");
+
+        String[] studySpots1 = {"Robarts Library", "College Classroom", "Student Commons"};
+        String[] studySpots2 = {"Robarts Library", "College Classroom", "Bahen Centre"};
+
+        user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
+        user2.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
+
+        ArrayList<Account> chatUsers = new ArrayList<>();
+        chatUsers.add(user1);
+        chatUsers.add(user2);
+
+        RecsOutBoundary presenter = new RecsPresenter();
+        //RecsInBoundary
+        GenerateRec interactor = new GenerateRec(presenter);
+
+        interactor.setParticipants(chatUsers);
+        ArrayList<String> recs = interactor.generateRec();
+
+        assertTrue(recs.contains("Robarts Library"));
+        assertTrue(recs.contains("College Classroom"));
+        assertTrue(recs.contains(studySpots1[2]) || recs.contains(studySpots2[2]));
+    }
+    @Test
+    public void testGenerateRecsNotApplicable() {
+        Account user1 = new Account("Karen", "money");
+        Account user2 = new Account("Zuck", "fbook");
+
+        String[] studySpots1 = {"Robarts Library", "N/A", "N/A"};
+        String[] studySpots2 = {"Robarts Library", "Gerstein Library", "N/A"};
+
+        user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
+        user2.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
+
+        ArrayList<Account> chatUsers = new ArrayList<>();
+        chatUsers.add(user1);
+        chatUsers.add(user2);
+
+        RecsOutBoundary presenter = new RecsPresenter();
+        //RecsInBoundary
+        GenerateRec interactor = new GenerateRec(presenter);
+
+        interactor.setParticipants(chatUsers);
+        ArrayList<String> recs = interactor.generateRec();
+
+        assertTrue(recs.contains(studySpots1[0]));
+        assertTrue(recs.contains(studySpots2[1]));
+        assertFalse(recs.contains("N/A"));
     }
 }
