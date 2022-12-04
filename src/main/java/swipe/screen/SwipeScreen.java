@@ -9,8 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import static javax.swing.JOptionPane.showMessageDialog;
+import static main_app.StudyBuddyApp.swiperUI;
 //
 // Frameworks/Drivers layer
 
@@ -33,10 +35,17 @@ public class SwipeScreen extends JPanel implements ActionListener {
     /**
      * A window with a title, two Jbuttons and the relevant information from potential match.
      */
-    public SwipeScreen(SwiperController controller, Account potential) {
 
+    LinkedList<Account> potential;
+
+    SwipeScreen next;
+
+    int i;
+    public SwipeScreen(SwiperController controller, LinkedList<Account> potential, int i) {
+        this.potential = potential;
+        this.i = i;
         this.swiperController = controller;
-        Profile profile = potential.getProfile();
+        Profile profile = potential.get(i).getProfile();
         JLabel title = new JLabel("Potential Match?");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -52,9 +61,9 @@ public class SwipeScreen extends JPanel implements ActionListener {
                 new JLabel("Courses: " + profile.getStudyStyles().toString()));
 
         JButton accept = new JButton("Accept");
-        accept.setActionCommand("T," + potential.getUsername());
+        accept.setActionCommand("T," + potential.get(i).getUsername());
         JButton reject = new JButton("Reject");
-        reject.setActionCommand("F," + potential.getUsername());
+        reject.setActionCommand("F," + potential.get(i).getUsername());
 
         JPanel buttons = new JPanel();
         buttons.add(accept);
@@ -81,7 +90,7 @@ public class SwipeScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         pressed = true;
         System.out.println("Click " + evt.getActionCommand());
-        String[] result = evt.getActionCommand().split(",", 1);
+        String[] result = evt.getActionCommand().split(",", 2);
         Account account = UserDatabase.getAccounts().get(result[1]);
         try {
             out = swiperController.create(result[0], account);
@@ -89,6 +98,14 @@ public class SwipeScreen extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(this, "Request sent to " + result[1]);}
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        if (i <= potential.size() - 2){
+            i += 1;
+            next = new SwipeScreen(swiperController, potential, i);
+            swiperUI.build(next);
+        }
+        else{
+            swiperUI.build();
         }
     }
 
