@@ -1,10 +1,16 @@
 package profile;
 
-import ui.ViewModel;
+import ui.ProfileUI;
+
 public class ProfilePresenter implements ProfileUpdateOutputBoundary {
-    static ViewModel modifiedProfile;
-    public ProfilePresenter(ViewModel UI) {
-        this.modifiedProfile = UI;
+    static ProfileUI modifiedProfile;
+    public ProfilePresenter(ProfileUI UI) {
+        modifiedProfile = UI;
     }
 
+    @Override
+    public void showModifiedProfile(ProfileOutModel modifications) {
+        String msg = "Changes successful.";
+        modifiedProfile.build();
+    }
 }

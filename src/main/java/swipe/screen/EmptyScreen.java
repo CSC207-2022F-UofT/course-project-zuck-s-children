@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static javax.swing.JOptionPane.showMessageDialog;
-
+//
 /**
  * A UI class that is executed when there are no accounts to swipe on.
  */

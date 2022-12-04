@@ -1,5 +1,5 @@
 package swipe;
-
+//
 import account_creation.Account;
 import notification.MatchNotification;
 import data.persistency.UserDatabase;
@@ -31,7 +31,7 @@ public class SwiperInteractor implements SwiperInputBoundary{
      */
     @Override
     public SwiperResponseModel create(SwiperRequestModel requestModel) {
-        Account curr = UserDatabase.getCurrentUser();
+        Account curr = UserDatabase.getUserDatabase().getCurrentUser();
         Account potential = requestModel.getPotential();
         if (requestModel.getAccepted()) {
 

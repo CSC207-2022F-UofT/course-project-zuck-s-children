@@ -1,5 +1,5 @@
 package swipe.screen;
-
+//
 import swipe.SwiperPresenter;
 import swipe.SwiperResponseModel;
 

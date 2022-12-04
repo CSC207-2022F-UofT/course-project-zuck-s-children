@@ -1,67 +1,58 @@
-//import UI
 import account_creation.Account;
+import data.persistency.ChatDataAccess;
+import data.persistency.ChatDatabase;
 import ui.LoginUI;
 import data.persistency.UserDatabase;
 
-//import java.io.FileInputStream;
-//import java.io.FileOutputStream;
-//import java.io.ObjectInputStream;
-//import java.io.ObjectOutputStream;
-
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class StudyBuddyApp {
-    static UserDatabase userDatabase;
+    static ChatDatabase chatDatabase;
     public static void main(String[] args){
-//        //Serializes an empty userDatabase.
-//        try {
-//            FileOutputStream myFileOutStream
-//                    = new FileOutputStream(
-//                    "/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
-//
-//            ObjectOutputStream myObjectOutStream
-//                    = new ObjectOutputStream(myFileOutStream);
-//
-//            myObjectOutStream.writeObject(new UserDatabase());
-//
-//            // closing FileOutputStream and
-//            // ObjectOutputStream
-//            myObjectOutStream.close();
-//            myFileOutStream.close();
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
+        List<Object> chatData = null;
 
-        HashMap<String, Account> userDatabase = null;
-        // deserializing the userDatabase.txt file
-
+        // deserializing the userDatabase.txt file and the chatDatabase.txt file
         try {
-            FileInputStream fin = new FileInputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
+            FileInputStream finUser = new FileInputStream("userDatabase.txt");
+            FileInputStream finChat = new FileInputStream("chatDatabase.txt");
             //Creating stream to read the object
-            ObjectInputStream in = new ObjectInputStream(fin);
-            userDatabase = (HashMap<String, Account>)in.readObject();
-            //closing the stream
-            in.close();
-            fin.close();
-            System.out.println("successful deserialization");
 
-            if (userDatabase == null) {
-                userDatabase = new HashMap<String, Account>();
-            }
-            UserDatabase.setAccounts(userDatabase);
+            ObjectInputStream inUser = new ObjectInputStream(finUser);
+            ObjectInputStream inChat = new ObjectInputStream(finChat);
+            HashMap<String, Account> userDatabaseAccounts = (HashMap<String, Account>) inUser.readObject();
+            USERDATABASE.setAccounts(userDatabaseAccounts);
+            chatData = (List<Object>)inChat.readObject();
+            //closing the stream
+            inUser.close();
+            inChat.close();
+            finUser.close();
+            finChat.close();
+
+            System.out.println("successful deserialization");
+            System.out.println("Deserialized UserDatabase size: " + USERDATABASE.getAccounts().size());
+            System.out.println(USERDATABASE.getAccounts().get("1"));
+
         } catch (Exception e) {
             System.out.println(e);
             System.out.println("unsuccessful deserialization");
-            if (userDatabase == null) {
-                userDatabase = new HashMap<String, Account>();
-            }
-            UserDatabase.setAccounts(userDatabase);
-        }
 
-//        System.out.println("Deserialized UserDatabase size: " + UserDatabase.getAccounts().size());
+            USERDATABASE = UserDatabase.getUserDatabase();
+            USERDATABASE.setAccounts(new HashMap<String, Account>());
+            
+          if(chatData == null){
+              chatDatabase = new ChatDatabase(new ArrayList<>());
+          }
+          else{
+              chatDatabase = new ChatDatabase(chatData);
+          }
+         }
+        ChatDataAccess chatDataAccess = new ChatDataAccess();
+        ChatDataAccess.setChatdata(chatDatabase);
 
         //initial page: user authorization
         LoginUI frame = new LoginUI();
@@ -73,7 +64,9 @@ public class StudyBuddyApp {
         LoginUI.setFrame(frame);
 
 
-        HashMap<String, Account> finalUserDatabase = userDatabase;
+        HashMap<String, Account> finalUserDatabaseAccounts = USERDATABASE.getAccounts();
+        ChatDatabase finalChatDatabase = chatDataAccess.getChatData();
+        
         LoginUI.getFrames()[0].addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -82,13 +75,19 @@ public class StudyBuddyApp {
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                     try {
-                        FileOutputStream fout = new FileOutputStream("/Users/tankenji/IdeaProjects/course-project-zuck-s-children/userDatabase.txt");
-                        ObjectOutputStream out = new ObjectOutputStream(fout);
-                        System.out.println("Serialized UserDatabase size: " + UserDatabase.getAccounts().size());
-                        out.writeObject(finalUserDatabase);
-                        out.flush();
-                        out.close();
-                        fout.close();
+                        FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
+                        FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
+                        ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
+                        ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
+                        System.out.println("Serialized UserDatabase size: " + finalUserDatabaseAccounts.size());
+                        outUser.writeObject(finalUserDatabaseAccounts);
+                        outChat.writeObject(finalChatDatabase);
+                        outChat.flush();
+                        outUser.flush();
+                        outChat.close();
+                        outUser.close();
+                        foutChat.close();
+                        foutUser.close();
                         System.out.println("successful serialization");
                     } catch (Exception e) {
                         System.out.println(e);

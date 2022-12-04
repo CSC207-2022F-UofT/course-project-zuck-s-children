@@ -1,5 +1,5 @@
 package swipe;
-
+//
 /**
  * An interface for the presenter of the Swiper.
  */
