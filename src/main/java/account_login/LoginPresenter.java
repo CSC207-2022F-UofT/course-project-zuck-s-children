@@ -10,7 +10,8 @@ import swipe.screen.EmptyScreen;
 import swipe.screen.SwipeScreen;
 import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
-import ui.NavigationUI;
+import ui.Navigation;
+//import ui.NavigationUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,8 +35,7 @@ public class LoginPresenter implements LoginOutBoundary{
             //Open SwiperUI frame
 
             //Open navigation frame
-//            NavigationUI navigationUI = new NavigationUI();
-//            navigationUI.build();
+            Navigation.createAndShowGUI();
 
             loginUI.closeLoginUI();
         } else {

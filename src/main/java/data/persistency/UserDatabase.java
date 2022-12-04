@@ -26,7 +26,7 @@ public class UserDatabase implements Serializable {
         return USERDATABASE.currentUser;
     }
     public static void setCurrentUser(Account currentUser) {
-        UserDatabase.getUserDatabase().currentUser = currentUser;
+        USERDATABASE.currentUser = currentUser;
     }
 
     public void setAccounts(HashMap<String, Account> accounts) {
