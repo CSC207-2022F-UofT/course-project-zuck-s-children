@@ -1,8 +1,6 @@
 package profile;
 
-import java.util.List;
-
-public class ProfileFactory {
+public class ProfileBuilder {
     public Profile create(ProfileInModel profileModel) {
         Profile modifiedProfile = new Profile();
         modifiedProfile.setName(profileModel.getName());

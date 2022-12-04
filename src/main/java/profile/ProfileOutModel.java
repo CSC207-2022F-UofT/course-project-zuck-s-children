@@ -1,8 +1,5 @@
 package profile;
 
-import swipe.screen.LabelTextPanel;
-
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.List;
 
@@ -43,7 +40,7 @@ public class ProfileOutModel {
     public List<String> studySpotPreferences;
     public HashMap<String, List<String>> studyBuddyPreferences;
 
-    public ProfileOutModel(ProfileInModel inModel, String[] listOfValidInputCheckMsgs) {
+    public ProfileOutModel(profile.ProfileInModel inModel) {
         this.name = inModel.getName();
         this.pronouns = inModel.getPronouns();
         this.year = inModel.getYear();
