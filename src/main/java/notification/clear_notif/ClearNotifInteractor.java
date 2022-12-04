@@ -1,20 +1,28 @@
 package notification.clear_notif;
 
+import account_creation.Account;
 import data.persistency.UserDatabase;
 
 public class ClearNotifInteractor implements ClearNotifInputBoundary{
 
     private ClearNotifOutputBoundary clearNotifOutputBoundary;
-    private UserDatabase userData;
+    private Account user;
 
-
-    public ClearNotifInteractor(ClearNotifOutputBoundary presenter, UserDatabase data){
+    /**
+     * Construct an interactor for clearing all notifications.
+     * @param presenter output boundary interface for the presenter
+     */
+    public ClearNotifInteractor(ClearNotifOutputBoundary presenter){
         this.clearNotifOutputBoundary = presenter;
-        this.userData = data;
+        this.user = UserDatabase.getCurrentUser();
     }
+
+    /**
+     * Clear all notifications stored in current user's notifications attribute.
+     */
     @Override
     public void clearNotif() {
-        this.userData.getCurrentUser().clearNotifications();
+        this.user.clearNotifications();
         this.clearNotifOutputBoundary.prepareDisplayView();
 
     }

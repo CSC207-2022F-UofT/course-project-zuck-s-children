@@ -1,6 +1,8 @@
 package ui;
 
-import notification.show_notif.NotifResponseModel;
+import notification.clear_notif.ClearNotifController;
+import notification.show_notif.ShowNotifController;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +14,32 @@ import java.util.Objects;
 
 public class NotificationUI extends JFrame implements ActionListener{
     ArrayList<List> notifications;
+    public JPanel notifPanel;
     JTable notifTable;
     JLabel notifLabel = new JLabel("All notifications");
     JLabel clearLabel = new JLabel("No new notifications");
     JButton chatButton = new JButton("Go to chatroom");
-    Container container = getContentPane();
+    JButton clearButton = new JButton("Clear Notifications");
+    JButton showButton = new JButton("Show Notifications");
+
+    ClearNotifController clearNotifController;
+
+    public NotificationUI(JPanel notifPanel) {
+        this.notifPanel = notifPanel;
+
+    }
+    public void build(ClearNotifController clearController) {
+        this.clearNotifController = clearController;
+        this.notifPanel.add(showButton);
+
+        JMenuBar mb = new JMenuBar();
+        mb.add(clearButton);
+        mb.add(chatButton);
+        this.notifPanel.setLayout(new BorderLayout());
+        this.notifPanel.add(mb, BorderLayout.SOUTH);
+        this.addActionEvent();
+
+}
 
     public JTable makeTable(ArrayList<List> notifications) {
         String[] columnNames = {"Sender", "Content", "Date"};
@@ -36,54 +59,24 @@ public class NotificationUI extends JFrame implements ActionListener{
         }
         return data;
     }
-
-    private void addComponentsToContainer(String response) {
-        container.add(chatButton);
-        if (Objects.equals(response, "show")){
-            container.add(notifTable);
-            container.add(notifLabel);
-            container.remove(clearLabel);
-        }
-        else{
-            container.add(clearLabel);
-            container.remove(notifTable);
-            container.remove(notifLabel);
-        }
-
-    }
-
-    private void setLocationAndSize(String response) {
-        chatButton.setBounds(50, 50, 300, 200);
-        if (Objects.equals(response, "show")){
-            notifTable.setBounds(30, 30, 1000, 700);
-            //notifLabel.setBounds();
-        } else{
-            //clearLabel.setBounds();
-        }
-    }
-
-    private void setLayoutManager() {
-        container.setLayout(null);
-    }
-
+    
     public void prepareView(ArrayList<List> response) {
         this.notifications = response;
         notifTable = makeTable(this.notifications);
-        setLayoutManager();
-        setLocationAndSize("show");
-        addComponentsToContainer("show");
-        addActionEvent();
+        JLabel practice = new JLabel("prac");
+
+        this.notifPanel.setLayout(new BorderLayout());
+        this.notifPanel.add(notifTable, BorderLayout.CENTER);
     }
 
     public void showMessage(){
-        setLayoutManager();
-        setLocationAndSize("clear");
-        addComponentsToContainer("clear");
-        addActionEvent();
+        JOptionPane.showMessageDialog(this, "No new notifications!");
     }
 
     public void addActionEvent() {
         chatButton.addActionListener(this);
+        showButton.addActionListener(this);
+        clearButton.addActionListener(this);
     }
     /**
      * Invoked when an action occurs.
@@ -96,6 +89,16 @@ public class NotificationUI extends JFrame implements ActionListener{
         //chat stuff
 
         }
+        if (e.getSource() == clearButton){
+            if (JOptionPane.showConfirmDialog(this.notifPanel,
+                    "Are you sure you want to clear all notifications?", "Clear?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                clearNotifController.clearNotif();
+            }
+
+        }
 
     }
+
 }

@@ -1,6 +1,8 @@
 package account_login;
 
 import account_creation.Account;
+import notification.clear_notif.*;
+import notification.show_notif.*;
 import ui.LoginUI;
 import matching.MatchingAlgorithm;
 import swipe.SwiperInputBoundary;
@@ -11,6 +13,7 @@ import swipe.screen.SwipeScreen;
 import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
 import ui.NavigationUI;
+import ui.NotificationUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,9 +36,7 @@ public class LoginPresenter implements LoginOutBoundary{
 
 
             //Open SwiperUI frame
-
-
-            //Open navigation frame
+      //Open navigation frame
             NavigationUI navigationUI = new NavigationUI();
             navigationUI.build();
 

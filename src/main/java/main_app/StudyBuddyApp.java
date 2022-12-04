@@ -1,6 +1,10 @@
+package main_app;
+
 import account_creation.Account;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDatabase;
+import notification.clear_notif.*;
+import notification.show_notif.*;
 import ui.LoginUI;
 import data.persistency.UserDatabase;
 
@@ -92,6 +96,9 @@ public class StudyBuddyApp {
                 }
             }
         });
+
+
+
 
     }
 }

@@ -1,4 +1,4 @@
-package swipe.screen;
+package Swipe.Screen;
 
 import account_creation.Account;
 import data.persistency.UserDatabase;

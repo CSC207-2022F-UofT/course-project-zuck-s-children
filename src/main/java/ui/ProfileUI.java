@@ -317,7 +317,7 @@ public class ProfileUI extends JFrame implements ActionListener {
                 // creating an InModel using the input info
                 ProfileInModel profileModifications = new ProfileInModel(nameTF.getText(), pronounTF.getText(), (String) yearCB.getSelectedItem(), (String) fieldCB.getSelectedItem(), personalStudyStyles, studyBuddyPref, spotPref);
 
-//            StudyBuddyApp.profileController.profileController.modifyProfile(profileModifications);
+//            main_app.StudyBuddyApp.profileController.profileController.modifyProfile(profileModifications);
             }}
     }
 
