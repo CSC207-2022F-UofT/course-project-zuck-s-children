@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class UserDatabase implements Serializable {
     private static UserDatabase USERDATABASE;
-    public HashMap<String, Account> accounts;
+    public HashMap<String, Account> accounts = new HashMap<>();
     public Account currentUser;
 
     private UserDatabase() {
@@ -26,7 +26,7 @@ public class UserDatabase implements Serializable {
         return USERDATABASE.currentUser;
     }
     public static void setCurrentUser(Account currentUser) {
-        UserDatabase.getUserDatabase().currentUser = currentUser;
+        USERDATABASE.currentUser = currentUser;
     }
 
     public void setAccounts(HashMap<String, Account> accounts) {
