@@ -13,8 +13,8 @@ import java.util.List;
 public class StudyBuddyApp {
     static ChatDatabase chatDatabase;
     public static void main(String[] args){
+        UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
 
-        HashMap<String, Account> userDatabase = null;
         List<Object> chatData = null;
 
         // deserializing the userDatabase.txt file and the chatDatabase.txt file
@@ -22,32 +22,36 @@ public class StudyBuddyApp {
             FileInputStream finUser = new FileInputStream("userDatabase.txt");
             FileInputStream finChat = new FileInputStream("chatDatabase.txt");
             //Creating stream to read the object
+
             ObjectInputStream inUser = new ObjectInputStream(finUser);
             ObjectInputStream inChat = new ObjectInputStream(finChat);
-            userDatabase = (HashMap<String, Account>)inUser.readObject();
+            HashMap<String, Account> userDatabaseAccounts = (HashMap<String, Account>) in.readObject();
+            USERDATABASE.setAccounts(userDatabaseAccounts);
             chatData = (List<Object>)inChat.readObject();
             //closing the stream
             inUser.close();
             inChat.close();
             finUser.close();
             finChat.close();
+
             System.out.println("successful deserialization");
+            System.out.println("Deserialized UserDatabase size: " + USERDATABASE.getAccounts().size());
+            System.out.println(USERDATABASE.getAccounts().get("1"));
 
         } catch (Exception e) {
             System.out.println(e);
             System.out.println("unsuccessful deserialization");
 
-        }
-        if (userDatabase == null) {
-            userDatabase = new HashMap<String, Account>();
-        }
-        if(chatData == null){
-            chatDatabase = new ChatDatabase(new ArrayList<>());
-        }
-        else{
-            chatDatabase = new ChatDatabase(chatData);
-        }
-        UserDatabase.setAccounts(userDatabase);
+            USERDATABASE = UserDatabase.getUserDatabase();
+            USERDATABASE.setAccounts(new HashMap<String, Account>());
+            
+          if(chatData == null){
+              chatDatabase = new ChatDatabase(new ArrayList<>());
+          }
+          else{
+              chatDatabase = new ChatDatabase(chatData);
+          }
+         }
         ChatDataAccess chatDataAccess = new ChatDataAccess();
         ChatDataAccess.setChatdata(chatDatabase);
 
@@ -61,8 +65,9 @@ public class StudyBuddyApp {
         LoginUI.setFrame(frame);
 
 
-        HashMap<String, Account> finalUserDatabase = userDatabase;
+        HashMap<String, Account> finalUserDatabaseAccounts = USERDATABASE.getAccounts();
         ChatDatabase finalChatDatabase = chatDataAccess.getChatData();
+        
         LoginUI.getFrames()[0].addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -75,8 +80,8 @@ public class StudyBuddyApp {
                         FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
                         ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
                         ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
-                        System.out.println("Serialized UserDatabase size: " + UserDatabase.getAccounts().size());
-                        outUser.writeObject(finalUserDatabase);
+                        System.out.println("Serialized UserDatabase size: " + finalUserDatabaseAccounts.size());
+                        outUser.writeObject(finalUserDatabaseAccounts);
                         outChat.writeObject(finalChatDatabase);
                         outChat.flush();
                         outUser.flush();

@@ -1,7 +1,6 @@
 package ui.profile;
 
 
-import ui.ViewModel;
 import profile.Profile;
 import profile.ProfileInModel;
 
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ProfileUI extends JFrame implements ActionListener, ViewModel {
+public class ProfileUI extends JFrame implements ActionListener {
     JButton editBtn = new JButton("Edit"); // the edit/save button
     JPanel personalInfoSection = new JPanel(); // figure out layout later
     JLabel nameLbl = new JLabel("Name"); // the name label
@@ -118,7 +117,6 @@ public class ProfileUI extends JFrame implements ActionListener, ViewModel {
         setVisible(true); // so the frame will show
     }
 
-    @Override
     public void build() {
 
     }
