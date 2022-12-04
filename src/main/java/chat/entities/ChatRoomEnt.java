@@ -24,7 +24,7 @@ public class ChatRoomEnt implements Serializable {
          * @return the name of the another user
          */
         public String getOtherUser(){
-            return UserDatabase.getCurrentUser() == User1? User2.getUsername() : User1.getUsername();
+            return UserDatabase.getUserDatabase().getCurrentUser() == User1? User2.getUsername() : User1.getUsername();
         }
 
         /**

@@ -25,7 +25,7 @@ public class ChatDataAccess implements ChatDataAccessInterface{
 
         @Override
         public List<Object> loadRoomByAccount() {
-                return chatdata.findByAccount(UserDatabase.getCurrentUser());
+                return chatdata.findByAccount(UserDatabase.getUserDatabase().getCurrentUser());
         }
 
 

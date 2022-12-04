@@ -14,7 +14,6 @@ public class StudyBuddyApp {
     static ChatDatabase chatDatabase;
     public static void main(String[] args){
         UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
-
         List<Object> chatData = null;
 
         // deserializing the userDatabase.txt file and the chatDatabase.txt file
@@ -25,7 +24,7 @@ public class StudyBuddyApp {
 
             ObjectInputStream inUser = new ObjectInputStream(finUser);
             ObjectInputStream inChat = new ObjectInputStream(finChat);
-            HashMap<String, Account> userDatabaseAccounts = (HashMap<String, Account>) in.readObject();
+            HashMap<String, Account> userDatabaseAccounts = (HashMap<String, Account>) inUser.readObject();
             USERDATABASE.setAccounts(userDatabaseAccounts);
             chatData = (List<Object>)inChat.readObject();
             //closing the stream

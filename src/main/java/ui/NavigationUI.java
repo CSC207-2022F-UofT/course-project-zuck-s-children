@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NavigationUI implements ActionListener, ViewModel{
+public class NavigationUI implements ActionListener{
 
     JPanel navCardPanel;
 
@@ -13,7 +13,7 @@ public class NavigationUI implements ActionListener, ViewModel{
 
     JPanel swiperPanel = new JPanel();
     JPanel chatListPanel = new JPanel();
-    ChatListUI chatListUI = new ChatListUI(chatListPanel);
+    ui.ChatListUI chatListUI = new ui.ChatListUI(chatListPanel);
     JPanel notifPanel = new JPanel();
     JPanel accountPanel = new JPanel();
     JPanel profilePanel = new JPanel();
@@ -43,7 +43,6 @@ public class NavigationUI implements ActionListener, ViewModel{
         pane.add(navCardPanel);
     }
 
-    @Override
     public void build(){
         JFrame frame = new JFrame("StudyBuddy");
         frame.setPreferredSize(new Dimension(1440, 1000));
