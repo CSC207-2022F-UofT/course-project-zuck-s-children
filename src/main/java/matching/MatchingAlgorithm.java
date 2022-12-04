@@ -97,7 +97,7 @@ public class MatchingAlgorithm {
     public static ArrayList<Account> getOthers() {
         ArrayList<Account> otherUsers = new ArrayList<>();
         for (Account a : UserDatabase.getAccounts().values()) {
-            if (a != UserDatabase.getCurrentUser()) {
+            if (a != UserDatabase.getUserDatabase().getCurrentUser()) {
                 otherUsers.add(a);
             }
         }
@@ -105,7 +105,7 @@ public class MatchingAlgorithm {
     }
 
     public static LinkedList<Account> finalMatches() {
-        return MatchingAlgorithmFinal(UserDatabase.getCurrentUser(),
+        return MatchingAlgorithmFinal(UserDatabase.getUserDatabase().getCurrentUser(),
                 getOthers());
     }
 }

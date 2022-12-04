@@ -1,7 +1,5 @@
-package ui;
+package profile;
 
-
-import profile.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ProfileUI extends JFrame implements ActionListener {
+public class ProfileUI extends JInternalFrame implements ActionListener {
     JButton editBtn = new JButton("Edit"); // the edit/save button
     JLabel nameLbl = new JLabel("Name"); // the name label
     JTextField nameTF = new JTextField("N/A", 20); // the textfield where the user type their name; default value is "N/A"
@@ -265,10 +263,6 @@ public class ProfileUI extends JFrame implements ActionListener {
     public void build() {
         ProfileUI newProfileUI = new ProfileUI();
 //        newProfileUI.nameTF.setText();
-    }
-
-    public static void main(String[] args) {
-        ProfileUI profileUI = new ProfileUI();
     }
 
     @Override

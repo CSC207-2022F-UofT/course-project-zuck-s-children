@@ -1,7 +1,7 @@
 package profile;
 
 public class ProfileBuilder {
-    public Profile create(ProfileInModel profileModel) {
+    public Profile createNewProfile(ProfileInModel profileModel) {
         Profile modifiedProfile = new Profile();
         modifiedProfile.setName(profileModel.getName());
         modifiedProfile.setPronouns(profileModel.getPronouns());

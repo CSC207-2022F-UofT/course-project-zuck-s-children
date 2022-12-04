@@ -19,14 +19,14 @@ public class UserDatabase implements Serializable {
         return USERDATABASE;
     }
     public static HashMap<String, Account> getAccounts() {
-        return accounts;
+        return USERDATABASE.accounts;
     }
 
     public Account getCurrentUser() {
         return USERDATABASE.currentUser;
     }
     public static void setCurrentUser(Account currentUser) {
-        UserDatabase.currentUser = currentUser;
+        UserDatabase.getUserDatabase().currentUser = currentUser;
     }
 
     public void setAccounts(HashMap<String, Account> accounts) {
