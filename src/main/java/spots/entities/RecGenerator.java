@@ -61,24 +61,30 @@ public class RecGenerator {
             }
         }
         // if there are less than 3 mutual spots
-        int i = 0;
         while (recommendation.size() < 3) {
-            String[] spots = new String[]{"Robarts Library", "Gerstein Library", "Student Commons",
-                    "Hart House", "UC College", "Caven Library", "E.J Pratt Library", "Graham Library", "UC Quad",
-                    "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};
+            recHelper();
+        }
+    }
+    /**
+     * Helper method in case of less than 3 mutual spots
+     */
+    int i = 0;
+    public void recHelper(){
+        String[] spots = new String[]{"Robarts Library", "Gerstein Library", "Student Commons",
+                "Hart House", "UC College", "Caven Library", "E.J Pratt Library", "Graham Library", "UC Quad",
+                "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};
 
-            // add a spot randomly from either users' preferred study spots except N/A
-            if (!(options.isEmpty())) {
-                recommendation.add(options.remove(0));
+        // add a spot randomly from either users' preferred study spots except N/A
+        if (!(options.isEmpty())) {
+            recommendation.add(options.remove(0));
+        }
+        // if users both picked N/A, add a random spot from the original selection options
+        else {
+            String random = spots[i];
+            if (!(recommendation.contains(random))) {
+                recommendation.add(random);
             }
-            // if users both picked N/A, add a random spot from the original selection options
-            else {
-                String random = spots[i];
-                if (!(recommendation.contains(random))) {
-                    recommendation.add(random);
-                }
-                i++;
-            }
+            i++;
         }
     }
 
