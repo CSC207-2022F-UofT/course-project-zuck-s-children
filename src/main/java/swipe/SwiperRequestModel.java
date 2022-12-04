@@ -1,7 +1,7 @@
 package swipe;
 
 import account_creation.Account;
-
+//
 /**
  * A request model for the swiper
  */

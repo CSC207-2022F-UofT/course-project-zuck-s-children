@@ -2,43 +2,42 @@ package chat.use_cases;
 
 import chat.control.*;
 import chat.entities.ChatRoomEnt;
+import chat.presenter.MsgOutBoundary;
+import chat.presenter.MsgOutModel;
 import data.persistency.ChatDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatRoomOpenInteractor implements OpenRoomBoundary {
-    private ChatDataAccessInterface chatDataAccess;
-    private RoomOutBoundary roomPresenter;
+    private final ChatDataAccessInterface chatDataAccess;
+    private final MsgOutBoundary roomPresenter;
 
     /**
      * Construct the interactor for opening a chat room.
-     * @param roomPresenter
-     * @param chatDataAccess
+     * @param roomPresenter a presenter to open a chat room
+     * @param chatDataAccess data access to chat database
      */
-    public ChatRoomOpenInteractor (RoomOutBoundary roomPresenter, ChatDataAccessInterface chatDataAccess){
+    public ChatRoomOpenInteractor (MsgOutBoundary roomPresenter, ChatDataAccessInterface chatDataAccess){
         this.roomPresenter = roomPresenter;
         this.chatDataAccess = chatDataAccess;
     }
 
     /**
      * Open a chatroom.
-     * @param roomModel
+     * @param roomModel a chat room model
      */
     @Override
     public void open(RoomInModel roomModel) {
-        RoomOutModel responseModel = new RoomOutModel(fetch(roomModel));
-        roomPresenter.update(responseModel);
+        MsgOutModel responseModel = new MsgOutModel(fetch(roomModel));
+        roomPresenter.update(responseModel, roomModel.getId());
     }
 
     private List<Object> fetch(RoomInModel roomModel) {
-        List<Object> room;
         try {
-            room = ((ChatRoomEnt)chatDataAccess.loadRoomById(roomModel.getId())).getMessages();
-        } catch (Throwable NoRoomFound) {
-            return new ArrayList<Object>();
+            return ((ChatRoomEnt) chatDataAccess.loadRoomById(roomModel.getId())).getMessages();
+        }catch(Throwable NoRoomFound){
+            return new ArrayList<>();
         }
-
-        return room;
     }
 }

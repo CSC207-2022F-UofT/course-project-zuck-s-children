@@ -1,4 +1,4 @@
-package chat.control;
+package chat.presenter;
 
 import java.util.ArrayList;
 import java.util.List;

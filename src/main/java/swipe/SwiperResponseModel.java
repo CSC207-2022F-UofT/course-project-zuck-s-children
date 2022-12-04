@@ -1,5 +1,5 @@
 package swipe;
-
+//
 /**
  * A response model for the swiper
  */

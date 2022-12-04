@@ -3,11 +3,11 @@ package chat.control;
 import account_creation.Account;
 
 public class AccountInModel {
-    private Account acc;
+    private final Account acc;
 
     /**
      * Construct an account model
-     * @param acc
+     * @param acc account model
      */
     public AccountInModel(Account acc){
         this.acc = acc;
@@ -15,7 +15,7 @@ public class AccountInModel {
 
     /**
      * Return the Account that this model represents
-     * @return
+     * @return the account
      */
     public Account getAccount(){
         return this.acc;

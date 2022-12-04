@@ -1,8 +1,8 @@
 package chat.use_cases;
 
 import chat.control.MsgInModel;
-import chat.control.MsgOutBoundary;
-import chat.control.MsgOutModel;
+import chat.presenter.MsgOutBoundary;
+import chat.presenter.MsgOutModel;
 import chat.entities.ChatRoomEnt;
 import chat.entities.MessageEnt;
 import chat.entities.MessageFactory;
@@ -12,13 +12,13 @@ import java.util.List;
 
 public class MsgSendInteractor implements MsgInBoundary {
     private static final MessageFactory msgFactory = new MessageFactory();
-    private ChatDataAccessInterface chatDataAccess;
-    private MsgOutBoundary msgPresenter;
+    private final ChatDataAccessInterface chatDataAccess;
+    private final MsgOutBoundary msgPresenter;
 
     /**
      * Constract an interactor for sending a message
-     * @param msgPresenter
-     * @param chatDataAccess
+     * @param msgPresenter a presenter for a message
+     * @param chatDataAccess a data access to the chat database
      */
     public MsgSendInteractor(MsgOutBoundary msgPresenter, ChatDataAccessInterface chatDataAccess){
         this.msgPresenter = msgPresenter;
@@ -27,21 +27,17 @@ public class MsgSendInteractor implements MsgInBoundary {
 
     /**
      * Send a message to the room and update the database
-     * @param msgModel
+     * @param msgModel message input model
      */
     @Override
     public void sendMessage(MsgInModel msgModel) {
         MessageEnt newMessage = msgFactory.create(msgModel);
         ChatRoomEnt room = fetch(newMessage.getRoomId());
 
-        /**
-         * Add a new message to the data entity
-         */
+
+        // Add a new message to the data entity
         room.addMessage(newMessage);
 
-        /**
-         * Get
-         */
         List<Object> chatList = room.getMessages();
         for(int i = 0; i < chatList.size(); i++){
             MessageEnt message = (MessageEnt)chatList.get(i);
@@ -49,7 +45,7 @@ public class MsgSendInteractor implements MsgInBoundary {
         }
         chatList.add(newMessage.getInfo());
         MsgOutModel responseModel = new MsgOutModel(chatList);
-        msgPresenter.update(responseModel);
+        msgPresenter.update(responseModel, newMessage.getRoomId());
     }
     private ChatRoomEnt fetch(String rid) {
         Object room;

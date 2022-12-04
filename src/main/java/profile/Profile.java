@@ -1,6 +1,5 @@
 package profile;
 
-import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class Profile implements Serializable {
     /**
      * Sets the user's pronouns
      *
-     * @param pronouns
+     * @param pronouns the user's pronouns
      */
     public void setPronouns(String pronouns) {
         this.pronouns = pronouns;
@@ -41,7 +40,7 @@ public class Profile implements Serializable {
     /**
      * Sets the user's field of study
      *
-     * @param fieldOfStudy
+     * @param fieldOfStudy the user's field of study
      */
     public void setFieldOfStudy(String fieldOfStudy) {
         this.fieldOfStudy = fieldOfStudy;
@@ -138,21 +137,17 @@ public class Profile implements Serializable {
     }
 
 
-    private String name;
-    public String pronouns;
-    // profilePicture;
+    private String name = "N/A";
+    private String pronouns = "N/A";
     public static final String[] YEARS = {"1", "2", "3", "4", "4+"};
-    public String year;
-    public static final String[] FIELDS = {"Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Other"};
-    public String fieldOfStudy;
-    public static final String[] STYLES = {"quiet", "talkative"};
-    public List<String> studyStyles;
-    public static String[] studySpots = {"Robarts Library", "Gerstein Library", "Student Commons",
-            "Hart House", "UC College", "Caven Library", "E.J Pratt Library", "Graham Library", "UC Quad",
-            "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};
-    public JComboBox<String> listOfStudySpots1 = new JComboBox<String>(studySpots);
-    public List<String> studySpotPreferences;
-    public HashMap<String, List<String>> studyBuddyPreferences;
+    private String year = "N/A";
+    public static final String[] FIELDS = {"N/A", "Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Faculty of Architecture", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Faculty of Information (iSchool)", "Other"};
+    private String fieldOfStudy = "N/A";
+    public static final String[] STYLES = {"N/A", "quiet", "talkative", "goal-setting", "moves around", "hard work grinding"};
+    private List<String> studyStyles = new ArrayList<>();
+    public static String[] studySpots = {"N/A", "Robarts Library", "Gerstein Library", "UTSU Student Commons", "Hart House", "UC Library", "Caven Library", "E.J. Pratt Library", "Graham Library", "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall", "OISE", "Kelly Library", "Innis College Library"};
+    private List<String> studySpotPreferences = new ArrayList<>();
+    private HashMap<String, List<String>> studyBuddyPreferences = new HashMap<>();
 
     /**
      * Returns the compatibility score of the user to the user currently logged in.
@@ -177,40 +172,10 @@ public class Profile implements Serializable {
     /**
      * Construct a new Profile object.
      */
-    public void Profile() {
-        studyBuddyPreferences.put("year", new ArrayList<String>());
-        studyBuddyPreferences.put("field of study", new ArrayList<String>());
-        studyBuddyPreferences.put("descriptions", new ArrayList<String>());
-    }
-
-    /**
-     * Check if the user input no more than three study styles for themselves.
-     *
-     * @return whether the user has input no more than three study styles for themselves
-     */
-    public boolean validStudyStyleInput() {
-        return studyStyles.size() <= 3;
-    }
-
-    /**
-     * Check if the user input no more than three study styles for their ideal study buddy.
-     *
-     * @return whether the user has input no more than three study styles for their ideal study buddy
-     */
-    public boolean validSBStudyStyleInput() {
-        if (((JList<String>) studyBuddyPreferences.get("descriptions")).getSelectedValuesList().size() > 3) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Check if the user input no more than three fields of study for their ideal study buddy.
-     *
-     * @return whether the user has input no more than three fields of study for their ideal study buddy
-     */
-    public boolean validSBStudyFieldsInput() {
-        return ((JList<String>) studyBuddyPreferences.get("field of study")).getSelectedValuesList().size() <= 3;
+    public Profile() {
+        studyBuddyPreferences.put("year", new ArrayList<>());
+        studyBuddyPreferences.put("field of study", new ArrayList<>());
+        studyBuddyPreferences.put("descriptions", new ArrayList<>());
     }
 
     /**

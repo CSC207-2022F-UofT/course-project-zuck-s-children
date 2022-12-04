@@ -10,6 +10,7 @@ import swipe.screen.EmptyScreen;
 import swipe.screen.SwipeScreen;
 import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
+import ui.NavigationUI;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,14 +2,14 @@ package chat.control;
 
 import chat.use_cases.OpenRoomBoundary;
 
-public class ChatRoomOpenContoller {
-    private OpenRoomBoundary chatRoomInteractor;
+public class ChatRoomOpenController {
+    private final OpenRoomBoundary chatRoomInteractor;
 
     /**
      * Construct a controller to open a chat room
-     * @param chatRoomInterator
+     * @param chatRoomInteractor
      */
-    public ChatRoomOpenContoller(OpenRoomBoundary chatRoomInterator){
+    public ChatRoomOpenController(OpenRoomBoundary chatRoomInteractor){
         this.chatRoomInteractor = chatRoomInteractor;
     }
 

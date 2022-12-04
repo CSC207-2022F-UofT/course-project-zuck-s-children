@@ -6,7 +6,7 @@ import swipe.SwiperRequestModel;
 import swipe.SwiperResponseModel;
 
 import java.util.Objects;
-
+//
 /**
  * A controller class for the swiper.
  */
