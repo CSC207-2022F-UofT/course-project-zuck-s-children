@@ -1,10 +1,13 @@
 package ui;
 
 import account_creation.Account;
+import data.persistency.ChatDataAccess;
 import data.persistency.UserDatabase;
 import profile.Profile;
 
 import java.awt.*;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -16,6 +19,7 @@ public class Navigation {
     // titles of tabs
     final static String PROFILE = "Profile";
     final static String NOTIFICATIONS = "Notifications";
+    final static String CHAT = "Chat List";
     final static String SWIPER = "Swiper";
 
     final static int extraWindowWidth = 100;
@@ -28,6 +32,7 @@ public class Navigation {
 //        tabbedPane.addTab(NOTIFICATIONS, notificationUI);
 
         tabbedPane.addTab(SWIPER, swiperUI);
+        tabbedPane.addTab(CHAT, chatListUI);
         Profile prof2 = new Profile();
         prof2.setName("lol");
         prof2.setYear("jjj");
@@ -85,7 +90,7 @@ public class Navigation {
         //Create and set up the content pane.
         Navigation demo = new Navigation();
         demo.addComponentToPane(frame.getContentPane());
-
+        serializeOnWindowClose(frame);
         //Display the window.
         frame.pack();
         frame.setVisible(true);
@@ -94,6 +99,32 @@ public class Navigation {
 //            swiperUI.setBounds(0, 0, 1440, 1000);
 //            swiperUI.build(pot, swiperController);
 //        }
+    }
+    public static void serializeOnWindowClose(JFrame frame){
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    try {
+                        FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
+                        FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
+                        ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
+                        ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
+                        outUser.writeObject(UserDatabase.getAccounts());
+                        outChat.writeObject(new ChatDataAccess().getChatData().getChatList());
+                        outChat.flush();
+                        outUser.flush();
+                        outChat.close();
+                        outUser.close();
+                        foutChat.close();
+                        foutUser.close();
+                        System.out.println("successful serialization");
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                    System.exit(0);
+
+            }
+        });
     }
 
     public static void main(String[] args) {

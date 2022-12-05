@@ -11,11 +11,8 @@ import swipe.SwiperPresenter;
 import swipe.screen.SwipeScreen;
 import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
-import ui.LoginUI;
+import ui.*;
 import data.persistency.UserDatabase;
-import ui.NotificationUI;
-import ui.SettingUI;
-import ui.SwiperUI;
 
 import javax.swing.*;
 import java.io.*;
@@ -41,6 +38,7 @@ public class StudyBuddyApp {
     public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
     public static SwiperUI swiperUI = new SwiperUI();
 
+    public static ChatListUI chatListUI;
     public static void main(String[] args){
         UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
         List<Object> chatData = null;
@@ -63,8 +61,6 @@ public class StudyBuddyApp {
             finChat.close();
 
             System.out.println("successful deserialization");
-            System.out.println("Deserialized UserDatabase size: " + USERDATABASE.getAccounts().size());
-            System.out.println(USERDATABASE.getAccounts().get("1"));
 
         } catch (Exception e) {
             System.out.println(e);
@@ -73,15 +69,12 @@ public class StudyBuddyApp {
             USERDATABASE = UserDatabase.getUserDatabase();
             USERDATABASE.setAccounts(new HashMap<String, Account>());
 
-            if(chatData == null){
-                chatDatabase = new ChatDatabase(new ArrayList<>());
-            }
-            else{
-                chatDatabase = new ChatDatabase(chatData);
-            }
+            chatData = new ArrayList<>();
         }
         ChatDataAccess chatDataAccess = new ChatDataAccess();
+        chatDatabase = new ChatDatabase(chatData);
         ChatDataAccess.setChatdata(chatDatabase);
+        chatListUI = new ChatListUI();
 
         //initial page: user authorization
         LoginUI frame = new LoginUI();
@@ -93,9 +86,9 @@ public class StudyBuddyApp {
         LoginUI.setFrame(frame);
 
         HashMap<String, Account> finalUserDatabaseAccounts = USERDATABASE.getAccounts();
-        ChatDatabase finalChatDatabase = chatDataAccess.getChatData();
+        List<Object> finalChatDatabase = chatDataAccess.getChatData().getChatList();
 
-        LoginUI.getFrames()[0].addWindowListener(new java.awt.event.WindowAdapter() {
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 if (JOptionPane.showConfirmDialog(frame,
@@ -107,7 +100,6 @@ public class StudyBuddyApp {
                         FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
                         ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
                         ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
-                        System.out.println("Serialized UserDatabase size: " + finalUserDatabaseAccounts.size());
                         outUser.writeObject(finalUserDatabaseAccounts);
                         outChat.writeObject(finalChatDatabase);
                         outChat.flush();
@@ -124,6 +116,5 @@ public class StudyBuddyApp {
                 }
             }
         });
-
     }
 }

@@ -17,7 +17,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatListUI extends javax.swing.JFrame implements ListSelectionListener {
+public class ChatListUI extends JInternalFrame implements ListSelectionListener {
     JList roomList;
     JScrollPane listScroller;
 
@@ -31,12 +31,15 @@ public class ChatListUI extends javax.swing.JFrame implements ListSelectionListe
     ChatRoomOpenController chatRoomOpenContoller = new ChatRoomOpenController(chatRoomInteractor);
 
 
-    public ChatListUI(JPanel panel){
-        this.chatList = panel;
+    public ChatListUI(){
+        super("Chat List");
+        this.setBounds(0, 0, 1440, 1000);
+        this.setResizable(false);
+        this.build();
     }
 
     public void build() {
-        chatList.removeAll();
+        this.chatList = new JPanel();
         roomIds = new ArrayList<>();
         DefaultListModel<String> listModel = new DefaultListModel<>();
         List<Object> listOfRooms = chatDataAccess.loadRoomByAccount();
@@ -51,12 +54,11 @@ public class ChatListUI extends javax.swing.JFrame implements ListSelectionListe
         listScroller = new JScrollPane(roomList);
         listScroller.setPreferredSize(new Dimension(chatList.getWidth(), chatList.getHeight()));
         chatList.add(listScroller);
-        pack();
+        this.add(chatList);
+        this.pack();
+        this.setVisible(true);
     }
 
-    public JPanel getPanel(){
-        return this.chatList;
-    }
     /**
      * Called whenever the value of the selection changes.
      *
