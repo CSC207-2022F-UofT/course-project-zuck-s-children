@@ -14,7 +14,7 @@ public class ChatRoomEnt implements Serializable {
      */
     private String id;
     private Participants participants;
-    public class Participants{
+    public class Participants implements Serializable{
         private Account User1;
         private Account User2;
 

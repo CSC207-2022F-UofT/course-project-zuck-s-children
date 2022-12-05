@@ -1,7 +1,10 @@
 package ui;
 
 import account_creation.Account;
+import chat.entities.ChatRoomEnt;
 import data.persistency.ChatDataAccess;
+import data.persistency.ChatDataAccessInterface;
+import data.persistency.ChatDatabase;
 import data.persistency.UserDatabase;
 import profile.Profile;
 
@@ -69,6 +72,10 @@ public class Navigation {
         UserDatabase.getAccounts().put(second.getUsername(), second);
         UserDatabase.getAccounts().put(curr.getUsername(), curr);
 
+        ChatDataAccess chatDataAccess = new ChatDataAccess();
+        chatDataAccess.setChatdata(new ChatDatabase(new ArrayList<>()));
+        chatDataAccess.addChatRoom(new ChatRoomEnt(curr, potential));
+        chatListUI.build();
         swiperUI.setBounds(0, 0, 1440, 1000);
         swiperUI.build(stuff, swiperController);
 
