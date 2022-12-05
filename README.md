@@ -25,6 +25,7 @@ The matching is produced by our matching algorithm based on information provided
 Once two users accept each other, the program creates a new chat room of the two users.
 
 #### Profile Customization
+<img width="450" alt="Screen Shot 2022-12-05 at 9 25 42 AM" src="https://user-images.githubusercontent.com/107783734/205661179-9bb536c5-f109-4896-b1e5-a2642d75d728.png">
 The users can customize their profile including a pronoun, a year of study, a program, and study style.
 The profile is used in the matching algorithm to generate a possible matches for our program's one of the most important feature.
 
