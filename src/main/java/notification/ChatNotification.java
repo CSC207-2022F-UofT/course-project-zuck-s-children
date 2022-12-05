@@ -5,11 +5,21 @@ import account_creation.Account;
 import java.time.LocalDateTime;
 
 public class ChatNotification extends Notification{
+    /**
+     * Child class of Notification - a Chat Notification.
+     */
 
     private String id;
 
-    public ChatNotification(String content, Account sender, LocalDateTime time, String chatid) {
+    /**
+     * Construct a Chat Notification Object with attributes of content, sender, time, and chatID
+     * @param content Content of the notification
+     * @param sender Sender of the notification
+     * @param time Time the notification was sent
+     * @param chatID The chatID of current user
+     */
+    public ChatNotification(String content, Account sender, LocalDateTime time, String chatID) {
         super(content, sender, time);
-        this.id = chatid;
+        this.id = chatID;
     }
 }

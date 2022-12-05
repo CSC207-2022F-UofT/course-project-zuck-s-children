@@ -18,7 +18,24 @@ public class Navigation {
 
         tabbedPane.addTab(PROFILE, profileUI);
 
+        Account curr = new Account("Sanzhar", "password");
+        Account acc1 = new Account("huan22", "password");
+        MatchNotification match1 = new MatchNotification("hello", acc1, LocalDateTime.now());
+        ChatNotification chat1 = new ChatNotification("nihao", acc1, LocalDateTime.now(), "3");
+        curr.addNotification(match1);
+        curr.addNotification(chat1);
+
+        UserDatabase.setCurrentUser(curr);
+
+        notificationUI = new NotificationUI();
+        showNotifPresenter = new ShowNotifPresenter(notificationUI);
+        showNotifInteractor = new ShowNotifInteractor(showNotifPresenter);
+        showNotifController =new ShowNotifController(showNotifInteractor);
+        notificationUI.create(showNotifController);
         tabbedPane.addTab(NOTIFICATIONS, notificationUI);
+        clearNotifPresenter = new ClearNotifPresenter(notificationUI);
+        clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter);
+        clearNotifController = new ClearNotifController(clearNotifInteractor);
 
 //        tabbedPane.addTab(SWIPER, swiperUI);
 

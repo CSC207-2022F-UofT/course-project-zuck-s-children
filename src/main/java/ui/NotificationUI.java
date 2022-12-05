@@ -1,23 +1,43 @@
 package ui;
 
-import notification.show_notif.NotifResponseModel;
+import notification.clear_notif.*;
+import notification.show_notif.ShowNotifController;
+import notification.show_notif.ShowNotifInteractor;
+import notification.show_notif.ShowNotifPresenter;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
+import static main_app.StudyBuddyApp.*;
 
-
-public class NotificationUI extends JFrame implements ActionListener{
+public class NotificationUI extends JInternalFrame implements ActionListener{
     ArrayList<List> notifications;
+    public JPanel notifPanel;
     JTable notifTable;
-    JLabel notifLabel = new JLabel("All notifications");
-    JLabel clearLabel = new JLabel("No new notifications");
+    JTable clearTable;
     JButton chatButton = new JButton("Go to chatroom");
-    Container container = getContentPane();
+    JButton clearButton = new JButton("Clear Notifications");
+    JScrollPane scrollNotifTable;
+    JMenuBar mb;
 
+    public NotificationUI(){
+        super("Notifications");
+        setMinimumSize(new Dimension(400, 800));
+        mb = new JMenuBar();
+        mb.add(clearButton);
+        mb.add(chatButton);
+        this.setLayout(new BorderLayout());
+        this.add(mb, BorderLayout.SOUTH);
+        this.addActionEvent();
+
+    }
+
+    public void create(ShowNotifController controller) {
+        controller.showNotif();
+    }
     public JTable makeTable(ArrayList<List> notifications) {
         String[] columnNames = {"Sender", "Content", "Date"};
         String[][] data = getNotif(this.notifications);
@@ -36,54 +56,23 @@ public class NotificationUI extends JFrame implements ActionListener{
         }
         return data;
     }
-
-    private void addComponentsToContainer(String response) {
-        container.add(chatButton);
-        if (Objects.equals(response, "show")){
-            container.add(notifTable);
-            container.add(notifLabel);
-            container.remove(clearLabel);
-        }
-        else{
-            container.add(clearLabel);
-            container.remove(notifTable);
-            container.remove(notifLabel);
-        }
-
-    }
-
-    private void setLocationAndSize(String response) {
-        chatButton.setBounds(50, 50, 300, 200);
-        if (Objects.equals(response, "show")){
-            notifTable.setBounds(30, 30, 1000, 700);
-            //notifLabel.setBounds();
-        } else{
-            //clearLabel.setBounds();
-        }
-    }
-
-    private void setLayoutManager() {
-        container.setLayout(null);
-    }
-
+    
     public void prepareView(ArrayList<List> response) {
         this.notifications = response;
         notifTable = makeTable(this.notifications);
-        setLayoutManager();
-        setLocationAndSize("show");
-        addComponentsToContainer("show");
-        addActionEvent();
+        scrollNotifTable = new JScrollPane(notifTable);
+        this.add(scrollNotifTable, BorderLayout.CENTER);
     }
 
-    public void showMessage(){
-        setLayoutManager();
-        setLocationAndSize("clear");
-        addComponentsToContainer("clear");
-        addActionEvent();
+    public void update(){
+        JOptionPane.showMessageDialog(this, "No new notifications!");
+        this.remove(scrollNotifTable);
+        this.repaint();
     }
 
     public void addActionEvent() {
         chatButton.addActionListener(this);
+        clearButton.addActionListener(this);
     }
     /**
      * Invoked when an action occurs.
@@ -93,9 +82,20 @@ public class NotificationUI extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chatButton){
-        //chat stuff
+
+
+        }
+        if (e.getSource() == clearButton){
+            if (JOptionPane.showConfirmDialog(this.notifPanel,
+                    "Are you sure you want to clear all notifications?", "Clear?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+
+                clearNotifController.clearNotif();
+            }
 
         }
 
     }
+
 }

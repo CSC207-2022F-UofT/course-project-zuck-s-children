@@ -4,6 +4,8 @@ import data.persistency.ChatDataAccess;
 import data.persistency.ChatDatabase;
 import data.persistency.UserDataAccessInterface;
 import matching.MatchingAlgorithm;
+import notification.clear_notif.*;
+import notification.show_notif.*;
 import profile.*;
 import swipe.SwiperInputBoundary;
 import swipe.SwiperInteractor;
@@ -30,7 +32,13 @@ public class StudyBuddyApp {
     public static ProfilePresenter profilePresenter = new ProfilePresenter(profileUI);
     public static ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter, UserDatabase.getUserDatabase());
     public static ProfileController profileController = new ProfileController(profileEditUseCase);
-    public static NotificationUI notificationUI = new NotificationUI();
+    public static NotificationUI notificationUI;
+    public static ShowNotifOutputBoundary showNotifPresenter;
+    public static ShowNotifInputBoundary showNotifInteractor;
+    public static ShowNotifController showNotifController;
+    public static ClearNotifOutputBoundary clearNotifPresenter;
+    public static ClearNotifInputBoundary clearNotifInteractor;
+    public static ClearNotifController clearNotifController;
 
 
     // Swiper Stuff
@@ -40,6 +48,9 @@ public class StudyBuddyApp {
 //    public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
 //    public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
 //    public static SwipeScreen swiperUI = new SwipeScreen(swiperController, );
+
+
+
 
     public static void main(String[] args){
         UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
@@ -125,6 +136,10 @@ public class StudyBuddyApp {
                 }
             }
         });
+
+
+
+
 
     }
 }
