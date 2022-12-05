@@ -36,6 +36,8 @@ public class Navigation {
         tabbedPane.addTab(PROFILE, profileUI);
 
 //        tabbedPane.addTab(NOTIFICATIONS, notificationUI);
+        tabbedPane.addTab(SWIPER, swiperUI);
+
         potential = MatchingAlgorithm.finalMatches()
 
 
