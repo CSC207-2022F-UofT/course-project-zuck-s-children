@@ -32,7 +32,7 @@ public class StudyBuddyApp {
 
     // Swiper Stuff
     // TODO: maybe Sanzhar to make all constructors compatible with the main program
-//    public static LinkedList<Account> potentialMatches = MatchingAlgorithm.finalMatches();
+    public static LinkedList<Account> potentialMatches;
     public static SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
     public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
     public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
