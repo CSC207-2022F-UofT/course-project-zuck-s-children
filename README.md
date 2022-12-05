@@ -38,14 +38,15 @@ to make a chat with other users.
 The program uses the algorithm to make a recommendation of study spot in a chat room. It takes account preference of both users in a room.
 
 #### Notification
-When there is a new match or a new message, the program creates a notification to notify the user about a new update.
+When there is a new match or a new message, the program creates a notification to notify the user about a new update. Users are able to view all notifications and clear all notifications. 
 
 
-## Credits: Team Members
-Lance Madarang - https://github.com/lancenigel
-Xi Wang - https://github.com/XiWang16
-Kenji Tan - https://github.com/tankenji
-Karen Riani - https://github.com/karenrni
-Nina Huang - https://github.com/nina-huangg
-Sanzhar Shamshiyev - https://github.com/SanzSS
+## About Us
+Group Members:
+  Lance Madarang - https://github.com/lancenigel
+  Xi Wang - https://github.com/XiWang16
+  Kenji Tan - https://github.com/tankenji
+  Karen Riani - https://github.com/karenrni
+  Nina Huang - https://github.com/nina-huangg
+  Sanzhar Shamshiyev - https://github.com/SanzSS
 John Lee - https://github.com/SiruLee
