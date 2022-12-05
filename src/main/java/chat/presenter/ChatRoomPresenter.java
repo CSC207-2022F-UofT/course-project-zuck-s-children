@@ -5,16 +5,9 @@ import ui.ChatRoomUI;
 import javax.swing.*;
 
 public class ChatRoomPresenter implements MsgOutBoundary {
-    ChatRoomUI chatRoom;
-    JPanel panel;
+    static ChatRoomUI chatRoom = new ChatRoomUI();
+    JFrame frame;
 
-    /**
-     * Construct a presenter for a chat room
-     */
-    public ChatRoomPresenter(){
-        this.panel = new JPanel();
-        this.chatRoom = new ChatRoomUI();
-    }
 
     /**
      * Update the view of a room with a model that represents a list of messages
@@ -23,9 +16,8 @@ public class ChatRoomPresenter implements MsgOutBoundary {
      */
     @Override
     public void update(MsgOutModel responseModel, String roomId) {
+        this.frame = new JFrame(roomId);
         chatRoom.setRoomId(roomId);
-        chatRoom.build(panel);
+        chatRoom.build(frame);
     }
-
-
 }
