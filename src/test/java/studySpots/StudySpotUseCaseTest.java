@@ -23,15 +23,12 @@ public class StudySpotUseCaseTest {
         user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
         user2.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
 
-        ArrayList<Account> chatUsers = new ArrayList<>();
-        chatUsers.add(user1);
-        chatUsers.add(user2);
 
         RecsOutBoundary presenter = new RecsPresenter();
         //RecsInBoundary
         GenerateRec interactor = new GenerateRec(presenter);
 
-        interactor.setParticipants(chatUsers);
+        interactor.setParticipants(user1, user2);
 
         ArrayList<String> correctRec = new ArrayList<>();
         correctRec.add(studySpots1[0]);
@@ -51,15 +48,11 @@ public class StudySpotUseCaseTest {
         user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
         user2.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
 
-        ArrayList<Account> chatUsers = new ArrayList<>();
-        chatUsers.add(user1);
-        chatUsers.add(user2);
-
         RecsOutBoundary presenter = new RecsPresenter();
         //RecsInBoundary
         GenerateRec interactor = new GenerateRec(presenter);
 
-        interactor.setParticipants(chatUsers);
+        interactor.setParticipants(user1, user2);
         ArrayList<String> recs = interactor.generateRec();
 
         assertTrue(recs.contains("Robarts Library"));
@@ -77,15 +70,11 @@ public class StudySpotUseCaseTest {
         user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
         user2.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
 
-        ArrayList<Account> chatUsers = new ArrayList<>();
-        chatUsers.add(user1);
-        chatUsers.add(user2);
-
         RecsOutBoundary presenter = new RecsPresenter();
         //RecsInBoundary
         GenerateRec interactor = new GenerateRec(presenter);
 
-        interactor.setParticipants(chatUsers);
+        interactor.setParticipants(user1, user2);
         ArrayList<String> recs = interactor.generateRec();
 
         assertTrue(recs.contains(studySpots1[0]));

@@ -1,5 +1,6 @@
 package spots.controllers;
 
+import AccountCreation.Account;
 import spots.useCases.RecsInBoundary;
 
 public class RecsController {
@@ -16,8 +17,11 @@ public class RecsController {
 
     /**
      * Create a recommendation list
+     *
+     * @param user1 user in a chat room
+     * @param user2 user in a chat room
      */
-    public void create() {
-        recommendSpots.createRecs();
+    public void create(Account user1, Account user2) {
+        recommendSpots.createRecs(user1, user2);
     }
 }

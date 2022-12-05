@@ -20,12 +20,15 @@ public class GenerateRec implements RecsInBoundary {
     public GenerateRec(RecsOutBoundary recsPresenter) {
         this.recsPresenter = recsPresenter;
     }
-
-    public void setParticipants(ArrayList<Account> chatUsers) { //ChatRoomEnt.Participants chatUsers
-        //user1 = chatUsers.User1; // will fix this
-        //user2 = chatUsers.User2;
-        user1 = chatUsers.get(0);
-        user2 = chatUsers.get(1);
+    /**
+     * Set the 2 users' accounts
+     *
+     * @param user1 chat room user
+     * @param user2 chat room user
+     */
+    public void setParticipants(Account user1, Account user2) {
+        this.user1 = user1;
+        this.user2 = user2;
     }
 
     /**
@@ -45,10 +48,12 @@ public class GenerateRec implements RecsInBoundary {
     /**
      * Create a recommendation
      * Update the user interface with the recommendation
+     *
+     * @param user1 user in  a chat room
+     * @param user2 user in a chat room
      */
     @Override
-    public void createRecs() {
-        //RecsOutModel recModel = new RecsOutModel(generateRec());
+    public void createRecs(Account user1, Account user2) {
         recsPresenter.update(generateRec());
     }
 }
