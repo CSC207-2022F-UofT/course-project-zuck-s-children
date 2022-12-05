@@ -92,8 +92,7 @@ public class Navigation {
     public static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("Study Buddy Finder");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         //Create and set up the content pane.
         Navigation demo = new Navigation();
         demo.addComponentToPane(frame.getContentPane());

@@ -47,6 +47,7 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
             roomIds.add(((ChatRoomEnt)room).getId());
             listModel.addElement(((ChatRoomEnt) room).getParticipants().getOtherUser());
         }
+        System.out.println("Number of Rooms: "+ roomIds.size());
         roomList = new JList<>(listModel);
         roomList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         roomList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
