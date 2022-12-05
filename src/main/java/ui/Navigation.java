@@ -70,7 +70,7 @@ public class Navigation {
         Account second = new Account("Potential2", "pass3232");
         second.setProfile(prof1);
 
-    
+
 
 
         LinkedList<Account> stuff = new LinkedList<>();
