@@ -20,6 +20,7 @@ import static main_app.StudyBuddyApp.*;
 
 public class Navigation {
     // titles of tabs
+    final static ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
     final static String PROFILE = "Profile";
     final static String NOTIFICATIONS = "Notifications";
     final static String CHAT = "Chat List";
@@ -61,7 +62,7 @@ public class Navigation {
         Account second = new Account("Potential2", "pass3232");
         second.setProfile(prof1);
 
-        UserDatabase.setCurrentUser(curr);
+        //UserDatabase.setCurrentUser(curr);
 
 
         LinkedList<Account> stuff = new LinkedList<>();
@@ -72,9 +73,6 @@ public class Navigation {
         UserDatabase.getAccounts().put(second.getUsername(), second);
         UserDatabase.getAccounts().put(curr.getUsername(), curr);
 
-        ChatDataAccess chatDataAccess = new ChatDataAccess();
-        chatDataAccess.setChatdata(new ChatDatabase(new ArrayList<>()));
-        chatDataAccess.addChatRoom(new ChatRoomEnt(curr, potential));
         chatListUI.build();
         swiperUI.setBounds(0, 0, 1440, 1000);
         swiperUI.build(stuff, swiperController);
@@ -101,10 +99,6 @@ public class Navigation {
         frame.pack();
         frame.setVisible(true);
 
-//        for (Account pot: stuff){
-//            swiperUI.setBounds(0, 0, 1440, 1000);
-//            swiperUI.build(pot, swiperController);
-//        }
     }
     public static void serializeOnWindowClose(JFrame frame){
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -116,7 +110,7 @@ public class Navigation {
                         ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
                         ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
                         outUser.writeObject(UserDatabase.getAccounts());
-                        outChat.writeObject(new ChatDataAccess().getChatData().getChatList());
+                        outChat.writeObject(chatDataAccess.getChatData().getChatList());
                         outChat.flush();
                         outUser.flush();
                         outChat.close();

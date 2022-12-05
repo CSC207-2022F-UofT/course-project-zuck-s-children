@@ -75,6 +75,7 @@ public class StudyBuddyApp {
         chatDatabase = new ChatDatabase(chatData);
         ChatDataAccess.setChatdata(chatDatabase);
         chatListUI = new ChatListUI();
+        chatListUI.build();
 
         //initial page: user authorization
         LoginUI frame = new LoginUI();
