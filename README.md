@@ -37,6 +37,7 @@ to make a chat with other users.
 The program uses the algorithm to make a recommendation of study spot in a chat room. It takes account preference of both users in a room.
 
 #### Notification
+<img width="450" alt="Screen Shot 2022-12-05 at 9 26 02 AM" src="https://user-images.githubusercontent.com/107783734/205661460-af741a56-517a-4c72-9927-7709a82ecb20.png">
 When there is a new match or a new message, the program creates a notification to notify the user about a new update. Users are able to view all notifications and clear all notifications. 
 
 
