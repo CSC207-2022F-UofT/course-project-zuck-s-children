@@ -28,6 +28,7 @@ public class Account implements Serializable, Comparable<Account> {
     public String getPassword() {
         return this.password;
     }
+    public void setProfile(Profile profile) {this.profile = profile;}
     public Profile getProfile() {
         return this.profile;
     }
@@ -53,4 +54,7 @@ public class Account implements Serializable, Comparable<Account> {
         return Integer.compare(other.getProfile().getScore(), this.getProfile().getScore());
     }
 
+    public void setProfile(Profile prof2) {
+        profile = prof2;
+    }
 }

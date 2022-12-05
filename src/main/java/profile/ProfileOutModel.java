@@ -31,22 +31,22 @@ public class ProfileOutModel {
         return studyBuddyPreferences;
     }
 
-    private String name;
-    public String pronouns;
+    private final String name;
+    public final String pronouns;
     // profilePicture;
-    public String year;
+    public final String year;
     public String fieldOfStudy;
     public List<String> studyStyles;
     public List<String> studySpotPreferences;
     public HashMap<String, List<String>> studyBuddyPreferences;
 
-    public ProfileOutModel(profile.ProfileInModel inModel) {
-        this.name = inModel.getName();
-        this.pronouns = inModel.getPronouns();
-        this.year = inModel.getYear();
-        this.fieldOfStudy = inModel.getFieldOfStudy();
-        this.studyStyles = inModel.getStudyStyles();
-        this.studySpotPreferences = inModel.getStudySpotPreferences();
-        this.studyBuddyPreferences = inModel.getStudyBuddyPreferences();
+    public ProfileOutModel(Profile modifiedProfile) {
+        this.name = modifiedProfile.getName();
+        this.pronouns = modifiedProfile.getPronouns();
+        this.year = modifiedProfile.getYear();
+        this.fieldOfStudy = modifiedProfile.getFieldOfStudy();
+        this.studyStyles = modifiedProfile.getStudyStyles();
+        this.studySpotPreferences = modifiedProfile.getStudySpotPreferences();
+        this.studyBuddyPreferences = modifiedProfile.getStudyBuddyPreferences();
     }
 }

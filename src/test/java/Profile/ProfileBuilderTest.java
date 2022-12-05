@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,10 +29,10 @@ class ProfileBuilderTest {
         assertEquals("N/A", profileModel.getPronouns());
         assertEquals("N/A", profileModel.getFieldOfStudy());
         assertEquals("N/A", profileModel.getYear());
-        ArrayList<Object> emptyList = new ArrayList<>();
+        List<String> emptyList = new ArrayList<>();
         assertEquals(emptyList, profileModel.getStudyStyles());
         assertEquals(emptyList, profileModel.getStudySpotPreferences());
-        HashMap<Object, Object> emptyHashMap = new HashMap<>();
+        HashMap<String, List<String>> emptyHashMap = new HashMap<>();
         emptyHashMap.put("year", emptyList);
         emptyHashMap.put("field of study", emptyList);
         emptyHashMap.put("descriptions", emptyList);
