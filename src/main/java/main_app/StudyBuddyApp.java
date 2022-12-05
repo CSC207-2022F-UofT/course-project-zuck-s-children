@@ -28,7 +28,7 @@ public class StudyBuddyApp {
     public static ChatDatabase chatDatabase;
     public static ProfileUI profileUI = new ProfileUI();
     public static ProfilePresenter profilePresenter = new ProfilePresenter(profileUI);
-    public static ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter, UserDatabase.getUserDatabase());
+    public static ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter);
     public static ProfileController profileController = new ProfileController(profileEditUseCase);
     public static NotificationUI notificationUI = new NotificationUI();
 

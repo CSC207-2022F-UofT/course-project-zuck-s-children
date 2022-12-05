@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ProfileUI extends JFrame implements ActionListener {
+import static javax.swing.JOptionPane.*;
+import static main_app.StudyBuddyApp.profileController;
+
+public class ProfileUI extends JInternalFrame implements ActionListener {
     Profile currUserProfile = UserDatabase.getUserDatabase().getCurrentUser().getProfile();
     JButton editBtn = new JButton("Edit"); // the edit/save button
     JLabel nameLbl = new JLabel("Name"); // the name label
@@ -315,13 +318,65 @@ public class ProfileUI extends JFrame implements ActionListener {
         personalInfoSection.add(nameTF, constraints);
     }
 
-    public void changeSuccessMechanism() {
-        JOptionPane.showMessageDialog(this, "Change successful.");
+    public void changeSuccessDialog() {
+        showMessageDialog(this, "Changes saved.");
+        this.setVisible(false);
     }
 
-    public void build() {
-        ProfileUI newProfileUI = new ProfileUI();
-//        newProfileUI.nameTF.setText();
+    public void build(ProfileOutModel modifications) {
+        nameTF.setText(modifications.getName());
+        pronounTF.setText(modifications.getPronouns());
+        yearCB.setSelectedItem(modifications.getYear());
+        fieldCB.setSelectedItem(modifications.getFieldOfStudy());
+        if (!modifications.getStudyStyles().isEmpty()) {
+            if (modifications.getStudyStyles().size() >= 1) {
+                style1.setSelectedItem(modifications.getStudyStyles().get(0));
+            }
+            if (modifications.getStudyStyles().size() >= 2) {
+                style2.setSelectedItem(modifications.getStudyStyles().get(1));
+            }
+            if (modifications.getStudyStyles().size() >= 3) {
+                style3.setSelectedItem(modifications.getStudyStyles().get(2));
+            }
+        }
+        if (!modifications.getStudyBuddyPreferences().isEmpty()) {
+            for (String year : modifications.getStudyBuddyPreferences().get("year")) {
+                yearPref.setSelectedValue(year, true);
+            }
+            if (!modifications.getStudyBuddyPreferences().get("field of study").isEmpty()) {
+                if (modifications.getStudyBuddyPreferences().get("field of study").size() >= 1) {
+                    fieldPref1.setSelectedItem(modifications.getStudyBuddyPreferences().get("field of study").get(0));
+                }
+                if (modifications.getStudyBuddyPreferences().get("field of study").size() >= 2) {
+                    fieldPref2.setSelectedItem(modifications.getStudyBuddyPreferences().get("field of study").get(1));
+                }
+                if (modifications.getStudyBuddyPreferences().get("field of study").size() >= 3) {
+                    fieldPref3.setSelectedItem(modifications.getStudyBuddyPreferences().get("field of study").get(2));
+                }
+            }
+            if (!modifications.getStudyBuddyPreferences().get("descriptions").isEmpty()) {
+                if (modifications.getStudyBuddyPreferences().get("descriptions").size() >= 1) {
+                    stylePref1.setSelectedItem(modifications.getStudyBuddyPreferences().get("descriptions").get(0));
+                }
+                if (modifications.getStudyBuddyPreferences().get("descriptions").size() >= 2) {
+                    stylePref2.setSelectedItem(modifications.getStudyBuddyPreferences().get("descriptions").get(1));
+                }
+                if (modifications.getStudyBuddyPreferences().get("descriptions").size() >= 3) {
+                    stylePref3.setSelectedItem(modifications.getStudyBuddyPreferences().get("descriptions").get(2));
+                }
+            }
+        }
+        if (!modifications.getStudySpotPreferences().isEmpty()) {
+            if (modifications.getStudySpotPreferences().size() >= 1) {
+                spotPref1.setSelectedItem(modifications.getStudySpotPreferences().get(0));
+            }
+            if (modifications.getStudySpotPreferences().size() >= 2) {
+                spotPref2.setSelectedItem(modifications.getStudySpotPreferences().get(1));
+            }
+            if (modifications.getStudySpotPreferences().size() >= 3) {
+                spotPref3.setSelectedItem(modifications.getStudySpotPreferences().get(2));
+            }
+        }
     }
 
     @Override
@@ -370,7 +425,7 @@ public class ProfileUI extends JFrame implements ActionListener {
                 // creating an InModel using the input info
                 ProfileInModel profileModifications = new ProfileInModel(nameTF.getText(), pronounTF.getText(), (String) yearCB.getSelectedItem(), (String) fieldCB.getSelectedItem(), personalStudyStyles, studyBuddyPref, spotPref);
 
-//            StudyBuddyApp.profileController.profileController.modifyProfile(profileModifications);
+                profileController.modifyProfile(profileModifications);
             }}
     }
 
