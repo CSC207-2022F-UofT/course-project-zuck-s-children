@@ -7,6 +7,8 @@ import data.persistency.ChatDataAccessInterface;
 import data.persistency.ChatDatabase;
 import data.persistency.UserDatabase;
 import profile.Profile;
+import matching.MatchingAlgorithm;
+
 
 import java.awt.*;
 import java.io.FileOutputStream;
@@ -34,48 +36,12 @@ public class Navigation {
         tabbedPane.addTab(PROFILE, profileUI);
 
 //        tabbedPane.addTab(NOTIFICATIONS, notificationUI);
+        potential = MatchingAlgorithm.finalMatches()
 
-        tabbedPane.addTab(SWIPER, swiperUI);
-        tabbedPane.addTab(CHAT, chatListUI);
-        Profile prof2 = new Profile();
-        prof2.setName("lol");
-        prof2.setYear("jjj");
-        prof2.setFieldOfStudy("ddd");
-        ArrayList<String> styles1 = new ArrayList<>(Arrays.asList("hoho", "haha"));
-        prof2.setStudyStyles(styles1);
-        ArrayList<String> studySpotPref2 = new ArrayList<>(Arrays.asList("sdfa", "f"));
-        prof2.setStudySpotPreferences(studySpotPref2);
-        Profile prof1 = new Profile();
-        prof1.setName("aaa");
-        prof1.setPronouns("bbb");
-        prof1.setYear("");
-        prof1.setFieldOfStudy("ddd");
-        prof1.setStudyStyles(styles1);
-        ArrayList<String> studySpotPref1 = new ArrayList<>(Arrays.asList("www", "f"));
-        prof1.setStudySpotPreferences(studySpotPref1);
-
-        Account curr = new Account("Sanzhar", "password");
-        curr.setProfile(prof2);
-
-        Account potential = new Account("Potential", "pass");
-        potential.setProfile(prof2);
-        Account second = new Account("Potential2", "pass3232");
-        second.setProfile(prof1);
-
-        //UserDatabase.setCurrentUser(curr);
-
-
-        LinkedList<Account> stuff = new LinkedList<>();
-        stuff.add(potential);
-        stuff.add(second);
-        stuff.add(curr);
-        UserDatabase.getAccounts().put(potential.getUsername(), potential);
-        UserDatabase.getAccounts().put(second.getUsername(), second);
-        UserDatabase.getAccounts().put(curr.getUsername(), curr);
 
         chatListUI.build();
         swiperUI.setBounds(0, 0, 1440, 1000);
-        swiperUI.build(stuff, swiperController);
+        swiperUI.build(potential, swiperController);
 
 
         pane.add(tabbedPane, BorderLayout.CENTER);
