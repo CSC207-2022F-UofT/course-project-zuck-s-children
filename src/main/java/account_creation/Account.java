@@ -28,6 +28,7 @@ public class Account implements Serializable, Comparable<Account> {
     public String getPassword() {
         return this.password;
     }
+    public void setProfile(Profile profile) {this.profile = profile;}
     public Profile getProfile() {
         return this.profile;
     }
