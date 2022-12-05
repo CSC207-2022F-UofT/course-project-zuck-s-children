@@ -12,10 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import static javax.swing.JOptionPane.*;
+import static main_app.StudyBuddyApp.currUserProfile;
 import static main_app.StudyBuddyApp.profileController;
 
+
 public class ProfileUI extends JInternalFrame implements ActionListener {
-    Profile currUserProfile = UserDatabase.getUserDatabase().getCurrentUser().getProfile();
+
     JButton editBtn = new JButton("Edit"); // the edit/save button
     JLabel nameLbl = new JLabel("Name"); // the name label
     JTextField nameTF = new JTextField(currUserProfile.getName(), 20); // the textfield where the user type their name; default value is "N/A"

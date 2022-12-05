@@ -36,7 +36,6 @@ public class LoginPresenter implements LoginOutBoundary{
 
             //Open navigation frame
             Navigation.createAndShowGUI();
-
             loginUI.closeLoginUI();
         } else {
             //Carry out fail outcome in loginUI.

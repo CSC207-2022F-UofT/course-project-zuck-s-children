@@ -33,7 +33,8 @@ import java.util.List;
 
 public class StudyBuddyApp {
     public static ChatDatabase chatDatabase;
-    public static ProfileUI profileUI = new ProfileUI();
+    public static Profile currUserProfile = new Profile();
+    public static ProfileUI profileUI;
     public static ProfilePresenter profilePresenter = new ProfilePresenter(profileUI);
     public static ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter);
     public static ProfileController profileController = new ProfileController(profileEditUseCase);

@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class UserDatabase implements Serializable {
     private static UserDatabase USERDATABASE;
     public HashMap<String, Account> accounts = new HashMap<>();
-    public Account currentUser;
+    public static Account currentUser;
 
     private UserDatabase() {
     }
