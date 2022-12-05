@@ -22,39 +22,45 @@ public class Account implements Serializable, Comparable<Account> {
         this.matches = new ArrayList<Account>();
         this.notifications = new ArrayList<Notification>();
     }
+
     public String getUsername() {
         return this.username;
     }
+
     public String getPassword() {
         return this.password;
     }
-    public void setProfile(Profile profile) {this.profile = profile;}
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
     public Profile getProfile() {
         return this.profile;
     }
+
     public List<Account> getMatches() {
         return this.matches;
     }
-    public List<Notification> getNotifications() {return this.notifications;}
+
+    public List<Notification> getNotifications() {
+        return this.notifications;
+    }
 
     public void addMatch(Account match) {
         this.matches.add(match);
     }
 
-    public void addNotification(Notification notification){
+    public void addNotification(Notification notification) {
         notifications.add(notification);
     }
 
-    public void clearNotifications(){
+    public void clearNotifications() {
         this.notifications.clear();
     }
 
     @Override
-    public int compareTo(Account other){
+    public int compareTo(Account other) {
         return Integer.compare(other.getProfile().getScore(), this.getProfile().getScore());
-    }
-
-    public void setProfile(Profile prof2) {
-        profile = prof2;
     }
 }

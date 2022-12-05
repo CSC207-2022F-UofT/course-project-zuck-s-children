@@ -1,6 +1,8 @@
 package data.persistency;
 
 
+import chat.entities.ChatRoomEnt;
+
 import java.io.*;
 import java.util.List;
 
@@ -10,8 +12,6 @@ public class ChatDataAccess implements ChatDataAccessInterface{
         public static void setChatdata(ChatDatabase chatdata) {
                 ChatDataAccess.chatdata = chatdata;
         }
-
-
 
 
         @Override
@@ -28,5 +28,13 @@ public class ChatDataAccess implements ChatDataAccessInterface{
                 return chatdata.findByAccount(UserDatabase.getUserDatabase().getCurrentUser());
         }
 
+        @Override
+        public List<Object> loadAll() {
+                return chatdata.getChatList();
+        }
+
+        public void addChatRoom(ChatRoomEnt room){
+                chatdata.addChatRoom(room);
+        }
 
 }

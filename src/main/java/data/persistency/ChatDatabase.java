@@ -32,5 +32,12 @@ public class ChatDatabase implements Serializable {
         return roomList;
     }
 
+    public List<Object> getChatList() {
+        return this.chatData;
+    }
+
+    public void addChatRoom(ChatRoomEnt room) {
+        chatData.add(room);
+    }
 }
 

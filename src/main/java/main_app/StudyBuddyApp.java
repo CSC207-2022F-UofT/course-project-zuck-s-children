@@ -9,14 +9,26 @@ import notification.Control.ShowNotifInputBoundary;
 import notification.Present.ClearNotifOutputBoundary;
 import notification.Present.ShowNotifOutputBoundary;
 import profile.*;
+
 import ui.LoginUI;
 import data.persistency.UserDatabase;
 import notification.NotificationUI;
+
+import swipe.SwiperInputBoundary;
+import swipe.SwiperInteractor;
+import swipe.SwiperPresenter;
+import swipe.screen.SwipeScreen;
+import swipe.screen.SwiperController;
+import swipe.screen.SwiperPresenterFormatter;
+import ui.*;
+import data.persistency.UserDatabase;
+
 
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class StudyBuddyApp {
@@ -36,14 +48,13 @@ public class StudyBuddyApp {
 
     // Swiper Stuff
     // TODO: maybe Sanzhar to make all constructors compatible with the main program
-//    public static LinkedList<Account> potentialMatches = MatchingAlgorithm.finalMatches();
+    public static LinkedList<Account> potentialMatches;
     public static SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
     public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
     public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
     public static SwiperUI swiperUI = new SwiperUI();
 
-
-
+    public static ChatListUI chatListUI;
 
     public static void main(String[] args){
         UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
@@ -67,8 +78,6 @@ public class StudyBuddyApp {
             finChat.close();
 
             System.out.println("successful deserialization");
-            System.out.println("Deserialized UserDatabase size: " + USERDATABASE.getAccounts().size());
-            System.out.println(USERDATABASE.getAccounts().get("1"));
 
         } catch (Exception e) {
             System.out.println(e);
@@ -77,29 +86,27 @@ public class StudyBuddyApp {
             USERDATABASE = UserDatabase.getUserDatabase();
             USERDATABASE.setAccounts(new HashMap<String, Account>());
 
-            if(chatData == null){
-                chatDatabase = new ChatDatabase(new ArrayList<>());
-            }
-            else{
-                chatDatabase = new ChatDatabase(chatData);
-            }
+            chatData = new ArrayList<>();
         }
         ChatDataAccess chatDataAccess = new ChatDataAccess();
+        chatDatabase = new ChatDatabase(chatData);
         ChatDataAccess.setChatdata(chatDatabase);
+        chatListUI = new ChatListUI();
+        chatListUI.build();
 
         //initial page: user authorization
         LoginUI frame = new LoginUI();
         frame.setTitle("Login Page");
         frame.setVisible(true);
         frame.setBounds(0, 0, 1440, 1000);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.setResizable(false);
         LoginUI.setFrame(frame);
 
         HashMap<String, Account> finalUserDatabaseAccounts = USERDATABASE.getAccounts();
-        ChatDatabase finalChatDatabase = chatDataAccess.getChatData();
+        List<Object> finalChatDatabase = chatDataAccess.getChatData().getChatList();
 
-        LoginUI.getFrames()[0].addWindowListener(new java.awt.event.WindowAdapter() {
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 if (JOptionPane.showConfirmDialog(frame,
@@ -111,7 +118,6 @@ public class StudyBuddyApp {
                         FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
                         ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
                         ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
-                        System.out.println("Serialized UserDatabase size: " + finalUserDatabaseAccounts.size());
                         outUser.writeObject(finalUserDatabaseAccounts);
                         outChat.writeObject(finalChatDatabase);
                         outChat.flush();
@@ -128,10 +134,6 @@ public class StudyBuddyApp {
                 }
             }
         });
-
-
-
-
 
     }
 }

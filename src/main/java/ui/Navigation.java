@@ -1,10 +1,25 @@
 package ui;
 
 import account_creation.Account;
+import chat.entities.ChatRoomEnt;
+import data.persistency.ChatDataAccess;
+import data.persistency.ChatDataAccessInterface;
+import data.persistency.ChatDatabase;
 import data.persistency.UserDatabase;
+import notification.Control.ClearNotifController;
+import notification.Control.ShowNotifController;
+import notification.NotificationUI;
+import notification.Present.ClearNotifPresenter;
+import notification.Present.ShowNotifPresenter;
+import notification.UseCases.ClearNotifInteractor;
+import notification.UseCases.ShowNotifInteractor;
 import profile.Profile;
+import matching.MatchingAlgorithm;
+
 
 import java.awt.*;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -14,8 +29,10 @@ import static main_app.StudyBuddyApp.*;
 
 public class Navigation {
     // titles of tabs
+    final static ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
     final static String PROFILE = "Profile";
     final static String NOTIFICATIONS = "Notifications";
+    final static String CHAT = "Chat List";
     final static String SWIPER = "Swiper";
 
     final static int extraWindowWidth = 100;
@@ -32,7 +49,6 @@ public class Navigation {
         //curr.addNotification(match1);
         //curr.addNotification(chat1);
 
-        UserDatabase.setCurrentUser(curr);
 
         notificationUI = new NotificationUI();
         showNotifPresenter = new ShowNotifPresenter(notificationUI);
@@ -71,8 +87,6 @@ public class Navigation {
         second.setProfile(prof1);
 
 
-
-
         LinkedList<Account> stuff = new LinkedList<>();
         stuff.add(potential);
         stuff.add(second);
@@ -81,6 +95,8 @@ public class Navigation {
         UserDatabase.getAccounts().put(second.getUsername(), second);
         UserDatabase.getAccounts().put(curr.getUsername(), curr);
 
+
+        chatListUI.build();
         swiperUI.setBounds(0, 0, 1440, 1000);
         swiperUI.build(stuff, swiperController);
 
@@ -97,20 +113,41 @@ public class Navigation {
     public static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("Study Buddy Finder");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         //Create and set up the content pane.
         Navigation demo = new Navigation();
         demo.addComponentToPane(frame.getContentPane());
-
+        serializeOnWindowClose(frame);
         //Display the window.
         frame.pack();
         frame.setVisible(true);
 
-//        for (Account pot: stuff){
-//            swiperUI.setBounds(0, 0, 1440, 1000);
-//            swiperUI.build(pot, swiperController);
-//        }
+    }
+    public static void serializeOnWindowClose(JFrame frame){
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    try {
+                        FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
+                        FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
+                        ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
+                        ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
+                        outUser.writeObject(UserDatabase.getAccounts());
+                        outChat.writeObject(chatDataAccess.getChatData().getChatList());
+                        outChat.flush();
+                        outUser.flush();
+                        outChat.close();
+                        outUser.close();
+                        foutChat.close();
+                        foutUser.close();
+                        System.out.println("successful serialization");
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                    System.exit(0);
+
+            }
+        });
     }
 
     public static void main(String[] args) {

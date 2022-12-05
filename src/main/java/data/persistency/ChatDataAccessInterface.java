@@ -8,4 +8,5 @@ public interface ChatDataAccessInterface {
     ChatDatabase getChatData();
     Object loadRoomById(String rid) throws Throwable;
     List<Object> loadRoomByAccount();
+    List<Object> loadAll();
 }
