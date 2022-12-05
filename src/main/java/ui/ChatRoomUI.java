@@ -13,12 +13,12 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import static main_app.StudyBuddyApp.swiperUI;
 
 public class ChatRoomUI extends JFrame implements ActionListener {
-    MsgInBoundary msgInBoundary;
     MsgSendController msgSendController;
     String roomId;
     JPanel inputPanel;
@@ -27,23 +27,30 @@ public class ChatRoomUI extends JFrame implements ActionListener {
     Button spotBtn;
     JTextField textfield;
     JTextArea textarea;
+    JFrame roomFrame;
 
-    public ChatRoomUI(MsgInBoundary msgInBoundary, MsgSendController msgSendController) {
-        this.msgInBoundary = msgInBoundary;
+    public void setFrame(){
+        roomFrame = new JFrame(this.roomId);
+    }
+
+    public void setCA(MsgSendController msgSendController) {
         this.msgSendController = msgSendController;
     }
 
     public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
+    public void setListOfMessages(List<MessageEnt> listOfMessages){
+        textarea.setText("");
+        for(MessageEnt msg:listOfMessages){
+            textarea.append(msg.getSender().getUsername() + ": " + msg.getContent() + "\n");
+        }
+    }
 
     /**
      * Create a chat room UI
-     *
-     * @param roomFrame a frame for a chat room
      */
-    private void createChatRoomUI(JFrame roomFrame) {
-
+    private void createChatRoomUI() {
         inputPanel = new JPanel();
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.LINE_AXIS));
         textfield = new JTextField();
@@ -61,24 +68,24 @@ public class ChatRoomUI extends JFrame implements ActionListener {
         inputPanel.add(sendBtn.getButton());
         inputPanel.add(spotBtn.getButton());
 
-        textarea = new JTextArea();
         msgPane = new JScrollPane();
+        textarea = new JTextArea();
+        textarea.setVisible(true);
+        textarea.setEditable(false);
         msgPane.add(textarea);
-
-        roomFrame.add(msgPane, BorderLayout.PAGE_START);
+        msgPane.setViewportView(textarea);
+        roomFrame.add(msgPane);
         roomFrame.add(inputPanel, BorderLayout.PAGE_END);
     }
 
-    public void build(JFrame frame) {
-        frame.setPreferredSize(new Dimension(400, 700));
-        createChatRoomUI(frame);
-        frame.pack();
-        frame.setVisible(true);
+    public void build() {
+        roomFrame.setPreferredSize(new Dimension(400, 700));
+        createChatRoomUI();
+        roomFrame.pack();
+        roomFrame.setVisible(true);
     }
 
-    private void displayMessage(JTextArea textarea){
 
-    }
     /**
      * Invoked when an action occurs.
      *

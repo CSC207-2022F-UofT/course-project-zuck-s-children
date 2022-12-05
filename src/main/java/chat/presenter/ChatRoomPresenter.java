@@ -10,26 +10,27 @@ import javax.swing.*;
 
 public class ChatRoomPresenter implements MsgOutBoundary {
 
-    MsgInBoundary msgInBoundary = new MsgSendInteractor(this, new ChatDataAccess());
-    MsgSendController msgSendController = new MsgSendController(msgInBoundary);
-    ChatRoomUI chatRoom = new ChatRoomUI(msgInBoundary, msgSendController);
-    JFrame frame;
+    ChatRoomUI chatRoom;
 
+    public ChatRoomPresenter(ChatRoomUI chatroom){
+        this.chatRoom = chatroom;
+    }
 
     /**
      * Update the view of a room with a model that represents a list of messages
      * @param responseModel message output model
      * @param roomId room id
      */
+
     @Override
-    public void update(MsgOutModel responseModel, String roomId) {
-        this.frame = new JFrame(roomId);
+    public void open(MsgOutModel responseModel, String roomId) {
         chatRoom.setRoomId(roomId);
-        chatRoom.build(frame);
+        chatRoom.setFrame();
+        chatRoom.build();
+        chatRoom.setListOfMessages(responseModel.getMsgList());
     }
 
-    public void overwrite(MsgOutModel responseModel, String roomId){
-        chatRoom.setRoomId(roomId);
-        chatRoom.build(frame);
+    public void overwrite(MsgOutModel responseModel){
+        chatRoom.setListOfMessages(responseModel.getMsgList());
     }
 }

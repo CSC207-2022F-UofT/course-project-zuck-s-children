@@ -31,7 +31,7 @@ public class ChatRoomOpenInteractor implements OpenRoomBoundary {
     @Override
     public void open(RoomInModel roomModel) {
         MsgOutModel responseModel = new MsgOutModel(fetch(roomModel));
-        roomPresenter.update(responseModel, roomModel.getId());
+        roomPresenter.open(responseModel, roomModel.getId());
     }
 
     private List<MessageEnt> fetch(RoomInModel roomModel) {

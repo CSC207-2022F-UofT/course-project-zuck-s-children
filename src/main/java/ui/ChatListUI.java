@@ -1,11 +1,14 @@
 package ui;
 
 import chat.control.ChatRoomOpenController;
+import chat.control.MsgSendController;
 import chat.presenter.MsgOutBoundary;
 import chat.control.RoomInModel;
 import chat.entities.ChatRoomEnt;
 import chat.presenter.ChatRoomPresenter;
 import chat.use_cases.ChatRoomOpenInteractor;
+import chat.use_cases.MsgInBoundary;
+import chat.use_cases.MsgSendInteractor;
 import chat.use_cases.OpenRoomBoundary;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
@@ -24,11 +27,8 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
     JPanel chatList;
 
     List<String> roomIds;
-
-    MsgOutBoundary chatRoomPresenter = new ChatRoomPresenter();
     ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
-    OpenRoomBoundary chatRoomInteractor = new ChatRoomOpenInteractor(chatRoomPresenter, chatDataAccess);
-    ChatRoomOpenController chatRoomOpenContoller = new ChatRoomOpenController(chatRoomInteractor);
+
 
 
     public ChatListUI(){
@@ -68,7 +68,15 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             RoomInModel model = new RoomInModel(this.roomIds.get(roomList.getSelectedIndex()));
-            chatRoomOpenContoller.navigate(model);
+            ChatRoomUI chatRoomUI = new ChatRoomUI();
+            MsgOutBoundary chatRoomPresenter = new ChatRoomPresenter(chatRoomUI);
+            MsgInBoundary msgInteractor = new MsgSendInteractor(chatRoomPresenter, chatDataAccess);
+            MsgSendController msgController = new MsgSendController(msgInteractor);
+            chatRoomUI.setCA(msgController);
+
+            OpenRoomBoundary chatRoomInteractor = new ChatRoomOpenInteractor(chatRoomPresenter, chatDataAccess);
+            ChatRoomOpenController chatRoomOpenController = new ChatRoomOpenController(chatRoomInteractor);
+            chatRoomOpenController.navigate(model);
         }
     }
 }

@@ -72,7 +72,6 @@ public class Navigation {
         UserDatabase.getAccounts().put(potential.getUsername(), potential);
         UserDatabase.getAccounts().put(second.getUsername(), second);
         UserDatabase.getAccounts().put(curr.getUsername(), curr);
-
         chatListUI.build();
         swiperUI.setBounds(0, 0, 1440, 1000);
         swiperUI.build(stuff, swiperController);
