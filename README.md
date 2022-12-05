@@ -1,12 +1,10 @@
 # StudyBuddy - Zuck's Children
 
-## Specification
-The program allows users to find peers and connect with them
-for group study. The program creates an account of a user with
-personal and preferred information for studying such as study spots
-and academic programs. The program recommends other users to study
-with and allows a user to chat with matches users.
+<img width="700" alt="Screen Shot 2022-12-05 at 9 14 02 AM" src="https://user-images.githubusercontent.com/107783734/205658383-b9125772-ad0b-4a77-af51-cc5c33721888.png">
 
+StudyBuddy is a networking app - but for studying purposes. This program allows students on the UofT campus to find and connect with peers to study together. By creating an account and specifying personal and preferred information for studying such as study spots, academic programs, and studying styles, users are recommended with other users with similar preferences to study with. Users are prompted with potential matches and can reject or deny them using a swiper algorithm. Users can also chat with matched buddies!
+
+## Specification
 The technology used is Java.
 
 Challenge's faced include testing and deserialization with chat data.
