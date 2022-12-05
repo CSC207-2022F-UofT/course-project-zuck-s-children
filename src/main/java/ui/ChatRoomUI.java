@@ -1,5 +1,11 @@
 package ui;
 
+import account_creation.Account;
+import chat.control.MsgInModel;
+import chat.control.MsgSendController;
+import chat.entities.MessageEnt;
+import chat.use_cases.MsgInBoundary;
+import data.persistency.UserDatabase;
 import ui.components.Button;
 
 import javax.swing.*;
@@ -12,12 +18,20 @@ import java.util.List;
 import static main_app.StudyBuddyApp.swiperUI;
 
 public class ChatRoomUI extends JFrame implements ActionListener {
+    MsgInBoundary msgInBoundary;
+    MsgSendController msgSendController;
     String roomId;
     JPanel inputPanel;
     JScrollPane msgPane;
     Button sendBtn;
+    Button spotBtn;
     JTextField textfield;
     JTextArea textarea;
+
+    public ChatRoomUI(MsgInBoundary msgInBoundary, MsgSendController msgSendController) {
+        this.msgInBoundary = msgInBoundary;
+        this.msgSendController = msgSendController;
+    }
 
     public void setRoomId(String roomId) {
         this.roomId = roomId;
@@ -37,10 +51,15 @@ public class ChatRoomUI extends JFrame implements ActionListener {
         sendBtn = new Button();
         sendBtn.setButton("Send");
         sendBtn.getButton().addActionListener(this);
+        spotBtn = new Button();
+        spotBtn.setButton("Study Spot");
+        spotBtn.getButton().addActionListener(this);
+
         Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
         textfield.setBorder(border);
         inputPanel.add(textfield);
         inputPanel.add(sendBtn.getButton());
+        inputPanel.add(spotBtn.getButton());
 
         textarea = new JTextArea();
         msgPane = new JScrollPane();
@@ -56,6 +75,10 @@ public class ChatRoomUI extends JFrame implements ActionListener {
         frame.pack();
         frame.setVisible(true);
     }
+
+    private void displayMessage(JTextArea textarea){
+
+    }
     /**
      * Invoked when an action occurs.
      *
@@ -63,6 +86,15 @@ public class ChatRoomUI extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed (ActionEvent e){
-
+        if(e.getSource()==sendBtn.getButton()){
+            String content = textfield.getText();
+            Account sender = UserDatabase.getUserDatabase().getCurrentUser();
+            MsgInModel msgModel = new MsgInModel(content, sender, roomId);
+            msgSendController.sendMessage(msgModel);
+            textfield.setText("");
+        }
+        else{
+            // StudySpot Recommendation
+        }
     }
 }

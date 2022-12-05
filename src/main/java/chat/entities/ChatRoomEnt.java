@@ -59,7 +59,7 @@ public class ChatRoomEnt implements Serializable {
     /**
      * A list of messages in this chat room.
      */
-    private ArrayList<Object> messageList;
+    private ArrayList<MessageEnt> messageList;
 
 
     /**
@@ -93,7 +93,7 @@ public class ChatRoomEnt implements Serializable {
      * Return the list of messages in this chatroom
      * @return the list of messages
      */
-    public List<Object> getMessages(){
+    public List<MessageEnt> getMessages(){
         return this.messageList;
     }
     public void addMessage(MessageEnt msg){
