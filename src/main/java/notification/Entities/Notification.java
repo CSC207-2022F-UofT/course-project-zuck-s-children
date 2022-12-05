@@ -1,4 +1,4 @@
-package notification;
+package notification.Entities;
 // entity layer
 import account_creation.Account;
 

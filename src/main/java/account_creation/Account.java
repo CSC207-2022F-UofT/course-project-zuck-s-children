@@ -1,6 +1,6 @@
 package account_creation;
 
-import notification.Notification;
+import notification.Entities.Notification;
 
 import java.util.ArrayList;
 import java.util.List;

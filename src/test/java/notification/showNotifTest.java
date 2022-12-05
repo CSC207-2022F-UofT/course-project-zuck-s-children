@@ -1,10 +1,13 @@
 package notification;
 import account_creation.Account;
 import data.persistency.UserDatabase;
-import notification.clear_notif.ClearNotifInteractor;
-import notification.clear_notif.ClearNotifOutputBoundary;
-import notification.clear_notif.ClearNotifPresenter;
-import notification.show_notif.*;
+import notification.Control.ShowNotifInputBoundary;
+import notification.Entities.ChatNotification;
+import notification.Entities.MatchNotification;
+import notification.Present.NotifResponseModel;
+import notification.Present.ShowNotifOutputBoundary;
+import notification.Present.ShowNotifPresenter;
+import notification.UseCases.ShowNotifInteractor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

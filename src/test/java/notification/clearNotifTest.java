@@ -1,9 +1,11 @@
 package notification;
 import account_creation.Account;
 import data.persistency.UserDatabase;
-import notification.clear_notif.ClearNotifInteractor;
-import notification.clear_notif.ClearNotifOutputBoundary;
-import notification.clear_notif.ClearNotifPresenter;
+import notification.Entities.ChatNotification;
+import notification.Entities.MatchNotification;
+import notification.UseCases.ClearNotifInteractor;
+import notification.Present.ClearNotifOutputBoundary;
+import notification.Present.ClearNotifPresenter;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

@@ -1,9 +1,11 @@
-package notification.clear_notif;
+package notification.UseCases;
 import account_creation.Account;
 import data.persistency.UserDatabase;
+import notification.Control.ClearNotifInputBoundary;
+import notification.Present.ClearNotifOutputBoundary;
 
 //use case layer
-public class ClearNotifInteractor implements ClearNotifInputBoundary{
+public class ClearNotifInteractor implements ClearNotifInputBoundary {
 
     private ClearNotifOutputBoundary clearNotifOutputBoundary;
     private Account user;

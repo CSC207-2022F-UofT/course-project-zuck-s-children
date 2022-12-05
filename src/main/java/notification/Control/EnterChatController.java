@@ -1,4 +1,4 @@
-package notification.enter_chat;
+package notification.Control;
 
 import account_creation.Account;
 import chat.control.AccountInModel;

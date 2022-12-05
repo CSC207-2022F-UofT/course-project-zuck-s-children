@@ -1,4 +1,4 @@
-package notification.clear_notif;
+package notification.Control;
 
 public class ClearNotifController {
 

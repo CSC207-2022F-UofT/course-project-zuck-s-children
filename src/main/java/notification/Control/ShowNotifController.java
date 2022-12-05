@@ -1,4 +1,5 @@
-package notification.show_notif;
+package notification.Control;
+
 public class ShowNotifController {
     private final ShowNotifInputBoundary interactor;
 

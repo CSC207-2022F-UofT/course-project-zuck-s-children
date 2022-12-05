@@ -2,28 +2,21 @@ package main_app;
 import account_creation.Account;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDatabase;
-import data.persistency.UserDataAccessInterface;
-import matching.MatchingAlgorithm;
-import notification.clear_notif.*;
-import notification.show_notif.*;
+import notification.Control.ClearNotifController;
+import notification.Control.ClearNotifInputBoundary;
+import notification.Control.ShowNotifController;
+import notification.Control.ShowNotifInputBoundary;
+import notification.Present.ClearNotifOutputBoundary;
+import notification.Present.ShowNotifOutputBoundary;
 import profile.*;
-import swipe.SwiperInputBoundary;
-import swipe.SwiperInteractor;
-import swipe.SwiperPresenter;
-import swipe.screen.SwipeScreen;
-import swipe.screen.SwiperController;
-import swipe.screen.SwiperPresenterFormatter;
 import ui.LoginUI;
 import data.persistency.UserDatabase;
-import ui.NotificationUI;
-import ui.SettingUI;
-import ui.SwiperUI;
+import notification.NotificationUI;
 
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class StudyBuddyApp {

@@ -1,7 +1,10 @@
-package notification.show_notif;
+package notification.UseCases;
 import account_creation.Account;
-import notification.Notification;
+import notification.Entities.Notification;
 import data.persistency.UserDatabase;
+import notification.Present.NotifResponseModel;
+import notification.Control.ShowNotifInputBoundary;
+import notification.Present.ShowNotifOutputBoundary;
 
 import java.util.ArrayList;
 import java.util.List;

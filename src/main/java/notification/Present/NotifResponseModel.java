@@ -1,5 +1,5 @@
-package notification.show_notif;
-// entity layer
+package notification.Present;
+
 import java.util.ArrayList;
 import java.util.List;
 

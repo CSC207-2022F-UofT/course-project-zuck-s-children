@@ -1,6 +1,6 @@
-package ui;
+package notification;
 
-import notification.show_notif.ShowNotifController;
+import notification.Control.ShowNotifController;
 
 import java.awt.*;
 import java.util.ArrayList;

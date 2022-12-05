@@ -1,4 +1,4 @@
-package notification;
+package notification.Entities;
 
 import account_creation.Account;
 
