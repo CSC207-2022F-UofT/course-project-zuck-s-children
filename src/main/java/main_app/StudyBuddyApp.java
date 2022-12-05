@@ -23,7 +23,7 @@ public class StudyBuddyApp {
     public static ChatDatabase chatDatabase;
     public static ProfileUI profileUI = new ProfileUI();
     public static ProfilePresenter profilePresenter = new ProfilePresenter(profileUI);
-    public static ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter, UserDatabase.getUserDatabase());
+    public static ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter);
     public static ProfileController profileController = new ProfileController(profileEditUseCase);
     public static NotificationUI notificationUI;
     public static ShowNotifOutputBoundary showNotifPresenter;
@@ -37,10 +37,10 @@ public class StudyBuddyApp {
     // Swiper Stuff
     // TODO: maybe Sanzhar to make all constructors compatible with the main program
 //    public static LinkedList<Account> potentialMatches = MatchingAlgorithm.finalMatches();
-//    public static SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
-//    public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
-//    public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
-//    public static SwipeScreen swiperUI = new SwipeScreen(swiperController, );
+    public static SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
+    public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
+    public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
+    public static SwiperUI swiperUI = new SwiperUI();
 
 
 
@@ -76,14 +76,14 @@ public class StudyBuddyApp {
 
             USERDATABASE = UserDatabase.getUserDatabase();
             USERDATABASE.setAccounts(new HashMap<String, Account>());
-            
-          if(chatData == null){
-              chatDatabase = new ChatDatabase(new ArrayList<>());
-          }
-          else{
-              chatDatabase = new ChatDatabase(chatData);
-          }
-         }
+
+            if(chatData == null){
+                chatDatabase = new ChatDatabase(new ArrayList<>());
+            }
+            else{
+                chatDatabase = new ChatDatabase(chatData);
+            }
+        }
         ChatDataAccess chatDataAccess = new ChatDataAccess();
         ChatDataAccess.setChatdata(chatDatabase);
 
@@ -96,10 +96,9 @@ public class StudyBuddyApp {
         frame.setResizable(false);
         LoginUI.setFrame(frame);
 
-
         HashMap<String, Account> finalUserDatabaseAccounts = USERDATABASE.getAccounts();
         ChatDatabase finalChatDatabase = chatDataAccess.getChatData();
-        
+
         LoginUI.getFrames()[0].addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {

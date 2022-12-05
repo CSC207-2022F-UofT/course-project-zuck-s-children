@@ -1,14 +1,14 @@
 package profile;
 
 public class ProfilePresenter implements ProfileUpdateOutputBoundary {
-    static ProfileUI modifiedProfile;
+    static ProfileUI profileUI;
     public ProfilePresenter(ProfileUI UI) {
-        modifiedProfile = UI;
+        profileUI = UI;
     }
 
     @Override
     public void showModifiedProfile(ProfileOutModel modifications) {
-        String msg = "Changes successful.";
-        modifiedProfile.build();
+        profileUI.build(modifications);
+        profileUI.changeSuccessDialog();
     }
 }
