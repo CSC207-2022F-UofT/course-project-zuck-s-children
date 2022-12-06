@@ -1,6 +1,8 @@
 package profile;
 
 
+import account_creation.Account;
+import data.persistency.UserDatabase;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,12 +11,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static javax.swing.JOptionPane.*;
+import static main_app.StudyBuddyApp.currUserProfile;
+import static main_app.StudyBuddyApp.profileController;
+
+
 public class ProfileUI extends JInternalFrame implements ActionListener {
+
     JButton editBtn = new JButton("Edit"); // the edit/save button
     JLabel nameLbl = new JLabel("Name"); // the name label
-    JTextField nameTF = new JTextField("N/A", 20); // the textfield where the user type their name; default value is "N/A"
+    JTextField nameTF = new JTextField(currUserProfile.getName(), 20); // the textfield where the user type their name; default value is "N/A"
     JLabel pronounLbl = new JLabel("Preferred pronouns"); // the preferred pronouns label
-    JTextField pronounTF = new JTextField("N/A", 20); // the textfield where the user type their preferred pronouns; default value is "N/A"
+    JTextField pronounTF = new JTextField(currUserProfile.getPronouns(), 20); // the textfield where the user type their preferred pronouns; default value is "N/A"
     JLabel yearLbl = new JLabel("Year"); // the year label
     JComboBox<String> yearCB = new JComboBox<>(Profile.YEARS); // the dropdown where the user choose their year in university; NEED TO FIGURE OUT DEFAULT SELECTION
     JLabel fieldLbl = new JLabel("Field of study"); // the field of study label
@@ -95,6 +103,17 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
     }
 
     private void addSpotPrefField(JPanel studySpotSection, GridBagConstraints constraints3) {
+        if (!currUserProfile.getStudySpotPreferences().isEmpty()) {
+            if (currUserProfile.getStudySpotPreferences().size() >= 1) {
+                spotPref1.setSelectedItem(currUserProfile.getStudySpotPreferences().get(0));
+            }
+            if (currUserProfile.getStudySpotPreferences().size() >= 2) {
+                spotPref2.setSelectedItem(currUserProfile.getStudySpotPreferences().get(1));
+            }
+            if (currUserProfile.getStudySpotPreferences().size() >= 3) {
+                spotPref3.setSelectedItem(currUserProfile.getStudySpotPreferences().get(2));
+            }
+        }
         spotPref1.setEnabled(false);
         spotPref2.setEnabled(false);
         spotPref3.setEnabled(false);
@@ -111,6 +130,17 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
         JLabel stylesLbl = new JLabel("Preferred study buddy study styles");
         studyBuddySection.add(stylesLbl, constraints2);
         constraints2.gridy += 1; // new row
+        if (!currUserProfile.getStudyBuddyPreferences().get("descriptions").isEmpty()) {
+            if (currUserProfile.getStudyBuddyPreferences().get("descriptions").size() >= 1) {
+                stylePref1.setSelectedItem(currUserProfile.getStudyBuddyPreferences().get("descriptions").get(0));
+            }
+            if (currUserProfile.getStudyBuddyPreferences().get("descriptions").size() >= 2) {
+                stylePref2.setSelectedItem(currUserProfile.getStudyBuddyPreferences().get("descriptions").get(1));
+            }
+            if (currUserProfile.getStudyBuddyPreferences().get("descriptions").size() >= 3) {
+                stylePref3.setSelectedItem(currUserProfile.getStudyBuddyPreferences().get("descriptions").get(2));
+            }
+        }
         stylePref1.setEnabled(false);
         stylePref2.setEnabled(false);
         stylePref3.setEnabled(false);
@@ -126,6 +156,17 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
         constraints2.gridy += 1;
         JLabel fieldPrefLbl = new JLabel("Preferred study buddy field of study");
         studyBuddySection.add(fieldPrefLbl, constraints2);
+        if (!currUserProfile.getStudyBuddyPreferences().get("field of study").isEmpty()) {
+            if (currUserProfile.getStudyBuddyPreferences().get("field of study").size() >= 1) {
+                fieldPref1.setSelectedItem(currUserProfile.getStudyBuddyPreferences().get("field of study").get(0));
+            }
+            if (currUserProfile.getStudyBuddyPreferences().get("field of study").size() >= 2) {
+                fieldPref2.setSelectedItem(currUserProfile.getStudyBuddyPreferences().get("field of study").get(1));
+            }
+            if (currUserProfile.getStudyBuddyPreferences().get("field of study").size() >= 3) {
+                fieldPref3.setSelectedItem(currUserProfile.getStudyBuddyPreferences().get("field of study").get(2));
+            }
+        }
         fieldPref1.setEnabled(false);
         fieldPref2.setEnabled(false);
         fieldPref3.setEnabled(false);
@@ -141,6 +182,11 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
         JLabel yearPrefLbl = new JLabel("Preferred study buddy year");
         studyBuddySection.add(yearPrefLbl, constraints2);
         yearPref.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        if (!currUserProfile.getStudyBuddyPreferences().get("year").isEmpty()) {
+            for (String year : currUserProfile.getStudyBuddyPreferences().get("year")) {
+                yearPref.setSelectedValue(year, true);
+            }
+        }
         yearPref.setEnabled(false);
         constraints2.gridx += 1;
         studyBuddySection.add(yearPref, constraints2);
@@ -215,6 +261,17 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
         JLabel styleLbl = new JLabel("Study styles");
         personalInfoSection.add(styleLbl, constraints);
         constraints.gridy += 1;
+        if (!currUserProfile.getStudyStyles().isEmpty()) {
+            if (currUserProfile.getStudyStyles().size() >= 1) {
+                style1.setSelectedItem(currUserProfile.getStudyStyles().get(0));
+            }
+            if (currUserProfile.getStudyStyles().size() >= 2) {
+                style2.setSelectedItem(currUserProfile.getStudyStyles().get(1));
+            }
+            if (currUserProfile.getStudyStyles().size() == 3) {
+                style3.setSelectedItem(currUserProfile.getStudyStyles().get(2));
+            }
+        }
         style1.setEnabled(false);
         style2.setEnabled(false);
         style3.setEnabled(false);
@@ -228,6 +285,9 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
     private void addFieldOfStudyField(JPanel personalInfoSection, GridBagConstraints constraints) {
         personalInfoSection.add(fieldLbl, constraints);
         constraints.gridx += 1;
+        if (!currUserProfile.getFieldOfStudy().equals("N/A")) {
+            fieldCB.setSelectedItem(currUserProfile.getFieldOfStudy());
+        }
         fieldCB.setEnabled(false);
         personalInfoSection.add(fieldCB, constraints);
     }
@@ -236,6 +296,9 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
         personalInfoSection.add(yearLbl, constraints);
         constraints.gridx += 1;
         yearCB.addActionListener(this);
+        if (!currUserProfile.getYear().equals("N/A")) {
+            yearCB.setSelectedItem(currUserProfile.getYear());
+        }
         yearCB.setEnabled(false);
         personalInfoSection.add(yearCB, constraints);
     }
@@ -243,6 +306,7 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
     private void addPronounsField(JPanel personalInfoSection, GridBagConstraints constraints) {
         personalInfoSection.add(pronounLbl, constraints);
         pronounTF.setEditable(false);
+        pronounTF.setSize(20, 2);
         constraints.gridx += 1;
         personalInfoSection.add(pronounTF, constraints);
     }
@@ -255,13 +319,65 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
         personalInfoSection.add(nameTF, constraints);
     }
 
-    public void changeSuccessMechanism() {
-        JOptionPane.showMessageDialog(this, "Change successful.");
+    public void changeSuccessDialog() {
+        showMessageDialog(this, "Changes saved.");
+        this.setVisible(false);
     }
 
-    public void build() {
-        ProfileUI newProfileUI = new ProfileUI();
-//        newProfileUI.nameTF.setText();
+    public void build(ProfileOutModel modifications) {
+        nameTF.setText(modifications.getName());
+        pronounTF.setText(modifications.getPronouns());
+        yearCB.setSelectedItem(modifications.getYear());
+        fieldCB.setSelectedItem(modifications.getFieldOfStudy());
+        if (!modifications.getStudyStyles().isEmpty()) {
+            if (modifications.getStudyStyles().size() >= 1) {
+                style1.setSelectedItem(modifications.getStudyStyles().get(0));
+            }
+            if (modifications.getStudyStyles().size() >= 2) {
+                style2.setSelectedItem(modifications.getStudyStyles().get(1));
+            }
+            if (modifications.getStudyStyles().size() >= 3) {
+                style3.setSelectedItem(modifications.getStudyStyles().get(2));
+            }
+        }
+        if (!modifications.getStudyBuddyPreferences().isEmpty()) {
+            for (String year : modifications.getStudyBuddyPreferences().get("year")) {
+                yearPref.setSelectedValue(year, true);
+            }
+            if (!modifications.getStudyBuddyPreferences().get("field of study").isEmpty()) {
+                if (modifications.getStudyBuddyPreferences().get("field of study").size() >= 1) {
+                    fieldPref1.setSelectedItem(modifications.getStudyBuddyPreferences().get("field of study").get(0));
+                }
+                if (modifications.getStudyBuddyPreferences().get("field of study").size() >= 2) {
+                    fieldPref2.setSelectedItem(modifications.getStudyBuddyPreferences().get("field of study").get(1));
+                }
+                if (modifications.getStudyBuddyPreferences().get("field of study").size() >= 3) {
+                    fieldPref3.setSelectedItem(modifications.getStudyBuddyPreferences().get("field of study").get(2));
+                }
+            }
+            if (!modifications.getStudyBuddyPreferences().get("descriptions").isEmpty()) {
+                if (modifications.getStudyBuddyPreferences().get("descriptions").size() >= 1) {
+                    stylePref1.setSelectedItem(modifications.getStudyBuddyPreferences().get("descriptions").get(0));
+                }
+                if (modifications.getStudyBuddyPreferences().get("descriptions").size() >= 2) {
+                    stylePref2.setSelectedItem(modifications.getStudyBuddyPreferences().get("descriptions").get(1));
+                }
+                if (modifications.getStudyBuddyPreferences().get("descriptions").size() >= 3) {
+                    stylePref3.setSelectedItem(modifications.getStudyBuddyPreferences().get("descriptions").get(2));
+                }
+            }
+        }
+        if (!modifications.getStudySpotPreferences().isEmpty()) {
+            if (modifications.getStudySpotPreferences().size() >= 1) {
+                spotPref1.setSelectedItem(modifications.getStudySpotPreferences().get(0));
+            }
+            if (modifications.getStudySpotPreferences().size() >= 2) {
+                spotPref2.setSelectedItem(modifications.getStudySpotPreferences().get(1));
+            }
+            if (modifications.getStudySpotPreferences().size() >= 3) {
+                spotPref3.setSelectedItem(modifications.getStudySpotPreferences().get(2));
+            }
+        }
     }
 
     @Override
@@ -309,8 +425,7 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
 
                 // creating an InModel using the input info
                 ProfileInModel profileModifications = new ProfileInModel(nameTF.getText(), pronounTF.getText(), (String) yearCB.getSelectedItem(), (String) fieldCB.getSelectedItem(), personalStudyStyles, studyBuddyPref, spotPref);
-
-//            StudyBuddyApp.profileController.profileController.modifyProfile(profileModifications);
+                profileController.modifyProfile(profileModifications);
             }}
     }
 
@@ -354,5 +469,26 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
             spotPref2.setEnabled(true);
             spotPref3.setEnabled(true);
         }
+    }
+
+    public static void main(String[] args) {
+        Account account = new Account("jay", "1232");
+        Profile profile = account.getProfile();
+//        profile.setName("jay");
+//        profile.setPronouns("he/him");
+//        profile.setYear("4");
+//        profile.setFieldOfStudy("Engineering");
+//        List<String> emptyList = new ArrayList<>();
+//        emptyList.add("quiet");
+//        emptyList.add("talkative");
+//        profile.setStudyStyles(emptyList);
+//        HashMap<String, List<String>> emptyHashMap = new HashMap<>();
+//        emptyHashMap.put("year", emptyList);
+//        emptyHashMap.put("field of study", emptyList);
+//        emptyHashMap.put("descriptions", emptyList);
+//        profile.setStudyBuddyPreferences(emptyHashMap);
+//        profile.setStudySpotPreferences(emptyList);
+        UserDatabase.setCurrentUser(account);
+        ProfileUI profileUI = new ProfileUI();
     }
 }

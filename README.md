@@ -1,11 +1,16 @@
 # StudyBuddy - Zuck's Children
 
+<img width="700" alt="Screen Shot 2022-12-05 at 9 14 02 AM" src="https://user-images.githubusercontent.com/107783734/205658383-b9125772-ad0b-4a77-af51-cc5c33721888.png">
+
+StudyBuddy is a networking app - but for studying purposes. This program allows students on the UofT campus to find and connect with peers to study together. By creating an account and specifying personal and preferred information for studying such as study spots, academic programs, and studying styles, users are recommended with other users with similar preferences to study with. Users are prompted with potential matches and can reject or deny them using a swiper algorithm. Users can also chat with matched buddies!
+
 ## Specification
-The program allows users to find peers and connect with them
-for group study. The program creates an account of a user with
-personal and preferred information for studying such as study spots
-and academic programs. The program recommends other users to study
-with and allows a user to chat with other users.
+The technology used is Java.
+
+Challenge's faced include testing and deserialization with chat data.
+
+Features we hope to implement in the future include more ways to personalize 
+a user's profile, group chats and a map.
 
 ## Core Features
 
@@ -20,6 +25,7 @@ The matching is produced by our matching algorithm based on information provided
 Once two users accept each other, the program creates a new chat room of the two users.
 
 #### Profile Customization
+<img width="450" alt="Screen Shot 2022-12-05 at 9 25 42 AM" src="https://user-images.githubusercontent.com/107783734/205661179-9bb536c5-f109-4896-b1e5-a2642d75d728.png">
 The users can customize their profile including a pronoun, a year of study, a program, and study style.
 The profile is used in the matching algorithm to generate a possible matches for our program's one of the most important feature.
 
@@ -31,4 +37,16 @@ to make a chat with other users.
 The program uses the algorithm to make a recommendation of study spot in a chat room. It takes account preference of both users in a room.
 
 #### Notification
-When there is a new match or a new message, the program creates a notification to notify the user about a new update.
+<img width="450" alt="Screen Shot 2022-12-05 at 9 26 02 AM" src="https://user-images.githubusercontent.com/107783734/205661460-af741a56-517a-4c72-9927-7709a82ecb20.png">
+When there is a new match or a new message, the program creates a notification to notify the user about a new update. Users are able to view all notifications and clear all notifications. 
+
+
+## About Us
+Group Members:
+  Lance Madarang - https://github.com/lancenigel
+  Xi Wang - https://github.com/XiWang16
+  Kenji Tan - https://github.com/tankenji
+  Karen Riani - https://github.com/karenrni
+  Nina Huang - https://github.com/nina-huangg
+  Sanzhar Shamshiyev - https://github.com/SanzSS
+John Lee - https://github.com/SiruLee

@@ -2,9 +2,18 @@ package main_app;
 import account_creation.Account;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDatabase;
-import data.persistency.UserDataAccessInterface;
-import matching.MatchingAlgorithm;
+import notification.Control.ClearNotifController;
+import notification.Control.ClearNotifInputBoundary;
+import notification.Control.ShowNotifController;
+import notification.Control.ShowNotifInputBoundary;
+import notification.Present.ClearNotifOutputBoundary;
+import notification.Present.ShowNotifOutputBoundary;
 import profile.*;
+
+import ui.LoginUI;
+import data.persistency.UserDatabase;
+import notification.NotificationUI;
+
 import swipe.SwiperInputBoundary;
 import swipe.SwiperInteractor;
 import swipe.SwiperPresenter;
@@ -13,6 +22,7 @@ import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
 import ui.*;
 import data.persistency.UserDatabase;
+
 
 import javax.swing.*;
 import java.io.*;
@@ -23,22 +33,30 @@ import java.util.List;
 
 public class StudyBuddyApp {
     public static ChatDatabase chatDatabase;
-    public static ProfileUI profileUI = new ProfileUI();
-    public static ProfilePresenter profilePresenter = new ProfilePresenter(profileUI);
-    public static ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter, UserDatabase.getUserDatabase());
-    public static ProfileController profileController = new ProfileController(profileEditUseCase);
-    public static NotificationUI notificationUI = new NotificationUI();
+    public static Profile currUserProfile ;
+    public static ProfileUI profileUI ;
+    public static ProfilePresenter profilePresenter;
+    public static ProfileEditUseCase profileEditUseCase;
+    public static ProfileController profileController;
+    public static NotificationUI notificationUI;
+    public static ShowNotifOutputBoundary showNotifPresenter;
+    public static ShowNotifInputBoundary showNotifInteractor;
+    public static ShowNotifController showNotifController;
+    public static ClearNotifOutputBoundary clearNotifPresenter;
+    public static ClearNotifInputBoundary clearNotifInteractor;
+    public static ClearNotifController clearNotifController;
 
 
     // Swiper Stuff
     // TODO: maybe Sanzhar to make all constructors compatible with the main program
-//    public static LinkedList<Account> potentialMatches = MatchingAlgorithm.finalMatches();
+    public static LinkedList<Account> potentialMatches;
     public static SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
     public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
     public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
     public static SwiperUI swiperUI = new SwiperUI();
 
     public static ChatListUI chatListUI;
+
     public static void main(String[] args){
         UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
         List<Object> chatData = null;
@@ -74,8 +92,6 @@ public class StudyBuddyApp {
         ChatDataAccess chatDataAccess = new ChatDataAccess();
         chatDatabase = new ChatDatabase(chatData);
         ChatDataAccess.setChatdata(chatDatabase);
-        chatListUI = new ChatListUI();
-        chatListUI.build();
 
         //initial page: user authorization
         LoginUI frame = new LoginUI();
@@ -117,5 +133,6 @@ public class StudyBuddyApp {
                 }
             }
         });
+
     }
 }

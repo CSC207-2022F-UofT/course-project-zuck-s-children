@@ -6,11 +6,24 @@ import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
 import data.persistency.ChatDatabase;
 import data.persistency.UserDatabase;
+import notification.Control.ClearNotifController;
+import notification.Control.ShowNotifController;
+import notification.Entities.ChatNotification;
+import notification.Entities.MatchNotification;
+import notification.NotificationUI;
+import notification.Present.ClearNotifPresenter;
+import notification.Present.ShowNotifPresenter;
+import notification.UseCases.ClearNotifInteractor;
+import notification.UseCases.ShowNotifInteractor;
 import profile.Profile;
+import matching.MatchingAlgorithm;
+import profile.ProfileUI;
+
 
 import java.awt.*;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -30,13 +43,11 @@ public class Navigation {
 
     public void addComponentToPane(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
-
-        tabbedPane.addTab(PROFILE, profileUI);
-
-//        tabbedPane.addTab(NOTIFICATIONS, notificationUI);
+        Account acc1 = new Account("huan22", "password");
+        MatchNotification match1 = new MatchNotification("hello", acc1, LocalDateTime.now());
+        ChatNotification chat1 = new ChatNotification("nihao", acc1, LocalDateTime.now(), "3");
 
         tabbedPane.addTab(SWIPER, swiperUI);
-        tabbedPane.addTab(CHAT, chatListUI);
         Profile prof2 = new Profile();
         prof2.setName("lol");
         prof2.setYear("jjj");
@@ -53,26 +64,40 @@ public class Navigation {
         prof1.setStudyStyles(styles1);
         ArrayList<String> studySpotPref1 = new ArrayList<>(Arrays.asList("www", "f"));
         prof1.setStudySpotPreferences(studySpotPref1);
-
-        Account curr = new Account("Sanzhar", "password");
-        curr.setProfile(prof2);
-
+        Account sanzhar = new Account("Sanzhar", "password");
+        sanzhar.setProfile(prof2);
         Account potential = new Account("Potential", "pass");
         potential.setProfile(prof2);
         Account second = new Account("Potential2", "pass3232");
         second.setProfile(prof1);
 
-        //UserDatabase.setCurrentUser(curr);
-
 
         LinkedList<Account> stuff = new LinkedList<>();
         stuff.add(potential);
         stuff.add(second);
-        stuff.add(curr);
+        stuff.add(sanzhar);
+        sanzhar.addNotification(match1);
+        sanzhar.addNotification(chat1);
         UserDatabase.getAccounts().put(potential.getUsername(), potential);
         UserDatabase.getAccounts().put(second.getUsername(), second);
-        UserDatabase.getAccounts().put(curr.getUsername(), curr);
+        UserDatabase.getAccounts().put(sanzhar.getUsername(), sanzhar);
+
+        profileUI = new ProfileUI();
+        tabbedPane.addTab(PROFILE, profileUI);
+
+        notificationUI = new NotificationUI();
+        showNotifPresenter = new ShowNotifPresenter(notificationUI);
+        showNotifInteractor = new ShowNotifInteractor(showNotifPresenter);
+        showNotifController =new ShowNotifController(showNotifInteractor);
+        notificationUI.create(showNotifController);
+        tabbedPane.addTab(NOTIFICATIONS, notificationUI);
+        clearNotifPresenter = new ClearNotifPresenter(notificationUI);
+        clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter);
+        clearNotifController = new ClearNotifController(clearNotifInteractor);
+
         chatListUI.build();
+        tabbedPane.addTab(CHAT, chatListUI);
+
         swiperUI.setBounds(0, 0, 1440, 1000);
         swiperUI.build(stuff, swiperController);
 
@@ -103,24 +128,24 @@ public class Navigation {
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                    try {
-                        FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
-                        FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
-                        ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
-                        ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
-                        outUser.writeObject(UserDatabase.getAccounts());
-                        outChat.writeObject(chatDataAccess.getChatData().getChatList());
-                        outChat.flush();
-                        outUser.flush();
-                        outChat.close();
-                        outUser.close();
-                        foutChat.close();
-                        foutUser.close();
-                        System.out.println("successful serialization");
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
-                    System.exit(0);
+                try {
+                    FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
+                    FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
+                    ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
+                    ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
+                    outUser.writeObject(UserDatabase.getAccounts());
+                    outChat.writeObject(chatDataAccess.getChatData().getChatList());
+                    outChat.flush();
+                    outUser.flush();
+                    outChat.close();
+                    outUser.close();
+                    foutChat.close();
+                    foutUser.close();
+                    System.out.println("successful serialization");
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                System.exit(0);
 
             }
         });

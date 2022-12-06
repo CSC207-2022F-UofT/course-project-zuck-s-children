@@ -1,6 +1,10 @@
-package notification.show_notif;
-import notification.Notification;
+package notification.UseCases;
+import account_creation.Account;
+import notification.Entities.Notification;
 import data.persistency.UserDatabase;
+import notification.Present.NotifResponseModel;
+import notification.Control.ShowNotifInputBoundary;
+import notification.Present.ShowNotifOutputBoundary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,21 +13,34 @@ import java.util.List;
 
 public class ShowNotifInteractor implements ShowNotifInputBoundary {
     private ShowNotifOutputBoundary showNotifOutputBoundary;
-    private UserDatabase userData;
+    private Account user;
 
-    public ShowNotifInteractor(ShowNotifOutputBoundary showNotifOutputBoundary, UserDatabase data){
+    /**
+     * Create an interactor for showing all notifications.
+     * @param showNotifOutputBoundary output boundary interface for the presenter
+     */
+    public ShowNotifInteractor(ShowNotifOutputBoundary showNotifOutputBoundary){
         this.showNotifOutputBoundary = showNotifOutputBoundary;
-        this.userData = data;
+        this.user = UserDatabase.getUserDatabase().getCurrentUser();
     }
+
+    /**
+     * Show all notifications from current user's notifications attribute.
+     */
     @Override
     public void showNotif(){
-        List<Notification> notifList = this.userData.getCurrentUser().getNotifications();
+        List<Notification> notifList = this.user.getNotifications();
+
         ArrayList formattedList = formatNotif(notifList);
 
         NotifResponseModel notifResponseModel = new NotifResponseModel(formattedList);
         showNotifOutputBoundary.prepareDisplayView(notifResponseModel);
     }
 
+    /**
+     * Formats list of notification objects to a nested list of strings.
+     * @param notifList list of all notifications from user's notifications attribute
+     */
     private ArrayList formatNotif(List<Notification> notifList){
         ArrayList formattedList = new ArrayList<List>();
         for (Notification i: notifList){

@@ -1,6 +1,12 @@
 package account_login;
 
 import account_creation.Account;
+import data.persistency.UserDatabase;
+import profile.ProfileController;
+import profile.ProfileEditUseCase;
+import profile.ProfilePresenter;
+import profile.ProfileUI;
+import ui.ChatListUI;
 import ui.LoginUI;
 import matching.MatchingAlgorithm;
 import swipe.SwiperInputBoundary;
@@ -17,6 +23,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
 
+import static main_app.StudyBuddyApp.*;
+
 public class LoginPresenter implements LoginOutBoundary{
 
     LoginUI loginUI;
@@ -30,13 +38,14 @@ public class LoginPresenter implements LoginOutBoundary{
         LoginUI loginUI = new LoginUI();
         if (responseModel.getLoginStatus()) {
             loginUI.loginSuccessMechanism();
-            // TODO: go to swiperUI of this user's account.
+            currUserProfile = UserDatabase.getUserDatabase().getCurrentUser().getProfile();
+            profileUI = new ProfileUI();
+            profilePresenter = new ProfilePresenter(profileUI);
+            profileEditUseCase = new ProfileEditUseCase(profilePresenter);
+            profileController = new ProfileController(profileEditUseCase);
+            chatListUI = new ChatListUI();
 
-            //Open SwiperUI frame
-
-            //Open navigation frame
             Navigation.createAndShowGUI();
-
             loginUI.closeLoginUI();
         } else {
             //Carry out fail outcome in loginUI.

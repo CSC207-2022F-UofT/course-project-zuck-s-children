@@ -1,11 +1,17 @@
 package account_login;
 
 import account_creation.Account;
+import profile.ProfileController;
+import profile.ProfileEditUseCase;
+import profile.ProfilePresenter;
+import profile.ProfileUI;
+import ui.ChatListUI;
 import ui.LoginUI;
 import data.persistency.UserDatabase;
 
 import java.util.HashMap;
 import java.util.Objects;
+
 
 public class LoginUseCase implements LoginInBoundary{
 
@@ -32,11 +38,10 @@ public class LoginUseCase implements LoginInBoundary{
 
         if (userDatabaseAccounts.containsKey(inputUsername)) {
             if (Objects.equals(userDatabaseAccounts.get(inputUsername).getPassword(), inputPassword)) {
-                LoginOutModel responseModel = new LoginOutModel(true);
-                loginPresenter.loginOutcome(responseModel);
-
                 // Sets the current user to be the logged-in user for program to know.
                 UserDatabase.getUserDatabase().setCurrentUser(userDatabaseAccounts.get(inputUsername));
+                LoginOutModel responseModel = new LoginOutModel(true);
+                loginPresenter.loginOutcome(responseModel);
             }
         } else {
             LoginOutModel responseModel = new LoginOutModel(false);

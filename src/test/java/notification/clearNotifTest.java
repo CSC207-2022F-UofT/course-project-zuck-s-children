@@ -1,9 +1,11 @@
 package notification;
 import account_creation.Account;
 import data.persistency.UserDatabase;
-import notification.clear_notif.ClearNotifInteractor;
-import notification.clear_notif.ClearNotifOutputBoundary;
-import notification.clear_notif.ClearNotifPresenter;
+import notification.Entities.ChatNotification;
+import notification.Entities.MatchNotification;
+import notification.UseCases.ClearNotifInteractor;
+import notification.Present.ClearNotifOutputBoundary;
+import notification.Present.ClearNotifPresenter;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -13,11 +15,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 public class clearNotifTest {
 
+    /**
+     * Test - general case with multiple notification objects
+     */
     @Test
-    void clearNotif() {
+    void clearNotifGeneral() {
 
         //creation of match and chat notifications stored in notifications attribute of current user
-        ArrayList<Notification> notifications = new ArrayList<>();
         Account acc1 = new Account("huan22", "1234");
         Account acc2 = new Account("lance33", "2231");
         Account acc3 = new Account("kenji44", "9920");
@@ -35,18 +39,59 @@ public class clearNotifTest {
         curr.addNotification(chat2);
         curr.addNotification(match3);
 
-        UserDatabase userDatabase = new UserDatabase();
-        userDatabase.setCurrentUser(curr);
+        UserDatabase.setCurrentUser(curr);
         ClearNotifOutputBoundary clearNotifPresenter = new ClearNotifPresenter() {
             @Override
             public void prepareDisplayView(){
                 ArrayList<List> arrResponse = new ArrayList<List>();
-                assertTrue(userDatabase.getCurrentUser().getNotifications().isEmpty());
+                assertTrue(curr.getNotifications().isEmpty());
             }
         };
 
-        ClearNotifInteractor clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter, userDatabase);
+        ClearNotifInteractor clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter);
 
+        clearNotifInteractor.clearNotif();
+    }
+
+    /**
+     * Boundary case - test with no notifications
+     */
+    @Test
+    void ClearNotifNone(){
+        Account curr = new Account("andrew", "4402");
+        UserDatabase.setCurrentUser(curr);
+        ClearNotifOutputBoundary clearNotifPresenter = new ClearNotifPresenter() {
+            @Override
+            public void prepareDisplayView(){
+                ArrayList<List> arrResponse = new ArrayList<List>();
+                assertTrue(curr.getNotifications().isEmpty());
+            }
+        };
+
+        ClearNotifInteractor clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter);
+        clearNotifInteractor.clearNotif();
+    }
+
+    /**
+     * Boundary case - test with one notification
+     */
+    @Test
+    void ClearNotifOne(){
+        Account curr = new Account("andrew", "4402");
+        Account acc1 = new Account("huan22", "1234");
+        MatchNotification match1 = new MatchNotification("nice to meet you!", acc1, LocalDateTime.now());
+        curr.addNotification(match1);
+
+        UserDatabase.setCurrentUser(curr);
+        ClearNotifOutputBoundary clearNotifPresenter = new ClearNotifPresenter() {
+            @Override
+            public void prepareDisplayView(){
+                ArrayList<List> arrResponse = new ArrayList<List>();
+                assertTrue(curr.getNotifications().isEmpty());
+            }
+        };
+
+        ClearNotifInteractor clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter);
         clearNotifInteractor.clearNotif();
     }
 

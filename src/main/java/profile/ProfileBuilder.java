@@ -10,6 +10,6 @@ public class ProfileBuilder {
         modifiedProfile.setStudyStyles(profileModel.getStudyStyles());
         modifiedProfile.setStudySpotPreferences(profileModel.getStudySpotPreferences());
         modifiedProfile.setStudyBuddyPreferences(profileModel.getStudyBuddyPreferences());
-        return new Profile();
+        return modifiedProfile;
     }
 }

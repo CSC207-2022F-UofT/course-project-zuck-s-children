@@ -1,28 +1,30 @@
 package profile;
 
-import data.persistency.UserDataAccessInterface;
+import account_creation.Account;
 import data.persistency.UserDatabase;
+
+import java.util.HashMap;
+import java.util.List;
 
 
 public class ProfileEditUseCase implements profile.ProfileEditInputBoundary {
     private static final profile.ProfileBuilder BUILDER = new profile.ProfileBuilder();
-    private static UserDatabase userDataAccess;
-    private ProfileUpdateOutputBoundary profilePresenter;
+    private final ProfileUpdateOutputBoundary profilePresenter;
 
     /**
      * Construct an interactor for updating the profile.
-     * @param profilePresenter
+     * @param profilePresenter the profile Presenter object
      */
-    public ProfileEditUseCase(ProfileUpdateOutputBoundary profilePresenter, UserDatabase userDataAccess) {
+    public ProfileEditUseCase(ProfileUpdateOutputBoundary profilePresenter) {
         this.profilePresenter = profilePresenter;
-        ProfileEditUseCase.userDataAccess = userDataAccess;
     }
 
     @Override
     public void modifyProfile(ProfileInModel profileInModel) {
-        Profile modifiedProfile = BUILDER.createNewProfile(profileInModel);
-        ProfileOutModel profileModifications = new ProfileOutModel(profileInModel);
-        profilePresenter.showModifiedProfile(profileModifications);
-//        userDataAccess.
+        Profile profileModifications = BUILDER.createNewProfile(profileInModel);
+        UserDatabase.getUserDatabase().getCurrentUser().setProfile(profileModifications);
+        ProfileOutModel modifiedProfile = new ProfileOutModel(UserDatabase.getUserDatabase().getCurrentUser().getProfile());
+
+        profilePresenter.showModifiedProfile(modifiedProfile);
     }
 }
