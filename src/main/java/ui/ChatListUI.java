@@ -23,9 +23,7 @@ import java.util.List;
 public class ChatListUI extends JInternalFrame implements ListSelectionListener {
     JList roomList;
     JScrollPane listScroller;
-
     JPanel chatList;
-
     List<String> roomIds;
     ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
 
@@ -47,12 +45,12 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
             roomIds.add(((ChatRoomEnt)room).getId());
             listModel.addElement(((ChatRoomEnt) room).getParticipants().getOtherUser());
         }
-        System.out.println("Number of Rooms: "+ chatDataAccess.loadRoomByAccount().size());
         roomList = new JList<>(listModel);
         roomList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         roomList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         roomList.addListSelectionListener(this);
         listScroller = new JScrollPane(roomList);
+        listScroller.setPreferredSize(new Dimension(1080, 600));
         chatList.add(listScroller);
         this.add(chatList);
         this.pack();
@@ -69,6 +67,7 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
         if (!e.getValueIsAdjusting()) {
             RoomInModel model = new RoomInModel(this.roomIds.get(roomList.getSelectedIndex()));
             ChatRoomUI chatRoomUI = new ChatRoomUI();
+            chatRoomUI.setTitle((String)roomList.getSelectedValue());
             MsgOutBoundary chatRoomPresenter = new ChatRoomPresenter(chatRoomUI);
             MsgInBoundary msgInteractor = new MsgSendInteractor(chatRoomPresenter, chatDataAccess);
             MsgSendController msgController = new MsgSendController(msgInteractor);
@@ -77,6 +76,7 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
             OpenRoomBoundary chatRoomInteractor = new ChatRoomOpenInteractor(chatRoomPresenter, chatDataAccess);
             ChatRoomOpenController chatRoomOpenController = new ChatRoomOpenController(chatRoomInteractor);
             chatRoomOpenController.navigate(model);
+
         }
     }
 }

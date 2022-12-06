@@ -20,6 +20,7 @@ import static main_app.StudyBuddyApp.swiperUI;
 
 public class ChatRoomUI extends JFrame implements ActionListener {
     MsgSendController msgSendController;
+    String roomTitle;
     String roomId;
     JPanel inputPanel;
     JScrollPane msgPane;
@@ -29,6 +30,9 @@ public class ChatRoomUI extends JFrame implements ActionListener {
     JTextArea textarea;
     JFrame roomFrame;
 
+    public void setTitle(String title){
+        roomTitle = title;
+    }
     public void setFrame(){
         roomFrame = new JFrame(this.roomId);
     }
@@ -80,6 +84,8 @@ public class ChatRoomUI extends JFrame implements ActionListener {
 
     public void build() {
         roomFrame.setPreferredSize(new Dimension(400, 700));
+        roomFrame.setBounds(50,50,400,700);
+        roomFrame.setTitle(roomTitle);
         createChatRoomUI();
         roomFrame.pack();
         roomFrame.setVisible(true);
