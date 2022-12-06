@@ -2,9 +2,10 @@ package notification.Entities;
 // entity layer
 import account_creation.Account;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public abstract class Notification {
+public abstract class Notification implements Serializable {
     /**
      * The parent Notification Object.
      */

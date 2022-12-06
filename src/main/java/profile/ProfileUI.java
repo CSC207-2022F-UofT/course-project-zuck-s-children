@@ -49,7 +49,6 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
     JComboBox<String> spotPref1 = new JComboBox<>(Profile.studySpots);
     JComboBox<String> spotPref2 = new JComboBox<>(Profile.studySpots);
     JComboBox<String> spotPref3 = new JComboBox<>(Profile.studySpots);
-
     public ProfileUI() {
         // add title to the frame
         super("Profile");
@@ -426,7 +425,6 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
 
                 // creating an InModel using the input info
                 ProfileInModel profileModifications = new ProfileInModel(nameTF.getText(), pronounTF.getText(), (String) yearCB.getSelectedItem(), (String) fieldCB.getSelectedItem(), personalStudyStyles, studyBuddyPref, spotPref);
-
                 profileController.modifyProfile(profileModifications);
             }}
     }

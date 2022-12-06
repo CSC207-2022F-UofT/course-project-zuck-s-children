@@ -1,11 +1,14 @@
 package ui;
 
 import chat.control.ChatRoomOpenController;
+import chat.control.MsgSendController;
 import chat.presenter.MsgOutBoundary;
 import chat.control.RoomInModel;
 import chat.entities.ChatRoomEnt;
 import chat.presenter.ChatRoomPresenter;
 import chat.use_cases.ChatRoomOpenInteractor;
+import chat.use_cases.MsgInBoundary;
+import chat.use_cases.MsgSendInteractor;
 import chat.use_cases.OpenRoomBoundary;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
@@ -20,15 +23,10 @@ import java.util.List;
 public class ChatListUI extends JInternalFrame implements ListSelectionListener {
     JList roomList;
     JScrollPane listScroller;
-
     JPanel chatList;
-
     List<String> roomIds;
-
-    MsgOutBoundary chatRoomPresenter = new ChatRoomPresenter();
     ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
-    OpenRoomBoundary chatRoomInteractor = new ChatRoomOpenInteractor(chatRoomPresenter, chatDataAccess);
-    ChatRoomOpenController chatRoomOpenContoller = new ChatRoomOpenController(chatRoomInteractor);
+
 
 
     public ChatListUI(){
@@ -47,12 +45,12 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
             roomIds.add(((ChatRoomEnt)room).getId());
             listModel.addElement(((ChatRoomEnt) room).getParticipants().getOtherUser());
         }
-        System.out.println("Number of Rooms: "+ chatDataAccess.loadRoomByAccount().size());
         roomList = new JList<>(listModel);
         roomList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         roomList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         roomList.addListSelectionListener(this);
         listScroller = new JScrollPane(roomList);
+        listScroller.setPreferredSize(new Dimension(1080, 600));
         chatList.add(listScroller);
         this.add(chatList);
         this.pack();
@@ -68,7 +66,17 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             RoomInModel model = new RoomInModel(this.roomIds.get(roomList.getSelectedIndex()));
-            chatRoomOpenContoller.navigate(model);
+            ChatRoomUI chatRoomUI = new ChatRoomUI();
+            chatRoomUI.setTitle((String)roomList.getSelectedValue());
+            MsgOutBoundary chatRoomPresenter = new ChatRoomPresenter(chatRoomUI);
+            MsgInBoundary msgInteractor = new MsgSendInteractor(chatRoomPresenter, chatDataAccess);
+            MsgSendController msgController = new MsgSendController(msgInteractor);
+            chatRoomUI.setCA(msgController);
+
+            OpenRoomBoundary chatRoomInteractor = new ChatRoomOpenInteractor(chatRoomPresenter, chatDataAccess);
+            ChatRoomOpenController chatRoomOpenController = new ChatRoomOpenController(chatRoomInteractor);
+            chatRoomOpenController.navigate(model);
+
         }
     }
 }

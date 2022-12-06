@@ -33,11 +33,11 @@ import java.util.List;
 
 public class StudyBuddyApp {
     public static ChatDatabase chatDatabase;
-    public static Profile currUserProfile = new Profile();
-    public static ProfileUI profileUI;
-    public static ProfilePresenter profilePresenter = new ProfilePresenter(profileUI);
-    public static ProfileEditUseCase profileEditUseCase = new ProfileEditUseCase(profilePresenter);
-    public static ProfileController profileController = new ProfileController(profileEditUseCase);
+    public static Profile currUserProfile ;
+    public static ProfileUI profileUI ;
+    public static ProfilePresenter profilePresenter;
+    public static ProfileEditUseCase profileEditUseCase;
+    public static ProfileController profileController;
     public static NotificationUI notificationUI;
     public static ShowNotifOutputBoundary showNotifPresenter;
     public static ShowNotifInputBoundary showNotifInteractor;
@@ -92,8 +92,6 @@ public class StudyBuddyApp {
         ChatDataAccess chatDataAccess = new ChatDataAccess();
         chatDatabase = new ChatDatabase(chatData);
         ChatDataAccess.setChatdata(chatDatabase);
-        chatListUI = new ChatListUI();
-        chatListUI.build();
 
         //initial page: user authorization
         LoginUI frame = new LoginUI();

@@ -10,8 +10,6 @@ public class UserDatabase implements Serializable {
     public HashMap<String, Account> accounts = new HashMap<>();
     public static Account currentUser;
 
-    private UserDatabase() {
-    }
     public static UserDatabase getUserDatabase() {
         if (USERDATABASE == null) {
             USERDATABASE = new UserDatabase();

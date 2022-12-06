@@ -1,6 +1,10 @@
 package profile;
 
+import account_creation.Account;
 import data.persistency.UserDatabase;
+
+import java.util.HashMap;
+import java.util.List;
 
 
 public class ProfileEditUseCase implements profile.ProfileEditInputBoundary {
@@ -20,6 +24,7 @@ public class ProfileEditUseCase implements profile.ProfileEditInputBoundary {
         Profile profileModifications = BUILDER.createNewProfile(profileInModel);
         UserDatabase.getUserDatabase().getCurrentUser().setProfile(profileModifications);
         ProfileOutModel modifiedProfile = new ProfileOutModel(UserDatabase.getUserDatabase().getCurrentUser().getProfile());
+
         profilePresenter.showModifiedProfile(modifiedProfile);
     }
 }

@@ -2,6 +2,7 @@ package chat.use_cases;
 
 import chat.control.*;
 import chat.entities.ChatRoomEnt;
+import chat.entities.MessageEnt;
 import chat.presenter.MsgOutBoundary;
 import chat.presenter.MsgOutModel;
 import data.persistency.ChatDataAccessInterface;
@@ -30,10 +31,10 @@ public class ChatRoomOpenInteractor implements OpenRoomBoundary {
     @Override
     public void open(RoomInModel roomModel) {
         MsgOutModel responseModel = new MsgOutModel(fetch(roomModel));
-        roomPresenter.update(responseModel, roomModel.getId());
+        roomPresenter.open(responseModel, roomModel.getId());
     }
 
-    private List<Object> fetch(RoomInModel roomModel) {
+    private List<MessageEnt> fetch(RoomInModel roomModel) {
         try {
             return ((ChatRoomEnt) chatDataAccess.loadRoomById(roomModel.getId())).getMessages();
         }catch(Throwable NoRoomFound){
