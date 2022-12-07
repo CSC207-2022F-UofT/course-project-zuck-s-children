@@ -2,9 +2,10 @@ package notification.Entities;
 //entity layer
 import account_creation.Account;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class MatchNotification extends Notification{
+public class MatchNotification extends Notification implements Serializable {
     /**
      * Child class of Notification - a Match Notification.
      */

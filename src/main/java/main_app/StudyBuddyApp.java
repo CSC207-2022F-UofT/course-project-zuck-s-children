@@ -130,6 +130,8 @@ public class StudyBuddyApp {
                         System.out.println("successful serialization");
                     } catch (Exception e) {
                         System.out.println(e);
+                        System.out.println("Unsuccessful serialization");
+
                     }
                     System.exit(0);
                 }

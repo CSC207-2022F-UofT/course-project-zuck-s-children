@@ -129,18 +129,22 @@ public class Navigation {
         //Display the window.
         frame.pack();
         frame.setVisible(true);
-
     }
+
     public static void serializeOnWindowClose(JFrame frame){
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                    try {
+                if (JOptionPane.showConfirmDialog(frame,
+                        "Are you sure you want to close this window?", "Close Window?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                try {
                         FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
                         FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
                         ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
                         ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
-                        outUser.writeObject(UserDatabase.getAccounts());
+                        outUser.writeObject(UserDatabase.getUserDatabase().getAccounts());
                         outChat.writeObject(chatDataAccess.getChatData().getChatList());
                         outChat.flush();
                         outUser.flush();
@@ -151,9 +155,11 @@ public class Navigation {
                         System.out.println("successful serialization");
                     } catch (Exception e) {
                         System.out.println(e);
-                    }
+                        System.out.println("Unsuccessful serialization");
+                }
                     System.exit(0);
 
+            }
             }
         });
     }
