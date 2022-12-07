@@ -1,6 +1,6 @@
 package spots.use_cases;
 
-import AccountCreation.Account;
+import account_creation.Account;
 
 public interface RecsInBoundary {
 

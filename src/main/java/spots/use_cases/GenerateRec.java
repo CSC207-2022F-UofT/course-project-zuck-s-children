@@ -1,7 +1,6 @@
-package spots.useCases;
+package spots.use_cases;
 
-import AccountCreation.Account;
-//import chat.entities.ChatRoomEnt;
+import account_creation.Account;
 import spots.entities.RecGenerator;
 
 import java.util.ArrayList;

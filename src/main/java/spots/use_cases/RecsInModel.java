@@ -1,4 +1,4 @@
-package spots.useCases;
+package spots.use_cases;
 
 import java.util.ArrayList;
 

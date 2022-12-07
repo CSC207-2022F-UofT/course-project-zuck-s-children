@@ -1,10 +1,10 @@
 package studySpots;
 
-import AccountCreation.Account;
+import account_creation.Account;
 import org.junit.jupiter.api.Test;
 import spots.presenter.RecsPresenter;
-import spots.useCases.GenerateRec;
-import spots.useCases.RecsOutBoundary;
+import spots.use_cases.GenerateRec;
+import spots.use_cases.RecsOutBoundary;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,8 +20,8 @@ public class StudySpotUseCaseTest {
         String[] studySpots1 = {"Robarts Library", "Gerstein Library", "Student Commons"};
         String[] studySpots2 = {"Robarts Library", "Gerstein Library", "Student Commons"};
 
-        user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
-        user2.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
+        user1.getProfile().setStudySpotPreferences(Arrays.asList(studySpots1));
+        user2.getProfile().setStudySpotPreferences(Arrays.asList(studySpots2));
 
 
         RecsOutBoundary presenter = new RecsPresenter();
@@ -45,8 +45,8 @@ public class StudySpotUseCaseTest {
         String[] studySpots1 = {"Robarts Library", "College Classroom", "Student Commons"};
         String[] studySpots2 = {"Robarts Library", "College Classroom", "Bahen Centre"};
 
-        user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
-        user2.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
+        user1.getProfile().setStudySpotPreferences(Arrays.asList(studySpots1));
+        user2.getProfile().setStudySpotPreferences(Arrays.asList(studySpots2));
 
         RecsOutBoundary presenter = new RecsPresenter();
         //RecsInBoundary
@@ -67,8 +67,8 @@ public class StudySpotUseCaseTest {
         String[] studySpots1 = {"Robarts Library", "N/A", "N/A"};
         String[] studySpots2 = {"Robarts Library", "Gerstein Library", "N/A"};
 
-        user1.getProfile().setStudySpotPreferences(Arrays.stream(studySpots1).toList());
-        user2.getProfile().setStudySpotPreferences(Arrays.stream(studySpots2).toList());
+        user1.getProfile().setStudySpotPreferences(Arrays.asList(studySpots1));
+        user2.getProfile().setStudySpotPreferences(Arrays.asList(studySpots2));
 
         RecsOutBoundary presenter = new RecsPresenter();
         //RecsInBoundary

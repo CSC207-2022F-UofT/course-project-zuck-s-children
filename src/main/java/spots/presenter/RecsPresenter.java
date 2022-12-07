@@ -1,7 +1,7 @@
 package spots.presenter;
 
-import UI.StudySpotUI;
-import spots.useCases.RecsOutBoundary;
+import ui.StudySpotUI;
+import spots.use_cases.RecsOutBoundary;
 
 import java.util.ArrayList;
 

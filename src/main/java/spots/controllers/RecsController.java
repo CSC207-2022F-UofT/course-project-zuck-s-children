@@ -1,7 +1,7 @@
 package spots.controllers;
 
-import AccountCreation.Account;
-import spots.useCases.RecsInBoundary;
+import account_creation.Account;
+import spots.use_cases.RecsInBoundary;
 
 public class RecsController {
     private RecsInBoundary recommendSpots;
