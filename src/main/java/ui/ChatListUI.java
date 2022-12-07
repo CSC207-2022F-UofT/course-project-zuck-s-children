@@ -12,6 +12,8 @@ import chat.use_cases.MsgSendInteractor;
 import chat.use_cases.OpenRoomBoundary;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
+import spots.presenter.RecsPresenter;
+import spots.use_cases.RecsOutBoundary;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -27,8 +29,6 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
     List<String> roomIds;
     ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
 
-
-
     public ChatListUI(){
         super("Chat List");
         this.setBounds(0, 0, 1440, 1000);
@@ -43,7 +43,7 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
         List<Object> listOfRooms = chatDataAccess.loadRoomByAccount();
         for(Object room : listOfRooms){
             roomIds.add(((ChatRoomEnt)room).getId());
-            listModel.addElement(((ChatRoomEnt) room).getParticipants().getOtherUser());
+            listModel.addElement(room.toString());
         }
         roomList = new JList<>(listModel);
         roomList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -71,12 +71,12 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
             MsgOutBoundary chatRoomPresenter = new ChatRoomPresenter(chatRoomUI);
             MsgInBoundary msgInteractor = new MsgSendInteractor(chatRoomPresenter, chatDataAccess);
             MsgSendController msgController = new MsgSendController(msgInteractor);
+
             chatRoomUI.setCA(msgController);
 
             OpenRoomBoundary chatRoomInteractor = new ChatRoomOpenInteractor(chatRoomPresenter, chatDataAccess);
             ChatRoomOpenController chatRoomOpenController = new ChatRoomOpenController(chatRoomInteractor);
             chatRoomOpenController.navigate(model);
-
         }
     }
 }

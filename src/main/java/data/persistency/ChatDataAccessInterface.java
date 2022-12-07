@@ -8,7 +8,7 @@ import java.util.List;
 public interface ChatDataAccessInterface {
 
     ChatDatabase getChatData();
-    Object loadRoomById(String rid) throws Throwable;
+    Object loadRoomById(String rid);
     List<Object> loadRoomByAccount();
     void addChatRoom(ChatRoomEnt room);
 
