@@ -1,22 +1,20 @@
 package spots.presenter;
 
 import ui.StudySpotUI;
-import spots.controllers.RecsOutModel;
-import spots.controllers.RecsOutBoundary;
+import spots.use_cases.RecsOutBoundary;
 
-import javax.swing.*;
+import java.util.ArrayList;
 
-public class RecsPresenter implements RecsOutBoundary{
-    StudySpotUI studySpots;
-    JPanel spotPanel;
+public class RecsPresenter implements RecsOutBoundary {
 
-    public RecsPresenter(JPanel spotPanel, StudySpotUI studySpots){
-        this.spotPanel = spotPanel;
-        this.studySpots = studySpots;
-    }
-
+    /**
+     * Update studySpots with the given recommendation
+     *
+     * @param recs String of recommendations
+     */
     @Override
-    public void update(RecsOutModel recs) {
-        studySpots.build(spotPanel, recs.getRecs());
+    public void update(ArrayList<String> recs) {
+        StudySpotUI studySpots = new StudySpotUI();
+        studySpots.build(recs);
     }
 }

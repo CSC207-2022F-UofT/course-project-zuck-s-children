@@ -1,7 +1,14 @@
 package spots.use_cases;
 
-import spots.controllers.RecsInModel;
+import account_creation.Account;
 
 public interface RecsInBoundary {
-    void openRecs(RecsInModel rec);
+
+    /**
+     * Method can be over-ridden
+     *
+     * @param user1 user in a chat room
+     * @param user2 user in a chat room
+     */
+    void createRecs(Account user1, Account user2);
 }
