@@ -91,7 +91,7 @@ public class SwipeScreen extends JPanel implements ActionListener {
         pressed = true;
         System.out.println("Click " + evt.getActionCommand());
         String[] result = evt.getActionCommand().split(",", 2);
-        Account account = UserDatabase.getAccounts().get(result[1]);
+        Account account = UserDatabase.getUserDatabase().getAccounts().get(result[1]);
         try {
             out = swiperController.create(result[0], account);
             if (result[0].equals("T")){

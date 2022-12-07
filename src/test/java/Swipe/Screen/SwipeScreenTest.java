@@ -49,7 +49,7 @@ class SwipeScreenTest {
         Account potential = new Account("Potential", "pass");
         potential.setProfile(prof2);
 
-        UserDatabase.setCurrentUser(curr);
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
         SwiperController testController = new SwiperController(testInteractor);
         SwipeScreen swipeScreen = new SwipeScreen(testController, potential);
         JFrame swiper = new JFrame("Time to swipe");
