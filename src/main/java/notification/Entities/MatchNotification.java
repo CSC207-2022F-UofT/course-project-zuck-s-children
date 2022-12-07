@@ -4,7 +4,7 @@ import account_creation.Account;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
+//implemented serializable
 public class MatchNotification extends Notification implements Serializable {
     /**
      * Child class of Notification - a Match Notification.

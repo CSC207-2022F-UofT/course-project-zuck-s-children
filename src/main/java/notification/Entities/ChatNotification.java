@@ -4,7 +4,7 @@ import account_creation.Account;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
+//implemented serializable
 public class ChatNotification extends Notification implements Serializable {
     /**
      * Child class of Notification - a Chat Notification.

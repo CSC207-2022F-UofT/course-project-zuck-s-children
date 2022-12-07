@@ -43,16 +43,9 @@ public class Navigation {
 
     public void addComponentToPane(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
-//        currUserProfile = UserDatabase.getUserDatabase().getCurrentUser().getProfile();
-
-
-//        Account curr = new Account("Sanzhar", "password");
         Account acc1 = new Account("huan22", "password");
         MatchNotification match1 = new MatchNotification("hello", acc1, LocalDateTime.now());
         ChatNotification chat1 = new ChatNotification("nihao", acc1, LocalDateTime.now(), "3");
-
-
-
 
         tabbedPane.addTab(SWIPER, swiperUI);
         Profile prof2 = new Profile();
@@ -71,9 +64,8 @@ public class Navigation {
         prof1.setStudyStyles(styles1);
         ArrayList<String> studySpotPref1 = new ArrayList<>(Arrays.asList("www", "f"));
         prof1.setStudySpotPreferences(studySpotPref1);
-        Account curr = new Account("Sanzhar", "password");
-        curr.setProfile(prof2);
-        UserDatabase.getUserDatabase().setCurrentUser(curr);
+        Account sanzhar = new Account("Sanzhar", "password");
+        sanzhar.setProfile(prof2);
         Account potential = new Account("Potential", "pass");
         potential.setProfile(prof2);
         Account second = new Account("Potential2", "pass3232");
@@ -83,12 +75,12 @@ public class Navigation {
         LinkedList<Account> stuff = new LinkedList<>();
         stuff.add(potential);
         stuff.add(second);
-        stuff.add(curr);
-        curr.addNotification(match1);
-        curr.addNotification(chat1);
+        stuff.add(sanzhar);
+        sanzhar.addNotification(match1);
+        sanzhar.addNotification(chat1);
         UserDatabase.getAccounts().put(potential.getUsername(), potential);
         UserDatabase.getAccounts().put(second.getUsername(), second);
-        UserDatabase.getAccounts().put(curr.getUsername(), curr);
+        UserDatabase.getAccounts().put(sanzhar.getUsername(), sanzhar);
 
         profileUI = new ProfileUI();
         tabbedPane.addTab(PROFILE, profileUI);
@@ -103,8 +95,9 @@ public class Navigation {
         clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter);
         clearNotifController = new ClearNotifController(clearNotifInteractor);
 
-
         chatListUI.build();
+        tabbedPane.addTab(CHAT, chatListUI);
+
         swiperUI.setBounds(0, 0, 1440, 1000);
         swiperUI.build(stuff, swiperController);
 
@@ -139,7 +132,7 @@ public class Navigation {
                         "Are you sure you want to close this window?", "Close Window?",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                try {
+                    try {
                         FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
                         FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
                         ObjectOutputStream outUser = new ObjectOutputStream(foutUser);

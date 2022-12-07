@@ -4,7 +4,7 @@ import account_creation.Account;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
+//implemented serializable
 public abstract class Notification implements Serializable {
     /**
      * The parent Notification Object.
