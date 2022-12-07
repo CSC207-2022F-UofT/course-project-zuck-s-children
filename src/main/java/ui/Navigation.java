@@ -128,25 +128,31 @@ public class Navigation {
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                try {
-                    FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
-                    FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
-                    ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
-                    ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
-                    outUser.writeObject(UserDatabase.getAccounts());
-                    outChat.writeObject(chatDataAccess.getChatData().getChatList());
-                    outChat.flush();
-                    outUser.flush();
-                    outChat.close();
-                    outUser.close();
-                    foutChat.close();
-                    foutUser.close();
-                    System.out.println("successful serialization");
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
-                System.exit(0);
+                if (JOptionPane.showConfirmDialog(frame,
+                        "Are you sure you want to close this window?", "Close Window?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                    try {
+                        FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
+                        FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
+                        ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
+                        ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
+                        outUser.writeObject(UserDatabase.getUserDatabase().getAccounts());
+                        outChat.writeObject(chatDataAccess.getChatData().getChatList());
+                        outChat.flush();
+                        outUser.flush();
+                        outChat.close();
+                        outUser.close();
+                        foutChat.close();
+                        foutUser.close();
+                        System.out.println("successful serialization");
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        System.out.println("Unsuccessful serialization");
+                    }
+                    System.exit(0);
 
+                }
             }
         });
     }
