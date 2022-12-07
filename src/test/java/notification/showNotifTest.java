@@ -43,7 +43,7 @@ public class showNotifTest {
         currUser.addNotification(chat2);
         currUser.addNotification(match3);
 
-        UserDatabase.setCurrentUser(currUser);
+        UserDatabase.getUserDatabase().setCurrentUser(currUser);
         ShowNotifOutputBoundary showNotifPresenter = new ShowNotifPresenter() {
             public void prepareDisplayView(NotifResponseModel responseModel){
                 ArrayList<List> responseArray = responseModel.getResponseModel();
@@ -62,7 +62,7 @@ public class showNotifTest {
     @Test
     void showNotifEmpty(){
         Account currUser = new Account("andrew", "4402");
-        UserDatabase.setCurrentUser(currUser);
+        UserDatabase.getUserDatabase().setCurrentUser(currUser);
         ShowNotifOutputBoundary showNotifPresenter = new ShowNotifPresenter() {
             public void prepareDisplayView(NotifResponseModel responseModel){
                 ArrayList<List> responseArray = responseModel.getResponseModel();
@@ -84,7 +84,7 @@ public class showNotifTest {
         MatchNotification match1 = new MatchNotification("nice to meet you!", acc1, LocalDateTime.now());
         currUser.addNotification(match1);
 
-        UserDatabase.setCurrentUser(currUser);
+        UserDatabase.getUserDatabase().setCurrentUser(currUser);
         ShowNotifOutputBoundary showNotifPresenter = new ShowNotifPresenter() {
             public void prepareDisplayView(NotifResponseModel responseModel){
                 ArrayList<List> responseArray = responseModel.getResponseModel();

@@ -488,7 +488,7 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
 //        emptyHashMap.put("descriptions", emptyList);
 //        profile.setStudyBuddyPreferences(emptyHashMap);
 //        profile.setStudySpotPreferences(emptyList);
-        UserDatabase.setCurrentUser(account);
+        UserDatabase.getUserDatabase().setCurrentUser(account);
         ProfileUI profileUI = new ProfileUI();
     }
 }

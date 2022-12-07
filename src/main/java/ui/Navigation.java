@@ -78,9 +78,9 @@ public class Navigation {
         stuff.add(sanzhar);
         sanzhar.addNotification(match1);
         sanzhar.addNotification(chat1);
-        UserDatabase.getAccounts().put(potential.getUsername(), potential);
-        UserDatabase.getAccounts().put(second.getUsername(), second);
-        UserDatabase.getAccounts().put(sanzhar.getUsername(), sanzhar);
+        UserDatabase.getUserDatabase().getAccounts().put(potential.getUsername(), potential);
+        UserDatabase.getUserDatabase().getAccounts().put(second.getUsername(), second);
+        UserDatabase.getUserDatabase().getAccounts().put(sanzhar.getUsername(), sanzhar);
 
         profileUI = new ProfileUI();
         tabbedPane.addTab(PROFILE, profileUI);
