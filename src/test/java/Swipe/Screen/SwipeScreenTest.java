@@ -54,7 +54,7 @@ class SwipeScreenTest {
         testArray.add(potential);
         testArray.add(curr);
 
-        UserDatabase.setCurrentUser(curr);
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
         SwiperController testController = new SwiperController(testInteractor);
         SwipeScreen swipeScreen = new SwipeScreen(testController, testArray, 1);
         JFrame swiper = new JFrame("Time to swipe");
