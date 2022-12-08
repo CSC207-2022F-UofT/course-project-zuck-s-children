@@ -19,6 +19,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static main_app.StudyBuddyApp.*;
@@ -45,6 +49,7 @@ public class NotificationUI extends JInternalFrame implements ActionListener{
         mb = new JMenuBar();
         mb.add(clearButton);
         mb.add(chatButton);
+        chatButton.setEnabled(false);
         this.setLayout(new BorderLayout());
         this.add(mb, BorderLayout.SOUTH);
         this.addActionEvent();
@@ -63,10 +68,30 @@ public class NotificationUI extends JInternalFrame implements ActionListener{
      *
      */
     public JTable makeTable() {
+
         String[] columnNames = {"Sender", "Content", "Date"};
         String[][] data = getNotif(this.notifications);
+        JTable table = new JTable(data, columnNames);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        return new JTable(data, columnNames);
+        ListSelectionModel selectionModel = table.getSelectionModel();
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+            /**
+             * Called whenever the value of the selection changes.
+             *
+             * @param e the event that characterizes the change.
+             */
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()) {
+                    int index = table.getSelectedRow();
+                    Notification notif = UserDatabase.getUserDatabase().getCurrentUser().getNotifications().get(index);
+                    chatButton.setEnabled(notif instanceof ChatNotification);
+                }
+            }
+
+        });
+        return table;
     }
 
     /**
@@ -100,6 +125,19 @@ public class NotificationUI extends JInternalFrame implements ActionListener{
     }
 
     /**
+     * Refresh a table of notifications to the interface
+     *
+     * @param response Nested List of strings of notifications
+     */
+    public void refresh(ArrayList<List> response){
+        this.notifications = response;
+        this.remove(scrollNotifTable);
+        notifTable = makeTable();
+        scrollNotifTable = new JScrollPane(notifTable);
+        this.add(scrollNotifTable, BorderLayout.CENTER);
+    }
+
+    /**
      * Update interface in responds to clearNotif use case.
      */
     public void update(){
@@ -114,6 +152,7 @@ public class NotificationUI extends JInternalFrame implements ActionListener{
     public void addActionEvent() {
         chatButton.addActionListener(this);
         clearButton.addActionListener(this);
+
     }
 
     /**

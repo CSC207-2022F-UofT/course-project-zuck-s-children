@@ -43,9 +43,11 @@ public class SwiperInteractor implements SwiperInputBoundary{
 
             if (potential.getMatches().contains(curr)){
                 LocalDateTime now = LocalDateTime.now();
-                potential.addNotification(new MatchNotification("You matched with " +
+                UserDatabase.getUserDatabase().getAccounts().get(potential.getUsername()).
+                        addNotification(new MatchNotification("You matched with " +
                         curr.getProfile().getName() +"!", curr, now));
-                curr.addNotification(new MatchNotification("You matched with " +
+                UserDatabase.getUserDatabase().getAccounts().get(curr.getUsername()).
+                        addNotification(new MatchNotification("You matched with " +
                         potential.getProfile().getName() + "!", potential, now));
                 chatDataAccess.addChatRoom(new ChatRoomEnt(curr, potential));
                 potential.addBuddy(curr);

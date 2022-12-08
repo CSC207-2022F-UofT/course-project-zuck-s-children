@@ -3,4 +3,6 @@ package notification.Control;
 
 public interface ShowNotifInputBoundary {
     public void showNotif();
+
+    void refresh();
 }

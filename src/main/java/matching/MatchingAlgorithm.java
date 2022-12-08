@@ -44,7 +44,7 @@ public class MatchingAlgorithm {
 
                 }
             }
-            if (!oUser.getBuddies().contains(user)){
+            if (!oUser.getBuddies().contains(user) && !user.getMatches().contains(oUser)){
                 accountQueue.add(oUser);
             }
         }

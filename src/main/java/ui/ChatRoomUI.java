@@ -110,7 +110,7 @@ public class ChatRoomUI extends JFrame implements ActionListener {
         else{
             // StudySpot Recommendation
             Account[] accounts = ((ChatRoomEnt)new ChatDataAccess().loadRoomById(this.roomId))
-                    .getParticipants().getParticipants();
+                    .getParticipants();
             spotController.create(accounts[0], accounts[1]);
         }
     }

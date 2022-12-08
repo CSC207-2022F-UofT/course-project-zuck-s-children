@@ -43,7 +43,9 @@ public class SwiperUI extends JInternalFrame{
 
     }
     public void build(){
-        initial.remove(swipePanel);
+        if (swipePanel != null){
+            initial.remove(swipePanel);
+        }
         initial.add(new EmptyScreen(), "2");
         cl.show(initial, "2");
         this.pack();

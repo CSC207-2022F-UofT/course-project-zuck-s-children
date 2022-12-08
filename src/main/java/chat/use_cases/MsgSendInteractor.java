@@ -42,9 +42,8 @@ public class MsgSendInteractor implements MsgInBoundary {
         LocalDateTime now = LocalDateTime.now();
         // Add a new message to the data entity and send a notification
         room.addMessage(newMessage);
-        room.getParticipants().getOtherUser().addNotification(
+        room.getOtherUser().addNotification(
                 new ChatNotification("New message has arrived!" ,curr, now, room.getId()));
-
         List<MessageEnt> chatList = room.getMessages();
         MsgOutModel responseModel = new MsgOutModel(chatList);
         msgPresenter.overwrite(responseModel);
