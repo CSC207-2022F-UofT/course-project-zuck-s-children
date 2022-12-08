@@ -4,8 +4,6 @@ import account_creation.Account;
 import spots.entities.RecGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class GenerateRec implements RecsInBoundary {
     private RecsOutBoundary recsPresenter;
@@ -57,6 +55,7 @@ public class GenerateRec implements RecsInBoundary {
      */
     @Override
     public void createRecs(Account user1, Account user2) {
+        setParticipants(user1, user2);
         recsPresenter.update(generateRec());
     }
 }
