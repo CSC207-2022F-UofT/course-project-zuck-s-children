@@ -100,20 +100,20 @@ public class MatchingAlgorithm {
         oUser.setScore(score);
     }
 
-//    public static ArrayList<Account> getOthers() {
-//        ArrayList<Account> otherUsers = new ArrayList<>();
-//        for (Account a : UserDatabase.getAccounts().values()) {
-//            if (a != UserDatabase.getUserDatabase().getCurrentUser()) {
-//                otherUsers.add(a);
-//            }
-//        }
-//        return otherUsers;
-//    }
+    public static ArrayList<Account> getOthers() {
+        ArrayList<Account> otherUsers = new ArrayList<>();
+        for (Account a : UserDatabase.getAccounts().values()) {
+            if (a != UserDatabase.getUserDatabase().getCurrentUser()) {
+                otherUsers.add(a);
+            }
+        }
+        return otherUsers;
+    }
 
-//    public static LinkedList<Account> finalMatches() {
-//        return MatchingAlgorithmFinal(UserDatabase.getUserDatabase().getCurrentUser(),
-//                getOthers());
-//    }
+    public static LinkedList<Account> finalMatches() {
+        return MatchingAlgorithmMethod(UserDatabase.getUserDatabase().getCurrentUser(),
+                getOthers());
+    }
 }
 
 
