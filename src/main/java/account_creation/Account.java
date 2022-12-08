@@ -2,8 +2,7 @@ package account_creation;
 
 import notification.Entities.Notification;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import java.io.Serializable;
 
@@ -15,6 +14,7 @@ public class Account implements Serializable, Comparable<Account> {
     private ArrayList<Account> matches;
     private ArrayList<Account> buddies;
     private ArrayList<Notification> notifications;
+    private Set<Account> seen;
 
     public Account(String username, String password) {
         this.username = username;
@@ -23,6 +23,7 @@ public class Account implements Serializable, Comparable<Account> {
         this.matches = new ArrayList<Account>();
         this.buddies = new ArrayList<Account>();
         this.notifications = new ArrayList<Notification>();
+        this.seen = new HashSet<>();
     }
 
     public String getUsername() {
@@ -65,5 +66,12 @@ public class Account implements Serializable, Comparable<Account> {
     @Override
     public int compareTo(Account other) {
         return Integer.compare(other.getProfile().getScore(), this.getProfile().getScore());
+    }
+
+    public void addSeen(Account user){
+        this.seen.add(user);
+    }
+    public Set<Account> getSeen() {
+        return this.seen;
     }
 }

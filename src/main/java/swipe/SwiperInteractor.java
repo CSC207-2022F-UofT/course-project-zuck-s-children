@@ -37,6 +37,7 @@ public class SwiperInteractor implements SwiperInputBoundary{
     public SwiperResponseModel create(SwiperRequestModel requestModel) {
         Account curr = UserDatabase.getUserDatabase().getCurrentUser();
         Account potential = requestModel.getPotential();
+        curr.addSeen(potential);
         if (requestModel.getAccepted()) {
 
             curr.addMatch(potential);

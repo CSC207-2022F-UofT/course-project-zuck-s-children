@@ -1,27 +1,26 @@
-package Matching;
+package matching;
 
 import account_creation.Account;
 import data_persistency.UserDatabase;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import matching.MatchingAlgorithm;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static matching.MatchingAlgorithm.MatchingAlgorithmMethod;
+import static org.junit.Assert.assertEquals;
 
 public class MatchingAlgorithmTest {
 
-
-
-
     @Test
-    public void testMatching() {
+    public void testMatchingCompatibility() {
 
         // makeshift profiles for testing
 
         // Lance profile
         Account Lance = new Account("Lance", "password");
 
-        UserDatabase.getUserDatabase().setCurrentUser(Lance);
+//        UserDatabase.setCurrentUser(Lance);
         Lance.getProfile().setName("Lance");
         Lance.getProfile().setPronouns("he/him");
         Lance.getProfile().setYear("3");
@@ -141,15 +140,60 @@ public class MatchingAlgorithmTest {
         oUsers.add(Nina);
         oUsers.add(Kenji);
 
-        MatchingAlgorithm.MatchingAlgorithmFinal(Lance, oUsers);
+        LinkedList<Account> oUsersTest = new LinkedList<>();
+        oUsersTest.add(Kenji);
+        oUsersTest.add(Nina);
+
+
 
         // need to change test1 to a LinkedList
-        LinkedList<Account> test1 = new LinkedList<>();
-        test1.add(Kenji);
-        test1.add(Nina);
-        //asserts True if oUsers == Kenji, Nina
-        assertEquals(oUsers, test1);
+        LinkedList<Account> test1 = new LinkedList<>(MatchingAlgorithmMethod(Lance, oUsers));
 
+        //asserts True if oUsersTest == Kenji, Nina
+        assertEquals(test1, oUsersTest);
+    }
+
+    @Test
+    public void testMatchingNoOtherUsers(){
+        Account Lance = new Account("Lance", "password");
+        ArrayList<Account> oUsers = new ArrayList<>();
+        LinkedList<Account> test1 = new LinkedList<>(MatchingAlgorithmMethod(Lance, oUsers));
+        LinkedList<Account> oUsersTest = new LinkedList<>();
+        assertEquals(oUsersTest, test1);
+    }
+
+    @Test
+    public void testMatchingSeenUsers(){
+        // test if seen users get filtered
+        Account Lance = new Account("Lance", "password");
+        ArrayList<Account> oUsers = new ArrayList<>();
+        Account Kenji = new Account("Kenji", "password");
+        Lance.addSeen(Kenji);
+        LinkedList<Account> test1 = new LinkedList<>(MatchingAlgorithmMethod(Lance, oUsers));
+        LinkedList<Account> oUsersTest = new LinkedList<>();
+        assertEquals(oUsersTest, test1);
+    }
+
+    @Test
+    public void testAssignScore(){
 
     }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
+    @org.junit.Test
+    public void matchingAlgorithm() {
+    }
+
+    @org.junit.Test
+    public void assignScore() {
+    }
+
 }
+
