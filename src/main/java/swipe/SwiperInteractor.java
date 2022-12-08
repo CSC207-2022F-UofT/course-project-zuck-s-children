@@ -2,7 +2,7 @@ package swipe;
 //
 import account_creation.Account;
 import notification.Entities.MatchNotification;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package notification;
 import account_creation.Account;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import notification.Entities.ChatNotification;
 import notification.Entities.MatchNotification;
 import notification.UseCases.ClearNotifInteractor;

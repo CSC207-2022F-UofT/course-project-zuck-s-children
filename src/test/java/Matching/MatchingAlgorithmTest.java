@@ -1,7 +1,7 @@
 package Matching;
 
 import account_creation.Account;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import org.junit.jupiter.api.Test;
 import matching.MatchingAlgorithm;
 import java.util.*;

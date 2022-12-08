@@ -1,4 +1,4 @@
-package data.persistency;
+package data_persistency;
 
 import chat.entities.ChatRoomEnt;
 

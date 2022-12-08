@@ -1,6 +1,6 @@
 package notification.UseCases;
 import account_creation.Account;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import notification.Control.ClearNotifInputBoundary;
 import notification.Present.ClearNotifOutputBoundary;
 

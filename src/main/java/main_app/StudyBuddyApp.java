@@ -1,7 +1,7 @@
 package main_app;
 import account_creation.Account;
-import data.persistency.ChatDataAccess;
-import data.persistency.ChatDatabase;
+import data_persistency.ChatDataAccess;
+import data_persistency.ChatDatabase;
 import notification.Control.ClearNotifController;
 import notification.Control.ClearNotifInputBoundary;
 import notification.Control.ShowNotifController;
@@ -11,7 +11,7 @@ import notification.Present.ShowNotifOutputBoundary;
 import profile.*;
 
 import ui.LoginUI;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import notification.NotificationUI;
 
 import swipe.SwiperInputBoundary;
@@ -21,7 +21,7 @@ import swipe.screen.SwipeScreen;
 import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
 import ui.*;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 
 
 import javax.swing.*;
@@ -33,8 +33,8 @@ import java.util.List;
 
 public class StudyBuddyApp {
     public static ChatDatabase chatDatabase;
-    public static Profile currUserProfile ;
-    public static ProfileUI profileUI ;
+    public static Profile currUserProfile;
+    public static ProfileUI profileUI;
     public static ProfilePresenter profilePresenter;
     public static ProfileEditUseCase profileEditUseCase;
     public static ProfileController profileController;
@@ -45,19 +45,15 @@ public class StudyBuddyApp {
     public static ClearNotifOutputBoundary clearNotifPresenter;
     public static ClearNotifInputBoundary clearNotifInteractor;
     public static ClearNotifController clearNotifController;
-
-
-    // Swiper Stuff
-    // TODO: maybe Sanzhar to make all constructors compatible with the main program
     public static LinkedList<Account> potentialMatches;
     public static SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
     public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
-    public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
+    public static SwiperController swiperController = new SwiperController(swiperInputBoundary);
     public static SwiperUI swiperUI = new SwiperUI();
 
     public static ChatListUI chatListUI;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
         List<Object> chatData = null;
 
@@ -71,7 +67,7 @@ public class StudyBuddyApp {
             ObjectInputStream inChat = new ObjectInputStream(finChat);
             HashMap<String, Account> userDatabaseAccounts = (HashMap<String, Account>) inUser.readObject();
             USERDATABASE.setAccounts(userDatabaseAccounts);
-            chatData = (List<Object>)inChat.readObject();
+            chatData = (List<Object>) inChat.readObject();
             //closing the stream
             inUser.close();
             inChat.close();
@@ -111,7 +107,7 @@ public class StudyBuddyApp {
                 if (JOptionPane.showConfirmDialog(frame,
                         "Are you sure you want to close this window?", "Close Window?",
                         JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                     try {
                         FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
                         FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");

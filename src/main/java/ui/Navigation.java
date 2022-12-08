@@ -2,10 +2,10 @@ package ui;
 
 import account_creation.Account;
 import chat.entities.ChatRoomEnt;
-import data.persistency.ChatDataAccess;
-import data.persistency.ChatDataAccessInterface;
-import data.persistency.ChatDatabase;
-import data.persistency.UserDatabase;
+import data_persistency.ChatDataAccess;
+import data_persistency.ChatDataAccessInterface;
+import data_persistency.ChatDatabase;
+import data_persistency.UserDatabase;
 import notification.Control.ClearNotifController;
 import notification.Control.ShowNotifController;
 import notification.Entities.ChatNotification;

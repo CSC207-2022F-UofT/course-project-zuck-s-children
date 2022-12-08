@@ -10,8 +10,8 @@ import chat.use_cases.ChatRoomOpenInteractor;
 import chat.use_cases.MsgInBoundary;
 import chat.use_cases.MsgSendInteractor;
 import chat.use_cases.OpenRoomBoundary;
-import data.persistency.ChatDataAccess;
-import data.persistency.ChatDataAccessInterface;
+import data_persistency.ChatDataAccess;
+import data_persistency.ChatDataAccessInterface;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

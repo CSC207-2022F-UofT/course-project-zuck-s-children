@@ -5,7 +5,7 @@ import chat.control.MsgInModel;
 import chat.control.MsgSendController;
 import chat.entities.MessageEnt;
 import chat.use_cases.MsgInBoundary;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import ui.components.Button;
 
 import javax.swing.*;

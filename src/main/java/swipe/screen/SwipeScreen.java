@@ -1,7 +1,7 @@
 package swipe.screen;
 
 import account_creation.Account;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import profile.Profile;
 import swipe.SwiperResponseModel;
 

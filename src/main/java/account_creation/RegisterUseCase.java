@@ -1,7 +1,7 @@
 package account_creation;
 
 import ui.LoginUI;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 
 import java.util.HashMap;
 

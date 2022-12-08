@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 import account_creation.Account;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import profile.*;
 
 import java.util.*;

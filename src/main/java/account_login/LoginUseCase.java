@@ -7,7 +7,7 @@ import profile.ProfilePresenter;
 import profile.ProfileUI;
 import ui.ChatListUI;
 import ui.LoginUI;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 
 import java.util.HashMap;
 import java.util.Objects;
