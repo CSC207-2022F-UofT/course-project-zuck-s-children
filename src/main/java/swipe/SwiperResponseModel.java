@@ -18,6 +18,5 @@ public class SwiperResponseModel {
     }
 
 
-    public String getAccepted() {return accepted;
-    }
+    public String getAccepted() { return accepted; }
 }
