@@ -21,7 +21,7 @@ public class MatchingAlgorithmTest {
         // Lance profile
         Account Lance = new Account("Lance", "password");
 
-        UserDatabase.setCurrentUser(Lance);
+        UserDatabase.getUserDatabase().setCurrentUser(Lance);
         Lance.getProfile().setName("Lance");
         Lance.getProfile().setPronouns("he/him");
         Lance.getProfile().setYear("3");

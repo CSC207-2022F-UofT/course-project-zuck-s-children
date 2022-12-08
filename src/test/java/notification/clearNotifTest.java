@@ -39,7 +39,7 @@ public class clearNotifTest {
         curr.addNotification(chat2);
         curr.addNotification(match3);
 
-        UserDatabase.setCurrentUser(curr);
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
         ClearNotifOutputBoundary clearNotifPresenter = new ClearNotifPresenter() {
             @Override
             public void prepareDisplayView(){
@@ -59,7 +59,7 @@ public class clearNotifTest {
     @Test
     void ClearNotifNone(){
         Account curr = new Account("andrew", "4402");
-        UserDatabase.setCurrentUser(curr);
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
         ClearNotifOutputBoundary clearNotifPresenter = new ClearNotifPresenter() {
             @Override
             public void prepareDisplayView(){
@@ -82,7 +82,7 @@ public class clearNotifTest {
         MatchNotification match1 = new MatchNotification("nice to meet you!", acc1, LocalDateTime.now());
         curr.addNotification(match1);
 
-        UserDatabase.setCurrentUser(curr);
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
         ClearNotifOutputBoundary clearNotifPresenter = new ClearNotifPresenter() {
             @Override
             public void prepareDisplayView(){

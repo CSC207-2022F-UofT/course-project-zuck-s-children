@@ -24,7 +24,7 @@ class SwiperInteractorTest {
         SwiperInputBoundary testInteractor = new SwiperInteractor(testPresenter);
         Account curr = new Account("Sanzhar", "password");
         Account potential = new Account("Potential", "pass");
-        UserDatabase.setCurrentUser(curr);
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
         SwiperRequestModel testRequest = new SwiperRequestModel(true, potential);
 
 
@@ -39,13 +39,13 @@ class SwiperInteractorTest {
         SwiperInputBoundary testInteractor = new SwiperInteractor(testPresenter);
         Account curr = new Account("Sanzhar", "password");
         Account potential = new Account("Potential", "pass");
-        UserDatabase.setCurrentUser(curr);
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
         SwiperRequestModel testRequest = new SwiperRequestModel(true, potential);
         SwiperResponseModel result = testInteractor.create(testRequest);
         assertTrue(curr.getMatches().contains(potential));
         assertFalse(potential.getMatches().contains(curr));
         assertEquals("N", result.getAccepted());
-        UserDatabase.setCurrentUser(potential);
+        UserDatabase.getUserDatabase().setCurrentUser(potential);
         SwiperRequestModel testRequest2 = new SwiperRequestModel(true, curr);
         SwiperResponseModel result2 = testInteractor.create(testRequest2);
         assertEquals("Y", result2.getAccepted());

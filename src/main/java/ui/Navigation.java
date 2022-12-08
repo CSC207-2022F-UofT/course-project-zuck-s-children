@@ -89,7 +89,7 @@ public class Navigation {
                     FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
                     ObjectOutputStream outUser = new ObjectOutputStream(foutUser);
                     ObjectOutputStream outChat = new ObjectOutputStream(foutChat);
-                    outUser.writeObject(UserDatabase.getAccounts());
+                    outUser.writeObject(UserDatabase.getUserDatabase().getAccounts());
                     outChat.writeObject(chatDataAccess.getChatData().getChatList());
                     outChat.flush();
                     outUser.flush();
