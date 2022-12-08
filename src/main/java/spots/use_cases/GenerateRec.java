@@ -4,6 +4,8 @@ import account_creation.Account;
 import spots.entities.RecGenerator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class GenerateRec implements RecsInBoundary {
     private RecsOutBoundary recsPresenter;
@@ -33,11 +35,13 @@ public class GenerateRec implements RecsInBoundary {
     /**
      * Generate a recommendation from the users' spot preferences
      * Invoke methods of GenerateRec Object
+     *
+     * @return recommendation
      */
     public ArrayList<String> generateRec() {
 
-        ArrayList<String> prefSpots1 = (ArrayList<String>) user1.getProfile().getStudySpotPreferences();
-        ArrayList<String> prefSpots2 = (ArrayList<String>) user2.getProfile().getStudySpotPreferences();
+        ArrayList<String> prefSpots1 = new ArrayList<>(user1.getProfile().getStudySpotPreferences());
+        ArrayList<String> prefSpots2 = new ArrayList<>(user2.getProfile().getStudySpotPreferences());
 
         spotRecommender.setPrefSpots(prefSpots1, prefSpots2);
         spotRecommender.recommender();
