@@ -12,7 +12,6 @@ import data.persistency.UserDatabase;
 import notification.Entities.ChatNotification;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MsgSendInteractor implements MsgInBoundary {
@@ -42,7 +41,7 @@ public class MsgSendInteractor implements MsgInBoundary {
         LocalDateTime now = LocalDateTime.now();
         // Add a new message to the data entity and send a notification
         room.addMessage(newMessage);
-        room.getOtherUser().addNotification(
+        UserDatabase.getAccounts().get(room.getOtherUser().getUsername()).addNotification(
                 new ChatNotification("New message has arrived!" ,curr, now, room.getId()));
         List<MessageEnt> chatList = room.getMessages();
         MsgOutModel responseModel = new MsgOutModel(chatList);

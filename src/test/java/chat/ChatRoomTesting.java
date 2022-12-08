@@ -1,6 +1,7 @@
 package chat;
 
 import account_creation.Account;
+import chat.control.MsgSendController;
 import chat.control.RoomInModel;
 import chat.entities.ChatRoomEnt;
 import chat.entities.MessageEnt;
@@ -8,6 +9,8 @@ import chat.presenter.ChatRoomPresenter;
 import chat.presenter.MsgOutBoundary;
 import chat.presenter.MsgOutModel;
 import chat.use_cases.ChatRoomOpenInteractor;
+import chat.use_cases.MsgInBoundary;
+import chat.use_cases.MsgSendInteractor;
 import chat.use_cases.OpenRoomBoundary;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
@@ -16,7 +19,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ui.ChatRoomUI;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class ChatRoomTesting {
     ChatDataAccessInterface chatDataAccessInterface;
-    MsgOutBoundary presenter = new ChatRoomPresenter(new ChatRoomUI());
-    OpenRoomBoundary interactor = new ChatRoomOpenInteractor(presenter, chatDataAccessInterface);
+    MsgOutBoundary presenter;
+    OpenRoomBoundary interactor;
     String room1_id;
     String room2_id;
     @BeforeEach
@@ -39,6 +41,14 @@ public class ChatRoomTesting {
         ChatDataAccess chatDataAccess = new ChatDataAccess();
         chatDataAccess.setChatdata(chatDatabase);
         chatDataAccessInterface = chatDataAccess;
+        ChatRoomUI chatRoomUI = new ChatRoomUI();
+        presenter = new ChatRoomPresenter(chatRoomUI);
+        interactor = new ChatRoomOpenInteractor(presenter, chatDataAccessInterface);
+        MsgOutBoundary chatRoomPresenter = new ChatRoomPresenter(chatRoomUI);
+        MsgInBoundary msgInteractor = new MsgSendInteractor(chatRoomPresenter, chatDataAccess);
+        MsgSendController msgController = new MsgSendController(msgInteractor);
+        chatRoomUI.setCA(msgController);
+
 
         Account user1 = new Account("user1", "user1");
         Account user2 = new Account("user2", "user2");
@@ -59,6 +69,9 @@ public class ChatRoomTesting {
     void tearDown() {
     }
 
+    /**
+     * Test on opening a correct chat room
+     */
     @Test
     void chatRoomOpenTesting() {
         MsgOutModel model1 = interactor.open(new RoomInModel(room1_id));
