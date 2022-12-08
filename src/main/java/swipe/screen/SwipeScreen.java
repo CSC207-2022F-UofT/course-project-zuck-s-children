@@ -16,6 +16,10 @@ import static main_app.StudyBuddyApp.swiperUI;
 //
 // Frameworks/Drivers layer
 
+/**
+ * A window with a title, two Jbuttons for accept and reject and the relevant information from potential match
+ * such as its year of study.
+ */
 public class SwipeScreen extends JPanel implements ActionListener {
 
     /**
@@ -24,23 +28,22 @@ public class SwipeScreen extends JPanel implements ActionListener {
     SwiperController swiperController;
 
     /**
-     * Check if a button has been pressed or not
+     * A list of all the potential matches for the current user.
      */
-    boolean pressed = false;
-
-    /**
-     * Output from controller
-     */
-    SwiperResponseModel out;
-    /**
-     * A window with a title, two Jbuttons and the relevant information from potential match.
-     */
-
     LinkedList<Account> potential;
 
-    SwipeScreen next;
-
+    /**
+     * current index of potential
+     */
     int i;
+
+    /**
+     * A constructor that adds all the information to the panel based on potential at index i and buttons accept and
+     * reject. Initializes controller as well.
+     * @param controller
+     * @param potential
+     * @param i
+     */
     public SwipeScreen(SwiperController controller, LinkedList<Account> potential, int i) {
         this.potential = potential;
         if (this.potential.size() > i) {
@@ -86,31 +89,36 @@ public class SwipeScreen extends JPanel implements ActionListener {
     }
 
     /**
-     * React to a button click that results in evt.
+     * React to a button click that results in evt for accept or reject. Set off controller.
      */
     public void actionPerformed(ActionEvent evt) {
-        pressed = true;
         System.out.println("Click " + evt.getActionCommand());
         String[] result = evt.getActionCommand().split(",", 2);
         Account account = UserDatabase.getUserDatabase().getAccounts().get(result[1]);
         try {
-            out = swiperController.create(result[0], account);
+            swiperController.create(result[0], account);
             if (result[0].equals("T")){
             JOptionPane.showMessageDialog(this, "Request sent to " + result[1]);}
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, "Sorry, something went wrong");
         }
+        next();
+        }
+
+    /**
+     * a helper for actionPerformed, where it creates a new SwipeScreen to be used by the main SwiperUI
+     * (in SwiperUI.build()) for the next potential match, or let SwiperUI build an empty screen if there are no more
+     * matches.
+     */
+    private void next(){
         if (i <= potential.size() - 2){
             i += 1;
-            next = new SwipeScreen(swiperController, potential, i);
-            swiperUI.build(next);
+            swiperUI.build(new SwipeScreen(swiperController, potential, i));
         }
         else{
             swiperUI.build();
         }
     }
 
-    public boolean getPressed() {
-        return pressed;
-    }
+
 }
