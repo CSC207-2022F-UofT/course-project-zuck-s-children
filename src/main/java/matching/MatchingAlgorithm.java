@@ -16,14 +16,15 @@ public class MatchingAlgorithm {
      * Back-end matching algorithm that will work with the swiper to determine potential matches.
      * Potential matches are determined by a compatibility score
      *
-     * @param user
-     * @param otherUsers
+     * @param user an account of the user
+     * @param otherUsers a list of other users
      */
 
     public static LinkedList MatchingAlgorithmFinal(Account user, ArrayList<Account> otherUsers) {
         /**
          * Construct an arraylist of potential matches, giving them a score compatibility
          */
+        ArrayList<Account> accountQueue = new ArrayList<>();
 
         // set all user's score to 0
         for (int i = 0; i < otherUsers.size(); i++) {
@@ -37,17 +38,23 @@ public class MatchingAlgorithm {
         for (int i = 0; i < otherUsers.size(); i++) {
             Account oUser = otherUsers.get(i);
             for (String key : preferences.keySet()) {
-                assignScore(key, preferences, oUser.getProfile());
+                try {
+                    assignScore(key, preferences, oUser.getProfile());
+                } catch(Exception e){
+
+                }
+            }
+            if (!oUser.getBuddies().contains(user) && !user.getMatches().contains(oUser)){
+                accountQueue.add(oUser);
             }
         }
 
         // sort users based on descending order of mathscore
 //        ArrayList<Account> matches = new ArrayList<Account>(); //potential matches
-        Collections.sort(otherUsers);
-
+        Collections.sort(accountQueue);
 
         // create new LinkedList
-        LinkedList<Account> potentialMatches = new LinkedList<>(otherUsers);
+        LinkedList<Account> potentialMatches = new LinkedList<>(accountQueue);
 
         return potentialMatches;
     }
@@ -96,7 +103,7 @@ public class MatchingAlgorithm {
     }
     public static ArrayList<Account> getOthers() {
         ArrayList<Account> otherUsers = new ArrayList<>();
-        for (Account a : UserDatabase.getAccounts().values()) {
+        for (Account a : UserDatabase.getUserDatabase().getAccounts().values()) {
             if (a != UserDatabase.getUserDatabase().getCurrentUser()) {
                 otherUsers.add(a);
             }

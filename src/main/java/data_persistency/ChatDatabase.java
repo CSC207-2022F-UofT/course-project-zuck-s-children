@@ -25,7 +25,7 @@ public class ChatDatabase implements Serializable {
     public List<Object> findByAccount(Account acc)  {
         List<Object> roomList = new ArrayList<>();
         for(Object room : chatData){
-            if (((ChatRoomEnt)room).getParticipants().checkParticipant(acc)){
+            if (((ChatRoomEnt)room).checkParticipant(acc)){
                 roomList.add(room);
             }
         }

@@ -13,7 +13,6 @@ import java.util.List;
 
 public class ShowNotifInteractor implements ShowNotifInputBoundary {
     private ShowNotifOutputBoundary showNotifOutputBoundary;
-    private Account user;
 
     /**
      * Create an interactor for showing all notifications.
@@ -21,20 +20,26 @@ public class ShowNotifInteractor implements ShowNotifInputBoundary {
      */
     public ShowNotifInteractor(ShowNotifOutputBoundary showNotifOutputBoundary){
         this.showNotifOutputBoundary = showNotifOutputBoundary;
-        this.user = UserDatabase.getUserDatabase().getCurrentUser();
     }
 
+
+    private NotifResponseModel createModel(){
+        List<Notification> notifList = UserDatabase.getUserDatabase().getCurrentUser().getNotifications();
+        ArrayList formattedList = formatNotif(notifList);
+        NotifResponseModel notifResponseModel = new NotifResponseModel(formattedList);
+        return notifResponseModel;
+    }
     /**
      * Show all notifications from current user's notifications attribute.
      */
     @Override
     public void showNotif(){
-        List<Notification> notifList = this.user.getNotifications();
+        showNotifOutputBoundary.prepareDisplayView(createModel());
+    }
 
-        ArrayList formattedList = formatNotif(notifList);
-
-        NotifResponseModel notifResponseModel = new NotifResponseModel(formattedList);
-        showNotifOutputBoundary.prepareDisplayView(notifResponseModel);
+    @Override
+    public void refresh() {
+        showNotifOutputBoundary.refresh(createModel());
     }
 
     /**

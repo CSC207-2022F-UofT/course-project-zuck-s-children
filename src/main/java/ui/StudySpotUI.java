@@ -18,7 +18,7 @@ public class StudySpotUI {
      * @param p contains recommendations to be presented in a chatroom
      */
     public void createRecommendationBox(JPanel p) { //button in chat
-        recPopUp = new JFrame("Study Spot Recommendations");
+        recPopUp = new JFrame("Study Spots");
         recPopUp.setVisible(true);
         recPopUp.add(p);
         recPopUp.pack();

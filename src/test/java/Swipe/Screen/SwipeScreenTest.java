@@ -1,7 +1,7 @@
 package swipe.screen;
 
 import account_creation.Account;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 class SwipeScreenTest {
 
@@ -49,9 +50,13 @@ class SwipeScreenTest {
         Account potential = new Account("Potential", "pass");
         potential.setProfile(prof2);
 
-        UserDatabase.setCurrentUser(curr);
+        LinkedList<Account> testArray = new LinkedList<>();
+        testArray.add(potential);
+        testArray.add(curr);
+
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
         SwiperController testController = new SwiperController(testInteractor);
-        SwipeScreen swipeScreen = new SwipeScreen(testController, potential);
+        SwipeScreen swipeScreen = new SwipeScreen(testController, testArray, 1);
         JFrame swiper = new JFrame("Time to swipe");
         CardLayout cardLayout = new CardLayout();
         JPanel screens = new JPanel(cardLayout);

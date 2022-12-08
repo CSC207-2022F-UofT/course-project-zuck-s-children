@@ -16,4 +16,10 @@ public class ShowNotifController {
     public void showNotif(){
         this.interactor.showNotif();
     }
+    /**
+     * Refresh all notifications.
+     */
+    public void refresh(){
+        this.interactor.refresh();
+    }
 }

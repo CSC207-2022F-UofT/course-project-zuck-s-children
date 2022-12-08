@@ -8,7 +8,10 @@ import chat.entities.ChatRoomEnt;
 import chat.entities.MessageEnt;
 import chat.entities.MessageFactory;
 import data_persistency.ChatDataAccessInterface;
+import data_persistency.UserDatabase;
+import notification.Entities.ChatNotification;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +38,12 @@ public class MsgSendInteractor implements MsgInBoundary {
     public void sendMessage(MsgInModel msgModel) {
         MessageEnt newMessage = msgFactory.create(msgModel);
         ChatRoomEnt room = fetch(newMessage.getRoomId());
-
-
-        // Add a new message to the data entity
+        Account curr = UserDatabase.getUserDatabase().getCurrentUser();
+        LocalDateTime now = LocalDateTime.now();
+        // Add a new message to the data entity and send a notification
         room.addMessage(newMessage);
-        System.out.println(newMessage.getInfo()[0]+" sent from " + newMessage.getInfo()[1]);
-
+        room.getOtherUser().addNotification(
+                new ChatNotification("New message has arrived!" ,curr, now, room.getId()));
         List<MessageEnt> chatList = room.getMessages();
         MsgOutModel responseModel = new MsgOutModel(chatList);
         msgPresenter.overwrite(responseModel);

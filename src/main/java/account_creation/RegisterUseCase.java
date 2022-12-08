@@ -4,6 +4,7 @@ import ui.LoginUI;
 import data_persistency.UserDatabase;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class RegisterUseCase implements RegisterInBoundary {
     private RegisterInModel registerInModel;
@@ -22,7 +23,7 @@ public class RegisterUseCase implements RegisterInBoundary {
         String registerUser = registerInModel.getInputUsername();
         String registerPwd = registerInModel.getInputPassword();
 
-        if (checkDuplicateUsername(registerUser)) {
+        if (checkDuplicateUsername(registerUser) || checkEmptyParameter(registerUser, registerPwd)) {
             // must raise exception or error and send message up to view
             int numberOfAccounts = userDatabaseAccounts.size();
             System.out.println(numberOfAccounts);
@@ -47,4 +48,7 @@ public class RegisterUseCase implements RegisterInBoundary {
         return userDatabaseAccounts.containsKey(inputUsername);
     }
 
+    public static boolean checkEmptyParameter(String inputUsername, String inputPassword) {
+        return Objects.equals(inputUsername, "") || Objects.equals(inputPassword, "");
+    }
 }

@@ -26,19 +26,11 @@ public class SwiperUI extends JInternalFrame{
         this.setVisible(true);
     }
     public void build(LinkedList<Account> potential, SwiperController swiperController){
-//        if (swipePanel != null){
-//            this.remove(swipePanel);
-//            this.remove(initial);
-//        }
+
         swipePanel = new SwipeScreen(swiperController, potential, 0);
         initial.add(swipePanel, "Swipe");
         cl.show(initial, "Swipe");
         this.pack();
-//        while (!swipePanel.getPressed()){
-//
-//        }
-//        initial.remove(swipePanel);
-
 
     }
     public void build(SwipeScreen swipePanel2){
@@ -51,7 +43,9 @@ public class SwiperUI extends JInternalFrame{
 
     }
     public void build(){
-        initial.remove(swipePanel);
+        if (swipePanel != null){
+            initial.remove(swipePanel);
+        }
         initial.add(new EmptyScreen(), "2");
         cl.show(initial, "2");
         this.pack();

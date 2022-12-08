@@ -19,7 +19,7 @@ public class ChatDataAccess implements ChatDataAccessInterface{
                 return this.chatdata;
         }
         @Override
-        public Object loadRoomById(String rid) throws Throwable {
+        public Object loadRoomById(String rid) {
                 return chatdata.findById(rid);
         }
 

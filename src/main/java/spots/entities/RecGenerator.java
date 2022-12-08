@@ -38,9 +38,7 @@ public class RecGenerator {
      */
     public void makeOptions(ArrayList<String> prefSpots) {
         for (int i = 0; i < 3; i++) {
-            if (!Objects.equals(prefSpots.get(i), "N/A")) {
-                options.add(prefSpots.get(i));
-            }
+            if (!Objects.equals(prefSpots.get(i), "N/A")) {options.add(prefSpots.get(i));}
         }
     }
 
@@ -54,7 +52,7 @@ public class RecGenerator {
         //adding mutually preferred study spots
         for (int i = 0; i < 3; i++) {
             String option = prefSpots1.get(i);
-            if (prefSpots2.contains(option)) {
+            if (prefSpots2.contains(option) && !Objects.equals(prefSpots1.get(i), "N/A")) {
                 recommendation.add(option);
                 options.remove(option);
                 options.remove(option);
@@ -70,9 +68,10 @@ public class RecGenerator {
      */
     int i = 0;
     public void recHelper(){
-        String[] spots = new String[]{"Robarts Library", "Gerstein Library", "Student Commons",
-                "Hart House", "UC College", "Caven Library", "E.J Pratt Library", "Graham Library", "UC Quad",
-                "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall"};
+        String[] spots = new String[]{"Robarts Library", "Gerstein Library", "UTSU Student Commons", "Hart House",
+                "UC Library", "Caven Library", "E.J. Pratt Library", "Graham Library", "SS Commons",
+                "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall", "OISE",
+                "Kelly Library", "Innis College Library"};
 
         // add a spot randomly from either users' preferred study spots except N/A
         if (!(options.isEmpty())) {
