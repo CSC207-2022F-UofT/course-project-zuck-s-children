@@ -74,6 +74,15 @@ public class Profile implements Serializable {
     }
 
     /**
+     * Sets the user's compatibility score with the user currently logged in.
+     *
+     * @param score the user's compatibility score
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    /**
      * Return the name of this user.
      *
      * @return the user's name
@@ -106,7 +115,7 @@ public class Profile implements Serializable {
      * @return the field of study of this user
      */
     public String getFieldOfStudy() {
-        return this.fieldOfStudy;
+        return fieldOfStudy;
     }
 
     /**
@@ -115,7 +124,7 @@ public class Profile implements Serializable {
      * @return a List of the user's study styles (String)
      */
     public List<String> getStudyStyles() {
-        return this.studyStyles;
+        return studyStyles;
     }
 
     /**
@@ -124,7 +133,7 @@ public class Profile implements Serializable {
      * @return the user's study buddy preferences
      */
     public HashMap<String, List<String>> getStudyBuddyPreferences() {
-        return this.studyBuddyPreferences;
+        return studyBuddyPreferences;
     }
 
     /**
@@ -136,19 +145,6 @@ public class Profile implements Serializable {
         return studySpotPreferences;
     }
 
-
-    private String name = "N/A";
-    private String pronouns = "N/A";
-    public static final String[] YEARS = {"1", "2", "3", "4", "4+"};
-    private String year = "N/A";
-    public static final String[] FIELDS = {"N/A", "Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Faculty of Architecture", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Faculty of Information (iSchool)", "Other"};
-    private String fieldOfStudy = "N/A";
-    public static final String[] STYLES = {"N/A", "quiet", "talkative", "goal-setting", "moves around", "hard work grinding"};
-    private List<String> studyStyles = new ArrayList<>();
-    public static String[] studySpots = {"N/A", "Robarts Library", "Gerstein Library", "UTSU Student Commons", "Hart House", "UC Library", "Caven Library", "E.J. Pratt Library", "Graham Library", "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall", "OISE", "Kelly Library", "Innis College Library"};
-    private List<String> studySpotPreferences = new ArrayList<>();
-    private HashMap<String, List<String>> studyBuddyPreferences = new HashMap<>();
-
     /**
      * Returns the compatibility score of the user to the user currently logged in.
      *
@@ -158,34 +154,25 @@ public class Profile implements Serializable {
         return score;
     }
 
-    /**
-     * Sets the user's compatibility score with the user currently logged in.
-     *
-     * @param score the user's compatibility score
-     */
-    public void setScore(int score) {
-        this.score = score;
-    }
+    private String name = "N/A";
+    private String pronouns = "N/A";
+    public static final String[] YEARS = {"1", "2", "3", "4", "4+"};
+    private String year = "N/A";
+    public static final String[] FIELDS = {"N/A", "Humanities", "Social Sciences", "Engineering", "Physical Sciences", "Life Sciences", "Faculty of Architecture", "Arts", "Rotman Commerce", "Computer Science", "Kinesiology", "Faculty of Information (iSchool)", "Other"};
+    private String fieldOfStudy = "N/A";
+    public static final String[] STYLES = {"N/A", "quiet", "talkative", "goal-setting", "moves around", "hard work grinding"};
+    private List<String> studyStyles = new ArrayList<>();
+    public static final String[] STUDY_SPOTS = {"N/A", "Robarts Library", "Gerstein Library", "UTSU Student Commons", "Hart House", "UC Library", "Caven Library", "E.J. Pratt Library", "Graham Library", "SS Commons", "Residence Study Space", "College Classroom", "Bahen Centre", "Brennen Hall", "OISE", "Kelly Library", "Innis College Library"};
+    private List<String> studySpotPreferences = new ArrayList<>();
+    private HashMap<String, List<String>> studyBuddyPreferences = new HashMap<>();
+    private int score = 0; // the user's compatibility score with the user currently logged in
 
-    private int score = 0;
-
     /**
-     * Construct a new Profile object.
+     * Construct a new Profile object. The attributes name, pronouns, year, fieldOfStudy should be "N/A" by default. Attributes studyStyles and studySpotPreferences should be empty List objects by default. Attribute studyBuddyPreferences should be a HashMap with keys "year", "field of study", and "descriptions" corresponding to empty Lists.
      */
     public Profile() {
         studyBuddyPreferences.put("year", new ArrayList<>());
         studyBuddyPreferences.put("field of study", new ArrayList<>());
         studyBuddyPreferences.put("descriptions", new ArrayList<>());
-    }
-
-    /**
-     * Returns a string representation of the profile.
-     *
-     * @return the profile in string
-     */
-    @Override
-    public String toString() {
-        return "Profile\\nName: " + getName() + "\\nPronouns: " + getPronouns() + "\\nYear: " + getYear() + "\\nField of Study: " + getFieldOfStudy() + "\\nStudy Style: " + getStudyStyles() +
-                "\\n\\n-- Study Buddy Preferences --\\nYear: " + studyBuddyPreferences.get("year").toString() + "\\nField of Study: " + studyBuddyPreferences.get("field of study").toString() + "\\nDescriptions: " + studyBuddyPreferences.get("descriptions").toString() + "\\n\\n-- Study Spot Preferences --\\n" + getStudySpotPreferences().toString();
     }
 }
