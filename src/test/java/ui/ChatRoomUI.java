@@ -82,14 +82,12 @@ public class ChatRoomUI extends JFrame implements ActionListener {
     }
 
     public void build() {
-        if(!GraphicsEnvironment.isHeadless()) {
             roomFrame.setPreferredSize(new Dimension(400, 700));
             roomFrame.setBounds(50, 50, 400, 700);
             roomFrame.setTitle(roomTitle);
             createChatRoomUI();
             roomFrame.pack();
             roomFrame.setVisible(true);
-        }
     }
 
 
