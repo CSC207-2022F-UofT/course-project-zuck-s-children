@@ -14,33 +14,33 @@ a user's profile, group chats and a map.
 
 ## Core Features
 
-#### Authorization
+### Authorization
 It is the first page the user will face when the program runs.\
 The user can register a new account with a username and a password or sign in with existing account.\
 When an account is authorized, the window will be closed and open the main window.
 
-#### Swiper - Matching
+### Swiper - Matching
 The user can see matched profiles and choose to accept or reject other students to be a StudyBuddy.\
 The matching is produced by our matching algorithm based on information provided in a profile, for example, one's field of study.\
 Once two users accept each other, the program creates a new chat room of the two users.
 
-#### Profile Customization
+### Profile Customization
 <img width="450" alt="Screen Shot 2022-12-05 at 9 25 42 AM" src="https://user-images.githubusercontent.com/107783734/205661179-9bb536c5-f109-4896-b1e5-a2642d75d728.png">
 The users can customize their profile including a pronoun, a year of study, a program, and study style.
 The profile is used in the matching algorithm to generate a possible matches for our program's one of the most important feature.
 
-#### Chat
+### Chat
 The Chat feature implements the general chatting system of a software. It has a list of chat room and the user can open a chat room
 to make a chat with other users.
 
-#### Study Spot
+### Study Spot
 As a part of that chat room functionality, the program uses the algorithm to make three recommendations of study spot in a chat room. It takes account preference of both users in a room.
 
-#### Notification
+### Notification
 <img width="450" alt="Screen Shot 2022-12-05 at 9 26 02 AM" src="https://user-images.githubusercontent.com/107783734/205661460-af741a56-517a-4c72-9927-7709a82ecb20.png">
 When there is a new match or a new message, the program creates a notification to notify the user about a new update.
 
-## Clear Notification & Navigating to a chat room
+#### Clear Notification & Navigating to a chat room
 Users are able to view all notifications and clear all notifications. Moreover, after selecting a message notification, you can open the corresponding chat room directly through the notification.
 
 
