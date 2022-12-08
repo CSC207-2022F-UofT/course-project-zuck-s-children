@@ -29,6 +29,9 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
     List<String> roomIds;
     ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
 
+    /**
+     * Construct a chat list UI
+     */
     public ChatListUI(){
         super("Chat List");
         this.setBounds(0, 0, 1440, 1000);
@@ -36,6 +39,17 @@ public class ChatListUI extends JInternalFrame implements ListSelectionListener 
         this.build();
     }
 
+    /**
+     * Update the view
+     */
+    public void update(){
+        this.remove(chatList);
+        this.build();
+    }
+
+    /**
+     * Build the content of a chat list
+     */
     public void build() {
         this.chatList = new JPanel();
         roomIds = new ArrayList<>();

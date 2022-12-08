@@ -13,50 +13,9 @@ public class ChatRoomEnt implements Serializable {
      * The id of the chat room.
      */
     private String id;
-    private Participants participants;
-    public class Participants implements Serializable{
-        private Account User1;
-        private Account User2;
 
-        /**
-         * Return the another user with the different name
-         * @throws IllegalArgumentException if myName is not the name of neither of the participants
-         * @return the name of the another user
-         */
-        public Account getOtherUser(){
-            return UserDatabase.getUserDatabase().getCurrentUser().getUsername().equals(User1.getUsername())?
-                    User2 : User1;
-        }
-
-        /**
-         * Construct Participants with two accounts of users
-         * @param User1
-         * @param User2
-         */
-        public Participants(Account User1, Account User2){
-            this.User1 = User1;
-            this.User2 = User2;
-        }
-
-        /**
-         * Return true if and only if the user is in this room
-         * @param user
-         * @return
-         */
-        public boolean checkParticipant(Account user){
-            return this.User1.getUsername().equals(user.getUsername()) ||
-                    this.User2.getUsername().equals(user.getUsername());
-        }
-
-        /**
-         * Return an array of two participants
-         * @return
-         */
-        public Account[] getParticipants(){
-            Account[] participants = {this.User1, this.User2};
-            return participants;
-        }
-    }
+    private Account user1;
+    private Account user2;
 
     /**
      * A list of messages in this chat room.
@@ -66,12 +25,13 @@ public class ChatRoomEnt implements Serializable {
 
     /**
      * Construct a ChatRoomEnt
-     * @param User1
-     * @param User2
+     * @param user1
+     * @param user2
      */
-    public ChatRoomEnt(Account User1, Account User2){
+    public ChatRoomEnt(Account user1, Account user2){
         this.id = UUID.randomUUID().toString();
-        this.participants = new Participants(User1, User2);
+        this.user1 = user1;
+        this.user2 = user2;
         this.messageList = new ArrayList<>();
     }
 
@@ -84,11 +44,30 @@ public class ChatRoomEnt implements Serializable {
     }
 
     /**
-     * Return the participants of this chatroom
-     * @return the participants of this chatroom
+     * Return the another user with the different name
+     * @return the name of the another user
      */
-    public Participants getParticipants(){
-        return this.participants;
+    public Account getOtherUser(){
+        return UserDatabase.getUserDatabase().getCurrentUser().getUsername().equals(user1.getUsername())?
+                user2:user1;
+    }
+    /**
+     * Return true if and only if the user is in this room
+     * @param user
+     * @return
+     */
+    public boolean checkParticipant(Account user){
+        return this.user1.getUsername().equals(user.getUsername()) ||
+                this.user2.getUsername().equals(user.getUsername());
+    }
+
+    /**
+     * Return an array of two participants
+     * @return
+     */
+    public Account[] getParticipants(){
+        Account[] participants = {this.user1, this.user2};
+        return participants;
     }
 
     /**
@@ -103,6 +82,6 @@ public class ChatRoomEnt implements Serializable {
     }
 
     public String toString() {
-        return this.getParticipants().getOtherUser().getProfile().getName();
+        return this.getOtherUser().getProfile().getName();
     }
 }

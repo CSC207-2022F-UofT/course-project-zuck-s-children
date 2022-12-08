@@ -43,45 +43,46 @@ public class SwipeScreen extends JPanel implements ActionListener {
     int i;
     public SwipeScreen(SwiperController controller, LinkedList<Account> potential, int i) {
         this.potential = potential;
-        this.i = i;
-        this.swiperController = controller;
-        Profile profile = potential.get(i).getProfile();
-        JLabel title = new JLabel("Potential Match?");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        if (this.potential.size() > i) {
+            this.i = i;
+            this.swiperController = controller;
+            Profile profile = potential.get(i).getProfile();
+            JLabel title = new JLabel("Potential Match?");
+            title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        LabelTextPanel name = new LabelTextPanel(
-                new JLabel("Name: " + profile.getName()));
-        LabelTextPanel pronouns = new LabelTextPanel(
-                new JLabel("Pronouns: " + profile.getPronouns()));
-        LabelTextPanel yearOfStudy = new LabelTextPanel(
-                new JLabel("Year of Study: " + profile.getYear()));
-        LabelTextPanel fieldOfStudy = new LabelTextPanel(
-                new JLabel("Field of Study: " + profile.getFieldOfStudy()));
-        LabelTextPanel studyStyles = new LabelTextPanel(
-                new JLabel("Courses: " + profile.getStudyStyles().toString()));
+            LabelTextPanel name = new LabelTextPanel(
+                    new JLabel("Name: " + profile.getName()));
+            LabelTextPanel pronouns = new LabelTextPanel(
+                    new JLabel("Pronouns: " + profile.getPronouns()));
+            LabelTextPanel yearOfStudy = new LabelTextPanel(
+                    new JLabel("Year of Study: " + profile.getYear()));
+            LabelTextPanel fieldOfStudy = new LabelTextPanel(
+                    new JLabel("Field of Study: " + profile.getFieldOfStudy()));
+            LabelTextPanel studyStyles = new LabelTextPanel(
+                    new JLabel("Study Style: " + profile.getStudyStyles().toString()));
 
-        JButton accept = new JButton("Accept");
-        accept.setActionCommand("T," + potential.get(i).getUsername());
-        JButton reject = new JButton("Reject");
-        reject.setActionCommand("F," + potential.get(i).getUsername());
+            JButton accept = new JButton("Accept");
+            accept.setActionCommand("T," + potential.get(i).getUsername());
+            JButton reject = new JButton("Reject");
+            reject.setActionCommand("F," + potential.get(i).getUsername());
 
-        JPanel buttons = new JPanel();
-        buttons.add(accept);
-        buttons.add(reject);
+            JPanel buttons = new JPanel();
+            buttons.add(accept);
+            buttons.add(reject);
 
-        accept.addActionListener(this);
-        reject.addActionListener(this);
+            accept.addActionListener(this);
+            reject.addActionListener(this);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(title);
-        this.add(buttons);
-        this.add(name);
-        this.add(yearOfStudy);
-        this.add(pronouns);
-        this.add(fieldOfStudy);
-        this.add(studyStyles);
-
+            this.add(title);
+            this.add(buttons);
+            this.add(name);
+            this.add(yearOfStudy);
+            this.add(pronouns);
+            this.add(fieldOfStudy);
+            this.add(studyStyles);
+        }
     }
 
     /**

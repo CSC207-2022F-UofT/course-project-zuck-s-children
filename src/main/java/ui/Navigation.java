@@ -18,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import static main_app.StudyBuddyApp.*;
 
@@ -44,7 +46,7 @@ public class Navigation {
         clearNotifController = new ClearNotifController(clearNotifInteractor);
 
         LinkedList<Account> potential = MatchingAlgorithm.finalMatches();
-        if (potential == null){
+        if (potential == null || potential.size() == 0){
             swiperUI.build();
         }else{
             swiperUI.setBounds(0, 0, 1440, 1000);
@@ -57,7 +59,19 @@ public class Navigation {
         tabbedPane.addTab(CHAT, chatListUI);
         tabbedPane.addTab(NOTIFICATIONS, notificationUI);
 
-
+        ChangeListener changeListener = new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
+                int index = sourceTabbedPane.getSelectedIndex();
+                if(index == 2){
+                    chatListUI.update();
+                } else if (index == 3) {
+                    showNotifController.refresh();
+                }
+            }
+        };
+        tabbedPane.addChangeListener(changeListener);
         pane.add(tabbedPane, BorderLayout.CENTER);
 
     }
