@@ -1,4 +1,4 @@
-package Matching;
+package matching;
 
 import account_creation.Account;
 import data.persistency.UserDatabase;
@@ -20,7 +20,7 @@ public class MatchingAlgorithmTest {
         // Lance profile
         Account Lance = new Account("Lance", "password");
 
-        UserDatabase.setCurrentUser(Lance);
+//        UserDatabase.setCurrentUser(Lance);
         Lance.getProfile().setName("Lance");
         Lance.getProfile().setPronouns("he/him");
         Lance.getProfile().setYear("3");
@@ -196,5 +196,4 @@ public class MatchingAlgorithmTest {
     }
 
 }
-
 
