@@ -10,10 +10,10 @@ import static javax.swing.JOptionPane.showMessageDialog;
 /**
  * A UI class that is executed when there are no accounts to swipe on.
  */
-public class EmptyScreen extends JPanel implements ActionListener {
+public class EmptyScreen extends JPanel{
 
     /**
-     * A window that simply says "Check back later!"
+     * A window that simply says "Check back later! for when there are no more potential matches for the user."
      */
     public EmptyScreen() {
 
@@ -27,8 +27,4 @@ public class EmptyScreen extends JPanel implements ActionListener {
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }
