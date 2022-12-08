@@ -20,7 +20,6 @@ public class SwiperRequestModel {
      * @param accepted, potential
      */
     public SwiperRequestModel(boolean accepted, Account potential) {
-
         this.accepted = accepted;
         this.potential = potential;
     }

@@ -23,4 +23,12 @@ public class ChatNotification extends Notification implements Serializable {
         super(content, sender, time);
         this.id = chatID;
     }
+
+    /**
+     * Return the room id
+     * @return the room id
+     */
+    public String getId(){
+        return this.id;
+    }
 }

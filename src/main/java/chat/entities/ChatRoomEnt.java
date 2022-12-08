@@ -23,9 +23,9 @@ public class ChatRoomEnt implements Serializable {
          * @throws IllegalArgumentException if myName is not the name of neither of the participants
          * @return the name of the another user
          */
-        public String getOtherUser(){
+        public Account getOtherUser(){
             return UserDatabase.getUserDatabase().getCurrentUser().getUsername().equals(User1.getUsername())?
-                    User2.getUsername() : User1.getUsername();
+                    User2 : User1;
         }
 
         /**
@@ -103,6 +103,6 @@ public class ChatRoomEnt implements Serializable {
     }
 
     public String toString() {
-        return this.getParticipants().getOtherUser();
+        return this.getParticipants().getOtherUser().getProfile().getName();
     }
 }

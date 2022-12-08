@@ -13,6 +13,7 @@ public class Account implements Serializable, Comparable<Account> {
     private String password;
     private Profile profile;
     private ArrayList<Account> matches;
+    private ArrayList<Account> buddies;
     private ArrayList<Notification> notifications;
 
     public Account(String username, String password) {
@@ -20,6 +21,7 @@ public class Account implements Serializable, Comparable<Account> {
         this.password = password;
         this.profile = new Profile();
         this.matches = new ArrayList<Account>();
+        this.buddies = new ArrayList<Account>();
         this.notifications = new ArrayList<Notification>();
     }
 
@@ -30,7 +32,6 @@ public class Account implements Serializable, Comparable<Account> {
     public String getPassword() {
         return this.password;
     }
-
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
@@ -42,6 +43,7 @@ public class Account implements Serializable, Comparable<Account> {
     public List<Account> getMatches() {
         return this.matches;
     }
+    public List<Account> getBuddies() { return this.buddies; }
 
     public List<Notification> getNotifications() {
         return this.notifications;
@@ -50,6 +52,7 @@ public class Account implements Serializable, Comparable<Account> {
     public void addMatch(Account match) {
         this.matches.add(match);
     }
+    public void addBuddy(Account buddy) {this.buddies.add(buddy);}
 
     public void addNotification(Notification notification) {
         notifications.add(notification);

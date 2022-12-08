@@ -53,6 +53,7 @@ public class GenerateRec implements RecsInBoundary {
      */
     @Override
     public void createRecs(Account user1, Account user2) {
+        setParticipants(user1, user2);
         recsPresenter.update(generateRec());
     }
 }

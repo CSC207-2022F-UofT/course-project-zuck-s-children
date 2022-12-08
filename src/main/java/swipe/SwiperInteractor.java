@@ -1,11 +1,15 @@
 package swipe;
 //
 import account_creation.Account;
+import chat.entities.ChatRoomEnt;
 import notification.Entities.MatchNotification;
 import data.persistency.UserDatabase;
 
 
 import java.time.LocalDateTime;
+
+import static main_app.StudyBuddyApp.chatDataAccess;
+
 /**
  * An interactor class that implements interface SwiperInputBoundary
  */
@@ -43,7 +47,9 @@ public class SwiperInteractor implements SwiperInputBoundary{
                         curr.getProfile().getName() +"!", curr, now));
                 curr.addNotification(new MatchNotification("You matched with " +
                         potential.getProfile().getName() + "!", potential, now));
-
+                chatDataAccess.addChatRoom(new ChatRoomEnt(curr, potential));
+                potential.addBuddy(curr);
+                curr.addBuddy(potential);
                 return swiperPresenter.prepareNextView("Y");
             }
 

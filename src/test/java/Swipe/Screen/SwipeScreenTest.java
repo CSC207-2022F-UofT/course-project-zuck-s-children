@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 class SwipeScreenTest {
 
@@ -49,9 +50,13 @@ class SwipeScreenTest {
         Account potential = new Account("Potential", "pass");
         potential.setProfile(prof2);
 
+        LinkedList<Account> testArray = new LinkedList<>();
+        testArray.add(potential);
+        testArray.add(curr);
+
         UserDatabase.getUserDatabase().setCurrentUser(curr);
         SwiperController testController = new SwiperController(testInteractor);
-        SwipeScreen swipeScreen = new SwipeScreen(testController, potential);
+        SwipeScreen swipeScreen = new SwipeScreen(testController, testArray, 1);
         JFrame swiper = new JFrame("Time to swipe");
         CardLayout cardLayout = new CardLayout();
         JPanel screens = new JPanel(cardLayout);
