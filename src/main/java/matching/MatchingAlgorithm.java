@@ -69,31 +69,37 @@ public class MatchingAlgorithm {
 
         //compare years
         if (Objects.equals(key, "year")) {
-            ArrayList<String> years = (ArrayList<String>) preferences.get("year");
-            for (String year : years) {
-                if (Objects.equals(year, oUser.getYear())) {
-                    score += 1;
+            if (!preferences.get("year").isEmpty()) {
+                ArrayList<String> years = (ArrayList<String>) preferences.get("year");
+                for (String year : years) {
+                    if (Objects.equals(year, oUser.getYear())) {
+                        score += 1;
+                    }
                 }
             }
         }
 
         //compare field
         if (Objects.equals(key, "field")) {
-            ArrayList<String> field = (ArrayList<String>) preferences.get("field");
-            for (String s : field) {
-                if (s.equals(oUser.getFieldOfStudy())) {
-                    score += 1;
+            if(!preferences.get("field").isEmpty()) {
+                ArrayList<String> field = (ArrayList<String>) preferences.get("field");
+                for (String s : field) {
+                    if (s.equals(oUser.getFieldOfStudy())) {
+                        score += 1;
+                    }
                 }
             }
         }
 
         //compare style
         if (Objects.equals(key, "style")) {
-            ArrayList<String> style = (ArrayList<String>) preferences.get("style");
-            for (String s : style) {
-                if (oUser.getStudyStyles().contains(s)) {
-                    // style toString will return Arraylist of style
-                    score += 1;
+            if(!preferences.get("style").isEmpty()) {
+                ArrayList<String> style = (ArrayList<String>) preferences.get("style");
+                for (String s : style) {
+                    if (oUser.getStudyStyles().contains(s)) {
+                        // style toString will return Arraylist of style
+                        score += 1;
+                    }
                 }
             }
         }

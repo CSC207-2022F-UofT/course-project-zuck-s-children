@@ -35,7 +35,7 @@ public class MsgSendInteractor implements MsgInBoundary {
      * @param msgModel message input model
      */
     @Override
-    public void sendMessage(MsgInModel msgModel) {
+    public MsgOutModel sendMessage(MsgInModel msgModel) {
         MessageEnt newMessage = msgFactory.create(msgModel);
         ChatRoomEnt room = fetch(newMessage.getRoomId());
         Account curr = UserDatabase.getUserDatabase().getCurrentUser();
@@ -47,6 +47,7 @@ public class MsgSendInteractor implements MsgInBoundary {
         List<MessageEnt> chatList = room.getMessages();
         MsgOutModel responseModel = new MsgOutModel(chatList);
         msgPresenter.overwrite(responseModel);
+        return responseModel;
     }
     private ChatRoomEnt fetch(String rid) {
         ChatRoomEnt room;
