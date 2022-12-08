@@ -46,10 +46,10 @@ Users are able to view all notifications and clear all notifications. Moreover, 
 
 ## About Us
 Group Members:
-  Lance Madarang - https://github.com/lancenigel
-  Xi Wang - https://github.com/XiWang16
-  Kenji Tan - https://github.com/tankenji
-  Karen Riani - https://github.com/karenrni
-  Nina Huang - https://github.com/nina-huangg
-  Sanzhar Shamshiyev - https://github.com/SanzSS
-John Lee - https://github.com/SiruLee
+  - Lance Madarang - https://github.com/lancenigel
+  - Xi Wang - https://github.com/XiWang16
+  - Kenji Tan - https://github.com/tankenji
+  - Karen Riani - https://github.com/karenrni
+  - Nina Huang - https://github.com/nina-huangg
+  - Sanzhar Shamshiyev - https://github.com/SanzSS
+  - John Lee - https://github.com/SiruLee
