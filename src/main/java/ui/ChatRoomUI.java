@@ -3,8 +3,10 @@ package ui;
 import account_creation.Account;
 import chat.control.MsgInModel;
 import chat.control.MsgSendController;
+import chat.entities.ChatRoomEnt;
 import chat.entities.MessageEnt;
 import chat.use_cases.MsgInBoundary;
+import data.persistency.ChatDataAccess;
 import data.persistency.UserDatabase;
 import ui.components.Button;
 
@@ -13,11 +15,10 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
-import static main_app.StudyBuddyApp.swiperUI;
-
+import static main_app.StudyBuddyApp.chatDatabase;
+import static main_app.StudyBuddyApp.spotController;
 public class ChatRoomUI extends JFrame implements ActionListener {
     MsgSendController msgSendController;
     String roomTitle;
@@ -108,6 +109,9 @@ public class ChatRoomUI extends JFrame implements ActionListener {
         }
         else{
             // StudySpot Recommendation
+            Account[] accounts = ((ChatRoomEnt)new ChatDataAccess().loadRoomById(this.roomId))
+                    .getParticipants();
+            spotController.create(accounts[0], accounts[1]);
         }
     }
 }

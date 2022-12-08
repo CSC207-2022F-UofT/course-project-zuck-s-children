@@ -1,7 +1,6 @@
 package main_app;
 import account_creation.Account;
-import data.persistency.ChatDataAccess;
-import data.persistency.ChatDatabase;
+import data.persistency.*;
 import notification.Control.ClearNotifController;
 import notification.Control.ClearNotifInputBoundary;
 import notification.Control.ShowNotifController;
@@ -10,14 +9,17 @@ import notification.Present.ClearNotifOutputBoundary;
 import notification.Present.ShowNotifOutputBoundary;
 import profile.*;
 
+import spots.controllers.RecsController;
+import spots.presenter.RecsPresenter;
+import spots.use_cases.GenerateRec;
+import spots.use_cases.RecsInBoundary;
+import spots.use_cases.RecsOutBoundary;
 import ui.LoginUI;
-import data.persistency.UserDatabase;
-import notification.NotificationUI;
+import ui.NotificationUI;
 
 import swipe.SwiperInputBoundary;
 import swipe.SwiperInteractor;
 import swipe.SwiperPresenter;
-import swipe.screen.SwipeScreen;
 import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
 import ui.*;
@@ -28,10 +30,10 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class StudyBuddyApp {
+    public static ChatDataAccessInterface chatDataAccess;
     public static ChatDatabase chatDatabase;
     public static Profile currUserProfile ;
     public static ProfileUI profileUI ;
@@ -46,10 +48,14 @@ public class StudyBuddyApp {
     public static ClearNotifInputBoundary clearNotifInteractor;
     public static ClearNotifController clearNotifController;
 
+    /**
+     * Study Spot Recommendation
+     */
+    public static RecsOutBoundary spotPresenter = new RecsPresenter();
+    public static RecsInBoundary spotInteractor = new GenerateRec(spotPresenter);
+    public static RecsController spotController = new RecsController(spotInteractor);
 
     // Swiper Stuff
-    // TODO: maybe Sanzhar to make all constructors compatible with the main program
-    public static LinkedList<Account> potentialMatches;
     public static SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
     public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
     public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
@@ -89,7 +95,7 @@ public class StudyBuddyApp {
 
             chatData = new ArrayList<>();
         }
-        ChatDataAccess chatDataAccess = new ChatDataAccess();
+        chatDataAccess = new ChatDataAccess();
         chatDatabase = new ChatDatabase(chatData);
         ChatDataAccess.setChatdata(chatDatabase);
 

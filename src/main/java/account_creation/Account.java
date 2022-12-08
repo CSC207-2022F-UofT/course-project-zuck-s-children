@@ -2,8 +2,7 @@ package account_creation;
 
 import notification.Entities.Notification;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import java.io.Serializable;
 
@@ -13,14 +12,18 @@ public class Account implements Serializable, Comparable<Account> {
     private String password;
     private Profile profile;
     private ArrayList<Account> matches;
+    private ArrayList<Account> buddies;
     private ArrayList<Notification> notifications;
+    private Set<Account> seen;
 
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
         this.profile = new Profile();
         this.matches = new ArrayList<Account>();
+        this.buddies = new ArrayList<Account>();
         this.notifications = new ArrayList<Notification>();
+        this.seen = new HashSet<>();
     }
 
     public String getUsername() {
@@ -30,7 +33,6 @@ public class Account implements Serializable, Comparable<Account> {
     public String getPassword() {
         return this.password;
     }
-
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
@@ -42,6 +44,7 @@ public class Account implements Serializable, Comparable<Account> {
     public List<Account> getMatches() {
         return this.matches;
     }
+    public List<Account> getBuddies() { return this.buddies; }
 
     public List<Notification> getNotifications() {
         return this.notifications;
@@ -50,6 +53,7 @@ public class Account implements Serializable, Comparable<Account> {
     public void addMatch(Account match) {
         this.matches.add(match);
     }
+    public void addBuddy(Account buddy) {this.buddies.add(buddy);}
 
     public void addNotification(Notification notification) {
         notifications.add(notification);
@@ -62,5 +66,12 @@ public class Account implements Serializable, Comparable<Account> {
     @Override
     public int compareTo(Account other) {
         return Integer.compare(other.getProfile().getScore(), this.getProfile().getScore());
+    }
+
+    public void addSeen(Account user){
+        this.seen.add(user);
+    }
+    public Set<Account> getSeen() {
+        return this.seen;
     }
 }

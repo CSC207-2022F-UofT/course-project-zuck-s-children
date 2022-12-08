@@ -1,6 +1,6 @@
 package notification.Present;
 
-import notification.NotificationUI;
+import ui.NotificationUI;
 
 public class ShowNotifPresenter implements ShowNotifOutputBoundary {
     NotificationUI notifUI;
@@ -22,5 +22,10 @@ public class ShowNotifPresenter implements ShowNotifOutputBoundary {
     @Override
     public void prepareDisplayView(NotifResponseModel response) {
         this.notifUI.prepareView(response.getResponseModel());
+    }
+
+    @Override
+    public void refresh(NotifResponseModel response) {
+        this.notifUI.refresh(response.getResponseModel());
     }
 }

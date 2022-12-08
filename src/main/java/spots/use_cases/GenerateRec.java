@@ -33,11 +33,13 @@ public class GenerateRec implements RecsInBoundary {
     /**
      * Generate a recommendation from the users' spot preferences
      * Invoke methods of GenerateRec Object
+     *
+     * @return recommendation
      */
     public ArrayList<String> generateRec() {
 
-        ArrayList<String> prefSpots1 = (ArrayList<String>) user1.getProfile().getStudySpotPreferences();
-        ArrayList<String> prefSpots2 = (ArrayList<String>) user2.getProfile().getStudySpotPreferences();
+        ArrayList<String> prefSpots1 = new ArrayList<>(user1.getProfile().getStudySpotPreferences());
+        ArrayList<String> prefSpots2 = new ArrayList<>(user2.getProfile().getStudySpotPreferences());
 
         spotRecommender.setPrefSpots(prefSpots1, prefSpots2);
         spotRecommender.recommender();
@@ -53,6 +55,7 @@ public class GenerateRec implements RecsInBoundary {
      */
     @Override
     public void createRecs(Account user1, Account user2) {
+        setParticipants(user1, user2);
         recsPresenter.update(generateRec());
     }
 }
