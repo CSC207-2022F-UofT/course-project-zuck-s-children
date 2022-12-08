@@ -99,6 +99,7 @@ public class MatchingAlgorithm {
         }
         oUser.setScore(score);
     }
+
 //    public static ArrayList<Account> getOthers() {
 //        ArrayList<Account> otherUsers = new ArrayList<>();
 //        for (Account a : UserDatabase.getAccounts().values()) {
