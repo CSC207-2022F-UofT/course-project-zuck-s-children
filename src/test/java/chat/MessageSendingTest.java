@@ -46,6 +46,7 @@ public class MessageSendingTest {
         USERDATABASE.setCurrentUser(user1);
         ChatRoomEnt room1 = new ChatRoomEnt(user1, user2);
         room1_id = room1.getId();
+
         ChatRoomUI chatRoomUI = new ChatRoomUI();
         chatRoomUI.setFrame();
         chatRoomUI.build();

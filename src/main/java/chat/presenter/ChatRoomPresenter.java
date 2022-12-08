@@ -1,6 +1,6 @@
 package chat.presenter;
 
-
+import java.awt.GraphicsEnvironment;
 import ui.ChatRoomUI;
 
 public class ChatRoomPresenter implements MsgOutBoundary {
@@ -19,10 +19,12 @@ public class ChatRoomPresenter implements MsgOutBoundary {
 
     @Override
     public void open(MsgOutModel responseModel, String roomId) {
-        chatRoom.setRoomId(roomId);
-        chatRoom.setFrame();
-        chatRoom.build();
-        chatRoom.setListOfMessages(responseModel.getMsgList());
+        if(!GraphicsEnvironment.isHeadless()) {
+            chatRoom.setRoomId(roomId);
+            chatRoom.setFrame();
+            chatRoom.build();
+            chatRoom.setListOfMessages(responseModel.getMsgList());
+        }
     }
 
     public void overwrite(MsgOutModel responseModel){

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import profile.Profile;
 import swipe.*;
 
+import java.awt.GraphicsEnvironment;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -57,17 +58,20 @@ class SwipeScreenTest {
         UserDatabase.getUserDatabase().setCurrentUser(curr);
         SwiperController testController = new SwiperController(testInteractor);
         SwipeScreen swipeScreen = new SwipeScreen(testController, testArray, 1);
-        JFrame swiper = new JFrame("Time to swipe");
-        CardLayout cardLayout = new CardLayout();
-        JPanel screens = new JPanel(cardLayout);
-        swiper.add(screens);
-        screens.add(swipeScreen, "welcome");
-        cardLayout.show(screens, "swipe");
-        swiper.pack();
 
-        swiper.setBounds(0, 0, 1440, 1000);
-        swiper.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        swiper.setResizable(false);
-        swiper.setVisible(true);
+        if(!GraphicsEnvironment.isHeadless()) {
+            JFrame swiper = new JFrame("Time to swipe");
+            CardLayout cardLayout = new CardLayout();
+            JPanel screens = new JPanel(cardLayout);
+            swiper.add(screens);
+            screens.add(swipeScreen, "welcome");
+            cardLayout.show(screens, "swipe");
+            swiper.pack();
+
+            swiper.setBounds(0, 0, 1440, 1000);
+            swiper.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            swiper.setResizable(false);
+            swiper.setVisible(true);
+        }
     }
 }
