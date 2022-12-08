@@ -16,14 +16,14 @@ public class UserDatabase implements Serializable {
         }
         return USERDATABASE;
     }
-    public HashMap<String, Account> getAccounts() {
+    public static HashMap<String, Account> getAccounts() {
         return USERDATABASE.accounts;
     }
 
     public Account getCurrentUser() {
         return USERDATABASE.currentUser;
     }
-    public void setCurrentUser(Account currentUser) {
+    public static void setCurrentUser(Account currentUser) {
         USERDATABASE.currentUser = currentUser;
     }
 
