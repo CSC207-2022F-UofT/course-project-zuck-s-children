@@ -2,16 +2,11 @@ package chat;
 
 import account_creation.Account;
 import chat.control.MsgInModel;
-import chat.control.MsgSendController;
 import chat.entities.ChatRoomEnt;
-import chat.entities.MessageEnt;
 import chat.presenter.ChatRoomPresenter;
 import chat.presenter.MsgOutBoundary;
 import chat.presenter.MsgOutModel;
-import chat.use_cases.ChatRoomOpenInteractor;
-import chat.use_cases.MsgInBoundary;
 import chat.use_cases.MsgSendInteractor;
-import chat.use_cases.OpenRoomBoundary;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
 import data.persistency.ChatDatabase;

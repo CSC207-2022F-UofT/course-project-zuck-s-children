@@ -1,11 +1,14 @@
 package matching;
 
 import account_creation.Account;
-import data.persistency.UserDatabase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import static matching.MatchingAlgorithm.MatchingAlgorithmMethod;
 import static org.junit.Assert.assertEquals;
