@@ -32,6 +32,7 @@ public class MessageSendingTest {
     String room1_id;
     @BeforeEach
     void setUp() {
+        System.setProperty("java.awt.headless", "false");
         List<Object> chatRoomList = new ArrayList<>();
         ChatDatabase chatDatabase = new ChatDatabase(chatRoomList);
         ChatDataAccess chatDataAccess = new ChatDataAccess();
