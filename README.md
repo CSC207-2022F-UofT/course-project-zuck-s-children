@@ -33,9 +33,6 @@ Once two users accept each other, the program creates a new chat room of the two
 The users can customize their profile including a pronoun, a year of study, a program, and study style.
 The profile is used in the matching algorithm to generate a possible matches for our program's one of the most important feature.
 
-#### Builder Design Pattern
-Before, the profile feature utilized a ProfileBuilder class to construct new Profile entity objects. The original intent was to avoid passing a long parameter list into a Profile constructor, as the Profile entity has numerous attributes that need to be set independently. Yet, the design pattern ultimately was not implemented because it is not certain what and how many fields the user will make changes to on the ProfileUI with every save. Therefore, inputs in all editable fields should always be passed in as a ProfileInModel. In the future, when section edits are developed and only a defined portion of the fields are modified, for example, a builder pattern will be practical.
-
 ### Chat
 The Chat feature implements the general chatting system of a software. It has a list of chat room and the user can open a chat room
 to make a chat with other users.
@@ -49,6 +46,11 @@ When there is a new match or a new message, the program creates a notification t
 
 #### Clear Notification & Navigating to a chat room
 Users are able to view all notifications and clear all notifications. Moreover, after selecting a message notification, you can open the corresponding chat room directly through the notification.
+
+#### Design Patterns:
+
+#### Builder Design Pattern
+Before, the profile feature utilized a ProfileBuilder class to construct new Profile entity objects. The original intent was to avoid passing a long parameter list into a Profile constructor, as the Profile entity has numerous attributes that need to be set independently. Yet, the design pattern ultimately was not implemented because it is not certain what and how many fields the user will make changes to on the ProfileUI with every save. Therefore, inputs in all editable fields should always be passed in as a ProfileInModel. In the future, when section edits are developed and only a defined portion of the fields are modified, for example, a builder pattern will be practical.
 
 #### Testing
 
