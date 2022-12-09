@@ -36,14 +36,6 @@ The profile is used in the matching algorithm to generate a possible matches for
 #### Builder Design Pattern
 Before, the profile feature utilized a ProfileBuilder class to construct new Profile entity objects. The original intent was to avoid passing a long parameter list into a Profile constructor, as the Profile entity has numerous attributes that need to be set independently. Yet, the design pattern ultimately was not implemented because it is not certain what and how many fields the user will make changes to on the ProfileUI with every save. Therefore, inputs in all editable fields should always be passed in as a ProfileInModel. In the future, when section edits are developed and only a defined portion of the fields are modified, for example, a builder pattern will be practical.
 
-#### Testing
-
-Profile:
-Testing for the profile feature was done on three levels, focusing on the UI, the use cases, and the entity. It achieved 100%, 98%, and 80% coverage for all classes, methods, and lines, respectively. It tests the connection between classes in the CA and makes sure input data is successfully stored into the UserDatabase and presented back to the user.
-
-Swiper:
-Testing for the Swiper consisted of checking for different combinations. This included the situation if the current user accepted a potential user but the potential user either did not accept them yet or rejected them, the situation where the current user accepted a potential user and they also accepted them beforehand. The tests checked for proper outputs and they all passed. These particular tests were repeated through the interactor, through the controller and through the UI with different number of accounts. The UI tests also consisted of pressing each button (or at least creating a fake button press), to see if the list of matches for each account was modified correctly (as I cannot access the output from the UI directly). In the end, coverage was 100% for all classes, methods and even lines!
-
 ### Chat
 The Chat feature implements the general chatting system of a software. It has a list of chat room and the user can open a chat room
 to make a chat with other users.
@@ -57,6 +49,14 @@ When there is a new match or a new message, the program creates a notification t
 
 #### Clear Notification & Navigating to a chat room
 Users are able to view all notifications and clear all notifications. Moreover, after selecting a message notification, you can open the corresponding chat room directly through the notification.
+
+#### Testing
+
+####Profile:
+Testing for the profile feature was done on three levels, focusing on the UI, the use cases, and the entity. It achieved 100%, 98%, and 80% coverage for all classes, methods, and lines, respectively. It tests the connection between classes in the CA and makes sure input data is successfully stored into the UserDatabase and presented back to the user.
+
+####Swiper:
+Testing for the Swiper consisted of checking for different combinations. This included the situation if the current user accepted a potential user but the potential user either did not accept them yet or rejected them, the situation where the current user accepted a potential user and they also accepted them beforehand. The tests checked for proper outputs and they all passed. These particular tests were repeated through the interactor, through the controller and through the UI with different number of accounts. The UI tests also consisted of pressing each button (or at least creating a fake button press), to see if the list of matches for each account was modified correctly (as I cannot access the output from the UI directly). In the end, coverage was 100% for all classes, methods and even lines!
 
 
 ## About Us
