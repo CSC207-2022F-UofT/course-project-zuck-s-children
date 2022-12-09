@@ -19,12 +19,12 @@ public class SwiperInteractor implements SwiperInputBoundary{
     /**
      * A presenter
      */
-    final SwiperPresenter swiperPresenter;
+    private final SwiperPresenter swiperPresenter;
 
     /**
      * a chatDataAccess interface attribute
      */
-    final ChatDataAccessInterface chatDataAccess;
+    private final ChatDataAccessInterface chatDataAccess;
 
     /**
      * A constructor that initializes attribute swiperPresenter and chatDataAccess
