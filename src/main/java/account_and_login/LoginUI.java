@@ -29,8 +29,8 @@ public class LoginUI extends JFrame implements ActionListener {
     JLabel registerLabel = new JLabel("CREATE NEW ACCOUNT");
     JLabel userLabel2 = new JLabel("Username");
     JLabel passwordLabel2 = new JLabel("Password");
-    JTextField registerUsername = new JTextField();
-    JPasswordField registerPassword = new JPasswordField();
+    public static JTextField registerUsername = new JTextField();
+    public static JPasswordField registerPassword = new JPasswordField();
     JButton registerButton = new JButton("Sign Up");
 
     public LoginUI() {
