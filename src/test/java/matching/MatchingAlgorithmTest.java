@@ -1,6 +1,7 @@
 package matching;
 
 import account_and_login.account_creation.Account;
+import data.persistency.UserDatabase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
