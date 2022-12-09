@@ -35,12 +35,12 @@ Once two users accept each other, the program creates a new chat room of the two
 The users can customize their profile including a pronoun, a year of study, a program, and study style.
 The profile is used in the matching algorithm to generate a possible matches for our program's one of the most important feature.
 
-### Chat
-The Chat feature implements the general chatting system of a software. It has a list of chat room and the user can open a chat room
-to make a chat with other users.
+### Chat and Study Spot 
 
-### Study Spot
-As a part of that chat room functionality, the program uses the algorithm to make three recommendations of study spot in a chat room. It takes account preference of both users in a room.
+<img width="1163" alt="Screen Shot 2022-12-08 at 11 54 18 PM" src="https://user-images.githubusercontent.com/102633707/206627220-c5d42512-f83f-4f7d-94b1-0d7c82d463ae.png">
+
+The Chat feature implements the general chatting system of a software. It has a list of chat room and the user can open a chat room
+to make a chat with other users. As a part of that chat room functionality, the program uses the algorithm to make three recommendations of study spot in a chat room. It takes account preference of both users in a room.
 
 ### Notification
 <img width="450" alt="Screen Shot 2022-12-05 at 9 26 02 AM" src="https://user-images.githubusercontent.com/107783734/205661460-af741a56-517a-4c72-9927-7709a82ecb20.png">
@@ -65,9 +65,11 @@ Testing for the profile feature was done on three levels, focusing on the UI, th
 #### Swiper:
 Testing for the Swiper consisted of checking for different combinations. This included the situation if the current user accepted a potential user but the potential user either did not accept them yet or rejected them, the situation where the current user accepted a potential user and they also accepted them beforehand. The tests checked for proper outputs and they all passed. These particular tests were repeated through the interactor, through the controller and through the UI with different number of accounts. The UI tests also consisted of pressing each button (or at least creating a fake button press), to see if the list of matches for each account was modified correctly (as I cannot access the output from the UI directly). In the end, coverage was 100% for all classes, methods and even lines!
 
-### Matching:
+#### Matching:
 Testing for the matching algorithm consisted of checking for actual matching, if users were properly assigned scores and whether all other users (not including the current user) were correctly returned and if all final matchers were properly returned. It achieved 100%, 100%, 100% coverage for all classes, methods, and lines, respectively. It tests the connection between the user database and makes sure all other users are assigned a score based on the current user's preferences and the other users' study styles.
 
+#### Chat:
+Testing for the chat utility covers ChatDataAccess, opening a chat room, and sending a message. ChatDataAccess is tested on adding a chat room, and loading a chat room by a room id and an account. Moreover, the interactors are tested for opening a chat room and sending a message.
 
 ## About Us
 Group Members:
