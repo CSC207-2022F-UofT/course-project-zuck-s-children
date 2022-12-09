@@ -102,7 +102,7 @@ public class MatchingAlgorithm {
 
     public static ArrayList<Account> getOthers() {
         ArrayList<Account> otherUsers = new ArrayList<>();
-        for (Account a : UserDatabase.getAccounts().values()) {
+        for (Account a : UserDatabase.getUserDatabase().getAccounts().values()) {
             if (a != UserDatabase.getUserDatabase().getCurrentUser()) {
                 otherUsers.add(a);
             }

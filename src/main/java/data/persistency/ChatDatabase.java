@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 public class ChatDatabase implements Serializable {
     private static List<Object> chatData;
 
@@ -24,9 +26,11 @@ public class ChatDatabase implements Serializable {
     }
     public List<Object> findByAccount(Account acc)  {
         List<Object> roomList = new ArrayList<>();
-        for(Object room : chatData){
-            if (((ChatRoomEnt)room).checkParticipant(acc)){
-                roomList.add(room);
+        if (chatData != null) {
+            for (Object room : chatData) {
+                if (((ChatRoomEnt) room).checkParticipant(acc)) {
+                    roomList.add(room);
+                }
             }
         }
         return roomList;

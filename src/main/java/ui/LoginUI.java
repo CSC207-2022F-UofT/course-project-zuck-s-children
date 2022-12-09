@@ -93,7 +93,9 @@ public class LoginUI extends JFrame implements ActionListener {
         frame = mainFrame;
     }
     public void closeLoginUI() {
-        frame.dispose();
+        if (frame != null) {
+            frame.dispose();
+        }
     }
 
     public void loginFailMechanism() {
