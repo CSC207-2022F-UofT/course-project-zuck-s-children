@@ -1,8 +1,6 @@
 package profile;
 
 
-import account_creation.Account;
-import data.persistency.UserDatabase;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,9 +22,9 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
     JLabel pronounLbl = new JLabel("Preferred pronouns"); // the preferred pronouns label
     JTextField pronounTF = new JTextField(currUserProfile.getPronouns(), 20); // the textfield where the user type their preferred pronouns; default value is "N/A"
     JLabel yearLbl = new JLabel("Year"); // the year label
-    JComboBox<String> yearCB = new JComboBox<>(Profile.YEARS); // the dropdown where the user choose their year in university; NEED TO FIGURE OUT DEFAULT SELECTION
+    JComboBox<String> yearCB = new JComboBox<>(Profile.YEARS); // the dropdown where the user choose their year in university
     JLabel fieldLbl = new JLabel("Field of study"); // the field of study label
-    JComboBox<String> fieldCB = new JComboBox<>(Profile.FIELDS); // the dropdown where the user choose their field of study; NEED TO FIGURE OUT DEFAULT SELECTION
+    JComboBox<String> fieldCB = new JComboBox<>(Profile.FIELDS); // the dropdown where the user choose their field of study
 
     // the dropdowns where user pick up to three study styles for themselves
     JComboBox<String> style1 = new JComboBox<>(Profile.STYLES);
@@ -46,9 +44,13 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
     JComboBox<String> stylePref3 = new JComboBox<>(Profile.STYLES);
 
     // the dropdowns where the user pick up to three study spots they prefer
-    JComboBox<String> spotPref1 = new JComboBox<>(Profile.studySpots);
-    JComboBox<String> spotPref2 = new JComboBox<>(Profile.studySpots);
-    JComboBox<String> spotPref3 = new JComboBox<>(Profile.studySpots);
+    JComboBox<String> spotPref1 = new JComboBox<>(Profile.STUDY_SPOTS);
+    JComboBox<String> spotPref2 = new JComboBox<>(Profile.STUDY_SPOTS);
+    JComboBox<String> spotPref3 = new JComboBox<>(Profile.STUDY_SPOTS);
+
+    /**
+     * Construct a ProfileUI based on the user currently logged in using information from the UserDatabase.
+     */
     public ProfileUI() {
         // add title to the frame
         super("Profile");
@@ -179,7 +181,7 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
     }
 
     private void addYearPrefField(JPanel studyBuddySection, GridBagConstraints constraints2) {
-        JLabel yearPrefLbl = new JLabel("Preferred study buddy year");
+        JLabel yearPrefLbl = new JLabel("Preferred study buddy year (Hold the Ctrl or Command key and click to select more than 1)");
         studyBuddySection.add(yearPrefLbl, constraints2);
         yearPref.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         if (!currUserProfile.getStudyBuddyPreferences().get("year").isEmpty()) {
@@ -319,11 +321,19 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
         personalInfoSection.add(nameTF, constraints);
     }
 
+    /**
+     * Show a message dialogue indicating changes were successful.
+     */
     public void changeSuccessDialog() {
         showMessageDialog(this, "Changes saved.");
         this.setVisible(false);
     }
 
+    /**
+     * Construct a new ProfileUI using information provided by the modifications input.
+     *
+     * @param modifications profile modifications
+     */
     public void build(ProfileOutModel modifications) {
         nameTF.setText(modifications.getName());
         pronounTF.setText(modifications.getPronouns());
@@ -380,6 +390,11 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
         }
     }
 
+    /**
+     * Toggle the view/edit mode when the user clicks the Edit/Save button and send modifications to the backend when the profile is edited.
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(editBtn)) {
@@ -392,43 +407,55 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
             else {
                 toggleEditMode(); // turns page into view-only mode
                 editBtn.setText("Edit");
-
-                // the list of the user's study styles
-                ArrayList<String> personalStudyStyles = new ArrayList<>();
-                personalStudyStyles.add((String) style1.getSelectedItem());
-                personalStudyStyles.add((String) style2.getSelectedItem());
-                personalStudyStyles.add((String) style3.getSelectedItem());
-
-                // the list of user's field of study preferences for their SB
-                ArrayList<String> fieldPref = new ArrayList<>();
-                fieldPref.add((String) fieldPref1.getSelectedItem());
-                fieldPref.add((String) fieldPref2.getSelectedItem());
-                fieldPref.add((String) fieldPref3.getSelectedItem());
-
-                // the list of user's study style preferences for their SB
-                ArrayList<String> stylePref = new ArrayList<>();
-                stylePref.add((String) stylePref1.getSelectedItem());
-                stylePref.add((String) stylePref2.getSelectedItem());
-                stylePref.add((String) stylePref3.getSelectedItem());
-
-                // the hashmap of user's SB preferences, including the preferred year, field of study, and study styles
-                HashMap<String, List<String>> studyBuddyPref = new HashMap<>();
-                studyBuddyPref.put("year", yearPref.getSelectedValuesList());
-                studyBuddyPref.put("field of study", fieldPref);
-                studyBuddyPref.put("descriptions", stylePref);
-
-                // the list of the user's preferred study spots
-                ArrayList<String> spotPref = new ArrayList<>();
-                spotPref.add((String) spotPref1.getSelectedItem());
-                spotPref.add((String) spotPref2.getSelectedItem());
-                spotPref.add((String) spotPref3.getSelectedItem());
-
-                // creating an InModel using the input info
-                ProfileInModel profileModifications = new ProfileInModel(nameTF.getText(), pronounTF.getText(), (String) yearCB.getSelectedItem(), (String) fieldCB.getSelectedItem(), personalStudyStyles, studyBuddyPref, spotPref);
+                ProfileInModel profileModifications = generateInModel();
                 profileController.modifyProfile(profileModifications);
-            }}
+            }
+        }
     }
 
+    /**
+     * Create a ProfileInModel object based on the user input on the ProfileUI.
+     * @return the profile InModel based on user input
+     */
+    public ProfileInModel generateInModel() {
+        // create the list of the user's study styles
+        ArrayList<String> personalStudyStyles = new ArrayList<>();
+        personalStudyStyles.add((String) style1.getSelectedItem());
+        personalStudyStyles.add((String) style2.getSelectedItem());
+        personalStudyStyles.add((String) style3.getSelectedItem());
+
+        // create the list of user's field of study preferences for their SB
+        ArrayList<String> fieldPref = new ArrayList<>();
+        fieldPref.add((String) fieldPref1.getSelectedItem());
+        fieldPref.add((String) fieldPref2.getSelectedItem());
+        fieldPref.add((String) fieldPref3.getSelectedItem());
+
+        // create the list of user's study style preferences for their SB
+        ArrayList<String> stylePref = new ArrayList<>();
+        stylePref.add((String) stylePref1.getSelectedItem());
+        stylePref.add((String) stylePref2.getSelectedItem());
+        stylePref.add((String) stylePref3.getSelectedItem());
+
+        // create the HashMap of user's study buddy preferences, including the preferred year, field of study, and study styles
+        HashMap<String, List<String>> studyBuddyPref = new HashMap<>();
+        if (yearPref.getSelectedValuesList().isEmpty()) {
+            studyBuddyPref.put("year", new ArrayList<>());
+        } else{
+            studyBuddyPref.put("year", yearPref.getSelectedValuesList());
+
+        }
+        studyBuddyPref.put("field of study", fieldPref);
+        studyBuddyPref.put("descriptions", stylePref);
+
+        // create the list of the user's preferred study spots
+        ArrayList<String> spotPref = new ArrayList<>();
+        spotPref.add((String) spotPref1.getSelectedItem());
+        spotPref.add((String) spotPref2.getSelectedItem());
+        spotPref.add((String) spotPref3.getSelectedItem());
+
+        // create an InModel using the input info
+        return new ProfileInModel(nameTF.getText(), pronounTF.getText(), (String) yearCB.getSelectedItem(), (String) fieldCB.getSelectedItem(), personalStudyStyles, studyBuddyPref, spotPref);
+    }
 
     private void toggleEditMode() {
         if (editBtn.getText().equals("Save")) {
@@ -449,8 +476,7 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
             spotPref1.setEnabled(false);
             spotPref2.setEnabled(false);
             spotPref3.setEnabled(false);
-        }
-        else {
+        } else {
             nameTF.setEditable(true);
             pronounTF.setEditable(true);
             yearCB.setEnabled(true);
@@ -469,26 +495,5 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
             spotPref2.setEnabled(true);
             spotPref3.setEnabled(true);
         }
-    }
-
-    public static void main(String[] args) {
-        Account account = new Account("jay", "1232");
-        Profile profile = account.getProfile();
-//        profile.setName("jay");
-//        profile.setPronouns("he/him");
-//        profile.setYear("4");
-//        profile.setFieldOfStudy("Engineering");
-//        List<String> emptyList = new ArrayList<>();
-//        emptyList.add("quiet");
-//        emptyList.add("talkative");
-//        profile.setStudyStyles(emptyList);
-//        HashMap<String, List<String>> emptyHashMap = new HashMap<>();
-//        emptyHashMap.put("year", emptyList);
-//        emptyHashMap.put("field of study", emptyList);
-//        emptyHashMap.put("descriptions", emptyList);
-//        profile.setStudyBuddyPreferences(emptyHashMap);
-//        profile.setStudySpotPreferences(emptyList);
-        UserDatabase.getUserDatabase().setCurrentUser(account);
-        ProfileUI profileUI = new ProfileUI();
     }
 }

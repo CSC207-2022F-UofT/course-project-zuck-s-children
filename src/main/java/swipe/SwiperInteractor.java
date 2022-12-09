@@ -2,13 +2,14 @@ package swipe;
 //
 import account_creation.Account;
 import chat.entities.ChatRoomEnt;
+import data.persistency.ChatDataAccessInterface;
 import notification.Entities.MatchNotification;
 import data.persistency.UserDatabase;
 
 
 import java.time.LocalDateTime;
 
-import static main_app.StudyBuddyApp.chatDataAccess;
+
 
 /**
  * An interactor class that implements interface SwiperInputBoundary
@@ -21,15 +22,23 @@ public class SwiperInteractor implements SwiperInputBoundary{
     final SwiperPresenter swiperPresenter;
 
     /**
-     * A constructor that initializes attribute swiperPresenter
-     * @param swiperPresenter
+     * a chatDataAccess interface attribute
      */
-    public SwiperInteractor(SwiperPresenter swiperPresenter){
+    final ChatDataAccessInterface chatDataAccess;
+
+    /**
+     * A constructor that initializes attribute swiperPresenter and chatDataAccess
+     * @param swiperPresenter
+     * @param chatDataAccess
+     */
+    public SwiperInteractor(SwiperPresenter swiperPresenter, ChatDataAccessInterface chatDataAccess){
         this.swiperPresenter = swiperPresenter;
+        this.chatDataAccess = chatDataAccess;
     }
 
     /**
      * Overridden create method from interface, returns/creates a SwiperResponseModel based on input SwiperRequestModel.
+     * Adds a notification to accounts and creates a chat if both accepted each other.
      * @param requestModel
      * @return SwiperResponseModel
      */

@@ -27,6 +27,7 @@ public class ProfileOutModel {
     public List<String> getStudySpotPreferences() {
         return studySpotPreferences;
     }
+
     public HashMap<String, List<String>> getStudyBuddyPreferences() {
         return studyBuddyPreferences;
     }
@@ -40,7 +41,10 @@ public class ProfileOutModel {
     public List<String> studySpotPreferences;
     public HashMap<String, List<String>> studyBuddyPreferences;
 
-    public ProfileOutModel(Profile modifiedProfile) {
+    /**
+     * Create a profile outModel for the presenter to use, based on the latest edited profile.
+     * @param modifiedProfile the profile that was just modified
+     */public ProfileOutModel(Profile modifiedProfile) {
         this.name = modifiedProfile.getName();
         this.pronouns = modifiedProfile.getPronouns();
         this.year = modifiedProfile.getYear();

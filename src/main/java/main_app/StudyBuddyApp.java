@@ -14,6 +14,7 @@ import spots.presenter.RecsPresenter;
 import spots.use_cases.GenerateRec;
 import spots.use_cases.RecsInBoundary;
 import spots.use_cases.RecsOutBoundary;
+import swipe.screen.SwiperUI;
 import ui.LoginUI;
 import ui.NotificationUI;
 
@@ -55,9 +56,11 @@ public class StudyBuddyApp {
     public static RecsInBoundary spotInteractor = new GenerateRec(spotPresenter);
     public static RecsController spotController = new RecsController(spotInteractor);
 
-    // Swiper Stuff
+    /**
+     * Swiper variables
+     */
     public static SwiperPresenter swiperPresenter = new SwiperPresenterFormatter();
-    public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter);
+    public static SwiperInputBoundary swiperInputBoundary = new SwiperInteractor(swiperPresenter, chatDataAccess);
     public static SwiperController swiperController= new SwiperController(swiperInputBoundary);
     public static SwiperUI swiperUI = new SwiperUI();
 
