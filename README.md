@@ -12,6 +12,8 @@ a user's profile, group chats and a map.
 
 ## Core Features
 
+To use this program, please run StudyBuddyApp.java in src.main.java.main_app!
+
 ### Login and Account Creation
 <img width="700" alt="Screen Shot 2022-12-05 at 9 14 02 AM" src="https://user-images.githubusercontent.com/107783734/205658383-b9125772-ad0b-4a77-af51-cc5c33721888.png">
 
@@ -54,16 +56,16 @@ Before, the profile feature utilized a ProfileBuilder class to construct new Pro
 
 #### Testing
 
-####Login & Account Creation (+ UserDatabase):
+#### Login & Account Creation (+ UserDatabase):
 Testing on the login and account creation follows the flow of the natural clean architecture. I create the controllers, their usecases, and inmodels and pass them in to recreate what would be done in the actionPerformed section of the loginUI. Note that testing the UI directly was not possible due how it requires the action of the button being clicked for either login or register account. Perhaps there is a way to test the UI with the use of a button but upon researching so far, there does not seem to be a feasible method to do so, hence this is raised as a future issue for further improvements in testing. However, the test cases cover all the classes and their methods in both creating a new account and logging into the account. There is just one method that is not covered in account_creation.account which is getBuddies() as that is called by the chatList use case elsewhere and is not under the purview of logging in or account creation. Apart from that, there is 100% coverage of these two usecases. Furthermore, UserDatabase is also covered because of its widespread use in getter and setter methods during the register and login use cases.
 
-####Profile:
+#### Profile:
 Testing for the profile feature was done on three levels, focusing on the UI, the use cases, and the entity. It achieved 100%, 98%, and 80% coverage for all classes, methods, and lines, respectively. It tests the connection between classes in the CA and makes sure input data is successfully stored into the UserDatabase and presented back to the user.
 
-####Swiper:
+#### Swiper:
 Testing for the Swiper consisted of checking for different combinations. This included the situation if the current user accepted a potential user but the potential user either did not accept them yet or rejected them, the situation where the current user accepted a potential user and they also accepted them beforehand. The tests checked for proper outputs and they all passed. These particular tests were repeated through the interactor, through the controller and through the UI with different number of accounts. The UI tests also consisted of pressing each button (or at least creating a fake button press), to see if the list of matches for each account was modified correctly (as I cannot access the output from the UI directly). In the end, coverage was 100% for all classes, methods and even lines!
 
-###Matching:
+### Matching:
 Testing for the matching algorithm consisted of checking for actual matching, if users were properly assigned scores and whether all other users (not including the current user) were correctly returned and if all final matchers were properly returned. It achieved 100%, 100%, 100% coverage for all classes, methods, and lines, respectively. It tests the connection between the user database and makes sure all other users are assigned a score based on the current user's preferences and the other users' study styles.
 
 
