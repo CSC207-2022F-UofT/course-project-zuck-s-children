@@ -52,6 +52,9 @@ Users are able to view all notifications and clear all notifications. Moreover, 
 
 #### Testing
 
+####Login & Account Creation (+ UserDatabase):
+Testing on the login and account creation follows the flow of the natural clean architecture. I create the controllers, their usecases, and inmodels and pass them in to recreate what would be done in the actionPerformed section of the loginUI. Note that testing the UI directly was not possible due how it requires the action of the button being clicked for either login or register account. However, the test cases cover all the classes and their methods in both creating a new account and logging into the account. There is just one method that is not covered in account_creation.account which is getBuddies() as that is called by the chatList use case elsewhere and is not under the purview of logging in or account creation. Apart from that, there is 100% coverage of these two usecases.
+
 ####Profile:
 Testing for the profile feature was done on three levels, focusing on the UI, the use cases, and the entity. It achieved 100%, 98%, and 80% coverage for all classes, methods, and lines, respectively. It tests the connection between classes in the CA and makes sure input data is successfully stored into the UserDatabase and presented back to the user.
 
