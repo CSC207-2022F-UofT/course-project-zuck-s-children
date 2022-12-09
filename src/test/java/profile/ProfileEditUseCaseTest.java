@@ -29,6 +29,7 @@ class ProfileEditUseCaseTest {
         emptyHashMap.put("descriptions", List.of("goal-setting"));
 
         // setting current user for retrieval of updated profile
+        UserDatabase.getUserDatabase();
         UserDatabase.setCurrentUser(account);
 
         // setting variable to prevent NullPointer error
