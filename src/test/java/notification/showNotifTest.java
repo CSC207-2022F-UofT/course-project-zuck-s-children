@@ -1,6 +1,7 @@
 package notification;
 import account_and_login.account_creation.Account;
 import data.persistency.UserDatabase;
+import notification.Control.ShowNotifController;
 import notification.Control.ShowNotifInputBoundary;
 import notification.Entities.ChatNotification;
 import notification.Entities.MatchNotification;
@@ -54,7 +55,7 @@ public class showNotifTest {
             }
         };
         ShowNotifInputBoundary showNotifInteractor = new ShowNotifInteractor(showNotifPresenter);
-
+        ShowNotifController showNotifController = new ShowNotifController(showNotifInteractor);
         showNotifInteractor.showNotif();
     }
 
@@ -72,6 +73,7 @@ public class showNotifTest {
             }
         };
         ShowNotifInputBoundary showNotifInteractor = new ShowNotifInteractor(showNotifPresenter);
+        ShowNotifController showNotifController = new ShowNotifController(showNotifInteractor);
         showNotifInteractor.showNotif();
 
     }
@@ -98,6 +100,7 @@ public class showNotifTest {
             }
         };
         ShowNotifInputBoundary showNotifInteractor = new ShowNotifInteractor(showNotifPresenter);
+        ShowNotifController showNotifController = new ShowNotifController(showNotifInteractor);
         showNotifInteractor.showNotif();
     }
 
