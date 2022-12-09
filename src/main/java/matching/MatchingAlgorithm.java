@@ -57,14 +57,13 @@ public class MatchingAlgorithm {
         return potentialMatches;
     }
 
-    public static void assignScore(String key, HashMap<String, List<String>> preferences, Profile oUser) {
+    public static void assignScore(String key, HashMap<String, List<String>> preferences, Profile oUser)  {
 
-
-        // can change this to apply for all keys, need to see how joy implements preferences
-        // if they are all sorted then can apply and dont need to check if key =
-
-        // 3 keys: year, field, style
-        // year preferences are sorted
+        /* Helper method that assigns score, for each matching preference and
+        other user style, compatibility score is raised by 1
+        * 3 keys: year, field, style
+        * year preferences are sorted
+         */
         int score = oUser.getScore();
 
         //compare years
@@ -107,6 +106,9 @@ public class MatchingAlgorithm {
     }
 
     public static ArrayList<Account> getOthers() {
+        /*
+        * method to get an arrayList of all other users excluding the current one
+         */
         ArrayList<Account> otherUsers = new ArrayList<>();
         for (Account a : UserDatabase.getUserDatabase().getAccounts().values()) {
             if (a != UserDatabase.getUserDatabase().getCurrentUser()) {
@@ -117,6 +119,9 @@ public class MatchingAlgorithm {
     }
 
     public static LinkedList<Account> finalMatches() {
+        /*
+         * method to get all finalMatches of the current user
+         */
         return MatchingAlgorithmMethod(UserDatabase.getUserDatabase().getCurrentUser(),
                 getOthers());
     }
