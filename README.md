@@ -28,7 +28,7 @@ When an account is authorized, the login window will be closed and the main navi
 
 The user can see matched profiles and choose to accept or reject other students to be a StudyBuddy.\
 The matching is produced by our matching algorithm based on information provided in a profile, for example, one's field of study.\
-Once two users accept each other, the program creates a new chat room of the two users.
+Once two users accept each other, the program creates a new chat room for the two users and sends a notification to both that they have matched.
 
 ### Profile Customization
 <img width="450" alt="Screen Shot 2022-12-05 at 9 25 42 AM" src="https://user-images.githubusercontent.com/107783734/205661179-9bb536c5-f109-4896-b1e5-a2642d75d728.png">
