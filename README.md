@@ -54,6 +54,9 @@ Users are able to view all notifications and clear all notifications. Moreover, 
 #### Builder Design Pattern
 Before, the profile feature utilized a ProfileBuilder class to construct new Profile entity objects. The original intent was to avoid passing a long parameter list into a Profile constructor, as the Profile entity has numerous attributes that need to be set independently. Yet, the design pattern ultimately was not implemented because it is not certain what and how many fields the user will make changes to on the ProfileUI with every save. Therefore, inputs in all editable fields should always be passed in as a ProfileInModel. In the future, when section edits are developed and only a defined portion of the fields are modified, for example, a builder pattern will be practical.
 
+#### Singleton
+Upon Hafsa's suggestion after Milestone 4, it was decided that implementing the singleton design pattern for the UserDatabase class was most appropriate. This is because the user database should necessarily be a single instance as there should only ever be one user database in usage as the program is running. In this way, to access any of the attributes associated with the user database, one would simply have to access the getter and setter methods and call them on the singleton instance. Getting the instance is also streamlined so that it only returns that one instance but if it doesn’t already exist, it will create the first singular instance for the running of the program. That instance is the one that will be returned each subsequent time the getUserDatabase() method is called.
+
 #### Testing
 
 As a note, the autograder never finishes grading because there are tests for UIs, which require clicking buttons to move on, so the autograder is just stuck. Overall, all the tests pass!
