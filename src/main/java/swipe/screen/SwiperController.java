@@ -15,7 +15,7 @@ public class SwiperController {
     /**
      * An input boundary passed in
      */
-    final SwiperInputBoundary swiperInput;
+    private final SwiperInputBoundary swiperInput;
 
     /**
      * Constructor that adds the input boundary
