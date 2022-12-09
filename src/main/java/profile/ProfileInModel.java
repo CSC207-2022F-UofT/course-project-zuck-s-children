@@ -5,60 +5,50 @@ import java.util.List;
 
 public class ProfileInModel {
     public String getName() {
-        return NAME;
+        return name;
     }
 
     public String getPronouns() {
-        return PRONOUNS;
+        return pronouns;
     }
 
     public String getYear() {
-        return YEAR;
+        return year;
     }
 
     public String getFieldOfStudy() {
-        return FIELD_OF_STUDY;
+        return fieldOfStudy;
     }
 
     public List<String> getStudyStyles() {
-        return STUDY_STYLES;
+        return studyStyles;
     }
 
     public List<String> getStudySpotPreferences() {
-        return STUDY_SPOT_PREFERENCES;
+        return studySpotPreferences;
     }
 
     public HashMap<String, List<String>> getStudyBuddyPreferences() {
-        return STUDY_BUDDY_PREFERENCES;
+        return studyBuddyPreferences;
     }
 
-    private final String NAME;
-    private final String PRONOUNS;
+    private String name;
+    private String pronouns;
     // profilePicture;
-    private final String YEAR;
-    private final String FIELD_OF_STUDY;
-    private final List<String> STUDY_STYLES;
-    private final List<String> STUDY_SPOT_PREFERENCES;
-    private final HashMap<String, List<String>> STUDY_BUDDY_PREFERENCES;
+    private String year;
+    private String fieldOfStudy;
+    private List<String> studyStyles;
+    private List<String> studySpotPreferences;
+    private HashMap<String, List<String>> studyBuddyPreferences;
 
 
-    /**
-     * Create a profile inModel for the use case interactor to use, based on edits the user made.
-     * @param name the user's name after their edit
-     * @param pronouns the user's pronouns after their edit
-     * @param year the user's year in university after their edit
-     * @param fieldOfStudy the user's field of study after their edit
-     * @param studyStyles the user's study styles after their edit
-     * @param studyBuddyPreferences the user's study buddy preferences after their edit
-     * @param studySpotPreferences the user's study spot preferences after their edit
-     */
     public ProfileInModel(String name, String pronouns, String year, String fieldOfStudy, List<String> studyStyles, HashMap<String, List<String>> studyBuddyPreferences, List<String> studySpotPreferences) {
-        this.NAME = name;
-        this.PRONOUNS = pronouns;
-        this.YEAR = year;
-        this.FIELD_OF_STUDY = fieldOfStudy;
-        this.STUDY_STYLES = studyStyles;
-        this.STUDY_SPOT_PREFERENCES = studySpotPreferences;
-        this.STUDY_BUDDY_PREFERENCES = studyBuddyPreferences;
+        this.name = name;
+        this.pronouns = pronouns;
+        this.year = year;
+        this.fieldOfStudy = fieldOfStudy;
+        this.studyStyles = studyStyles;
+        this.studySpotPreferences = studySpotPreferences;
+        this.studyBuddyPreferences = studyBuddyPreferences;
     }
 }

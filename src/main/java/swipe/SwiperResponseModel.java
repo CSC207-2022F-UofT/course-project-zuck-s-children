@@ -5,7 +5,7 @@ package swipe;
  */
 public class SwiperResponseModel {
     /**
-     * A string attribute labelled accepted, referring to whether the user and its potential match matched or not.
+     * A string attribute labelled accepted, referring to whether the user accepted their match or not
      */
     private String accepted;
 

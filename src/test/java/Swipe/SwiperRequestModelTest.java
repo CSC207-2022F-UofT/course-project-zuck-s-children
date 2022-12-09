@@ -1,12 +1,10 @@
-package swipe.screen;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SwiperControllerTest {
+class SwiperRequestModelTest {
 
     @BeforeEach
     void setUp() {
@@ -17,7 +15,18 @@ class SwiperControllerTest {
     }
 
     @Test
-    void create() {
+    void getAccepted() {
     }
 
+    @Test
+    void setAccepted() {
+    }
+
+    @Test
+    void getPotential() {
+    }
+
+    @Test
+    void setPotential() {
+    }
 }

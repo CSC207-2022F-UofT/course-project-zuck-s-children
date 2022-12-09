@@ -152,5 +152,15 @@ public class LoginUI extends JFrame implements ActionListener {
             }
         }
         }
+
+    public void build() {
+        LoginUI frame = new LoginUI();
+        frame.setTitle("Login Page");
+        frame.setVisible(true);
+        frame.setBounds(0, 0, 1440, 1000);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        LoginUI.setFrame(frame);
+    }
 }
 

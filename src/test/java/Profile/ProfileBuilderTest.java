@@ -1,5 +1,7 @@
-package profile;
+package Profile;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,28 +11,32 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProfileBuilderTest {
-    ProfileBuilder profileBuilder = new ProfileBuilder();
 
-    /**
-     * Test if the ProfileBuilder class successfully builds an empty profile.
-     */
+    @BeforeEach
+    void setUp() {
+
+    }
+
+    @AfterEach
+    void tearDown() {
+    }
+
     @Test
     void emptyProfile() {
         profile.Profile profile = new profile.Profile();
-        profile.ProfileInModel profileInModel = new profile.ProfileInModel(profile.getName(), profile.getPronouns(), profile.getYear(), profile.getFieldOfStudy(), profile.getStudyStyles(), profile.getStudyBuddyPreferences(), profile.getStudySpotPreferences());
-        profileBuilder.createNewProfile(profileInModel);
-        assertEquals("N/A", profileInModel.getName());
-        assertEquals("N/A", profileInModel.getPronouns());
-        assertEquals("N/A", profileInModel.getFieldOfStudy());
-        assertEquals("N/A", profileInModel.getYear());
+        profile.ProfileInModel profileModel = new profile.ProfileInModel(profile.getName(), profile.getPronouns(), profile.getYear(), profile.getFieldOfStudy(), profile.getStudyStyles(), profile.getStudyBuddyPreferences(), profile.getStudySpotPreferences());
+        assertEquals("N/A", profileModel.getName());
+        assertEquals("N/A", profileModel.getPronouns());
+        assertEquals("N/A", profileModel.getFieldOfStudy());
+        assertEquals("N/A", profileModel.getYear());
         List<String> emptyList = new ArrayList<>();
-        assertEquals(emptyList, profileInModel.getStudyStyles());
-        assertEquals(emptyList, profileInModel.getStudySpotPreferences());
+        assertEquals(emptyList, profileModel.getStudyStyles());
+        assertEquals(emptyList, profileModel.getStudySpotPreferences());
         HashMap<String, List<String>> emptyHashMap = new HashMap<>();
         emptyHashMap.put("year", emptyList);
         emptyHashMap.put("field of study", emptyList);
         emptyHashMap.put("descriptions", emptyList);
-        assertEquals(emptyHashMap, profileInModel.getStudyBuddyPreferences());
+        assertEquals(emptyHashMap, profileModel.getStudyBuddyPreferences());
     }
 
 }

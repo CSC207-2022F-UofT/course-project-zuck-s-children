@@ -17,8 +17,7 @@ public class SwiperRequestModel {
 
     /**
      * A constructor that initializes attributes accepted and potential
-     * @param accepted
-     * @param potential
+     * @param accepted, potential
      */
     public SwiperRequestModel(boolean accepted, Account potential) {
         this.accepted = accepted;
@@ -34,6 +33,14 @@ public class SwiperRequestModel {
     }
 
     /**
+     * A method that changes accepted from SwiperRequestModel object in question
+     * @param accepted
+     */
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
+    /**
      * A method that returns potential from SwiperRequestModel object in question
      * @return potential
      */
@@ -41,6 +48,12 @@ public class SwiperRequestModel {
         return potential;
     }
 
-
+    /**
+     * A method that changes potential from SwiperRequestModel object in question
+     * @param potential
+     */
+    public void setPotential(Account potential) {
+        this.potential = potential;
+    }
 
 }

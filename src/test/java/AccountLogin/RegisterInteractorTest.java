@@ -1,12 +1,10 @@
-package swipe.screen;
+package AccountLogin;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class SwiperControllerTest {
+class RegisterInteractorTest {
 
     @BeforeEach
     void setUp() {
@@ -17,7 +15,7 @@ class SwiperControllerTest {
     }
 
     @Test
-    void create() {
-    }
+    void createNewAccount() {
 
+    }
 }
