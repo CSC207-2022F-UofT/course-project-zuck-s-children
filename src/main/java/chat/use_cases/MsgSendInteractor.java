@@ -34,18 +34,19 @@ public class MsgSendInteractor implements MsgInBoundary {
      * @param msgModel message input model
      */
     @Override
-    public void sendMessage(MsgInModel msgModel) {
+    public MsgOutModel sendMessage(MsgInModel msgModel) {
         MessageEnt newMessage = msgFactory.create(msgModel);
         ChatRoomEnt room = fetch(newMessage.getRoomId());
         Account curr = UserDatabase.getUserDatabase().getCurrentUser();
         LocalDateTime now = LocalDateTime.now();
         // Add a new message to the data entity and send a notification
         room.addMessage(newMessage);
-        room.getOtherUser().addNotification(
+        UserDatabase.getUserDatabase().getAccounts().get(room.getOtherUser().getUsername()).addNotification(
                 new ChatNotification("New message has arrived!" ,curr, now, room.getId()));
         List<MessageEnt> chatList = room.getMessages();
         MsgOutModel responseModel = new MsgOutModel(chatList);
         msgPresenter.overwrite(responseModel);
+        return responseModel;
     }
     private ChatRoomEnt fetch(String rid) {
         ChatRoomEnt room;

@@ -1,8 +1,6 @@
 package main_app;
 
 import account_and_login.account_creation.Account;
-import data.persistency.ChatDataAccess;
-import data.persistency.ChatDataAccessInterface;
 import data.persistency.UserDatabase;
 import notification.Control.ClearNotifController;
 import notification.Control.ShowNotifController;
@@ -26,13 +24,10 @@ import static main_app.StudyBuddyApp.*;
 
 public class NavigationUI {
     // titles of tabs
-    final static ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
     final static String PROFILE = "Profile";
     final static String NOTIFICATIONS = "Notifications";
     final static String CHAT = "Chat List";
     final static String SWIPER = "Swiper";
-
-    final static int extraWindowWidth = 100;
 
     public void addComponentToPane(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -47,7 +42,7 @@ public class NavigationUI {
         clearNotifController = new ClearNotifController(clearNotifInteractor);
 
         LinkedList<Account> potential = MatchingAlgorithm.finalMatches();
-        if (potential == null || potential.size() == 0){
+        if (potential.size() == 0){
             swiperUI.build();
         }else{
             swiperUI.setBounds(0, 0, 1440, 1000);

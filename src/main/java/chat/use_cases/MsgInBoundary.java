@@ -1,7 +1,8 @@
 package chat.use_cases;
 
 import chat.control.MsgInModel;
+import chat.presenter.MsgOutModel;
 
 public interface MsgInBoundary {
-    void sendMessage(MsgInModel msgModel);
+    MsgOutModel sendMessage(MsgInModel msgModel);
 }

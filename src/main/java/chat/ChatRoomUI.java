@@ -7,7 +7,6 @@ import chat.entities.ChatRoomEnt;
 import chat.entities.MessageEnt;
 import data.persistency.ChatDataAccess;
 import data.persistency.UserDatabase;
-import ui.components.Button;
 
 import javax.swing.*;
 import javax.swing.border.Border;

@@ -34,7 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class StudyBuddyApp {
-    public static ChatDataAccessInterface chatDataAccess;
+    public static ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
+
     public static ChatDatabase chatDatabase;
     public static Profile currUserProfile ;
     public static ProfileUI profileUI ;
@@ -68,7 +69,7 @@ public class StudyBuddyApp {
 
     public static void main(String[] args){
         UserDatabase USERDATABASE = UserDatabase.getUserDatabase();
-        List<Object> chatData = null;
+        List<Object> chatData;
 
         // deserializing the userDatabase.txt file and the chatDatabase.txt file
         try {
