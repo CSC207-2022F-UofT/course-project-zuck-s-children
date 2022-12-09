@@ -24,17 +24,17 @@ public class SwipeScreen extends JPanel implements ActionListener {
     /**
      * The controller
      */
-    SwiperController swiperController;
+    private SwiperController swiperController;
 
     /**
      * A list of all the potential matches for the current user.
      */
-    LinkedList<Account> potential;
+    private LinkedList<Account> potential;
 
     /**
      * current index of potential
      */
-    int i;
+    private int i;
 
     /**
      * A constructor that adds all the information to the panel based on potential at index i and buttons accept and
