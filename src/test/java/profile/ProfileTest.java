@@ -68,6 +68,22 @@ public class ProfileTest {
         assertEquals(3, profile.getScore());
     }
 
+    /**
+     * Test if the Profile object is successfully created when all parameters are passed in.
+     */
+    @Test
+    public void fullConstructorTest() {
+        Profile profile = new Profile("jojo", "helicopter", "4+", "Other", Arrays.asList("talkative", "moves around"), emptyHashMap, Arrays.asList("OISE", "Robarts Library"));
+        assertEquals("jojo", profile.getName());
+        assertEquals("helicopter", profile.getPronouns());
+        assertEquals("Other", profile.getFieldOfStudy());
+        assertEquals("4+", profile.getYear());
+        assertEquals(Arrays.asList("talkative", "moves around"), profile.getStudyStyles());
+        assertEquals(Arrays.asList("OISE", "Robarts Library"), profile.getStudySpotPreferences());
+        assertEquals(emptyHashMap, profile.getStudyBuddyPreferences());
+        assertEquals(0, profile.getScore());
+    }
+
     @AfterEach
     void tearDown() {
         emptyHashMap.replace("year", emptyList);
