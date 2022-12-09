@@ -1,19 +1,19 @@
-package account_login;
+package account_and_login.account_login;
 
-import account_creation.Account;
-import profile.ProfileController;
-import profile.ProfileEditUseCase;
-import profile.ProfilePresenter;
-import profile.ProfileUI;
-import ui.ChatListUI;
-import ui.LoginUI;
+import account_and_login.account_creation.Account;
+import account_and_login.LoginUI;
+import account_and_login.account_login.LoginInBoundary;
+import account_and_login.account_login.LoginInModel;
+import account_and_login.account_login.LoginOutBoundary;
+import account_and_login.account_login.LoginOutModel;
+import account_and_login.account_login.LoginPresenter;
 import data.persistency.UserDatabase;
 
 import java.util.HashMap;
 import java.util.Objects;
 
 
-public class LoginUseCase implements LoginInBoundary{
+public class LoginUseCase implements LoginInBoundary {
 
     private LoginInModel loginInModel;
     private LoginOutBoundary loginPresenter;

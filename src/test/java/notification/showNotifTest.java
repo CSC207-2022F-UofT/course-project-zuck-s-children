@@ -1,5 +1,5 @@
 package notification;
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import data.persistency.UserDatabase;
 import notification.Control.ShowNotifInputBoundary;
 import notification.Entities.ChatNotification;

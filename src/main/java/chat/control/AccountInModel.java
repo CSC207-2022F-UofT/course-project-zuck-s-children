@@ -1,6 +1,6 @@
 package chat.control;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 
 public class AccountInModel {
     private final Account acc;

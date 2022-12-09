@@ -1,9 +1,8 @@
 package swipe.screen;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import data.persistency.UserDatabase;
 import profile.Profile;
-import swipe.SwiperResponseModel;
 
 import javax.swing.*;
 import java.awt.*;

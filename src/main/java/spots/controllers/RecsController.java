@@ -1,6 +1,6 @@
 package spots.controllers;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import spots.use_cases.RecsInBoundary;
 
 public class RecsController {

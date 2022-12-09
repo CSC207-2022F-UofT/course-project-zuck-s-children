@@ -1,6 +1,6 @@
 package swipe.screen;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
 import data.persistency.ChatDatabase;
@@ -39,9 +39,9 @@ class SwiperControllerTest {
         curr = new Account("Sanzhar", "password");
         potential = new Account("Potential", "pass");
         database = UserDatabase.getUserDatabase();
-        UserDatabase.setCurrentUser(curr);
-        UserDatabase.getAccounts().put("Sanzhar", curr);
-        UserDatabase.getAccounts().put("Potential", potential);
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
+        UserDatabase.getUserDatabase().getAccounts().put("Sanzhar", curr);
+        UserDatabase.getUserDatabase().getAccounts().put("Potential", potential);
         chatDataAccess = new ChatDataAccess();
     }
 
@@ -52,9 +52,9 @@ class SwiperControllerTest {
         curr =null;
         potential = null;
         database = null;
-        UserDatabase.setCurrentUser(null);
-        UserDatabase.getAccounts().remove("Sanzhar");
-        UserDatabase.getAccounts().remove("Potential");
+        UserDatabase.getUserDatabase().setCurrentUser(null);
+        UserDatabase.getUserDatabase().getAccounts().remove("Sanzhar");
+        UserDatabase.getUserDatabase().getAccounts().remove("Potential");
         chatRoomList = null;
         chatDatabase = null;
         chatDataAccess.setChatdata(null);

@@ -1,6 +1,6 @@
 package swipe.screen;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
 import data.persistency.ChatDatabase;
@@ -50,7 +50,7 @@ class SwipeUITest {
         LanceStudyStyles.add("Long");
         LanceStudyStyles.add("Visual");
         Lance.getProfile().setStudyStyles(LanceStudyStyles);
-        UserDatabase.setCurrentUser(Lance);
+        UserDatabase.getUserDatabase().setCurrentUser(Lance);
 
         Kenji = new Account("Kenji", "password");
 
@@ -77,9 +77,9 @@ class SwipeUITest {
         NinaStudyStyles.add("Long");
         NinaStudyStyles.add("Visual");
         Nina.getProfile().setStudyStyles(NinaStudyStyles);
-        UserDatabase.getAccounts().put("Nina", Nina);
-        UserDatabase.getAccounts().put("Lance", Lance);
-        UserDatabase.getAccounts().put("Kenji", Kenji);
+        UserDatabase.getUserDatabase().getAccounts().put("Nina", Nina);
+        UserDatabase.getUserDatabase().getAccounts().put("Lance", Lance);
+        UserDatabase.getUserDatabase().getAccounts().put("Kenji", Kenji);
         testArray = new LinkedList<>();
         testArray.add(Nina);
         testArray.add(Kenji);
@@ -96,10 +96,10 @@ class SwipeUITest {
         testController = null;
         testPresenter = null;
         testInteractor = null;
-        UserDatabase.setCurrentUser(null);
-        UserDatabase.getAccounts().remove("Nina");
-        UserDatabase.getAccounts().remove("Lance");
-        UserDatabase.getAccounts().remove("Kenji");
+        UserDatabase.getUserDatabase().setCurrentUser(null);
+        UserDatabase.getUserDatabase().getAccounts().remove("Nina");
+        UserDatabase.getUserDatabase().getAccounts().remove("Lance");
+        UserDatabase.getUserDatabase().getAccounts().remove("Kenji");
     }
 
     @Test

@@ -1,6 +1,6 @@
 package notification.Entities;
 //entity layer
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

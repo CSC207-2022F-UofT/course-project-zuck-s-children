@@ -1,13 +1,11 @@
 package data.persistency;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import chat.entities.ChatRoomEnt;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Objects.isNull;
 
 public class ChatDatabase implements Serializable {
     private static List<Object> chatData;

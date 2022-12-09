@@ -1,6 +1,6 @@
 package notification.Present;
 
-import ui.NotificationUI;
+import notification.NotificationUI;
 
 public class ClearNotifPresenter implements ClearNotifOutputBoundary {
     NotificationUI notifUI;

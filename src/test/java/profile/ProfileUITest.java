@@ -1,6 +1,6 @@
 package profile;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import data.persistency.UserDatabase;
 import main_app.StudyBuddyApp;
 import org.junit.jupiter.api.BeforeEach;

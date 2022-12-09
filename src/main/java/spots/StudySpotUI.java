@@ -1,4 +1,4 @@
-package ui;
+package spots;
 
 import javax.swing.*;
 import java.awt.*;

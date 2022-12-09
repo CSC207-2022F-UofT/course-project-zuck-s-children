@@ -1,5 +1,6 @@
 package main_app;
-import account_creation.Account;
+import account_and_login.account_creation.Account;
+import chat.ChatListUI;
 import data.persistency.*;
 import notification.Control.ClearNotifController;
 import notification.Control.ClearNotifInputBoundary;
@@ -15,15 +16,14 @@ import spots.use_cases.GenerateRec;
 import spots.use_cases.RecsInBoundary;
 import spots.use_cases.RecsOutBoundary;
 import swipe.screen.SwiperUI;
-import ui.LoginUI;
-import ui.NotificationUI;
+import account_and_login.LoginUI;
+import notification.NotificationUI;
 
 import swipe.SwiperInputBoundary;
 import swipe.SwiperInteractor;
 import swipe.SwiperPresenter;
 import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
-import ui.*;
 import data.persistency.UserDatabase;
 
 

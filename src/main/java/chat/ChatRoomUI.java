@@ -1,11 +1,10 @@
-package ui;
+package chat;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import chat.control.MsgInModel;
 import chat.control.MsgSendController;
 import chat.entities.ChatRoomEnt;
 import chat.entities.MessageEnt;
-import chat.use_cases.MsgInBoundary;
 import data.persistency.ChatDataAccess;
 import data.persistency.UserDatabase;
 import ui.components.Button;
@@ -17,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import static main_app.StudyBuddyApp.chatDatabase;
 import static main_app.StudyBuddyApp.spotController;
 public class ChatRoomUI extends JFrame implements ActionListener {
     MsgSendController msgSendController;

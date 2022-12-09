@@ -1,6 +1,6 @@
-package account_creation;
+package account_and_login.account_creation;
 
-import ui.LoginUI;
+import account_and_login.LoginUI;
 
 public class RegisterPresenter implements RegisterOutBoundary {
     LoginUI loginUI;

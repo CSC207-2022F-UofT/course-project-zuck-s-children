@@ -1,9 +1,11 @@
-package ui;
+package account_and_login;
 
-import account_creation.*;
-import account_login.LoginController;
-import account_login.LoginInModel;
-import account_login.LoginUseCase;
+import account_and_login.account_creation.RegisterController;
+import account_and_login.account_creation.RegisterInModel;
+import account_and_login.account_creation.RegisterUseCase;
+import account_and_login.account_login.LoginController;
+import account_and_login.account_login.LoginInModel;
+import account_and_login.account_login.LoginUseCase;
 
 import javax.swing.*;
 import java.awt.*;

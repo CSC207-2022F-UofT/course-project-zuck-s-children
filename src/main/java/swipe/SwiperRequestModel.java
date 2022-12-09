@@ -1,6 +1,6 @@
 package swipe;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 //
 /**
  * A request model for the swiper

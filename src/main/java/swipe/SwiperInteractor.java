@@ -1,6 +1,6 @@
 package swipe;
 //
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import chat.entities.ChatRoomEnt;
 import data.persistency.ChatDataAccessInterface;
 import notification.Entities.MatchNotification;

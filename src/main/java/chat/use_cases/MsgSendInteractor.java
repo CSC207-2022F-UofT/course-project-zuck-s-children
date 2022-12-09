@@ -1,6 +1,6 @@
 package chat.use_cases;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import chat.control.MsgInModel;
 import chat.presenter.MsgOutBoundary;
 import chat.presenter.MsgOutModel;
@@ -12,7 +12,6 @@ import data.persistency.UserDatabase;
 import notification.Entities.ChatNotification;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MsgSendInteractor implements MsgInBoundary {

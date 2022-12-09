@@ -1,6 +1,6 @@
 package data.persistency;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 
 import java.io.Serializable;
 import java.util.HashMap;

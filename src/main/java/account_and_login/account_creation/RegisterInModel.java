@@ -1,16 +1,16 @@
-package account_login;
+package account_and_login.account_creation;
 
-public class LoginInModel {
+public class RegisterInModel {
     private String inputUsername;
     private String inputPassword;
 
     /**
-     * Construct a login in model with necessary info for login.
+     * Construct a register in model containing the data necessary to register a new account.
      *
-     * @param username input username.
-     * @param password input password.
+     * @param username username of the register input.
+     * @param password password of the register input.
      */
-    public LoginInModel(String username, String password) {
+    public RegisterInModel(String username, String password){
         this.inputUsername = username;
         this.inputPassword = password;
     }

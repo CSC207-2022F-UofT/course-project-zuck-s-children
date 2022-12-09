@@ -1,4 +1,4 @@
-package ui;
+package chat;
 
 import chat.control.ChatRoomOpenController;
 import chat.control.MsgSendController;
@@ -12,8 +12,6 @@ import chat.use_cases.MsgSendInteractor;
 import chat.use_cases.OpenRoomBoundary;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
-import spots.presenter.RecsPresenter;
-import spots.use_cases.RecsOutBoundary;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

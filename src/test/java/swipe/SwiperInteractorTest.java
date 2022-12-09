@@ -1,6 +1,6 @@
 package swipe;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
 import data.persistency.ChatDatabase;
@@ -42,9 +42,9 @@ class SwiperInteractorTest {
         curr = new Account("Sanzhar", "password");
         potential = new Account("Potential", "pass");
         database = UserDatabase.getUserDatabase();
-        UserDatabase.setCurrentUser(curr);
-        UserDatabase.getAccounts().put("Sanzhar", curr);
-        UserDatabase.getAccounts().put("Potential", potential);
+        UserDatabase.getUserDatabase().setCurrentUser(curr);
+        UserDatabase.getUserDatabase().getAccounts().put("Sanzhar", curr);
+        UserDatabase.getUserDatabase().getAccounts().put("Potential", potential);
         testRequestT = new SwiperRequestModel(true, potential);
         chatDataAccess = new ChatDataAccess();
         testRequestT2 = new SwiperRequestModel(true, curr);
@@ -64,12 +64,12 @@ class SwiperInteractorTest {
         curr =null;
         potential = null;
         database = null;
-        UserDatabase.setCurrentUser(null);
+        UserDatabase.getUserDatabase().setCurrentUser(null);
         testRequestT = null;
         testRequestT2 = null;
         testRequestF = null;
-        UserDatabase.getAccounts().remove("Sanzhar");
-        UserDatabase.getAccounts().remove("Potential");
+        UserDatabase.getUserDatabase().getAccounts().remove("Sanzhar");
+        UserDatabase.getUserDatabase().getAccounts().remove("Potential");
         chatRoomList = null;
         chatDatabase = null;
         chatDataAccess.setChatdata(null);

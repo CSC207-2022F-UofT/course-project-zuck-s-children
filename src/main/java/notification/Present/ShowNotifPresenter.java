@@ -1,6 +1,6 @@
 package notification.Present;
 
-import ui.NotificationUI;
+import notification.NotificationUI;
 
 public class ShowNotifPresenter implements ShowNotifOutputBoundary {
     NotificationUI notifUI;

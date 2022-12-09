@@ -1,12 +1,6 @@
 package chat.presenter;
 
-import chat.control.MsgSendController;
-import chat.use_cases.MsgInBoundary;
-import chat.use_cases.MsgSendInteractor;
-import data.persistency.ChatDataAccess;
-import ui.ChatRoomUI;
-
-import javax.swing.*;
+import chat.ChatRoomUI;
 
 public class ChatRoomPresenter implements MsgOutBoundary {
 

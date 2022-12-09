@@ -1,8 +1,9 @@
 package account_creation;
 
-import account_login.LoginController;
-import account_login.LoginInModel;
-import account_login.LoginUseCase;
+import account_and_login.account_creation.Account;
+import account_and_login.account_creation.RegisterController;
+import account_and_login.account_creation.RegisterInModel;
+import account_and_login.account_creation.RegisterUseCase;
 import data.persistency.UserDatabase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

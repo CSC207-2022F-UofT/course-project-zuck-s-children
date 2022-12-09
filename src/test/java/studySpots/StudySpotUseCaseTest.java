@@ -1,6 +1,6 @@
 package studySpots;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import org.junit.jupiter.api.Test;
 import spots.presenter.RecsPresenter;
 import spots.use_cases.GenerateRec;

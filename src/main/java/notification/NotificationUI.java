@@ -1,9 +1,9 @@
-package ui;
+package notification;
 
+import chat.ChatRoomUI;
 import chat.control.ChatRoomOpenController;
 import chat.control.MsgSendController;
 import chat.control.RoomInModel;
-import chat.entities.ChatRoomEnt;
 import chat.presenter.ChatRoomPresenter;
 import chat.presenter.MsgOutBoundary;
 import chat.use_cases.ChatRoomOpenInteractor;
@@ -21,8 +21,6 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static main_app.StudyBuddyApp.*;

@@ -1,4 +1,4 @@
-package account_creation;
+package account_and_login.account_creation;
 
 public class RegisterOutModel {
     private boolean creationStatus;

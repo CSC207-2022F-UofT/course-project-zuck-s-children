@@ -1,5 +1,4 @@
 package notification.UseCases;
-import account_creation.Account;
 import notification.Entities.Notification;
 import data.persistency.UserDatabase;
 import notification.Present.NotifResponseModel;

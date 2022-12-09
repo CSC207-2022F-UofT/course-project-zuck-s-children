@@ -1,11 +1,12 @@
-package ui;
+package main_app;
 
-import account_creation.Account;
+import account_and_login.account_creation.Account;
 import data.persistency.ChatDataAccess;
 import data.persistency.ChatDataAccessInterface;
 import data.persistency.UserDatabase;
 import notification.Control.ClearNotifController;
 import notification.Control.ShowNotifController;
+import notification.NotificationUI;
 import notification.Present.ClearNotifPresenter;
 import notification.Present.ShowNotifPresenter;
 import notification.UseCases.ClearNotifInteractor;
@@ -23,7 +24,7 @@ import javax.swing.event.ChangeListener;
 
 import static main_app.StudyBuddyApp.*;
 
-public class Navigation {
+public class NavigationUI {
     // titles of tabs
     final static ChatDataAccessInterface chatDataAccess = new ChatDataAccess();
     final static String PROFILE = "Profile";
@@ -86,7 +87,7 @@ public class Navigation {
         JFrame frame = new JFrame("Study Buddy Finder");
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         //Create and set up the content pane.
-        Navigation demo = new Navigation();
+        NavigationUI demo = new NavigationUI();
         demo.addComponentToPane(frame.getContentPane());
         serializeOnWindowClose(frame);
         //Display the window.
