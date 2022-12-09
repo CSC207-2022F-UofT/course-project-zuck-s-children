@@ -56,6 +56,8 @@ Before, the profile feature utilized a ProfileBuilder class to construct new Pro
 
 #### Testing
 
+As a note, the autograder never finishes grading because there are tests for UIs, which require clicking buttons to move on, so the autograder is just stuck. Overall, all the tests pass!
+
 #### Login & Account Creation (+ UserDatabase):
 Testing on the login and account creation follows the flow of the natural clean architecture. I create the controllers, their usecases, and inmodels and pass them in to recreate what would be done in the actionPerformed section of the loginUI. Note that testing the UI directly was not possible due how it requires the action of the button being clicked for either login or register account. Perhaps there is a way to test the UI with the use of a button but upon researching so far, there does not seem to be a feasible method to do so, hence this is raised as a future issue for further improvements in testing. However, the test cases cover all the classes and their methods in both creating a new account and logging into the account. There is just one method that is not covered in account_creation.account which is getBuddies() as that is called by the chatList use case elsewhere and is not under the purview of logging in or account creation. Apart from that, there is 100% coverage of these two usecases. Furthermore, UserDatabase is also covered because of its widespread use in getter and setter methods during the register and login use cases.
 
