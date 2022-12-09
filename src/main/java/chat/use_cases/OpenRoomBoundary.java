@@ -1,7 +1,8 @@
 package chat.use_cases;
 
 import chat.control.RoomInModel;
+import chat.presenter.MsgOutModel;
 
 public interface OpenRoomBoundary {
-    void open(RoomInModel room);
+    MsgOutModel open(RoomInModel room);
 }

@@ -50,7 +50,7 @@ public class RegisterUseCase implements RegisterInBoundary {
             // add NewAccount entity into UserDatabase
             Account newAccount = new Account(registerUser,
                     registerPwd);
-
+            newAccount.getProfile().setName(registerUser);
             userDatabaseAccounts.put(registerUser, newAccount);
 
             int numberOfAccounts = userDatabaseAccounts.size();
