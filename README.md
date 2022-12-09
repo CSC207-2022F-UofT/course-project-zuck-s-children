@@ -35,12 +35,12 @@ Once two users accept each other, the program creates a new chat room of the two
 The users can customize their profile including a pronoun, a year of study, a program, and study style.
 The profile is used in the matching algorithm to generate a possible matches for our program's one of the most important feature.
 
-### Chat
-The Chat feature implements the general chatting system of a software. It has a list of chat room and the user can open a chat room
-to make a chat with other users.
+### Chat and Study Spot 
 
-### Study Spot
-As a part of that chat room functionality, the program uses the algorithm to make three recommendations of study spot in a chat room. It takes account preference of both users in a room.
+<img width="1163" alt="Screen Shot 2022-12-08 at 11 54 18 PM" src="https://user-images.githubusercontent.com/102633707/206627220-c5d42512-f83f-4f7d-94b1-0d7c82d463ae.png">
+
+The Chat feature implements the general chatting system of a software. It has a list of chat room and the user can open a chat room
+to make a chat with other users. As a part of that chat room functionality, the program uses the algorithm to make three recommendations of study spot in a chat room. It takes account preference of both users in a room.
 
 ### Notification
 <img width="450" alt="Screen Shot 2022-12-05 at 9 26 02 AM" src="https://user-images.githubusercontent.com/107783734/205661460-af741a56-517a-4c72-9927-7709a82ecb20.png">
