@@ -4,7 +4,6 @@ import data.persistency.UserDatabase;
 
 
 public class ProfileEditUseCase implements profile.ProfileEditInputBoundary {
-    private static final profile.ProfileBuilder BUILDER = new profile.ProfileBuilder();
     private final ProfileUpdateOutputBoundary PROFILE_PRESENTER;
 
     /**
@@ -21,7 +20,7 @@ public class ProfileEditUseCase implements profile.ProfileEditInputBoundary {
      */
     @Override
     public void modifyProfile(ProfileInModel profileInModel) {
-        Profile profileModifications = BUILDER.createNewProfile(profileInModel);
+        Profile profileModifications = new Profile(profileInModel.getName(), profileInModel.getPronouns(), profileInModel.getYear(), profileInModel.getFieldOfStudy(), profileInModel.getStudyStyles(), profileInModel.getStudyBuddyPreferences(), profileInModel.getStudySpotPreferences());
         UserDatabase.getUserDatabase().getCurrentUser().setProfile(profileModifications);
         ProfileOutModel modifiedProfile = new ProfileOutModel(UserDatabase.getUserDatabase().getCurrentUser().getProfile());
 

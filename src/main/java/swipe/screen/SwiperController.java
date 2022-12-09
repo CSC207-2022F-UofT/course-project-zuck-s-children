@@ -26,7 +26,7 @@ public class SwiperController {
     }
 
     /**
-     * A method that returns a response model.
+     * A method that returns a response model indicating if there has been a successful match or not.
      * @param accept (if the user accepted their potential match), account (the potential match)
      * @return a SwiperResponseModel as an output
      */

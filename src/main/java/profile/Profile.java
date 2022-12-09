@@ -175,4 +175,13 @@ public class Profile implements Serializable {
         studyBuddyPreferences.put("field of study", new ArrayList<>());
         studyBuddyPreferences.put("descriptions", new ArrayList<>());
     }
+    public Profile(String name, String pronouns, String year, String fieldOfStudy, List<String> studyStyles, HashMap<String, List<String>> studyBuddyPreferences, List<String> studySpotPreferences) {
+        setName(name);
+        setPronouns(pronouns);
+        setYear(year);
+        setFieldOfStudy(fieldOfStudy);
+        setStudyStyles(studyStyles);
+        setStudySpotPreferences(studySpotPreferences);
+        setStudyBuddyPreferences(studyBuddyPreferences);
+    }
 }

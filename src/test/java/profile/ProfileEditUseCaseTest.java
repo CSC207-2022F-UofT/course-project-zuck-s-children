@@ -31,6 +31,7 @@ class ProfileEditUseCaseTest {
         // setting current user for retrieval of updated profile
         UserDatabase.getUserDatabase().setCurrentUser(account);
 
+
         // setting variable to prevent NullPointer error
         StudyBuddyApp.currUserProfile = emptyProfile;
 

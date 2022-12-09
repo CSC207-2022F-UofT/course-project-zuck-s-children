@@ -27,6 +27,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static main_app.StudyBuddyApp.*;
 
+//building the notification interface
+
 public class NotificationUI extends JInternalFrame implements ActionListener{
     /**
      * A Notification UI as a tabbed pane in Navigation UI
@@ -71,7 +73,11 @@ public class NotificationUI extends JInternalFrame implements ActionListener{
 
         String[] columnNames = {"Sender", "Content", "Date"};
         String[][] data = getNotif(this.notifications);
-        JTable table = new JTable(data, columnNames);
+        JTable table = new JTable(data, columnNames) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
+        };
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         ListSelectionModel selectionModel = table.getSelectionModel();

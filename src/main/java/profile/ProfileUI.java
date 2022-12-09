@@ -439,11 +439,8 @@ public class ProfileUI extends JInternalFrame implements ActionListener {
         // create the HashMap of user's study buddy preferences, including the preferred year, field of study, and study styles
         HashMap<String, List<String>> studyBuddyPref = new HashMap<>();
         if (yearPref.getSelectedValuesList().isEmpty()) {
-            studyBuddyPref.put("year", new ArrayList<>());
-        } else{
-            studyBuddyPref.put("year", yearPref.getSelectedValuesList());
-
-        }
+            studyBuddyPref.put("year", new ArrayList<>());}
+        else {studyBuddyPref.put("year", yearPref.getSelectedValuesList());}
         studyBuddyPref.put("field of study", fieldPref);
         studyBuddyPref.put("descriptions", stylePref);
 

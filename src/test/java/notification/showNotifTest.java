@@ -48,7 +48,9 @@ public class showNotifTest {
             public void prepareDisplayView(NotifResponseModel responseModel){
                 ArrayList<List> responseArray = responseModel.getResponseModel();
                 assertEquals(responseArray.size(), 5);
-                assertEquals(responseArray.get(3).get(0), "we've matched");
+                assertEquals(responseArray.get(3).get(0), "lance33");
+                assertEquals(responseArray.get(2).get(1), "we've matched");
+                assertNotNull(responseArray.get(4).get(2));
             }
         };
         ShowNotifInputBoundary showNotifInteractor = new ShowNotifInteractor(showNotifPresenter);
@@ -89,6 +91,10 @@ public class showNotifTest {
             public void prepareDisplayView(NotifResponseModel responseModel){
                 ArrayList<List> responseArray = responseModel.getResponseModel();
                 assertEquals(responseArray.size(), 1);
+                assertEquals(responseArray.get(0).get(0), "huan22");
+                assertEquals(responseArray.get(0).get(1), "nice to meet you!");
+                assertNotNull(responseArray.get(0).get(2));
+
             }
         };
         ShowNotifInputBoundary showNotifInteractor = new ShowNotifInteractor(showNotifPresenter);
