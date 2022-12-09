@@ -1,6 +1,7 @@
 package notification;
 import account_creation.Account;
 import data.persistency.UserDatabase;
+import notification.Control.ClearNotifController;
 import notification.Entities.ChatNotification;
 import notification.Entities.MatchNotification;
 import notification.UseCases.ClearNotifInteractor;
@@ -49,8 +50,8 @@ public class clearNotifTest {
         };
 
         ClearNotifInteractor clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter);
-
-        clearNotifInteractor.clearNotif();
+        ClearNotifController clearNotifController = new ClearNotifController(clearNotifInteractor);
+        clearNotifController.clearNotif();
     }
 
     /**
@@ -69,7 +70,8 @@ public class clearNotifTest {
         };
 
         ClearNotifInteractor clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter);
-        clearNotifInteractor.clearNotif();
+        ClearNotifController clearNotifController = new ClearNotifController(clearNotifInteractor);
+        clearNotifController.clearNotif();
     }
 
     /**
@@ -92,7 +94,8 @@ public class clearNotifTest {
         };
 
         ClearNotifInteractor clearNotifInteractor = new ClearNotifInteractor(clearNotifPresenter);
-        clearNotifInteractor.clearNotif();
+        ClearNotifController clearNotifController = new ClearNotifController(clearNotifInteractor);
+        clearNotifController.clearNotif();
     }
 
 }
