@@ -1,7 +1,5 @@
 # StudyBuddy - Zuck's Children
 
-<img width="700" alt="Screen Shot 2022-12-05 at 9 14 02 AM" src="https://user-images.githubusercontent.com/107783734/205658383-b9125772-ad0b-4a77-af51-cc5c33721888.png">
-
 StudyBuddy is a networking app - but for studying purposes. This program allows students on the UofT campus to find and connect with peers to study together. By creating an account and specifying personal and preferred information for studying such as study spots, academic programs, and studying styles, users are recommended with other users with similar preferences to study with. Users are prompted with potential matches and can reject or deny them using a swiper algorithm. Users can also chat with matched buddies!
 
 ## Specification
@@ -15,6 +13,8 @@ a user's profile, group chats and a map.
 ## Core Features
 
 ### Login and Account Creation
+<img width="700" alt="Screen Shot 2022-12-05 at 9 14 02 AM" src="https://user-images.githubusercontent.com/107783734/205658383-b9125772-ad0b-4a77-af51-cc5c33721888.png">
+
 It is the first page the user will face when the program runs.\
 The user can register a new account with a username and a password or sign in with an existing account.\
 The user cannot create an account with an already registered username. The user cannot create an account with any empty parameters.\
