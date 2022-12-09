@@ -2,10 +2,10 @@ package chat;
 
 import account_and_login.account_creation.Account;
 import chat.entities.ChatRoomEnt;
-import data.persistency.ChatDataAccess;
-import data.persistency.ChatDataAccessInterface;
-import data.persistency.ChatDatabase;
-import data.persistency.UserDatabase;
+import data_persistency.ChatDataAccess;
+import data_persistency.ChatDataAccessInterface;
+import data_persistency.ChatDatabase;
+import data_persistency.UserDatabase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

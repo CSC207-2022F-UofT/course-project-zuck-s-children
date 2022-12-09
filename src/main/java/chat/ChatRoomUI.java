@@ -5,8 +5,8 @@ import chat.control.MsgInModel;
 import chat.control.MsgSendController;
 import chat.entities.ChatRoomEnt;
 import chat.entities.MessageEnt;
-import data.persistency.ChatDataAccess;
-import data.persistency.UserDatabase;
+import data_persistency.ChatDataAccess;
+import data_persistency.UserDatabase;
 
 import javax.swing.*;
 import javax.swing.border.Border;

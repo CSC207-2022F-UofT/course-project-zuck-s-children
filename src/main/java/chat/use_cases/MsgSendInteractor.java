@@ -7,8 +7,8 @@ import chat.presenter.MsgOutModel;
 import chat.entities.ChatRoomEnt;
 import chat.entities.MessageEnt;
 import chat.entities.MessageFactory;
-import data.persistency.ChatDataAccessInterface;
-import data.persistency.UserDatabase;
+import data_persistency.ChatDataAccessInterface;
+import data_persistency.UserDatabase;
 import notification.Entities.ChatNotification;
 
 import java.time.LocalDateTime;

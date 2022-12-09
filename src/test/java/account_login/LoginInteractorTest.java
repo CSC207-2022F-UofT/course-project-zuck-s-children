@@ -4,7 +4,7 @@ import account_and_login.account_creation.Account;
 import account_and_login.account_login.LoginController;
 import account_and_login.account_login.LoginInModel;
 import account_and_login.account_login.LoginUseCase;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

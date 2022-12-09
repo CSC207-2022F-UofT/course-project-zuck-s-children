@@ -1,7 +1,7 @@
 package chat.entities;
 
 import account_and_login.account_creation.Account;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;

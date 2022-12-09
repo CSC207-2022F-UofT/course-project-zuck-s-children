@@ -1,10 +1,10 @@
 package swipe.screen;
 
 import account_and_login.account_creation.Account;
-import data.persistency.ChatDataAccess;
-import data.persistency.ChatDataAccessInterface;
-import data.persistency.ChatDatabase;
-import data.persistency.UserDatabase;
+import data_persistency.ChatDataAccess;
+import data_persistency.ChatDataAccessInterface;
+import data_persistency.ChatDatabase;
+import data_persistency.UserDatabase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

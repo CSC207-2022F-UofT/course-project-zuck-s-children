@@ -1,6 +1,6 @@
 package notification.UseCases;
 import notification.Entities.Notification;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import notification.Present.NotifResponseModel;
 import notification.Control.ShowNotifInputBoundary;
 import notification.Present.ShowNotifOutputBoundary;

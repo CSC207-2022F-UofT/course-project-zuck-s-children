@@ -5,7 +5,7 @@ import chat.entities.ChatRoomEnt;
 import chat.entities.MessageEnt;
 import chat.presenter.MsgOutBoundary;
 import chat.presenter.MsgOutModel;
-import data.persistency.ChatDataAccessInterface;
+import data_persistency.ChatDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.List;

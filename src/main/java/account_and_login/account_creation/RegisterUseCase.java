@@ -1,13 +1,7 @@
 package account_and_login.account_creation;
 
 import account_and_login.LoginUI;
-import account_and_login.account_creation.Account;
-import account_and_login.account_creation.RegisterPresenter;
-import account_and_login.account_creation.RegisterInBoundary;
-import account_and_login.account_creation.RegisterInModel;
-import account_and_login.account_creation.RegisterOutBoundary;
-import account_and_login.account_creation.RegisterOutModel;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 
 import java.util.HashMap;
 import java.util.Objects;

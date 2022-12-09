@@ -10,7 +10,7 @@ import chat.use_cases.ChatRoomOpenInteractor;
 import chat.use_cases.MsgInBoundary;
 import chat.use_cases.MsgSendInteractor;
 import chat.use_cases.OpenRoomBoundary;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import notification.Control.ShowNotifController;
 import notification.Entities.ChatNotification;
 import notification.Entities.Notification;

@@ -2,9 +2,9 @@ package swipe;
 //
 import account_and_login.account_creation.Account;
 import chat.entities.ChatRoomEnt;
-import data.persistency.ChatDataAccessInterface;
+import data_persistency.ChatDataAccessInterface;
 import notification.Entities.MatchNotification;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 
 
 import java.time.LocalDateTime;

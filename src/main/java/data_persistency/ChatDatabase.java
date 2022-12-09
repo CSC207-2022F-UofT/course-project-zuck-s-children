@@ -1,4 +1,4 @@
-package data.persistency;
+package data_persistency;
 
 import account_and_login.account_creation.Account;
 import chat.entities.ChatRoomEnt;

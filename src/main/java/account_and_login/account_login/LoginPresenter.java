@@ -1,6 +1,6 @@
 package account_and_login.account_login;
 
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 import profile.ProfileController;
 import profile.ProfileEditUseCase;
 import profile.ProfilePresenter;

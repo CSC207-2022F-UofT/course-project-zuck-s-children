@@ -1,7 +1,10 @@
 package main_app;
 import account_and_login.account_creation.Account;
 import chat.ChatListUI;
-import data.persistency.*;
+import data_persistency.*;
+import data_persistency.ChatDataAccess;
+import data_persistency.ChatDataAccessInterface;
+import data_persistency.ChatDatabase;
 import notification.Control.ClearNotifController;
 import notification.Control.ClearNotifInputBoundary;
 import notification.Control.ShowNotifController;
@@ -24,7 +27,7 @@ import swipe.SwiperInteractor;
 import swipe.SwiperPresenter;
 import swipe.screen.SwiperController;
 import swipe.screen.SwiperPresenterFormatter;
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 
 
 import javax.swing.*;

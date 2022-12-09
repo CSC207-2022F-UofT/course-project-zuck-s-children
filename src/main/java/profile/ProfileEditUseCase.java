@@ -1,6 +1,6 @@
 package profile;
 
-import data.persistency.UserDatabase;
+import data_persistency.UserDatabase;
 
 
 public class ProfileEditUseCase implements profile.ProfileEditInputBoundary {
