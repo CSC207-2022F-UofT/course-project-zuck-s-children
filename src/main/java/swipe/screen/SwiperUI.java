@@ -14,16 +14,16 @@ public class SwiperUI extends JInternalFrame{
     /**
      * a JPanel which will contain the swipe panel
      */
-    JPanel initial;
+    private JPanel initial;
     /**
      * a SwipeScreen JPanel that contains the information from a potential user with the necessary buttons.
      */
-    SwipeScreen swipePanel;
+    private SwipeScreen swipePanel;
 
     /**
      * A Cardlayout as part of the overall frame
      */
-    CardLayout cl;
+    private CardLayout cl;
 
     /**
      * A constructor that initializes cl and intitial as an empty cardlayout and JPanel, and sets the frames bounds
