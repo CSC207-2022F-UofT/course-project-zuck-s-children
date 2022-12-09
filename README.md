@@ -57,7 +57,10 @@ Before, the profile feature utilized a ProfileBuilder class to construct new Pro
 #### Singleton
 Upon Hafsa's suggestion after Milestone 4, it was decided that implementing the singleton design pattern for the UserDatabase class was most appropriate. This is because the user database should necessarily be a single instance as there should only ever be one user database in usage as the program is running. In this way, to access any of the attributes associated with the user database, one would simply have to access the getter and setter methods and call them on the singleton instance. Getting the instance is also streamlined so that it only returns that one instance but if it doesn’t already exist, it will create the first singular instance for the running of the program. That instance is the one that will be returned each subsequent time the getUserDatabase() method is called.
 
-#### Testing
+#### Strategy
+A strategy design pattern was initially considered to be used for the matching algorithm as more ways to determine how matching is done may be implemented in the future. This was ultimately not implemented as a key part of the strategy design pattern is that the client determines the way algorithm is run. As of now, the algorithm will always check year of study, field of study and study styles of all other users and compare them to the current client's preferences. In the future a strategy design pattern may be considered if matching is decided to be client side (for instance, a client can choose to match with other user's based on just year of study or field of study.
+
+#### Testing:
 
 As a note, the autograder never finishes grading because there are tests for UIs, which require clicking buttons to move on, so the autograder is just stuck. Overall, all the tests pass!
 
