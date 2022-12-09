@@ -32,7 +32,7 @@ class ProfileUITest {
 
         // setting current user for retrieval of updated profile
         UserDatabase.getUserDatabase();
-        UserDatabase.setCurrentUser(account);
+        UserDatabase.getUserDatabase().setCurrentUser(account);
 
         // setting variable to prevent NullPointer error
         StudyBuddyApp.currUserProfile = emptyProfile;

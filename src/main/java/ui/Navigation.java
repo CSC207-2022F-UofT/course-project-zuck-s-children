@@ -98,6 +98,10 @@ public class Navigation {
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(frame,
+                        "Are you sure you want to close this window?", "Close Window?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                 try {
                     FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
                     FileOutputStream foutChat = new FileOutputStream("chatDatabase.txt");
@@ -117,7 +121,7 @@ public class Navigation {
                 }
                 System.exit(0);
 
-            }
+            }}
         });
     }
 

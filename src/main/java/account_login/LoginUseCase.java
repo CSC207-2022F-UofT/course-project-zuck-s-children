@@ -19,7 +19,11 @@ public class LoginUseCase implements LoginInBoundary{
     private LoginOutBoundary loginPresenter;
     private static HashMap<String, Account> userDatabaseAccounts;
 
-
+    /**
+     * Construct a UseCase Interactor.
+     *
+     * @param loginInModel the loginModel which includes username and password inside.
+     */
     public LoginUseCase(LoginInModel loginInModel) {
         this.loginInModel = loginInModel;
         LoginUI loginUI = new LoginUI();
@@ -27,9 +31,9 @@ public class LoginUseCase implements LoginInBoundary{
         userDatabaseAccounts = UserDatabase.getUserDatabase().getAccounts();
     }
     /**
-     * Run the login use case.
+     * Run the login use case. Login iff correct username and password.
+     *
      * @param loginInModel the loginModel which includes username and password inside.
-     * Checks if username and passwords are in userDatabase.
      */
     @Override
     public void loginToAccount(LoginInModel loginInModel) {

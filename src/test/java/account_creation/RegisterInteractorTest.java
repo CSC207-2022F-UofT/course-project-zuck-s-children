@@ -1,5 +1,8 @@
 package account_creation;
 
+import account_login.LoginController;
+import account_login.LoginInModel;
+import account_login.LoginUseCase;
 import data.persistency.UserDatabase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -37,12 +40,13 @@ class RegisterInteractorTest {
         }
     }
 
+    /**
+     * Test that a new account can be created through the RegisterController.
+     */
     @Test
     void createNewAccount() {
-        String registerUser;
-        String registerPwd;
-        registerUser = "Kenji";
-        registerPwd = "123";
+        String registerUser = "Kenji";
+        String registerPwd = "123";
 
         RegisterInModel registerInModel = new RegisterInModel(registerUser, registerPwd);
         RegisterUseCase registerUseCase = new RegisterUseCase(registerInModel);
@@ -53,6 +57,9 @@ class RegisterInteractorTest {
         Assertions.assertEquals(UserDatabase.getUserDatabase().getAccounts().get("Kenji").getPassword(), "123");
     }
 
+    /**
+     * Test that one cannot create a new account with a username which is already registered.
+     */
     @Test
     void creationParameters() {
         String registerUser1;
@@ -78,6 +85,9 @@ class RegisterInteractorTest {
         Assertions.assertEquals(UserDatabase.getUserDatabase().getAccounts().get("Zuck").getPassword(), "123");
     }
 
+    /**
+     * Test that one cannot create an account with an empty parameter.
+     */
     @Test
     void emptyParameter() {
         String registerUser2;
@@ -90,12 +100,24 @@ class RegisterInteractorTest {
         RegisterController registerController2 = new RegisterController(registerUseCase2);
         registerController2.createNewAccount(registerUser2, registerPwd2);
 
+        String registerUser1;
+        String registerPwd1;
+        registerUser1 = "hi";
+        registerPwd1 = "";
+
+        RegisterInModel registerInModel1 = new RegisterInModel(registerUser1, registerPwd1);
+        RegisterUseCase registerUseCase1 = new RegisterUseCase(registerInModel1);
+        RegisterController registerController1 = new RegisterController(registerUseCase1);
+        registerController1.createNewAccount(registerUser1, registerPwd1);
+
         Assertions.assertNull(UserDatabase.getUserDatabase().getAccounts().get(""));
+        Assertions.assertNull(UserDatabase.getUserDatabase().getAccounts().get("hi"));
     }
 
     @AfterEach
     void tearDown() {
         UserDatabase.getUserDatabase().getAccounts().remove("Kenji");
+        UserDatabase.getUserDatabase().getAccounts().remove("Zuck");
 
         try {
             FileOutputStream foutUser = new FileOutputStream("userDatabase.txt");
