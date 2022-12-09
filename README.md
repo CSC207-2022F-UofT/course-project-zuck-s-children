@@ -1,6 +1,6 @@
 # StudyBuddy App - Zuck's Children
 
-StudyBuddy is a networking app - but for studying purposes. This program allows students on the UofT campus to find and connect with peers to study together. By creating an account and specifying personal and preferred information for studying such as study spots, academic programs, and studying styles, users are recommended with other users with similar preferences to study with. Users are prompted with potential matches and can reject or deny them using a swiper algorithm. Users can also chat with matched buddies!
+StudyBuddy is a networking app - but for studying purposes. This program allows students on the UTSG campus to find and connect with peers to study together. By creating an account and specifying personal and preferred information for studying such as study spots, academic programs, and studying styles, users are recommended with other users with similar preferences to study with. Users are prompted with potential matches and can reject or deny them using a swiper algorithm. Users can also chat with matched buddies!
 
 ## Specification
 The technology used is Java.
@@ -32,8 +32,8 @@ Once two users accept each other, the program creates a new chat room for the tw
 
 ### Profile Customization
 <img width="450" alt="Screen Shot 2022-12-05 at 9 25 42 AM" src="https://user-images.githubusercontent.com/107783734/205661179-9bb536c5-f109-4896-b1e5-a2642d75d728.png">
-The users can customize their profile including a pronoun, a year of study, a program, and study style.
-The profile is used in the matching algorithm to generate a possible matches for our program's one of the most important feature.
+The users can customize their personal information, including their name, pronouns, year in university, field of study, study styles, and preferences for their ideal study buddy and study spots.
+Information on the profile is used by the matching algorithm for match-making, one of our program's most important features.
 
 ### Chat and Study Spot 
 
@@ -51,17 +51,13 @@ Users are able to view all notifications and clear all notifications. Moreover, 
 
 #### Design Patterns:
 
-#### Builder Design Pattern
+#### Builder
 Before, the profile feature utilized a ProfileBuilder class to construct new Profile entity objects. The original intent was to avoid passing a long parameter list into a Profile constructor, as the Profile entity has numerous attributes that need to be set independently. Yet, the design pattern ultimately was not implemented because it is not certain what and how many fields the user will make changes to on the ProfileUI with every save. Therefore, inputs in all editable fields should always be passed in as a ProfileInModel. In the future, when section edits are developed and only a defined portion of the fields are modified, for example, a builder pattern will be practical.
 
 #### Singleton
 Upon Hafsa's suggestion after Milestone 4, it was decided that implementing the singleton design pattern for the UserDatabase class was most appropriate. This is because the user database should necessarily be a single instance as there should only ever be one user database in usage as the program is running. In this way, to access any of the attributes associated with the user database, one would simply have to access the getter and setter methods and call them on the singleton instance. Getting the instance is also streamlined so that it only returns that one instance but if it doesn’t already exist, it will create the first singular instance for the running of the program. That instance is the one that will be returned each subsequent time the getUserDatabase() method is called.
 
-#### Strategy
-A strategy design pattern was initially considered for the matching algorithm. However this later deemed to not be useful as a major aspect of a strategy design pattern is to let the client decide how the algorithm should run. As of now the matching algorithm matches users based on year of study, field of study and study styles, irregardless of client preferences. Perhaps in the future, if more ways of comparing are implemented and client's get to decide what to match based on (for example: just styles or just year of study), then a strategy design pattern can be implemented.
-
-
-#### Testing:
+#### Testing
 
 As a note, the autograder never finishes grading because there are tests for UIs, which require clicking buttons to move on, so the autograder is just stuck. Overall, all the tests pass!
 
@@ -69,7 +65,7 @@ As a note, the autograder never finishes grading because there are tests for UIs
 Testing on the login and account creation follows the flow of the natural clean architecture. I create the controllers, their usecases, and inmodels and pass them in to recreate what would be done in the actionPerformed section of the loginUI. Note that testing the UI directly was not possible due how it requires the action of the button being clicked for either login or register account. Perhaps there is a way to test the UI with the use of a button but upon researching so far, there does not seem to be a feasible method to do so, hence this is raised as a future issue for further improvements in testing. However, the test cases cover all the classes and their methods in both creating a new account and logging into the account. There is just one method that is not covered in account_creation.account which is getBuddies() as that is called by the chatList use case elsewhere and is not under the purview of logging in or account creation. Apart from that, there is 100% coverage of these two usecases. Furthermore, UserDatabase is also covered because of its widespread use in getter and setter methods during the register and login use cases.
 
 #### Profile:
-Testing for the profile feature was done on three levels, focusing on the UI, the use cases, and the entity. It achieved 100%, 98%, and 80% coverage for all classes, methods, and lines, respectively. It tests the connection between classes in the CA and makes sure input data is successfully stored into the UserDatabase and presented back to the user.
+Testing for the profile feature was done on three levels, focusing on the UI, the use cases, and the entity. It achieved 100%, 98%, and 80% coverage for all classes, methods, and lines, respectively. It tests the connection between classes in the CA and makes sure input data is successfully stored into the UserDatabase and presented back to the user. Some methods in the ProfileUI- like the actionPerformed method- are not tested because they rely on actual user input.
 
 #### Swiper:
 Testing for the Swiper consisted of checking for different combinations. This included the situation if the current user accepted a potential user but the potential user either did not accept them yet or rejected them, the situation where the current user accepted a potential user and they also accepted them beforehand. The tests checked for proper outputs and they all passed. These particular tests were repeated through the interactor, through the controller and through the UI with different number of accounts. The UI tests also consisted of pressing each button (or at least creating a fake button press), to see if the list of matches for each account was modified correctly (as I cannot access the output from the UI directly). In the end, coverage was 100% for all classes, methods and even lines!
