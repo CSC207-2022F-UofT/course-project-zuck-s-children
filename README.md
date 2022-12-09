@@ -1,4 +1,4 @@
-# StudyBuddy - Zuck's Children
+# StudyBuddy App - Zuck's Children
 
 StudyBuddy is a networking app - but for studying purposes. This program allows students on the UofT campus to find and connect with peers to study together. By creating an account and specifying personal and preferred information for studying such as study spots, academic programs, and studying styles, users are recommended with other users with similar preferences to study with. Users are prompted with potential matches and can reject or deny them using a swiper algorithm. Users can also chat with matched buddies!
 
