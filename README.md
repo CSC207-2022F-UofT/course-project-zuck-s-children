@@ -22,13 +22,11 @@ The user can only login to a registered account with the correct password.\
 When an account is authorized, the login window will be closed and the main navigation window will be opened.
 
 ### Swiper - Matching
-<img width="1126" alt="Screen Shot 2022-12-08 at 9 56 36 PM" src="https://user-images.githubusercontent.com/102633707/206614412-78bbcf2c-348a-44e3-90e5-c848905ddd6e.png">
+<img width="1124" alt="Screen Shot 2022-12-08 at 10 56 25 PM" src="https://user-images.githubusercontent.com/102633707/206620784-77b6ec50-6d5e-4170-952b-4efa8ce4500d.png">
 
 The user can see matched profiles and choose to accept or reject other students to be a StudyBuddy.\
 The matching is produced by our matching algorithm based on information provided in a profile, for example, one's field of study.\
 Once two users accept each other, the program creates a new chat room of the two users.
-
-
 
 ### Profile Customization
 <img width="450" alt="Screen Shot 2022-12-05 at 9 25 42 AM" src="https://user-images.githubusercontent.com/107783734/205661179-9bb536c5-f109-4896-b1e5-a2642d75d728.png">
