@@ -1,5 +1,6 @@
 package account_creation;
 
+import account_and_login.LoginUI;
 import account_and_login.account_creation.Account;
 import account_and_login.account_creation.RegisterController;
 import account_and_login.account_creation.RegisterInModel;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
