@@ -5,58 +5,16 @@ import data.persistency.UserDatabase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+
 import java.util.*;
 
 import static matching.MatchingAlgorithm.MatchingAlgorithmMethod;
+import static matching.MatchingAlgorithm.assignScore;
 import static org.junit.Assert.assertEquals;
 
 public class MatchingAlgorithmTest {
 
-    @Test
-    public void testMatchingCompatibility() {
-
-        // makeshift profiles for testing
-
-        // Lance profile
-        Account Lance = new Account("Lance", "password");
-
-//        UserDatabase.setCurrentUser(Lance);
-        Lance.getProfile().setName("Lance");
-        Lance.getProfile().setPronouns("he/him");
-        Lance.getProfile().setYear("3");
-        Lance.getProfile().setFieldOfStudy("Cognitive Science");
-        // lance's study styles
-        List<String> LanceStudyStyles = new ArrayList<>();
-        LanceStudyStyles.add("Quiet");
-        LanceStudyStyles.add("Long");
-        LanceStudyStyles.add("Visual");
-        Lance.getProfile().setStudyStyles(LanceStudyStyles);
-
-        //lance's study spot preferences
-        List<String> LanceStudySpotPreferences = new ArrayList<>();
-        LanceStudyStyles.add("Robarts");
-        LanceStudyStyles.add("Gerstein");
-        LanceStudyStyles.add("TTC");
-        Lance.getProfile().setStudySpotPreferences(LanceStudySpotPreferences);
-
-        //lance's study buddy preferences
-        HashMap<String, List<String>> LanceStudyBuddyPreferences = new HashMap<>();
-        List<String> LanceYearPreferences = new ArrayList<>();
-        List<String> LanceFieldPreferences = new ArrayList<>();
-        List<String> LanceStylePreferences = new ArrayList<>();
-
-        LanceYearPreferences.add("2");
-        LanceFieldPreferences.add("Computer Science");
-        LanceFieldPreferences.add("Cognitive Science");
-        LanceStylePreferences.add("Quiet");
-        LanceStylePreferences.add("Long");
-        LanceStylePreferences.add("Audio");
-
-        LanceStudyBuddyPreferences.put("year", LanceYearPreferences);
-        LanceStudyBuddyPreferences.put("field", LanceFieldPreferences);
-        LanceStudyBuddyPreferences.put("style", LanceStylePreferences);
-        Lance.getProfile().setStudyBuddyPreferences(LanceStudyBuddyPreferences);
-
+    public ArrayList<Account> buildOtherUsers(){
         // Kenji Profile
         Account Kenji = new Account("Kenji", "password");
 
@@ -140,21 +98,70 @@ public class MatchingAlgorithmTest {
         oUsers.add(Nina);
         oUsers.add(Kenji);
 
+        return oUsers;
+    }
+
+    public Account buildLance(){
+        // Lance profile
+        Account Lance = new Account("Lance", "password");
+
+//        UserDatabase.setCurrentUser(Lance);
+        Lance.getProfile().setName("Lance");
+        Lance.getProfile().setPronouns("he/him");
+        Lance.getProfile().setYear("3");
+        Lance.getProfile().setFieldOfStudy("Cognitive Science");
+        // lance's study styles
+        List<String> LanceStudyStyles = new ArrayList<>();
+        LanceStudyStyles.add("Quiet");
+        LanceStudyStyles.add("Long");
+        LanceStudyStyles.add("Visual");
+        Lance.getProfile().setStudyStyles(LanceStudyStyles);
+
+        //lance's study spot preferences
+        List<String> LanceStudySpotPreferences = new ArrayList<>();
+        LanceStudyStyles.add("Robarts");
+        LanceStudyStyles.add("Gerstein");
+        LanceStudyStyles.add("TTC");
+        Lance.getProfile().setStudySpotPreferences(LanceStudySpotPreferences);
+
+        //lance's study buddy preferences
+        HashMap<String, List<String>> LanceStudyBuddyPreferences = new HashMap<>();
+        List<String> LanceYearPreferences = new ArrayList<>();
+        List<String> LanceFieldPreferences = new ArrayList<>();
+        List<String> LanceStylePreferences = new ArrayList<>();
+
+        LanceYearPreferences.add("2");
+        LanceFieldPreferences.add("Computer Science");
+        LanceFieldPreferences.add("Cognitive Science");
+        LanceStylePreferences.add("Quiet");
+        LanceStylePreferences.add("Long");
+        LanceStylePreferences.add("Audio");
+
+        LanceStudyBuddyPreferences.put("year", LanceYearPreferences);
+        LanceStudyBuddyPreferences.put("field", LanceFieldPreferences);
+        LanceStudyBuddyPreferences.put("style", LanceStylePreferences);
+        Lance.getProfile().setStudyBuddyPreferences(LanceStudyBuddyPreferences);
+
+        return Lance;
+    }
+
+    @Test
+    void testMatchingCompatibility() {
         LinkedList<Account> oUsersTest = new LinkedList<>();
-        oUsersTest.add(Kenji);
-        oUsersTest.add(Nina);
+        ArrayList<Account> oUsers = new ArrayList<>(buildOtherUsers());
 
+        for (int i = oUsers.size() - 1; i >= 0 ; i--) {
+            oUsersTest.add(oUsers.get(i));
+        }
 
-
-        // need to change test1 to a LinkedList
-        LinkedList<Account> test1 = new LinkedList<>(MatchingAlgorithmMethod(Lance, oUsers));
+        LinkedList<Account> test1 = new LinkedList<>(MatchingAlgorithmMethod(buildLance(), oUsers));
 
         //asserts True if oUsersTest == Kenji, Nina
         assertEquals(test1, oUsersTest);
     }
 
     @Test
-    public void testMatchingNoOtherUsers(){
+    void testMatchingNoOtherUsers(){
         Account Lance = new Account("Lance", "password");
         ArrayList<Account> oUsers = new ArrayList<>();
         LinkedList<Account> test1 = new LinkedList<>(MatchingAlgorithmMethod(Lance, oUsers));
@@ -163,8 +170,8 @@ public class MatchingAlgorithmTest {
     }
 
     @Test
-    public void testMatchingSeenUsers(){
-        // test if seen users get filtered
+    void testMatchingSeenUsers(){
+        // test if seen users get filtered by seen
         Account Lance = new Account("Lance", "password");
         ArrayList<Account> oUsers = new ArrayList<>();
         Account Kenji = new Account("Kenji", "password");
@@ -175,25 +182,63 @@ public class MatchingAlgorithmTest {
     }
 
     @Test
-    public void testAssignScore(){
+    void testAssignScoreYear(){
+        Account Lance = buildLance();
+        ArrayList<Account> oUsers = new ArrayList<>(buildOtherUsers());
 
+        HashMap<String, List<String>> preferences = Lance.getProfile().getStudyBuddyPreferences();
+
+        assignScore("year", preferences, oUsers.get(0).getProfile());
+
+        assertEquals(0, oUsers.get(0).getProfile().getScore());
     }
 
-    @Before
-    public void setUp() throws Exception {
+    @Test
+    void getOthers() {
+        UserDatabase database = UserDatabase.getUserDatabase();
+
+        ArrayList<Account> otherUsers = buildOtherUsers();
+        HashMap<String, Account> accounts = new HashMap<>();
+
+        for (int i = otherUsers.size() - 1; i >= 0; i--) {
+            accounts.put(otherUsers.get(i).getUsername(), otherUsers.get(i));
+        }
+
+        ArrayList<Account> actual = new ArrayList<>();
+        for (int i = otherUsers.size() - 1; i >= 0; i--) {
+            actual.add(otherUsers.get(i));
+        }
+
+        database.setAccounts(accounts);
+        ArrayList<Account> testGetOthers = MatchingAlgorithm.getOthers();
+
+        assertEquals(testGetOthers, actual);
     }
 
-    @After
-    public void tearDown() throws Exception {
-    }
+    @Test
+    void finalMatches() {
+        UserDatabase database = UserDatabase.getUserDatabase();
+        Account Lance = buildLance();
+        ArrayList<Account> otherUsers = buildOtherUsers();
+        HashMap<String, Account> accounts = new HashMap<>();
 
-    @org.junit.Test
-    public void matchingAlgorithm() {
-    }
+        for (int i = otherUsers.size() - 1; i >= 0; i--) {
+            accounts.put(otherUsers.get(i).getUsername(), otherUsers.get(i));
+        }
 
-    @org.junit.Test
-    public void assignScore() {
-    }
+        LinkedList<Account> oUsersTest = new LinkedList<>();
+        ArrayList<Account> oUsers = new ArrayList<>(otherUsers);
+        for (int i = oUsers.size() - 1; i >= 0 ; i--) {
+            oUsersTest.add(oUsers.get(i));
+        }
 
+        database.setCurrentUser(Lance);
+        database.setAccounts(accounts);
+
+        LinkedList<Account> test1 = new LinkedList<>(MatchingAlgorithm.finalMatches());
+
+        assertEquals(test1, oUsersTest);
+
+    }
 }
 
