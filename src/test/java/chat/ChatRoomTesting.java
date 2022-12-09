@@ -42,8 +42,6 @@ public class ChatRoomTesting {
         chatDataAccess.setChatdata(chatDatabase);
         chatDataAccessInterface = chatDataAccess;
         ChatRoomUI chatRoomUI = new ChatRoomUI();
-        chatRoomUI.setFrame();
-        chatRoomUI.build();
         presenter = new ChatRoomPresenter(chatRoomUI);
         interactor = new ChatRoomOpenInteractor(presenter, chatDataAccessInterface);
         MsgOutBoundary chatRoomPresenter = new ChatRoomPresenter(chatRoomUI);
