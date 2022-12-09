@@ -28,8 +28,10 @@ Once two users accept each other, the program creates a new chat room of the two
 <img width="450" alt="Screen Shot 2022-12-05 at 9 25 42 AM" src="https://user-images.githubusercontent.com/107783734/205661179-9bb536c5-f109-4896-b1e5-a2642d75d728.png">
 The users can customize their profile including a pronoun, a year of study, a program, and study style.
 The profile is used in the matching algorithm to generate a possible matches for our program's one of the most important feature.
+
 #### Builder Design Pattern
 Before, the profile feature utilized a ProfileBuilder class to construct new Profile entity objects. The original intent was to avoid passing a long parameter list into a Profile constructor, as the Profile entity has numerous attributes that need to be set independently. Yet, the design pattern ultimately was not implemented because it is not certain what and how many fields the user will make changes to on the ProfileUI with every save. Therefore, inputs in all editable fields should always be passed in as a ProfileInModel. In the future, when section edits are developed and only a defined portion of the fields are modified, for example, a builder pattern will be practical.
+
 #### Testing
 Testing for the profile feature was done on three levels, focusing on the UI, the use cases, and the entity. It achieved 100%, 98%, and 80% coverage for all classes, methods, and lines, respectively. It tests the connection between classes in the CA and makes sure input data is successfully stored into the UserDatabase and presented back to the user.
 
