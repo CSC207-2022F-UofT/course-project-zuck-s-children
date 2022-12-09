@@ -68,6 +68,8 @@ Testing for the Swiper consisted of checking for different combinations. This in
 ### Matching:
 Testing for the matching algorithm consisted of checking for actual matching, if users were properly assigned scores and whether all other users (not including the current user) were correctly returned and if all final matchers were properly returned. It achieved 100%, 100%, 100% coverage for all classes, methods, and lines, respectively. It tests the connection between the user database and makes sure all other users are assigned a score based on the current user's preferences and the other users' study styles.
 
+### Chat:
+Testing for the chat utility covers ChatDataAccess, opening a chat room, and sending a message. ChatDataAccess is tested on adding a chat room, and loading a chat room by a room id and an account. Moreover, the interactors are tested for opening a chat room and sending a message.
 
 ## About Us
 Group Members:
