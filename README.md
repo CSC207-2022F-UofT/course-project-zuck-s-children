@@ -1,6 +1,6 @@
 # StudyBuddy App - Zuck's Children
 
-IMPORTANT:
+# IMPORTANT:
 When running the program, never quit the program with command Q, only close it with the red button on the top left corner. Otherwise your data will not save!
 
 StudyBuddy is a networking app - but for studying purposes. This program allows students on the UTSG campus to find and connect with peers to study together. By creating an account and specifying personal and preferred information for studying such as study spots, academic programs, and studying styles, users are recommended with other users with similar preferences to study with. Users are prompted with potential matches and can reject or deny them using a swiper algorithm. Users can also chat with matched buddies!
