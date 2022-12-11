@@ -15,7 +15,7 @@ a user's profile, group chats and a map.
 
 ## Core Features
 
-To use this program, please run StudyBuddyApp.java in src.main.java.main_app!
+To use this program, please run StudyBuddyApp.java in src.main.java.main_app! If you would like to access the program while on a different device, you will have to keep the same userDatabase.txt file from your original session(s) in order to see the accounts you created from your original device(s), which could mean comitting to the repo, or copy pasting the file.
 
 ### Login and Account Creation
 <img width="700" alt="Screen Shot 2022-12-05 at 9 14 02 AM" src="https://user-images.githubusercontent.com/107783734/205658383-b9125772-ad0b-4a77-af51-cc5c33721888.png">
