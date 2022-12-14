@@ -81,6 +81,9 @@ Testing for the Swiper consisted of checking for different combinations. This in
 #### Matching:
 Testing for the matching algorithm consisted of checking for actual matching, if users were properly assigned scores and whether all other users (not including the current user) were correctly returned and if all final matchers were properly returned. It achieved 100%, 100%, 100% coverage for all classes, methods, and lines, respectively. It tests the connection between the user database and makes sure all other users are assigned a score based on the current user's preferences and the other users' study styles.
 
+#### Notification:
+Testing for the notification feature covers both the ClearNotif and ShowNotif use cases. This included testing for when there are no notifications, one notification, or many notifications. The tests focus on the CA implementation, going from controllers all the way to presenters, to ensure the use cases function as expected and that entities are changed accordingly.
+
 #### Chat:
 Testing for the chat utility covers ChatDataAccess, opening a chat room, and sending a message. ChatDataAccess is tested on adding a chat room, and loading a chat room by a room id and an account. Moreover, the interactors are tested for opening a chat room and sending a message.
 
